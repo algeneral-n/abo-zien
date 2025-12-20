@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Home Screen
- * الصفحة الرئيسية - 3 أزرار في الأعلى
- * ✅ Cognitive Loop → Kernel → Agents
+ * ???????????? ???????????????? - 3 ?????????? ???? ????????????
+ * ??? Cognitive Loop ??? Kernel ??? Agents
  */
 
 import { useState, useEffect } from 'react';
@@ -90,7 +90,7 @@ export default function Home() {
       await AsyncStorage.setItem('voiceEnabled', newStatus.toString());
       setVoiceEnabled(newStatus);
 
-      // ✅ إرسال إلى Kernel → CognitiveLoop → VoiceAgent
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? VoiceAgent
       kernel.emit({
         type: 'user:input',
         data: {
@@ -113,50 +113,50 @@ export default function Home() {
       }
       // #endregion
       console.error('Voice toggle error:', error);
-      Alert.alert('خطأ', error.message || 'فشل تفعيل/إيقاف الصوت');
+      Alert.alert('??????', error.message || '?????? ??????????/?????????? ??????????');
     }
   };
 
   const serviceGroups = [
     {
       id: 'core',
-      name: 'الخدمات الأساسية',
+      name: '?????????????? ????????????????',
       services: [
-        { id: 'chat', title: 'الدردشة', iconName: 'chat', route: '/chat' },
-        { id: 'council', title: 'المجلس', iconName: 'voice-chat', route: '/council' },
-        { id: 'loyalty', title: 'الولاء', iconName: 'star', route: '/loyalty' },
-        { id: 'vault', title: 'القبو', iconName: 'archive', route: '/vault' },
+        { id: 'chat', title: '??????????????', iconName: 'chat', route: '/chat' },
+        { id: 'council', title: '????????????', iconName: 'voice-chat', route: '/council' },
+        { id: 'loyalty', title: '????????????', iconName: 'star', route: '/loyalty' },
+        { id: 'vault', title: '??????????', iconName: 'archive', route: '/vault' },
       ],
     },
     {
       id: 'builder',
-      name: 'خدمات البناء',
+      name: '?????????? ????????????',
       services: [
-        { id: 'app-builder', title: 'بناء التطبيقات', iconName: 'apps', route: '/app-builder' },
-        { id: 'code', title: 'بناء الكود', iconName: 'task', route: '/code' },
+        { id: 'app-builder', title: '???????? ??????????????????', iconName: 'apps', route: '/app-builder' },
+        { id: 'code', title: '???????? ??????????', iconName: 'task', route: '/code' },
       ],
     },
     {
       id: 'storage',
-      name: 'خدمات التخزين',
+      name: '?????????? ??????????????',
       services: [
-        { id: 'files', title: 'الملفات', iconName: 'folder', route: '/files' },
+        { id: 'files', title: '??????????????', iconName: 'folder', route: '/files' },
       ],
     },
     {
       id: 'maps',
-      name: 'الخرائط والملاحة',
+      name: '?????????????? ????????????????',
       services: [
-        { id: 'maps', title: 'الخرائط', iconName: 'apps', route: '/maps' },
-        { id: 'weather', title: 'الطقس', iconName: 'apps', route: '/weather' },
+        { id: 'maps', title: '??????????????', iconName: 'apps', route: '/maps' },
+        { id: 'weather', title: '??????????', iconName: 'apps', route: '/weather' },
       ],
     },
     {
       id: 'security',
-      name: 'خدمات الأمان',
+      name: '?????????? ????????????',
       services: [
-        { id: 'secure', title: 'الأمان', iconName: 'secure', route: '/secure' },
-        { id: 'sos', title: 'الطوارئ', iconName: 'emergency', route: '/sos' },
+        { id: 'secure', title: '????????????', iconName: 'secure', route: '/secure' },
+        { id: 'sos', title: '??????????????', iconName: 'emergency', route: '/sos' },
         { id: 'supreme-access', title: 'Supreme Access', iconName: 'shield', route: '/supreme-access' },
         { id: 'control-room', title: 'Control Room', iconName: 'settings', route: '/control-room' },
       ],
@@ -183,7 +183,7 @@ export default function Home() {
             styles.headerButton,
             { 
               borderColor: colors.primary,
-              backgroundColor: voiceEnabled ? colors.primary : `${colors.primary}10`,
+              bREMOVED: voiceEnabled ? colors.primary : `${colors.primary}10`,
             },
           ]}
           onPress={handleToggleVoice}
@@ -204,12 +204,12 @@ export default function Home() {
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.characterContainer}>
+        <View style={styles.charREMOVED}>
           <RARECharacter size={180} animation="idle" />
         </View>
 
         {showServicesMenu && (
-          <View style={[styles.servicesMenu, { borderColor: colors.primary, backgroundColor: `${colors.primary}05` }]}>
+          <View style={[styles.servicesMenu, { borderColor: colors.primary, bREMOVED: `${colors.primary}05` }]}>
             {serviceGroups.map((group) => (
               <View key={group.id} style={styles.serviceGroup}>
                 <Text style={[styles.serviceGroupTitle, { color: colors.primary }]}>
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 20,
   },
-  characterContainer: {
+  charREMOVED: {
     alignItems: 'center',
     marginBottom: 30,
   },
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 12,
     borderWidth: 1,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
     gap: 12,
   },
   serviceItemText: {
@@ -305,5 +305,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
 
 

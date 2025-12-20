@@ -1,10 +1,10 @@
 /**
  * RARE 4N - Vault Screen
- * شاشة القبو المشفر - رفع، تحميل، عرض، معاينة، سكان
- * ✅ Cognitive Loop → Kernel → Vault Agent
- * ✅ Debug Logging شامل
- * ✅ Error Handling شامل
- * ✅ الحماية من الكراشات
+ * ???????? ?????????? ???????????? - ???????? ???????????? ???????? ?????????????? ????????
+ * ??? Cognitive Loop ??? Kernel ??? Vault Agent
+ * ??? Debug Logging ????????
+ * ??? Error Handling ????????
+ * ??? ?????????????? ???? ????????????????
  */
 
 import { useState, useEffect } from 'react';
@@ -17,7 +17,7 @@ import {
   Alert,
   Image,
   Modal,
-  ActivityIndicator,
+  REMOVED,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
@@ -51,7 +51,7 @@ export default function Vault() {
       // Load vault items on mount
       loadVaultItems();
 
-      // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+      // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
       const unsubscribeVault = listenForEvents('agent:vault:response', (data) => {
         // #region agent log
         if (__DEV__) {
@@ -75,7 +75,7 @@ export default function Vault() {
             setPreviewFile(data.preview);
           }
           if (data.scan) {
-            Alert.alert('نتيجة المسح', data.scan.text || JSON.stringify(data.scan));
+            Alert.alert('?????????? ??????????', data.scan.text || JSON.stringify(data.scan));
           }
           setError(null);
         } catch (updateError: any) {
@@ -85,7 +85,7 @@ export default function Vault() {
           }
           // #endregion
           console.error('Vault response update error:', updateError);
-          setError('فشل تحديث البيانات');
+          setError('?????? ?????????? ????????????????');
         }
       });
 
@@ -95,9 +95,9 @@ export default function Vault() {
           fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/app/vault.tsx:useEffect',message:'Vault error received',data:{error:data.error},timestamp:Date.now(),sessionId:'vault-ui-session',runId:'run1',hypothesisId:'VAULT_UI_ERROR'})}).catch(()=>{});
         }
         // #endregion
-        setError(data.error || 'حدث خطأ');
+        setError(data.error || '?????? ??????');
         setIsLoading(false);
-        Alert.alert('خطأ', data.error || 'حدث خطأ');
+        Alert.alert('??????', data.error || '?????? ??????');
       });
 
       const unsubscribeUploaded = listenForEvents('vault:uploaded', (data) => {
@@ -107,7 +107,7 @@ export default function Vault() {
         }
         // #endregion
         loadVaultItems();
-        Alert.alert('نجح', 'تم رفع الملف بنجاح');
+        Alert.alert('??????', '???? ?????? ?????????? ??????????');
       });
 
       const unsubscribeDeleted = listenForEvents('vault:deleted', (data) => {
@@ -117,7 +117,7 @@ export default function Vault() {
         }
         // #endregion
         loadVaultItems();
-        Alert.alert('نجح', 'تم حذف الملف بنجاح');
+        Alert.alert('??????', '???? ?????? ?????????? ??????????');
       });
     
       return () => {
@@ -133,7 +133,7 @@ export default function Vault() {
       }
       // #endregion
       console.error('Vault useEffect error:', error);
-      setError('فشل تحميل البيانات');
+      setError('?????? ?????????? ????????????????');
     }
   }, []);
 
@@ -166,9 +166,9 @@ export default function Vault() {
       }
       // #endregion
       console.error('Load vault items error:', error);
-      setError('فشل تحميل الملفات');
+      setError('?????? ?????????? ??????????????');
       setIsLoading(false);
-      Alert.alert('خطأ', 'فشل تحميل الملفات');
+      Alert.alert('??????', '?????? ?????????? ??????????????');
     }
   };
 
@@ -185,7 +185,7 @@ export default function Vault() {
 
       const result = await DocumentPicker.getDocumentAsync({
         type: '*/*',
-        copyToCacheDirectory: true,
+        copyToCREMOVED: true,
       });
 
       if (result.canceled) {
@@ -202,7 +202,7 @@ export default function Vault() {
         throw new Error('Invalid file data');
       }
 
-      // ✅ استخدام VaultAgent مباشرة
+      // ??? ?????????????? VaultAgent ????????????
       await executeAction('upload_file', {
         fileUri: asset.uri,
         name: asset.name,
@@ -224,9 +224,9 @@ export default function Vault() {
       }
       // #endregion
       console.error('Upload error:', error);
-      setError('فشل رفع الملف');
+      setError('?????? ?????? ??????????');
       setIsLoading(false);
-      Alert.alert('خطأ', error.message || 'فشل رفع الملف');
+      Alert.alert('??????', error.message || '?????? ?????? ??????????');
     }
   };
 
@@ -263,7 +263,7 @@ export default function Vault() {
 
       const fileName = asset.uri.split('/').pop() || `image_${Date.now()}.jpg`;
 
-      // ✅ استخدام VaultAgent مباشرة
+      // ??? ?????????????? VaultAgent ????????????
       await executeAction('upload_file', {
         fileUri: asset.uri,
         name: fileName,
@@ -285,9 +285,9 @@ export default function Vault() {
       }
       // #endregion
       console.error('Upload image error:', error);
-      setError('فشل رفع الصورة');
+      setError('?????? ?????? ????????????');
       setIsLoading(false);
-      Alert.alert('خطأ', error.message || 'فشل رفع الصورة');
+      Alert.alert('??????', error.message || '?????? ?????? ????????????');
     }
   };
 
@@ -306,7 +306,7 @@ export default function Vault() {
       setIsLoading(true);
       setError(null);
 
-      // ✅ استخدام VaultAgent مباشرة
+      // ??? ?????????????? VaultAgent ????????????
       const result = await executeAction('download_file', { fileId });
 
       // #region agent log
@@ -316,7 +316,7 @@ export default function Vault() {
       // #endregion
 
       setIsLoading(false);
-      Alert.alert('نجح', 'تم تحميل الملف بنجاح');
+      Alert.alert('??????', '???? ?????????? ?????????? ??????????');
     } catch (error: any) {
       // #region agent log
       if (__DEV__) {
@@ -324,9 +324,9 @@ export default function Vault() {
       }
       // #endregion
       console.error('Download error:', error);
-      setError('فشل تحميل الملف');
+      setError('?????? ?????????? ??????????');
       setIsLoading(false);
-      Alert.alert('خطأ', error.message || 'فشل تحميل الملف');
+      Alert.alert('??????', error.message || '?????? ?????????? ??????????');
     }
   };
 
@@ -345,7 +345,7 @@ export default function Vault() {
       setIsLoading(true);
       setError(null);
 
-      // ✅ استخدام VaultAgent مباشرة
+      // ??? ?????????????? VaultAgent ????????????
       const preview = await executeAction('preview_file', { fileId });
 
       // #region agent log
@@ -363,9 +363,9 @@ export default function Vault() {
       }
       // #endregion
       console.error('Preview error:', error);
-      setError('فشل معاينة الملف');
+      setError('?????? ???????????? ??????????');
       setIsLoading(false);
-      Alert.alert('خطأ', error.message || 'فشل معاينة الملف');
+      Alert.alert('??????', error.message || '?????? ???????????? ??????????');
     }
   };
 
@@ -384,7 +384,7 @@ export default function Vault() {
       setIsLoading(true);
       setError(null);
 
-      // ✅ استخدام VaultAgent مباشرة
+      // ??? ?????????????? VaultAgent ????????????
       const scanResult = await executeAction('scan_file', { fileId });
 
       // #region agent log
@@ -394,7 +394,7 @@ export default function Vault() {
       // #endregion
 
       setIsLoading(false);
-      Alert.alert('نتيجة المسح', scanResult?.text || JSON.stringify(scanResult));
+      Alert.alert('?????????? ??????????', scanResult?.text || JSON.stringify(scanResult));
     } catch (error: any) {
       // #region agent log
       if (__DEV__) {
@@ -402,9 +402,9 @@ export default function Vault() {
       }
       // #endregion
       console.error('Scan error:', error);
-      setError('فشل مسح الملف');
+      setError('?????? ?????? ??????????');
       setIsLoading(false);
-      Alert.alert('خطأ', error.message || 'فشل مسح الملف');
+      Alert.alert('??????', error.message || '?????? ?????? ??????????');
     }
   };
 
@@ -421,19 +421,19 @@ export default function Vault() {
       }
 
       Alert.alert(
-        'تأكيد الحذف',
-        'هل أنت متأكد من حذف هذا الملف؟',
+        '?????????? ??????????',
+        '???? ?????? ?????????? ???? ?????? ?????? ????????????',
         [
-          { text: 'إلغاء', style: 'cancel' },
+          { text: '??????????', style: 'cancel' },
           {
-            text: 'حذف',
+            text: '??????',
             style: 'destructive',
             onPress: async () => {
               try {
                 setIsLoading(true);
                 setError(null);
 
-                // ✅ استخدام VaultAgent مباشرة (حذف من Backend)
+                // ??? ?????????????? VaultAgent ???????????? (?????? ???? Backend)
                 // Note: VaultAgent doesn't have delete action, so we'll use kernel emit
                 kernel.emit({
                   type: 'user:input',
@@ -461,9 +461,9 @@ export default function Vault() {
                 }
                 // #endregion
                 console.error('Delete error:', deleteError);
-                setError('فشل حذف الملف');
+                setError('?????? ?????? ??????????');
                 setIsLoading(false);
-                Alert.alert('خطأ', deleteError.message || 'فشل حذف الملف');
+                Alert.alert('??????', deleteError.message || '?????? ?????? ??????????');
               }
             },
           },
@@ -476,7 +476,7 @@ export default function Vault() {
       }
       // #endregion
       console.error('Delete validation error:', error);
-      Alert.alert('خطأ', error.message || 'معرف ملف غير صحيح');
+      Alert.alert('??????', error.message || '???????? ?????? ?????? ????????');
     }
   };
 
@@ -489,49 +489,49 @@ export default function Vault() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>القبو المشفر</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>?????????? ????????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {error && (
-          <View style={[styles.errorContainer, { backgroundColor: colors.error + '20', borderColor: colors.error }]}>
+          <View style={[styles.errorContainer, { bREMOVED: colors.error + '20', borderColor: colors.error }]}>
             <Icon name="error" size={20} color={colors.error} />
             <Text style={[styles.errorText, { color: colors.error }]}>{error}</Text>
           </View>
         )}
 
         <View style={[styles.uploadSection, { borderColor: colors.primary }]}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>رفع ملفات</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????? ??????????</Text>
           <View style={styles.uploadButtons}>
             <Pressable
-              style={[styles.uploadButton, { backgroundColor: colors.primary, opacity: isLoading ? 0.5 : 1 }]}
+              style={[styles.uploadButton, { bREMOVED: colors.primary, opacity: isLoading ? 0.5 : 1 }]}
               onPress={handleUploadFile}
               disabled={isLoading}
             >
               <Icon name="folder" size={20} color="#000" />
-              <Text style={styles.uploadButtonText}>رفع ملف</Text>
+              <Text style={styles.uploadButtonText}>?????? ??????</Text>
             </Pressable>
             <Pressable
-              style={[styles.uploadButton, { backgroundColor: colors.primary, opacity: isLoading ? 0.5 : 1 }]}
+              style={[styles.uploadButton, { bREMOVED: colors.primary, opacity: isLoading ? 0.5 : 1 }]}
               onPress={handleUploadImage}
               disabled={isLoading}
             >
               <Icon name="image" size={20} color="#000" />
-              <Text style={styles.uploadButtonText}>رفع صورة</Text>
+              <Text style={styles.uploadButtonText}>?????? ????????</Text>
             </Pressable>
           </View>
         </View>
 
         <View style={styles.filesSection}>
           <View style={styles.sectionHeader}>
-            <Text style={[styles.sectionTitle, { color: colors.primary }]}>الملفات ({files.length})</Text>
-            {isLoading && <ActivityIndicator size="small" color={colors.primary} />}
+            <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????????????? ({files.length})</Text>
+            {isLoading && <REMOVED size="small" color={colors.primary} />}
           </View>
           {files.length === 0 && !isLoading ? (
             <View style={styles.emptyContainer}>
               <Icon name="folder-open" size={48} color={colors.textSecondary} />
-              <Text style={[styles.emptyText, { color: colors.textSecondary }]}>لا توجد ملفات</Text>
+              <Text style={[styles.emptyText, { color: colors.textSecondary }]}>???? ???????? ??????????</Text>
             </View>
           ) : (
             files.map((file) => (
@@ -544,34 +544,34 @@ export default function Vault() {
                   <View style={styles.fileDetails}>
                     <Text style={[styles.fileName, { color: colors.text }]}>{file.name}</Text>
                     <Text style={[styles.fileMeta, { color: colors.textSecondary }]}>
-                      {file.type} • {file.size ? `${(file.size / 1024).toFixed(2)} KB` : 'غير معروف'}
+                      {file.type} ??? {file.size ? `${(file.size / 1024).toFixed(2)} KB` : '?????? ??????????'}
                     </Text>
                   </View>
                 </View>
                 <View style={styles.fileActions}>
                   <Pressable
-                    style={[styles.actionButton, { borderColor: colors.primary }]}
+                    style={[styles.REMOVED, { borderColor: colors.primary }]}
                     onPress={() => handleDownload(file.id)}
                     disabled={isLoading}
                   >
                     <Icon name="download" size={18} color={colors.primary} />
                   </Pressable>
                   <Pressable
-                    style={[styles.actionButton, { borderColor: colors.primary }]}
+                    style={[styles.REMOVED, { borderColor: colors.primary }]}
                     onPress={() => handlePreview(file.id)}
                     disabled={isLoading}
                   >
                     <Icon name="eye" size={18} color={colors.primary} />
                   </Pressable>
                   <Pressable
-                    style={[styles.actionButton, { borderColor: colors.primary }]}
+                    style={[styles.REMOVED, { borderColor: colors.primary }]}
                     onPress={() => handleScan(file.id)}
                     disabled={isLoading}
                   >
                     <Icon name="scan" size={18} color={colors.primary} />
                   </Pressable>
                   <Pressable
-                    style={[styles.actionButton, { borderColor: colors.error }]}
+                    style={[styles.REMOVED, { borderColor: colors.error }]}
                     onPress={() => handleDelete(file.id)}
                     disabled={isLoading}
                   >
@@ -592,9 +592,9 @@ export default function Vault() {
         onRequestClose={() => setPreviewFile(null)}
       >
         <View style={styles.modalContainer}>
-          <View style={[styles.modalContent, { backgroundColor: colors.background }]}>
+          <View style={[styles.modalContent, { bREMOVED: colors.background }]}>
             <View style={styles.modalHeader}>
-              <Text style={[styles.modalTitle, { color: colors.primary }]}>معاينة الملف</Text>
+              <Text style={[styles.modalTitle, { color: colors.primary }]}>???????????? ??????????</Text>
               <Pressable onPress={() => setPreviewFile(null)}>
                 <Icon name="close" size={24} color={colors.text} />
               </Pressable>
@@ -610,7 +610,7 @@ export default function Vault() {
                 <Text style={[styles.previewText, { color: colors.text }]}>{previewFile.data}</Text>
               ) : (
                 <Text style={[styles.previewText, { color: colors.textSecondary }]}>
-                  لا يمكن معاينة هذا النوع من الملفات
+                  ???? ???????? ???????????? ?????? ?????????? ???? ??????????????
                 </Text>
               )}
             </ScrollView>
@@ -648,7 +648,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 30,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   sectionTitle: {
     fontSize: 18,
@@ -680,7 +680,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     marginBottom: 12,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   fileInfo: {
     flexDirection: 'row',
@@ -706,7 +706,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     gap: 8,
   },
-  actionButton: {
+  REMOVED: {
     width: 36,
     height: 36,
     borderRadius: 8,
@@ -746,7 +746,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    bREMOVED: 'rgba(0,0,0,0.5)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -780,5 +780,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
 
 

@@ -1,6 +1,6 @@
 /**
- * PortalAgent - وكيل البوابة
- * يدير Client Portal، Requests، Forms، Notifications
+ * PortalAgent - ???????? ??????????????
+ * ???????? Client Portal?? Requests?? Forms?? Notifications
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -51,12 +51,12 @@ export class PortalAgent extends BaseAgent {
           fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/PortalAgent.ts:onInit',message:'Socket connected',data:{socketId:this.socket?.id},timestamp:Date.now(),sessionId:'portal-session',runId:'run1',hypothesisId:'PORTAL_SOCKET_CONNECTED'})}).catch(()=>{});
         }
         // #endregion
-        console.log('[PortalAgent] Connected to backend ✅');
+        console.log('[PortalAgent] Connected to backend ???');
       });
 
       this.socket.on('client:request', (data: any) => {
         try {
-          // ✅ Safety check: Validate data
+          // ??? Safety check: Validate data
           if (!data || typeof data !== 'object') {
             console.warn('[PortalAgent] Invalid client request data');
             return;
@@ -74,7 +74,7 @@ export class PortalAgent extends BaseAgent {
 
       this.socket.on('client:form:response', (data: any) => {
         try {
-          // ✅ Safety check: Validate data
+          // ??? Safety check: Validate data
           if (!data || typeof data !== 'object') {
             console.warn('[PortalAgent] Invalid form response data');
             return;
@@ -92,7 +92,7 @@ export class PortalAgent extends BaseAgent {
 
       this.socket.on('notification', (data: any) => {
         try {
-          // ✅ Safety check: Validate data
+          // ??? Safety check: Validate data
           if (!data || typeof data !== 'object') {
             console.warn('[PortalAgent] Invalid notification data');
             return;
@@ -152,7 +152,7 @@ export class PortalAgent extends BaseAgent {
     // #endregion
 
     try {
-      // ✅ Safety check: Validate action
+      // ??? Safety check: Validate action
       if (!action || typeof action !== 'string') {
         throw new Error('Invalid action');
       }
@@ -161,7 +161,7 @@ export class PortalAgent extends BaseAgent {
 
       switch (action) {
         case 'send_widget_notification':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.clientId || !parameters.message) {
             throw new Error('clientId and message are required');
           }
@@ -179,7 +179,7 @@ export class PortalAgent extends BaseAgent {
           break;
 
         case 'handle_request':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || typeof parameters !== 'object') {
             throw new Error('parameters object is required');
           }
@@ -187,7 +187,7 @@ export class PortalAgent extends BaseAgent {
           break;
 
         case 'send_form':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.formId) {
             throw new Error('formId is required');
           }
@@ -199,7 +199,7 @@ export class PortalAgent extends BaseAgent {
           break;
 
         case 'voice_interaction':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.audioUri) {
             throw new Error('audioUri is required');
           }
@@ -255,7 +255,7 @@ export class PortalAgent extends BaseAgent {
       if (result.success) {
         this.emit({ type: 'portal:widget:notification:sent', data: { clientId, message } });
       } else {
-        this.emit({ type: 'portal:error', data: { error: result.error || 'فشل إرسال الإشعار' } });
+        this.emit({ type: 'portal:error', data: { error: result.error || '?????? ?????????? ??????????????' } });
       }
 
       // #region agent log
@@ -272,7 +272,7 @@ export class PortalAgent extends BaseAgent {
       }
       // #endregion
       console.error('[PortalAgent] Send widget notification error:', error);
-      this.emit({ type: 'portal:error', data: { error: error.message || 'فشل إرسال الإشعار' } });
+      this.emit({ type: 'portal:error', data: { error: error.message || '?????? ?????????? ??????????????' } });
       throw error;
     }
   }
@@ -375,5 +375,6 @@ export class PortalAgent extends BaseAgent {
     });
   }
 }
+
 
 

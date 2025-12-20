@@ -1,6 +1,6 @@
 /**
- * FilingAgent - وكيل الملفات
- * يدير File Management، Upload، Download، OCR
+ * FilingAgent - ???????? ??????????????
+ * ???????? File Management?? Upload?? Download?? OCR
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -31,7 +31,7 @@ export class FilingAgent extends BaseAgent {
     // #endregion
     
     try {
-      // ✅ Safety check: Validate action
+      // ??? Safety check: Validate action
       if (!action || typeof action !== 'string') {
         // #region agent log
         if (__DEV__) {
@@ -49,7 +49,7 @@ export class FilingAgent extends BaseAgent {
           break;
 
         case 'upload_file':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.file) {
             throw new Error('file is required');
           }
@@ -57,7 +57,7 @@ export class FilingAgent extends BaseAgent {
           break;
 
         case 'download_file':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.fileId) {
             throw new Error('fileId is required');
           }
@@ -65,7 +65,7 @@ export class FilingAgent extends BaseAgent {
           break;
 
         case 'delete_file':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.fileId) {
             throw new Error('fileId is required');
           }
@@ -73,7 +73,7 @@ export class FilingAgent extends BaseAgent {
           break;
 
         case 'ocr_scan':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.imageUri) {
             throw new Error('imageUri is required');
           }
@@ -81,7 +81,7 @@ export class FilingAgent extends BaseAgent {
           break;
 
         case 'generate_image':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.prompt) {
             throw new Error('prompt is required');
           }
@@ -89,7 +89,7 @@ export class FilingAgent extends BaseAgent {
           break;
 
         case 'generate_video':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.prompt) {
             throw new Error('prompt is required');
           }
@@ -97,7 +97,7 @@ export class FilingAgent extends BaseAgent {
           break;
 
         case 'generate_file':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.type || !parameters.content) {
             throw new Error('type and content are required');
           }
@@ -144,14 +144,14 @@ export class FilingAgent extends BaseAgent {
       
       const response = await fetch(`${API_URL}/api/files/list`);
       
-      // ✅ Safety check: Validate response
+      // ??? Safety check: Validate response
       if (!response || !response.ok) {
         throw new Error(`HTTP error! status: ${response?.status}`);
       }
       
       const json = await response.json();
       
-      // ✅ Safety check: Validate json
+      // ??? Safety check: Validate json
       if (!json || typeof json !== 'object') {
         throw new Error('Invalid response format');
       }
@@ -160,7 +160,7 @@ export class FilingAgent extends BaseAgent {
       if (json.success && json.files) {
         this.emit('agent:filing:response', { files: json.files });
       } else {
-        this.emit('agent:filing:error', { error: json.error || 'فشل جلب الملفات' });
+        this.emit('agent:filing:error', { error: json.error || '?????? ?????? ??????????????' });
       }
       
       // #region agent log
@@ -177,7 +177,7 @@ export class FilingAgent extends BaseAgent {
       }
       // #endregion
       console.error('[FilingAgent] listFiles error:', error);
-      this.emit('agent:filing:error', { error: error?.message || 'فشل جلب الملفات' });
+      this.emit('agent:filing:error', { error: error?.message || '?????? ?????? ??????????????' });
       throw error;
     }
   }
@@ -200,7 +200,7 @@ export class FilingAgent extends BaseAgent {
     if (json.success) {
       this.emit('agent:filing:response', { file: json.file });
     } else {
-      this.emit('agent:filing:error', { error: json.error || 'فشل رفع الملف' });
+      this.emit('agent:filing:error', { error: json.error || '?????? ?????? ??????????' });
     }
     
     return json;
@@ -242,7 +242,7 @@ export class FilingAgent extends BaseAgent {
       if (json.success) {
         this.emit('agent:filing:response', { ocr: json.text });
       } else {
-        this.emit('agent:filing:error', { error: json.error || 'فشل التحليل' });
+        this.emit('agent:filing:error', { error: json.error || '?????? ??????????????' });
       }
       
       return json;
@@ -266,10 +266,11 @@ export class FilingAgent extends BaseAgent {
     if (json.success) {
       this.emit('agent:filing:response', { ocr: json.text });
     } else {
-      this.emit('agent:filing:error', { error: json.error || 'فشل التحليل' });
+      this.emit('agent:filing:error', { error: json.error || '?????? ??????????????' });
     }
     
     return json;
   }
 }
+
 

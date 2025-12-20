@@ -104,7 +104,7 @@ export class RARECognition {
     // Common request types
     const patterns = [
       'code', 'analyze', 'translate', 'navigate', 
-      'كود', 'تحليل', 'ترجمة', 'اذهب'
+      '??????', '??????????', '??????????', '????????'
     ];
 
     patterns.forEach(pattern => {
@@ -191,3 +191,4 @@ export class RARECognition {
     this.userPreferences = {};
   }
 }
+

@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Council Screen
- * شاشة المجلس - برئاسة رير
- * ✅ Cognitive Loop → Kernel → Council Agent
+ * ???????? ???????????? - ???????????? ??????
+ * ??? Cognitive Loop ??? Kernel ??? Council Agent
  */
 
 import { useState, useEffect } from 'react';
@@ -28,7 +28,7 @@ export default function Council() {
   const kernel = RAREKernel.getInstance();
 
   useEffect(() => {
-    // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
     const unsubscribeCouncil = kernel.on('agent:council:response', (event) => {
       if (event.data.discussions) {
         setDiscussions(event.data.discussions);
@@ -44,7 +44,7 @@ export default function Council() {
   }, []);
 
   const handleStartDebate = () => {
-    // ✅ إرسال إلى Kernel → CognitiveLoop
+    // ??? ?????????? ?????? Kernel ??? CognitiveLoop
     kernel.emit({
       type: 'user:input',
       data: {
@@ -65,33 +65,33 @@ export default function Council() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>المجلس</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>????????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.characterContainer}>
+        <View style={styles.charREMOVED}>
           <RARECharacter size={120} animation="speaking" />
-          <Text style={[styles.characterTitle, { color: colors.primary }]}>رير - رئيس المجلس</Text>
+          <Text style={[styles.characterTitle, { color: colors.primary }]}>?????? - ???????? ????????????</Text>
         </View>
 
         <View style={[styles.statusCard, { borderColor: colors.primary }]}>
-          <Text style={[styles.statusTitle, { color: colors.primary }]}>حالة المجلس</Text>
+          <Text style={[styles.statusTitle, { color: colors.primary }]}>???????? ????????????</Text>
           <Text style={[styles.statusText, { color: colors.text }]}>
-            {isDebating ? 'نقاش نشط' : 'في انتظار النقاش'}
+            {isDebating ? '???????? ??????' : '???? ???????????? ????????????'}
           </Text>
         </View>
 
         <Pressable
-          style={[styles.startButton, { backgroundColor: colors.primary }]}
+          style={[styles.startButton, { bREMOVED: colors.primary }]}
           onPress={handleStartDebate}
         >
-          <Text style={styles.startButtonText}>بدء النقاش</Text>
+          <Text style={styles.startButtonText}>?????? ????????????</Text>
         </Pressable>
 
         {discussions.length > 0 && (
           <View style={styles.discussionsContainer}>
-            <Text style={[styles.sectionTitle, { color: colors.primary }]}>النقاشات</Text>
+            <Text style={[styles.sectionTitle, { color: colors.primary }]}>????????????????</Text>
             {discussions.map((discussion) => (
               <View
                 key={discussion.id}
@@ -101,7 +101,7 @@ export default function Council() {
                   {discussion.topic}
                 </Text>
                 <Text style={[styles.discussionStatus, { color: colors.textSecondary }]}>
-                  {discussion.status === 'active' ? 'نشط' : 'محلول'}
+                  {discussion.status === 'active' ? '??????' : '??????????'}
                 </Text>
               </View>
             ))}
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: 20,
   },
-  characterContainer: {
+  charREMOVED: {
     alignItems: 'center',
     marginBottom: 30,
   },
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 20,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   statusTitle: {
     fontSize: 16,
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     marginBottom: 12,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   discussionTopic: {
     fontSize: 14,
@@ -198,6 +198,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
 
 
 

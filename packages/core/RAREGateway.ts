@@ -35,7 +35,7 @@ export class RAREGateway {
         }
       } catch (error) {
         console.error(`Error executing ${step.engine}:`, error);
-        finalOutput += `⚠️ ${step.engine} execution failed\n`;
+        finalOutput += `?????? ${step.engine} execution failed\n`;
       }
     }
 
@@ -84,7 +84,7 @@ export class RAREGateway {
         return await this.executeBrainEngine(action, payload);
       
       default:
-        return `⚠️ Unknown engine: ${engine}`;
+        return `?????? Unknown engine: ${engine}`;
     }
   }
 
@@ -98,7 +98,7 @@ export class RAREGateway {
       });
       return response.data.reply;
     } catch (error) {
-      return '⚠️ Code generation failed';
+      return '?????? Code generation failed';
     }
   }
 
@@ -110,7 +110,7 @@ export class RAREGateway {
       const response = await axios.post(`${this.API_BASE}/analysis/${endpoint}`, payload);
       return JSON.stringify(response.data, null, 2);
     } catch (error) {
-      return '⚠️ Analysis failed';
+      return '?????? Analysis failed';
     }
   }
 
@@ -123,7 +123,7 @@ export class RAREGateway {
       });
       return response.data.translatedText;
     } catch (error) {
-      return '⚠️ Translation failed';
+      return '?????? Translation failed';
     }
   }
 
@@ -134,9 +134,9 @@ export class RAREGateway {
         to: payload.destination
       });
       const route = response.data.route;
-      return `📍 ${route.summary}\n⏱️ ${route.duration}\n📏 ${route.distance}`;
+      return `???? ${route.summary}\n?????? ${route.duration}\n???? ${route.distance}`;
     } catch (error) {
-      return '⚠️ Navigation failed';
+      return '?????? Navigation failed';
     }
   }
 
@@ -144,11 +144,11 @@ export class RAREGateway {
     try {
       if (action === 'list') {
         const response = await axios.get(`${this.API_BASE}/storage/files`);
-        return `📁 Files: ${response.data.files.length}`;
+        return `???? Files: ${response.data.files.length}`;
       }
-      return '✅ Storage operation completed';
+      return '??? Storage operation completed';
     } catch (error) {
-      return '⚠️ Storage operation failed';
+      return '?????? Storage operation failed';
     }
   }
 
@@ -157,7 +157,7 @@ export class RAREGateway {
       const response = await axios.post(`${this.API_BASE}/analysis/ocr`, payload);
       return response.data.text;
     } catch (error) {
-      return '⚠️ OCR failed';
+      return '?????? OCR failed';
     }
   }
 
@@ -168,9 +168,9 @@ export class RAREGateway {
         screens: [{ name: 'Home' }],
         framework: payload.framework
       });
-      return `✅ App structure generated\n📁 Files: ${Object.keys(response.data.structure.files).length}`;
+      return `??? App structure generated\n???? Files: ${Object.keys(response.data.structure.files).length}`;
     } catch (error) {
-      return '⚠️ App generation failed';
+      return '?????? App generation failed';
     }
   }
 
@@ -180,9 +180,9 @@ export class RAREGateway {
         command: payload.query,
         type: payload.type
       });
-      return response.data.message || '✅ CarPlay command executed';
+      return response.data.message || '??? CarPlay command executed';
     } catch (error) {
-      return '⚠️ CarPlay command failed';
+      return '?????? CarPlay command failed';
     }
   }
 
@@ -197,7 +197,8 @@ export class RAREGateway {
       });
       return response.data.reply;
     } catch (error) {
-      return '⚠️ Brain engine processing failed';
+      return '?????? Brain engine processing failed';
     }
   }
 }
+

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>معاينة مكتبات RARE - Preview Libraries</title>
+  <title>???????????? ???????????? RARE - Preview Libraries</title>
   <style>
     * {
       margin: 0;
@@ -12,7 +12,7 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      font-family: -apple-system, BlinkMREMOVED, 'Segoe UI', Roboto, Arial, sans-serif;
       background: linear-gradient(135deg, #000408 0%, #001820 50%, #000408 100%);
       color: #fff;
       min-height: 100vh;
@@ -188,33 +188,33 @@
 <body>
   <div class="container">
     <header>
-      <h1>🎨 معاينة مكتبات RARE 4N</h1>
-      <p class="subtitle">اختر من 231 قالب تطبيق، نظام، وثيم</p>
+      <h1>???? ???????????? ???????????? RARE 4N</h1>
+      <p class="subtitle">???????? ???? 231 ???????? ???????????? ?????????? ????????</p>
     </header>
 
     <div class="stats" id="stats">
       <div class="stat">
         <div class="stat-number" id="templatesCount">--</div>
-        <div class="stat-label">قالب تطبيق</div>
+        <div class="stat-label">???????? ??????????</div>
       </div>
       <div class="stat">
         <div class="stat-number" id="systemsCount">--</div>
-        <div class="stat-label">نظام عمل</div>
+        <div class="stat-label">???????? ??????</div>
       </div>
       <div class="stat">
         <div class="stat-number" id="themesCount">--</div>
-        <div class="stat-label">ثيم تصميم</div>
+        <div class="stat-label">?????? ??????????</div>
       </div>
     </div>
 
     <div class="tabs">
-      <button class="tab active" onclick="showTab('templates')">📱 قوالب التطبيقات</button>
-      <button class="tab" onclick="showTab('systems')">⚙️ أنظمة العمل</button>
-      <button class="tab" onclick="showTab('themes')">🎨 الثيمات</button>
-      <button class="tab" onclick="showTab('all')">🌟 عرض الكل</button>
+      <button class="tab active" onclick="showTab('templates')">???? ?????????? ??????????????????</button>
+      <button class="tab" onclick="showTab('systems')">?????? ?????????? ??????????</button>
+      <button class="tab" onclick="showTab('themes')">???? ??????????????</button>
+      <button class="tab" onclick="showTab('all')">???? ?????? ????????</button>
     </div>
 
-    <div class="loading" id="loading">جاري التحميل...</div>
+    <div class="loading" id="loading">???????? ??????????????...</div>
     <div class="error" id="error" style="display: none;"></div>
 
     <div class="content active" id="templates"></div>
@@ -279,7 +279,7 @@
     socket.on('error', (error) => {
       console.error('Socket error:', error);
       document.getElementById('loading').style.display = 'none';
-      document.getElementById('error').textContent = 'خطأ: ' + error.error;
+      document.getElementById('error').textContent = '??????: ' + error.error;
       document.getElementById('error').style.display = 'block';
     });
 
@@ -334,7 +334,7 @@
           template.name,
           template.nameEn,
           template.description,
-          'قالب: ' + template.category
+          '????????: ' + template.category
         );
         container.appendChild(card);
       });
@@ -345,7 +345,7 @@
           system.name,
           system.nameEn,
           system.description,
-          'نظام: ' + system.category
+          '????????: ' + system.category
         );
         container.appendChild(card);
       });
@@ -405,5 +405,6 @@
   </script>
 </body>
 </html>
+
 
 

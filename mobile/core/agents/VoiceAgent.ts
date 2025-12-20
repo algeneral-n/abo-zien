@@ -1,6 +1,6 @@
 /**
- * VoiceAgent - وكيل الصوت
- * يدير Voice Realtime، Whisper، ElevenLabs، Voice-to-Voice
+ * VoiceAgent - ???????? ??????????
+ * ???????? Voice Realtime?? Whisper?? ElevenLabs?? Voice-to-Voice
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -38,8 +38,8 @@ export class VoiceAgent extends BaseAgent {
       }
       // #endregion
       
-      // ✅ لا نطلب الأذونات تلقائياً - نطلبها فقط عند الحاجة عبر Cognitive Loop
-      // الأذونات ستُطلب عند استدعاء startRecording()
+      // ??? ???? ???????? ???????????????? ???????????????? - ???????????? ?????? ?????? ???????????? ?????? Cognitive Loop
+      // ???????????????? ???????????? ?????? ?????????????? startRecording()
       console.log('[VoiceAgent] Initialized (permissions will be requested when needed)');
 
       // Connect to voice-realtime namespace
@@ -57,12 +57,12 @@ export class VoiceAgent extends BaseAgent {
           fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/VoiceAgent.ts:onInit',message:'Socket connected',data:{socketId:this.socket?.id},timestamp:Date.now(),sessionId:'voice-session',runId:'run1',hypothesisId:'VOICE_SOCKET_CONNECTED'})}).catch(()=>{});
         }
         // #endregion
-        console.log('[VoiceAgent] Connected to backend ✅');
+        console.log('[VoiceAgent] Connected to backend ???');
       });
 
       this.socket.on('transcription', (data: any) => {
         try {
-          // ✅ Safety check: Validate data
+          // ??? Safety check: Validate data
           if (!data || typeof data !== 'object') {
             console.warn('[VoiceAgent] Invalid transcription data');
             return;
@@ -80,7 +80,7 @@ export class VoiceAgent extends BaseAgent {
 
       this.socket.on('response', (data: any) => {
         try {
-          // ✅ Safety check: Validate data
+          // ??? Safety check: Validate data
           if (!data || typeof data !== 'object') {
             console.warn('[VoiceAgent] Invalid response data');
             return;
@@ -128,7 +128,7 @@ export class VoiceAgent extends BaseAgent {
       }
       // #endregion
       console.error('[VoiceAgent] Socket connection error:', error);
-      // لا نرمي الخطأ - نستمر
+      // ???? ???????? ?????????? - ??????????
     }
   }
 
@@ -153,7 +153,7 @@ export class VoiceAgent extends BaseAgent {
     // #endregion
     
     try {
-      // ✅ Safety check: Validate action
+      // ??? Safety check: Validate action
       if (!action || typeof action !== 'string') {
         // #region agent log
         if (__DEV__) {
@@ -167,7 +167,7 @@ export class VoiceAgent extends BaseAgent {
       
       switch (action) {
         case 'enable_voice':
-          // ✅ تفعيل الصوت Real-Time
+          // ??? ?????????? ?????????? Real-Time
           if (__DEV__) {
             fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/VoiceAgent.ts:enable_voice',message:'Enabling voice',data:{},timestamp:Date.now(),sessionId:'voice-session',runId:'run1',hypothesisId:'VOICE_ENABLE'})}).catch(()=>{});
           }
@@ -176,7 +176,7 @@ export class VoiceAgent extends BaseAgent {
           break;
 
         case 'disable_voice':
-          // ✅ إيقاف الصوت Real-Time
+          // ??? ?????????? ?????????? Real-Time
           if (__DEV__) {
             fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/VoiceAgent.ts:disable_voice',message:'Disabling voice',data:{},timestamp:Date.now(),sessionId:'voice-session',runId:'run1',hypothesisId:'VOICE_DISABLE'})}).catch(()=>{});
           }
@@ -196,7 +196,7 @@ export class VoiceAgent extends BaseAgent {
           break;
 
         case 'transcribe':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.audioUri) {
             throw new Error('audioUri is required');
           }
@@ -204,7 +204,7 @@ export class VoiceAgent extends BaseAgent {
           break;
 
         case 'synthesize_speech':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.text) {
             throw new Error('text is required');
           }
@@ -212,7 +212,7 @@ export class VoiceAgent extends BaseAgent {
           break;
 
         case 'voice_to_voice':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.audioUri) {
             throw new Error('audioUri is required');
           }
@@ -251,7 +251,7 @@ export class VoiceAgent extends BaseAgent {
    */
   private async startRecording(): Promise<void> {
     try {
-      // ✅ طلب إذن الصوت هنا فقط عند الحاجة
+      // ??? ?????? ?????? ?????????? ?????? ?????? ?????? ????????????
       const { status } = await Audio.getPermissionsAsync();
       if (status !== 'granted') {
         const { status: newStatus } = await Audio.requestPermissionsAsync();
@@ -371,7 +371,7 @@ export class VoiceAgent extends BaseAgent {
       this.sound = sound;
       await sound.playAsync();
 
-      sound.setOnPlaybackStatusUpdate((status) => {
+      sound.setOnPlaybREMOVED((status) => {
         if (status.isLoaded && status.didJustFinish) {
           this.emit({ type: 'voice:playback:finished', data: {} });
         }
@@ -382,4 +382,5 @@ export class VoiceAgent extends BaseAgent {
     }
   }
 }
+
 

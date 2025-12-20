@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Themes System
- * نظام الثيمات الشامل - يطبق على كل شيء في التطبيق
+ * ???????? ?????????????? ???????????? - ???????? ?????? ???? ?????? ???? ??????????????
  * Icons, Backgrounds, Colors, Styles
  * 
  * Theme 1: Neumorphic (Fitness Style)
@@ -51,7 +51,7 @@ export interface Theme {
 export const THEME_NEUMORPHIC: Theme = {
   id: 'neumorphic',
   name: 'Neumorphic',
-  nameAr: 'نيومورفيك',
+  nameAr: '??????????????????',
   primary: '#6C7CE7', // Soft purple-blue
   secondary: '#FF8A65', // Soft orange
   accent: '#81C784', // Soft green
@@ -83,7 +83,7 @@ export const THEME_NEUMORPHIC: Theme = {
 export const THEME_GLASSMORPHISM: Theme = {
   id: 'glassmorphism',
   name: 'Glassmorphism',
-  nameAr: 'جلاس مورفيزم',
+  nameAr: '???????? ??????????????',
   primary: '#4A90E2', // Bright blue
   secondary: '#E94B8B', // Pink
   accent: '#FFD700', // Gold
@@ -115,7 +115,7 @@ export const THEME_GLASSMORPHISM: Theme = {
 export const THEME_DARK_FINANCE: Theme = {
   id: 'dark-finance',
   name: 'Dark Finance',
-  nameAr: 'داكن مالي',
+  nameAr: '???????? ????????',
   primary: '#FF6B35', // Orange
   secondary: '#4ECDC4', // Teal/Cyan
   accent: '#95E1D3', // Light green
@@ -150,3 +150,4 @@ export const THEMES: Theme[] = [
 ];
 
 export const DEFAULT_THEME = THEME_NEUMORPHIC;
+

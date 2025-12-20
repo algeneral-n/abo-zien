@@ -1,6 +1,6 @@
 /**
  * Health Monitor for Agents
- * ✅ Monitors agent health and triggers recovery
+ * ??? Monitors agent health and triggers recovery
  */
 
 export interface AgentHealth {
@@ -120,7 +120,7 @@ export class HealthMonitor {
    */
   private async triggerRecovery(engineId: string, engine: any): Promise<void> {
     try {
-      console.log(`🔄 Attempting recovery for ${engineId}...`);
+      console.log(`???? Attempting recovery for ${engineId}...`);
 
       // Stop the engine
       try {
@@ -135,7 +135,7 @@ export class HealthMonitor {
       // Restart the engine
       try {
         await engine.start();
-        console.log(`✅ Recovery successful for ${engineId}`);
+        console.log(`??? Recovery successful for ${engineId}`);
         
         const health = this.healthStatus.get(engineId);
         if (health) {
@@ -144,14 +144,14 @@ export class HealthMonitor {
           health.lastError = undefined;
         }
       } catch (err) {
-        console.error(`❌ Recovery failed for ${engineId}:`, err);
+        console.error(`??? Recovery failed for ${engineId}:`, err);
         const health = this.healthStatus.get(engineId);
         if (health) {
           health.lastError = `Recovery failed: ${err}`;
         }
       }
     } catch (error) {
-      console.error(`❌ Recovery process error for ${engineId}:`, error);
+      console.error(`??? Recovery process error for ${engineId}:`, error);
     }
   }
 
@@ -204,5 +204,6 @@ export class HealthMonitor {
     this.healthStatus.delete(engineId);
   }
 }
+
 
 

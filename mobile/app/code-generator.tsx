@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Code Generator Screen
- * مولد الكود - يكتب ويفهم ويحلل 12 امتداد للكود
- * ✅ Cognitive Loop → Kernel → Code Generator Agent
+ * ???????? ?????????? - ???????? ?????????? ?????????? 12 ???????????? ??????????
+ * ??? Cognitive Loop ??? Kernel ??? Code Generator Agent
  */
 
 import { useState, useEffect } from 'react';
@@ -50,7 +50,7 @@ export default function CodeGenerator() {
   const kernel = RAREKernel.getInstance();
 
   useEffect(() => {
-    // ✅ الاستماع لنتائج CognitiveLoop → BuilderAgent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? BuilderAgent ??? Response
     const unsubscribeCode = kernel.on('agent:builder:response', (event) => {
       if (event.data.code) {
         setGeneratedCode(event.data.code);
@@ -59,7 +59,7 @@ export default function CodeGenerator() {
     });
     
     const unsubscribeError = kernel.on('agent:builder:error', (event) => {
-      Alert.alert('خطأ', event.data.error || 'فشل توليد الكود');
+      Alert.alert('??????', event.data.error || '?????? ?????????? ??????????');
       setIsGenerating(false);
     });
     
@@ -71,14 +71,14 @@ export default function CodeGenerator() {
 
   const handleGenerate = () => {
     if (!codePrompt.trim()) {
-      Alert.alert('خطأ', 'يرجى إدخال وصف للكود');
+      Alert.alert('??????', '???????? ?????????? ?????? ??????????');
       return;
     }
 
     setIsGenerating(true);
     setGeneratedCode('');
 
-    // ✅ إرسال إلى Kernel → CognitiveLoop → BuilderAgent
+    // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? BuilderAgent
     kernel.emit({
       type: 'user:input',
       data: {
@@ -97,7 +97,7 @@ export default function CodeGenerator() {
 
   const handleCopyCode = () => {
     // Copy to clipboard
-    Alert.alert('نجح', 'تم نسخ الكود');
+    Alert.alert('??????', '???? ?????? ??????????');
   };
 
   return (
@@ -109,13 +109,13 @@ export default function CodeGenerator() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>مولد الكود</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>???????? ??????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={[styles.section, { borderColor: colors.primary }]}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>اختر لغة البرمجة</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>???????? ?????? ??????????????</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.extensionsScroll}>
             {CODE_EXTENSIONS.map((ext) => (
               <Pressable
@@ -123,7 +123,7 @@ export default function CodeGenerator() {
                 style={[
                   styles.extensionButton,
                   {
-                    backgroundColor: selectedExtension === ext.ext ? colors.primary : `${colors.primary}20`,
+                    bREMOVED: selectedExtension === ext.ext ? colors.primary : `${colors.primary}20`,
                     borderColor: colors.primary,
                   },
                 ]}
@@ -141,23 +141,23 @@ export default function CodeGenerator() {
         </View>
 
         <View style={[styles.section, { borderColor: colors.primary }]}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>وصف الكود</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????? ??????????</Text>
           <TextInput
             style={[styles.input, { borderColor: colors.primary, color: colors.text }]}
-            placeholder="مثال: دالة لحساب مجموع الأرقام في مصفوفة"
-            placeholderTextColor={colors.primary + '50'}
+            placeholder="????????: ???????? ?????????? ?????????? ?????????????? ???? ????????????"
+            plREMOVED={colors.primary + '50'}
             value={codePrompt}
             onChangeText={setCodePrompt}
             multiline
             numberOfLines={4}
           />
           <Pressable
-            style={[styles.generateButton, { backgroundColor: colors.primary }]}
+            style={[styles.generateButton, { bREMOVED: colors.primary }]}
             onPress={handleGenerate}
             disabled={isGenerating}
           >
             <Text style={styles.generateButtonText}>
-              {isGenerating ? 'جاري التوليد...' : 'توليد الكود'}
+              {isGenerating ? '???????? ??????????????...' : '?????????? ??????????'}
             </Text>
           </Pressable>
         </View>
@@ -165,7 +165,7 @@ export default function CodeGenerator() {
         {generatedCode && (
           <View style={[styles.section, { borderColor: colors.primary }]}>
             <View style={styles.codeHeader}>
-              <Text style={[styles.sectionTitle, { color: colors.primary }]}>الكود المولد</Text>
+              <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????????? ????????????</Text>
               <Pressable
                 style={[styles.copyButton, { borderColor: colors.primary }]}
                 onPress={handleCopyCode}
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 20,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   sectionTitle: {
     fontSize: 16,
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
   },
   codeContainer: {
     maxHeight: 400,
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    bREMOVED: 'rgba(0,0,0,0.3)',
     borderRadius: 8,
     padding: 12,
   },
@@ -268,6 +268,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
 });
+
 
 
 

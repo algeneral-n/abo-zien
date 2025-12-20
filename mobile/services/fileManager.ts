@@ -1,6 +1,6 @@
 /**
  * RARE 4N - File Manager Service
- * ✅ File Categories, History, Search, Preview
+ * ??? File Categories, History, Search, Preview
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -27,14 +27,14 @@ export interface FileCategory {
 }
 
 export const FILE_CATEGORIES: FileCategory[] = [
-  { id: 'all', name: 'All Files', nameAr: 'جميع الملفات', icon: 'folder', color: '#00eaff' },
-  { id: 'code', name: 'Code', nameAr: 'كود', icon: 'code', color: '#00ff41' },
-  { id: 'image', name: 'Images', nameAr: 'صور', icon: 'image', color: '#ff00ff' },
-  { id: 'video', name: 'Videos', nameAr: 'فيديوهات', icon: 'video', color: '#ff0040' },
-  { id: 'document', name: 'Documents', nameAr: 'مستندات', icon: 'document', color: '#00d4ff' },
-  { id: 'audio', name: 'Audio', nameAr: 'صوت', icon: 'audio', color: '#a855f7' },
-  { id: 'archive', name: 'Archives', nameAr: 'أرشيف', icon: 'archive', color: '#ffd700' },
-  { id: 'other', name: 'Other', nameAr: 'أخرى', icon: 'file', color: '#666666' },
+  { id: 'all', name: 'All Files', nameAr: '???????? ??????????????', icon: 'folder', color: '#00eaff' },
+  { id: 'code', name: 'Code', nameAr: '??????', icon: 'code', color: '#00ff41' },
+  { id: 'image', name: 'Images', nameAr: '??????', icon: 'image', color: '#ff00ff' },
+  { id: 'video', name: 'Videos', nameAr: '????????????????', icon: 'video', color: '#ff0040' },
+  { id: 'document', name: 'Documents', nameAr: '??????????????', icon: 'document', color: '#00d4ff' },
+  { id: 'audio', name: 'Audio', nameAr: '??????', icon: 'audio', color: '#a855f7' },
+  { id: 'archive', name: 'Archives', nameAr: '??????????', icon: 'archive', color: '#ffd700' },
+  { id: 'other', name: 'Other', nameAr: '????????', icon: 'file', color: '#666666' },
 ];
 
 class FileManager {
@@ -215,4 +215,5 @@ class FileManager {
 }
 
 export const fileManager = new FileManager();
+
 

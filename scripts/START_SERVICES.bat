@@ -1,7 +1,7 @@
 @echo off
 echo ========================================
 echo   RARE 4N - Start Services
-echo   تشغيل Backend و Cloudflare
+echo   ?????????? Backend ?? Cloudflare
 echo ========================================
 echo.
 
@@ -15,13 +15,13 @@ if not exist node_modules (
 )
 start "RARE 4N Backend" cmd /k "npm start"
 cd ..
-echo ✅ Backend starting...
+echo ??? Backend starting...
 
 echo.
 echo [2/2] Starting Cloudflare Tunnel...
 if exist cloudflared.exe (
     start "Cloudflare Tunnel" cmd /k "cloudflared.exe tunnel run 8280d872-79cc-4b82-9de8-a86ab4bf9540"
-    echo ✅ Cloudflare Tunnel starting...
+    echo ??? Cloudflare Tunnel starting...
 ) else (
     echo WARNING: cloudflared.exe not found
     echo Please run: cloudflared tunnel run 8280d872-79cc-4b82-9de8-a86ab4bf9540 manually
@@ -40,5 +40,6 @@ echo   curl http://localhost:5000/health
 echo   curl https://api.zien-ai.app/health
 echo.
 pause
+
 
 

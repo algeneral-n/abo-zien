@@ -1,11 +1,11 @@
-/**
+﻿/**
  * RARE 4N - Production-Ready Backend Server
- * Backend قوي وآمن - جاهز للإنتاج
- * ✅ Security Headers
- * ✅ Rate Limiting
- * ✅ Compression
- * ✅ Error Handling
- * ✅ CORS محسّن
+ * Backend ?????? ???????? - ???????? ??????????????
+ * ??? Security Headers
+ * ??? Rate Limiting
+ * ??? Compression
+ * ??? Error Handling
+ * ??? CORS ??????????
  */
 
 import express from 'express';
@@ -35,7 +35,7 @@ global.io = io;
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// ✅ Security Headers Middleware
+// ??? Security Headers Middleware
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -45,7 +45,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// ✅ CORS محسّن (يدعم الدومين + ngrok + localhost)
+// ??? CORS ?????????? (???????? ?????????????? + ngrok + localhost)
 const allowedOrigins = [
   'http://localhost:8081', // Expo Dev
   'http://localhost:19006', // Expo Web
@@ -54,7 +54,7 @@ const allowedOrigins = [
   ...(process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : []),
 ];
 
-// دعم ngrok و Cloudflare Tunnel
+// ?????? ngrok ?? Cloudflare Tunnel
 const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (mobile apps, Postman, etc.)
@@ -95,14 +95,14 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// ✅ Body Parser (مع limits للأمان)
+// ??? Body Parser (???? limits ????????????)
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Initialize databases
 let localDB = null;
 let mongoDB = null;
-let supabase = null;
+let supabase_KEY=REPLACE_ME
 
 /**
  * Start server
@@ -115,7 +115,7 @@ async function startServer() {
     
     // Initialize Local Database (SQLite)
     localDB = initDatabase();
-    console.log('✅ Local Database (SQLite) initialized');
+    console.log('??? Local Database (SQLite) initialized');
     
     // #region debug log
     fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:111',message:'Local DB initialized',data:{hasLocalDB:!!localDB},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
@@ -124,34 +124,34 @@ async function startServer() {
     // Initialize MongoDB
     try {
       mongoDB = await initMongoDB();
-      console.log('✅ MongoDB initialized');
+      console.log('??? MongoDB initialized');
     } catch (error) {
-      console.warn('⚠️ MongoDB connection failed, continuing with local DB only:', error.message);
+      console.warn('?????? MongoDB connection failed, continuing with local DB only:', error.message);
     }
 
     // Initialize Supabase
     try {
-      supabase = initSupabase();
-      console.log('✅ Supabase initialized');
+      supabase_KEY=REPLACE_ME
+      console.log('??? Supabase initialized');
     } catch (error) {
-      console.warn('⚠️ Supabase connection failed, continuing without real-time features:', error.message);
+      console.warn('?????? Supabase connection failed, continuing without real-time features:', error.message);
     }
 
-    // ✅ Health check محسّن
+    // ??? Health check ??????????
     app.get('/health', async (req, res) => {
       try {
         const memoryUsage = process.memoryUsage();
         
         // Check Cloudflare Tunnel status
-        let cloudflareStatus = 'unknown';
+        let cloudflare_KEY=REPLACE_ME
         try {
           const { exec } = await import('child_process');
           const { promisify } = await import('util');
           const execAsync = promisify(exec);
           const { stdout } = await execAsync('cloudflared tunnel list').catch(() => ({ stdout: '' }));
-          cloudflareStatus = stdout.includes('active') || stdout.includes('running') ? 'active' : 'inactive';
+          cloudflare_KEY=REPLACE_ME
         } catch (error) {
-          cloudflareStatus = 'not_installed';
+          cloudflare_KEY=REPLACE_ME
         }
         
         res.json({
@@ -189,9 +189,9 @@ async function startServer() {
     // Initialize WebSocket namespaces
     await initializeWebSockets();
 
-    // ✅ Error Handling Middleware (يجب أن يكون في النهاية)
+    // ??? Error Handling Middleware (?????? ???? ???????? ???? ??????????????)
     app.use((err, req, res, next) => {
-      console.error('❌ Error:', err);
+      console.error('??? Error:', err);
       
       res.status(err.status || 500).json({
         success: false,
@@ -200,7 +200,7 @@ async function startServer() {
       });
     });
 
-    // ✅ 404 Handler
+    // ??? 404 Handler
     app.use((req, res) => {
       res.status(404).json({
         success: false,
@@ -214,10 +214,10 @@ async function startServer() {
 
     // Socket.IO Real-time connection
     io.on('connection', (socket) => {
-      console.log(`✅ Client connected: ${socket.id}`);
+      console.log(`??? Client connected: ${socket.id}`);
 
       socket.on('disconnect', () => {
-        console.log(`❌ Client disconnected: ${socket.id}`);
+        console.log(`??? Client disconnected: ${socket.id}`);
       });
 
       // Real-time events from Cognitive Loop
@@ -232,24 +232,24 @@ async function startServer() {
     // #endregion
     
     httpServer.listen(PORT, '0.0.0.0', () => {
-      console.log(`🚀 RARE 4N Backend running on http://0.0.0.0:${PORT}`);
-      console.log(`📊 Databases: Local ✅ | MongoDB ${mongoDB ? '✅' : '❌'} | Supabase ${supabase ? '✅' : '❌'}`);
-      console.log(`🧠 Mode: Offline/Online Intelligent`);
-      console.log(`🌐 Environment: ${NODE_ENV}`);
-      console.log(`✅ CORS: Enabled for ${allowedOrigins.length} origins`);
-      console.log(`🔒 Security Headers: Enabled`);
-      console.log(`⚡ Socket.IO: Enabled for real-time features`);
+      console.log(`???? RARE 4N Backend running on http://0.0.0.0:${PORT}`);
+      console.log(`???? Databases: Local ??? | MongoDB ${mongoDB ? '???' : '???'} | Supabase ${supabase ? '???' : '???'}`);
+      console.log(`???? Mode: Offline/Online Intelligent`);
+      console.log(`???? Environment: ${NODE_ENV}`);
+      console.log(`??? CORS: Enabled for ${allowedOrigins.length} origins`);
+      console.log(`???? Security Headers: Enabled`);
+      console.log(`??? Socket.IO: Enabled for real-time features`);
       
       // #region debug log
       fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:199',message:'HTTP server started successfully',data:{port:PORT,url:`http://localhost:${PORT}`},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
       // #endregion
     });
 
-    // ✅ Graceful shutdown
-    const gracefulShutdown = (signal) => {
-      console.log(`\n🛑 Received ${signal}, shutting down gracefully...`);
+    // ??? Graceful shutdown
+    const grREMOVED = (signal) => {
+      console.log(`\n???? Received ${signal}, shutting down gracefully...`);
       httpServer.close(() => {
-        console.log('✅ HTTP server closed');
+        console.log('??? HTTP server closed');
         closeDatabase();
         if (mongoDB) {
           closeMongoDB().catch(console.error);
@@ -259,16 +259,16 @@ async function startServer() {
       
       // Force close after 10 seconds
       setTimeout(() => {
-        console.error('❌ Forcing shutdown...');
+        console.error('??? Forcing shutdown...');
         process.exit(1);
       }, 10000);
     };
 
-    process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
-    process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+    process.on('SIGTERM', () => grREMOVED('SIGTERM'));
+    process.on('SIGINT', () => grREMOVED('SIGINT'));
 
   } catch (error) {
-    console.error('❌ Server startup failed:', error);
+    console.error('??? Server startup failed:', error);
     
     // #region debug log
     fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:224',message:'Server startup error',data:{error:error.message,stack:error.stack},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
@@ -303,9 +303,9 @@ async function registerRoutes() {
   const settingsRoutes = (await import('./routes/settings.js')).default;
   const communicationRoutes = (await import('./routes/communication.js')).default;
   const carplayRoutes = (await import('./routes/carplay.js')).default;
-  const elevenlabsRoutes = (await import('./routes/elevenlabs.js')).default;
+  const elevenlabs_KEY=REPLACE_ME
   const visionRoutes = (await import('./routes/vision.js')).default;
-  const stripeWebhookRoutes = (await import('./routes/stripe-webhook.js')).default;
+  const stripe_KEY=REPLACE_ME
   const servicesRoutes = (await import('./routes/services.js')).default;
   const terminalIntegrationRoutes = (await import('./routes/terminal-integration.js')).default;
 
@@ -339,7 +339,7 @@ async function registerRoutes() {
   // Payment routes (for ElevenLabs Agent)
   app.use('/api/payment', financialRoutes);
 
-  console.log('✅ Routes registered (22 total)');
+  console.log('??? Routes registered (22 total)');
 }
 
 /**
@@ -357,14 +357,14 @@ async function initializeWebSockets() {
     try {
       const { initializeGPTStreaming } = await import('./routes/gpt-stream.js');
       initializeGPTStreaming(io);
-      console.log('✅ GPT Streaming WebSocket initialized');
+      console.log('??? GPT Streaming WebSocket initialized');
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'backend/src/server.js:initializeWebSockets',message:'GPT Streaming initialized',data:{},timestamp:Date.now(),sessionId:'server-session',runId:'run1',hypothesisId:'GPT_STREAMING_INIT'})}).catch(()=>{});
       }
       // #endregion
     } catch (error) {
-      console.error('❌ GPT Streaming init error:', error);
+      console.error('??? GPT Streaming init error:', error);
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'backend/src/server.js:initializeWebSockets',message:'GPT Streaming init error',data:{error:error?.message || error?.toString()},timestamp:Date.now(),sessionId:'server-session',runId:'run1',hypothesisId:'GPT_STREAMING_ERROR'})}).catch(()=>{});
@@ -376,14 +376,14 @@ async function initializeWebSockets() {
     try {
       const { initializeVoiceRealtime } = await import('./routes/voice-realtime.js');
       initializeVoiceRealtime(io);
-      console.log('✅ Voice Realtime WebSocket initialized');
+      console.log('??? Voice Realtime WebSocket initialized');
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'backend/src/server.js:initializeWebSockets',message:'Voice Realtime initialized',data:{},timestamp:Date.now(),sessionId:'server-session',runId:'run1',hypothesisId:'VOICE_REALTIME_INIT'})}).catch(()=>{});
       }
       // #endregion
     } catch (error) {
-      console.error('❌ Voice Realtime init error:', error);
+      console.error('??? Voice Realtime init error:', error);
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'backend/src/server.js:initializeWebSockets',message:'Voice Realtime init error',data:{error:error?.message || error?.toString()},timestamp:Date.now(),sessionId:'server-session',runId:'run1',hypothesisId:'VOICE_REALTIME_ERROR'})}).catch(()=>{});
@@ -395,14 +395,14 @@ async function initializeWebSockets() {
     try {
       const { initializeClientPortal } = await import('./routes/client-portal.js');
       initializeClientPortal(io);
-      console.log('✅ Client Portal WebSocket initialized');
+      console.log('??? Client Portal WebSocket initialized');
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'backend/src/server.js:initializeWebSockets',message:'Client Portal initialized',data:{},timestamp:Date.now(),sessionId:'server-session',runId:'run1',hypothesisId:'CLIENT_PORTAL_INIT'})}).catch(()=>{});
       }
       // #endregion
     } catch (error) {
-      console.error('❌ Client Portal init error:', error);
+      console.error('??? Client Portal init error:', error);
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'backend/src/server.js:initializeWebSockets',message:'Client Portal init error',data:{error:error?.message || error?.toString()},timestamp:Date.now(),sessionId:'server-session',runId:'run1',hypothesisId:'CLIENT_PORTAL_ERROR'})}).catch(()=>{});
@@ -414,14 +414,14 @@ async function initializeWebSockets() {
     try {
       const { initializeAutoBuilder } = await import('./routes/auto-builder.js');
       initializeAutoBuilder(io);
-      console.log('✅ Auto Builder WebSocket initialized');
+      console.log('??? Auto Builder WebSocket initialized');
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'backend/src/server.js:initializeWebSockets',message:'Auto Builder initialized',data:{},timestamp:Date.now(),sessionId:'server-session',runId:'run1',hypothesisId:'AUTO_BUILDER_INIT'})}).catch(()=>{});
       }
       // #endregion
     } catch (error) {
-      console.error('❌ Auto Builder init error:', error);
+      console.error('??? Auto Builder init error:', error);
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'backend/src/server.js:initializeWebSockets',message:'Auto Builder init error',data:{error:error?.message || error?.toString()},timestamp:Date.now(),sessionId:'server-session',runId:'run1',hypothesisId:'AUTO_BUILDER_ERROR'})}).catch(()=>{});
@@ -440,19 +440,21 @@ async function initializeWebSockets() {
       fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'backend/src/server.js:initializeWebSockets',message:'WebSocket initialization error',data:{error:error?.message || error?.toString()},timestamp:Date.now(),sessionId:'server-session',runId:'run1',hypothesisId:'WEBSOCKET_INIT_ERROR'})}).catch(()=>{});
     }
     // #endregion
-    console.error('❌ WebSocket initialization error:', error);
+    console.error('??? WebSocket initialization error:', error);
   }
 }
 
 // Global exports for routes (available after initialization)
-let dbExports = null;
+let dbExpo_KEY=REPLACE_ME
 
 // Start server
 startServer().then(() => {
   // Set global exports after initialization
-  dbExports = { io, mongoDB, supabase, localDB };
+  dbExpo_KEY=REPLACE_ME
   global.io = io;
   global.mongoDB = mongoDB;
-  global.supabase = supabase;
+  global.supabase_KEY=REPLACE_ME
   global.localDB = localDB;
 });
+
+

@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Chat Screen
- * شاشة الدردشة - GPT Realtime Streaming
- * ✅ Cognitive Loop → Kernel → AI Agent
+ * ???????? ?????????????? - GPT Realtime Streaming
+ * ??? Cognitive Loop ??? Kernel ??? AI Agent
  */
 
 import { useState, useEffect, useRef } from 'react';
@@ -33,7 +33,7 @@ export default function Chat() {
   const kernel = RAREKernel.getInstance();
 
   useEffect(() => {
-    // ✅ الاستماع لنتائج CognitiveLoop → CommunicationAgent
+    // ??? ???????????????? ???????????? CognitiveLoop ??? CommunicationAgent
     const unsubscribeResponse = kernel.on('agent:communication:response', (event) => {
       if (event.data.message || event.data.reply) {
         const assistantMessage = event.data.message || event.data.reply;
@@ -43,7 +43,7 @@ export default function Chat() {
       }
     });
 
-    // ✅ الاستماع لـ streaming tokens (إذا كان الـ Agent يدعم streaming)
+    // ??? ???????????????? ???? streaming tokens (?????? ?????? ?????? Agent ???????? streaming)
     const unsubscribeStream = kernel.on('agent:communication:stream', (event) => {
       if (event.data.token) {
         setStreamingText(prev => prev + event.data.token);
@@ -51,7 +51,7 @@ export default function Chat() {
       }
     });
 
-    // ✅ الاستماع للأخطاء
+    // ??? ???????????????? ??????????????
     const unsubscribeError = kernel.on('agent:communication:error', (event) => {
       console.error('Chat error:', event.data.error);
       setIsStreaming(false);
@@ -80,7 +80,7 @@ export default function Chat() {
     setIsStreaming(true);
     setStreamingText('');
 
-    // ✅ إرسال إلى Kernel → CognitiveLoop → CommunicationAgent (لا WebSocket مباشر)
+    // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? CommunicationAgent (???? WebSocket ??????????)
     kernel.emit({
       type: 'user:input',
       data: {
@@ -101,7 +101,7 @@ export default function Chat() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>الدردشة</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>??????????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
@@ -110,7 +110,7 @@ export default function Chat() {
         style={styles.keyboardView}
         keyboardVerticalOffset={90}
       >
-        <View style={styles.characterContainer}>
+        <View style={styles.charREMOVED}>
           <RARECharacter size={100} animation="speaking" />
         </View>
         <ScrollView
@@ -125,7 +125,7 @@ export default function Chat() {
                 styles.messageBubble,
                 msg.role === 'user' ? styles.userBubble : styles.assistantBubble,
                 {
-                  backgroundColor: msg.role === 'user' ? colors.primary : `${colors.primary}20`,
+                  bREMOVED: msg.role === 'user' ? colors.primary : `${colors.primary}20`,
                   borderColor: colors.primary,
                 },
               ]}
@@ -142,7 +142,7 @@ export default function Chat() {
                 styles.messageBubble,
                 styles.assistantBubble,
                 {
-                  backgroundColor: `${colors.primary}20`,
+                  bREMOVED: `${colors.primary}20`,
                   borderColor: colors.primary,
                 },
               ]}
@@ -158,8 +158,8 @@ export default function Chat() {
         <View style={[styles.inputContainer, { borderColor: colors.primary }]}>
           <TextInput
             style={[styles.input, { color: colors.text }]}
-            placeholder="اكتب رسالتك..."
-            placeholderTextColor={colors.primary + '50'}
+            placeholder="???????? ????????????..."
+            plREMOVED={colors.primary + '50'}
             value={inputText}
             onChangeText={setInputText}
             multiline
@@ -167,7 +167,7 @@ export default function Chat() {
             editable={!isStreaming}
           />
           <Pressable
-            style={[styles.sendButton, { backgroundColor: colors.primary }]}
+            style={[styles.sendButton, { bREMOVED: colors.primary }]}
             onPress={handleSend}
             disabled={!inputText.trim() || isStreaming}
           >
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  characterContainer: {
+  charREMOVED: {
     alignItems: 'center',
     paddingVertical: 20,
   },
@@ -252,5 +252,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
 
 

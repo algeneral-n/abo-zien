@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Themed Card Component
- * بطاقة مخصصة حسب الثيم
+ * ?????????? ?????????? ?????? ??????????
  */
 
 import React from 'react';
@@ -25,7 +25,7 @@ export default function ThemedCard({ children, style, variant = 'default' }: The
         style={[
           styles.neumorphicCard,
           {
-            backgroundColor: colors.surface,
+            bREMOVED: colors.surface,
             shadowColor: '#000',
             shadowOffset: { width: 4, height: 4 },
             shadowOpacity: 0.1,
@@ -47,7 +47,7 @@ export default function ThemedCard({ children, style, variant = 'default' }: The
         style={[
           styles.glassCard,
           {
-            backgroundColor: colors.surface,
+            bREMOVED: colors.surface,
             borderColor: colors.border,
             borderWidth: 1,
             opacity: 0.9,
@@ -66,7 +66,7 @@ export default function ThemedCard({ children, style, variant = 'default' }: The
       style={[
         styles.solidCard,
         {
-          backgroundColor: colors.surface,
+          bREMOVED: colors.surface,
           borderColor: colors.border,
           borderWidth: variant === 'outlined' ? 1 : 0,
         },
@@ -107,4 +107,5 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
 });
+
 

@@ -48,7 +48,7 @@ export function initializeAutoBuilder(io) {
   const builderNamespace = io.of('/auto-builder');
 
   builderNamespace.on('connection', (socket) => {
-    console.log('✅ Auto Builder client connected:', socket.id);
+    console.log('??? Auto Builder client connected:', socket.id);
 
     // Listen for client requests
     socket.on('client:request', (request) => {
@@ -58,7 +58,7 @@ export function initializeAutoBuilder(io) {
       }
       // #endregion
       
-      // ✅ Safety check: Validate request
+      // ??? Safety check: Validate request
       if (!request || typeof request !== 'object' || !request.id) {
         console.warn('[Auto Builder] Invalid client request:', request);
         return;
@@ -71,13 +71,13 @@ export function initializeAutoBuilder(io) {
       socket.emit('client:request', request);
     });
 
-    // ✅ Listen for client file uploads
+    // ??? Listen for client file uploads
     socket.on('client:files-uploaded', (data) => {
       socket.broadcast.emit('client:files-uploaded', data);
       socket.emit('client:files-uploaded', data);
     });
 
-    // ✅ Listen for payment completion
+    // ??? Listen for payment completion
     socket.on('payment:completed', (data) => {
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
@@ -85,7 +85,7 @@ export function initializeAutoBuilder(io) {
       }
       // #endregion
       
-      // ✅ Safety check: Validate data
+      // ??? Safety check: Validate data
       if (!data || typeof data !== 'object') {
         console.warn('[Auto Builder] Invalid payment data:', data);
         return;
@@ -93,7 +93,7 @@ export function initializeAutoBuilder(io) {
       
       socket.broadcast.emit('payment:completed', data);
       socket.emit('payment:completed', data);
-      console.log('✅ Payment completed, ready to build:', data);
+      console.log('??? Payment completed, ready to build:', data);
       
       // Notify Client Portal about payment completion
       if (data.clientId) {
@@ -191,11 +191,11 @@ export function initializeAutoBuilder(io) {
       }
     });
 
-    // ✅ Listen for revision requests
+    // ??? Listen for revision requests
     socket.on('client:revision_requested', (revision) => {
       socket.broadcast.emit('client:revision_requested', revision);
       socket.emit('client:revision_requested', revision);
-      console.log('✅ Revision requested:', revision.id);
+      console.log('??? Revision requested:', revision.id);
     });
 
     // Send response to client
@@ -208,7 +208,7 @@ export function initializeAutoBuilder(io) {
         response,
       });
 
-      // ✅ Send WhatsApp notification - Delivery Confirmed (if delivery date provided)
+      // ??? Send WhatsApp notification - Delivery Confirmed (if delivery date provided)
       if (deliveryDate && deliveryTime && projectName) {
         try {
           const { sendDeliveryConfirmed } = await import('../services/twilioTemplatesService.js');
@@ -218,12 +218,12 @@ export function initializeAutoBuilder(io) {
           if (clientRequest?.phone) {
             await sendDeliveryConfirmed(
               clientRequest.phone,
-              clientRequest.clientName || 'عميلنا العزيز',
+              clientRequest.clientName || '???????????? ????????????',
               projectName,
               deliveryDate,
               deliveryTime
             );
-            console.log('✅ Delivery confirmed notification sent to:', clientRequest.phone);
+            console.log('??? Delivery confirmed notification sent to:', clientRequest.phone);
           }
         } catch (error) {
           console.error('Failed to send delivery confirmed notification:', error);
@@ -232,7 +232,7 @@ export function initializeAutoBuilder(io) {
     });
 
     socket.on('disconnect', () => {
-      console.log('❌ Auto Builder client disconnected:', socket.id);
+      console.log('??? Auto Builder client disconnected:', socket.id);
     });
   });
 }
@@ -282,9 +282,9 @@ router.post('/execute', async (req, res) => {
 /**
  * POST /api/auto-builder/build
  * Build project and send files to email
- * ✅ البناء يتم بموافقة المستخدم فقط
- * ✅ الملفات ترسل لإيميل المستخدم دائماً (GM@ZIEN-AI.APP)
- * ✅ الملفات ترسل للعميل فقط إذا دفع
+ * ??? ???????????? ?????? ?????????????? ???????????????? ??????
+ * ??? ?????????????? ???????? ???????????? ???????????????? ???????????? (GM@ZIEN-AI.APP)
+ * ??? ?????????????? ???????? ???????????? ?????? ?????? ??????
  */
 router.post('/build', upload.array('files'), async (req, res) => {
   try {
@@ -296,7 +296,7 @@ router.post('/build', upload.array('files'), async (req, res) => {
     
     const { projectName, platforms, email, phone, projectType, clientId, clientEmail, requestId, paymentStatus } = req.body;
 
-    // ✅ Safety check: Validate inputs
+    // ??? Safety check: Validate inputs
     if (!projectName || typeof projectName !== 'string') {
       // #region agent log
       if (process.env.NODE_ENV === 'development') {
@@ -328,7 +328,7 @@ router.post('/build', upload.array('files'), async (req, res) => {
       });
     }
 
-    // ✅ Owner email (always send to owner) - Fallback to GOOGLE_WORKSPACE_EMAIL
+    // ??? Owner email (always send to owner) - Fallback to GOOGLE_WORKSPACE_EMAIL
     const OWNER_EMAIL = process.env.OWNER_EMAIL || process.env.GOOGLE_WORKSPACE_EMAIL || 'GM@ZIEN-AI.APP';
 
     // Get project path (from uploaded files or existing project)
@@ -425,21 +425,21 @@ router.post('/build', upload.array('files'), async (req, res) => {
           })),
         });
 
-        // ✅ Send WhatsApp notification - Build Complete
+        // ??? Send WhatsApp notification - Build Complete
         try {
           const { sendBuildComplete } = await import('../services/twilioTemplatesService.js');
           // Get client phone from request (stored when client registered)
           const clientRequests = getClientRequests();
           const clientRequest = clientRequests.get(clientId)?.[0];
           if (clientRequest?.phone) {
-            await sendBuildComplete(clientRequest.phone, clientRequest.clientName || 'عميلنا العزيز', projectName);
-            console.log('✅ Build complete notification sent to:', clientRequest.phone);
+            await sendBuildComplete(clientRequest.phone, clientRequest.clientName || '???????????? ????????????', projectName);
+            console.log('??? Build complete notification sent to:', clientRequest.phone);
           }
         } catch (error) {
           console.error('Failed to send build complete notification:', error);
         }
 
-        // ✅ Create Preview Link
+        // ??? Create Preview Link
         const previewToken = `preview_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
         const previewLink = `${process.env.CLIENT_PORTAL_URL || 'http://localhost:3000'}/preview/${previewToken}`;
         
@@ -464,7 +464,7 @@ router.post('/build', upload.array('files'), async (req, res) => {
           projectName,
         });
 
-        // ✅ Save to Library based on request type
+        // ??? Save to Library based on request type
         try {
           const clientRequests = getClientRequests();
           const clientRequest = clientRequests.get(clientId)?.[0];
@@ -496,13 +496,13 @@ router.post('/build', upload.array('files'), async (req, res) => {
             // Save to appropriate library (Note: This modifies the exported array, in production use a database)
             if (selectedType === 'template' && APP_TEMPLATES) {
               APP_TEMPLATES.push(libraryItem);
-              console.log('✅ Saved to APP_TEMPLATES library');
+              console.log('??? Saved to APP_TEMPLATES library');
             } else if (selectedType === 'system' && SYSTEMS_LIBRARY) {
               SYSTEMS_LIBRARY.push(libraryItem);
-              console.log('✅ Saved to SYSTEMS_LIBRARY');
+              console.log('??? Saved to SYSTEMS_LIBRARY');
             } else if (selectedType === 'theme' && THEMES_LIBRARY) {
               THEMES_LIBRARY.push(libraryItem);
-              console.log('✅ Saved to THEMES_LIBRARY');
+              console.log('??? Saved to THEMES_LIBRARY');
             }
           }
         } catch (error) {
@@ -521,7 +521,7 @@ router.post('/build', upload.array('files'), async (req, res) => {
         downloadUrl: `/api/auto-builder/download/${buildInfo.buildId}/${encodeURIComponent(b.filename)}`,
       })),
       errors: buildResult.errors,
-      message: `تم البناء بنجاح. تم إرسال الملفات إلى ${OWNER_EMAIL}${buildInfo.clientEmail ? ` وإلى ${buildInfo.clientEmail}` : ''}.`,
+      message: `???? ???????????? ??????????. ???? ?????????? ?????????????? ?????? ${OWNER_EMAIL}${buildInfo.clientEmail ? ` ???????? ${buildInfo.clientEmail}` : ''}.`,
     });
   } catch (error) {
     console.error('Build error:', error);
@@ -890,4 +890,5 @@ router.get('/download/:buildId/:filename', (req, res) => {
 });
 
 export default router;
+
 

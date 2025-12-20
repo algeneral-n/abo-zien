@@ -20,7 +20,7 @@ export class RAREEmotionEngine {
     const lower = text.toLowerCase();
     
     // Happy indicators
-    if (this.matchPattern(lower, ['😊', '😄', 'رائع', 'جميل', 'ممتاز', 'حلو', 'تمام', 'perfect', 'great', 'awesome'])) {
+    if (this.matchPattern(lower, ['????', '????', '????????', '????????', '??????????', '??????', '????????', 'perfect', 'great', 'awesome'])) {
       return {
         emotion: 'happy',
         confidence: 0.9,
@@ -30,7 +30,7 @@ export class RAREEmotionEngine {
     }
 
     // Excited indicators
-    if (this.matchPattern(lower, ['!', 'wow', 'amazing', 'يااااا', 'مذهل', 'عظيم']) || /!{2,}/.test(text)) {
+    if (this.matchPattern(lower, ['!', 'wow', 'amazing', '????????????', '????????', '????????']) || /!{2,}/.test(text)) {
       return {
         emotion: 'excited',
         confidence: 0.85,
@@ -40,7 +40,7 @@ export class RAREEmotionEngine {
     }
 
     // Sad indicators
-    if (this.matchPattern(lower, ['😢', '😔', 'حزين', 'للأسف', 'مش عارف', 'sad', 'unfortunately'])) {
+    if (this.matchPattern(lower, ['????', '????', '????????', '??????????', '???? ????????', 'sad', 'unfortunately'])) {
       return {
         emotion: 'sad',
         confidence: 0.88,
@@ -50,7 +50,7 @@ export class RAREEmotionEngine {
     }
 
     // Angry indicators
-    if (this.matchPattern(lower, ['😡', 'غاضب', 'مش عاجبني', 'سيء', 'زعلان', 'angry', 'bad', 'terrible'])) {
+    if (this.matchPattern(lower, ['????', '????????', '???? ????????????', '??????', '??????????', 'angry', 'bad', 'terrible'])) {
       return {
         emotion: 'angry',
         confidence: 0.87,
@@ -60,7 +60,7 @@ export class RAREEmotionEngine {
     }
 
     // Confused indicators
-    if (this.matchPattern(lower, ['🤔', 'ليه', 'ازاي', 'مش فاهم', 'what', 'why', 'how', '؟؟'])) {
+    if (this.matchPattern(lower, ['????', '??????', '????????', '???? ????????', 'what', 'why', 'how', '????'])) {
       return {
         emotion: 'confused',
         confidence: 0.82,
@@ -70,7 +70,7 @@ export class RAREEmotionEngine {
     }
 
     // Stressed indicators
-    if (this.matchPattern(lower, ['سريع', 'عاجل', 'urgent', 'quickly', 'asap', 'help'])) {
+    if (this.matchPattern(lower, ['????????', '????????', 'urgent', 'quickly', 'asap', 'help'])) {
       return {
         emotion: 'stressed',
         confidence: 0.8,
@@ -227,3 +227,4 @@ export class RAREEmotionEngine {
     return patterns.some(pattern => text.includes(pattern.toLowerCase()));
   }
 }
+

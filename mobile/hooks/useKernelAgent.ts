@@ -1,6 +1,6 @@
 /**
  * useKernelAgent Hook
- * Hook لاستخدام الـ Agents عبر الـ Kernel
+ * Hook ???????????????? ?????? Agents ?????? ?????? Kernel
  */
 
 import { useState, useEffect, useCallback } from 'react';
@@ -23,7 +23,7 @@ export function useKernelAgent(agentId: string) {
       setResult(null);
 
       try {
-        // Emit user input to kernel → cognitive loop → agent
+        // Emit user input to kernel ??? cognitive loop ??? agent
         kernel.emit({
           type: 'user:input',
           data: {
@@ -94,5 +94,6 @@ export function useKernelAgent(agentId: string) {
     result,
   };
 }
+
 
 

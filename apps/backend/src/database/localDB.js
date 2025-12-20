@@ -35,10 +35,10 @@ export function initDatabase() {
     // Create tables
     createTables();
     
-    console.log('✅ Local database initialized:', DB_PATH);
+    console.log('??? Local database initialized:', DB_PATH);
     return db;
   } catch (error) {
-    console.error('❌ Database initialization failed:', error);
+    console.error('??? Database initialization failed:', error);
     throw error;
   }
 }
@@ -191,7 +191,7 @@ function createTables() {
     )
   `);
 
-  console.log('✅ Database tables created');
+  console.log('??? Database tables created');
 }
 
 /**
@@ -533,6 +533,7 @@ export const DB = {
     },
   },
 };
+
 
 
 

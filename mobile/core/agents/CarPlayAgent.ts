@@ -1,7 +1,7 @@
 /**
  * RARE 4N - CarPlay Agent
- * وكيل CarPlay - دعم Apple CarPlay
- * ✅ Cognitive Loop → Kernel → CarPlay Agent
+ * ???????? CarPlay - ?????? Apple CarPlay
+ * ??? Cognitive Loop ??? Kernel ??? CarPlay Agent
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -27,7 +27,7 @@ export class CarPlayAgent extends BaseAgent {
 
   async init(): Promise<void> {
     await super.init();
-    console.log('[CarPlayAgent] Initialized ✅');
+    console.log('[CarPlayAgent] Initialized ???');
   }
 
   async execute(action: string, parameters: any): Promise<any> {
@@ -268,13 +268,13 @@ export class CarPlayAgent extends BaseAgent {
    */
   private async checkCarPlayAvailability(): Promise<boolean> {
     try {
-      // ✅ Check if running on iOS
+      // ??? Check if running on iOS
       const { Platform } = require('react-native');
       if (Platform.OS !== 'ios') {
         return false;
       }
 
-      // ✅ Check if CarPlay is available using native module
+      // ??? Check if CarPlay is available using native module
       // In production, this would use @react-native-carplay/carplay or similar
       // For now, check if device supports CarPlay (iOS 12+)
       const { NativeModules } = require('react-native');
@@ -285,12 +285,12 @@ export class CarPlayAgent extends BaseAgent {
         return isAvailable === true;
       }
 
-      // ✅ Fallback: Check iOS version (CarPlay requires iOS 12+)
+      // ??? Fallback: Check iOS version (CarPlay requires iOS 12+)
       const { getSystemVersion } = require('react-native').Platform;
       const iosVersion = parseFloat(getSystemVersion());
       return iosVersion >= 12.0;
     } catch (error) {
-      // ✅ Safe fallback: return false if any error
+      // ??? Safe fallback: return false if any error
       console.warn('[CarPlayAgent] CarPlay availability check failed:', error);
       return false;
     }
@@ -315,7 +315,7 @@ export class CarPlayAgent extends BaseAgent {
   }
 
   async start(): Promise<void> {
-    console.log('[CarPlayAgent] Started ✅');
+    console.log('[CarPlayAgent] Started ???');
   }
 
   async stop(): Promise<void> {
@@ -323,9 +323,10 @@ export class CarPlayAgent extends BaseAgent {
       this.socket.disconnect();
       this.socket = null;
     }
-    console.log('[CarPlayAgent] Stopped ✅');
+    console.log('[CarPlayAgent] Stopped ???');
   }
 }
+
 
 
 

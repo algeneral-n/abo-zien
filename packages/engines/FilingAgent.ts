@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Filing Agent (Conscious Agent)
  * Auto Filing + OCR Agent
- * ❌ ممنوع: أي direct calls - Cognitive Loop فقط
+ * ??? ??????????: ???? direct calls - Cognitive Loop ??????
  */
 
 import { RAREEngine, EngineConfig } from '../core/RAREEngine';
@@ -118,7 +118,7 @@ export class FilingAgent extends RAREEngine {
     try {
       const result = await DocumentPicker.getDocumentAsync({
         type: '*/*',
-        copyToCacheDirectory: true,
+        copyToCREMOVED: true,
       });
 
       if (result.canceled) {
@@ -320,4 +320,5 @@ export class FilingAgent extends RAREEngine {
     };
   }
 }
+
 

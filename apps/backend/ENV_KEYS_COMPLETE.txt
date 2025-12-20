@@ -1,4 +1,4 @@
-########################################
+﻿########################################
 ############### KERNEL #################
 ########################################
 
@@ -27,7 +27,7 @@ CONSCIOUS_SELF_FEEDBACK=true
 ########################################
 
 OPENAI_KEY=REPLACE_ME
-CLAUDE_API_KEY=REDACTED_I0b1avV7SxDUpQXJA8fNxGsxaLKTEXqzzd9c_qkz-8O-Dujgv2_7_yAa14LLpg-7pIVaQAA
+CLAUDE_API_KEY=REMOVED-api03-Pej3GL1bSTOLFJnXdk29kSn_I0b1avV7SxDUpQXJA8fNxGsxaLKTEXqzzd9c_qkz-8O-Dujgv2_7_yAa14LLpg-7pIVaQAA
 ANTHROPIC_KEY=REPLACE_ME
 GEMINI_API_KEY=AIzaSyCDAVvQTbXwUDnmP2FBTaeei6Ru47xrILk
 
@@ -36,14 +36,14 @@ GEMINI_API_KEY=AIzaSyCDAVvQTbXwUDnmP2FBTaeei6Ru47xrILk
 ################# VOICE #################
 ########################################
 
-ELEVENLABS_API_KEY=eeda5ba6afa0e502217e46b76ad3a1fe6388d63dc55a43f812ded9a15094af26
-ELEVENLABS_SYSTEM_AGENT_ID=9401kb2n0gf5e2wtp4sfs8chdmk1
-ELEVENLABS_VOICE_ID_1=9401kb2n0gf5e2wtp4sfs8chdmk1
-ELEVENLABS_VOICE_ID_2=6ZVgc4q9LWAloWbuwjuu
-ELEVENLABS_VOICE_ID_3=4wf10lgibMnboGJGCLrP
-ELEVENLABS_VOICE_ID_4=IES4nrmZdUBHByLBde0P
-ELEVENLABS_VOICE_ID_5=LjKPkQHpXCsWoy7Pjq4U
-ELEVENLABS_VOICE_ID_6=WkVhWA2EqSfUAWAZG7La
+ELEVENLABS_KEY=REPLACE_ME
+ELEVENLABS_KEY=REPLACE_ME
+ELEVENLABS_KEY=REPLACE_ME
+ELEVENLABS_KEY=REPLACE_ME
+ELEVENLABS_KEY=REPLACE_ME
+ELEVENLABS_KEY=REPLACE_ME
+ELEVENLABS_KEY=REPLACE_ME
+ELEVENLABS_KEY=REPLACE_ME
 
 VOICE_WAKE_WORD=RARE
 VOICE_PERSONA=NADER
@@ -78,7 +78,7 @@ TTS_PITCH=1.0
 ########################################
 
 GOOGLE_MAPS_API_KEY=AIzaSyD_972sZ4Vx0n0DQL_DUcZpu2QZKmTcLGA
-APPLE_MAPKIT_TOKEN=292BEE5A-A671-40C7-BDBE-5BE18DCCE23F
+APPLE_KEY=REPLACE_ME
 
 
 ########################################
@@ -101,8 +101,8 @@ GOOGLE_CLIENT_SECRET=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
 ################ EXPO ##################
 ########################################
 
-EXPO_PROJECT_ID=c2f7ad03-bef4-4e74-b426-4170a9d788b3
-EXPO_ACCESS_TOKEN=REPLACE_ME
+EXPO_KEY=REPLACE_ME
+EXPO_KEY=REPLACE_ME
 
 
 ########################################
@@ -119,10 +119,10 @@ GITHUB_KEY=REPLACE_ME
 
 AASC_API_KEY_ID=J9SSR3CD83
 ASC_API_KEY_ISSUER_ID=d790aa1b-f46a-46dc-8187-b94b5e372c16
-APPLE_DEVELOPER_ID=d790aa1b-f46a-46dc-8187-b94b5e372c16
-APPLE_PUSH_KEY_PATH=keys/AuthKey.p8
-APPLE_PUSH_NAME=RARE
-APPLE_PUSH_KEY_ID=L3KM677Z7Y
+APPLE_KEY=REPLACE_ME
+APPLE_KEY=REPLACE_ME
+APPLE_KEY=REPLACE_ME
+APPLE_KEY=REPLACE_ME
 
 
 ########################################
@@ -156,14 +156,14 @@ MONGODB_DB_NAME=rare4n
 ############### SUPABASE ###############
 ########################################
 
-REACT_APP_SUPABASE_URL=https://fgvrilruqzajstprioqj.supabase.co
-REACT_APP_SUPABASE_PUBLISHABLE_DEFAULT_KEY=REDACTED
-NEXT_PUBLIC_SUPABASE_URL=https://fgvrilruqzajstprioqj.supabase.co
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=REDACTED
-EXPO_PUBLIC_SUPABASE_URL=https://fgvrilruqzajstprioqj.supabase.co
-EXPO_PUBLIC_SUPABASE_KEY=REDACTED
+REACT_APP_SUPABASE_KEY=REPLACE_ME
+REACT_APP_SUPABASE_KEY=REPLACE_ME
+NEXT_PUBLIC_SUPABASE_KEY=REPLACE_ME
+NEXT_PUBLIC_SUPABASE_KEY=REPLACE_ME
+EXPO_KEY=REPLACE_ME
+EXPO_KEY=REPLACE_ME
 
-SUPABASE_DATABASE_URL=postgresql://postgres:[Agn@algeneralnrsafa263688]@db.fgvrilruqzajstprioqj.supabase.co:5432/postgres
+SUPABASE_KEY=REPLACE_ME
 
 
 ########################################
@@ -196,8 +196,8 @@ FROM_EMAIL=gm@zien-ai.app
 ############### CLOUDFLARE ############
 ########################################
 
-CLOUDFLARE_TUNNEL_ID=8280d872-79cc-4b82-9de8-a86ab4bf9540
-CLOUDFLARE_ACCOUNT_TAG=ccc1ed9ab170eaf1e72e9a10e46ef320
+CLOUDFLARE_KEY=REPLACE_ME
+CLOUDFLARE_KEY=REPLACE_ME
 
 
 ########################################
@@ -224,7 +224,9 @@ ALLOWED_ORIGINS=https://api.zien-ai.app,http://localhost:5000,exp://localhost:80
 ############### MOBILE APP ###########
 ########################################
 
-EXPO_PUBLIC_API_URL=https://api.zien-ai.app
+EXPO_KEY=REPLACE_ME
+
+
 
 
 

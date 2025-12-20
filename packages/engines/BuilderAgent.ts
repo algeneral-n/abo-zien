@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Auto Builder Agent (Conscious Agent)
- * 🏗️ Auto Builder Agent - قلب النظام
+ * ??????? Auto Builder Agent - ?????? ????????????
  * Auto App Generation, Libraries, Systems, Themes, EAS Builds
  * Controlled 100% by Cognitive Loop
  */
@@ -185,3 +185,4 @@ export class BuilderAgent extends RAREEngine {
     };
   }
 }
+

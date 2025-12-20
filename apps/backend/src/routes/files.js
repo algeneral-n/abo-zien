@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ABO ZIEN - Files Routes
  * Local file management
  */
@@ -452,8 +452,8 @@ router.post('/generate-image', async (req, res) => {
     }
 
     // Use OpenAI DALL-E 3
-    const OpenAI = (await import('openai')).default;
-    const openai = new OpenAI({
+    const OpenAI_KEY=REPLACE_ME
+    const openai_KEY=REPLACE_ME
       apiKey: process.env.OPENAI_KEY=REPLACE_ME
     });
 
@@ -509,9 +509,9 @@ router.post('/generate-video', async (req, res) => {
       return res.status(400).json({ success: false, error: 'Prompt is required' });
     }
 
-    // ✅ Try OpenAI Sora first (if available)
-    const OpenAI = (await import('openai')).default;
-    const openai = new OpenAI({
+    // ??? Try OpenAI Sora first (if available)
+    const OpenAI_KEY=REPLACE_ME
+    const openai_KEY=REPLACE_ME
       apiKey: process.env.OPENAI_KEY=REPLACE_ME
     });
 
@@ -520,7 +520,7 @@ router.post('/generate-video', async (req, res) => {
     let provider = 'openai';
 
     try {
-      // ✅ Try Sora API (when available)
+      // ??? Try Sora API (when available)
       // Note: Sora API may not be publicly available yet, so we'll try and fallback
       const soraResponse = await openai.video.generations.create({
         model: 'sora',
@@ -533,7 +533,7 @@ router.post('/generate-video', async (req, res) => {
       videoId = soraResponse.data[0].id;
       provider = 'openai-sora';
     } catch (soraError) {
-      // ✅ Fallback to RunwayML if Sora not available
+      // ??? Fallback to RunwayML if Sora not available
       if (process.env.RUNWAYML_API_KEY) {
         try {
           const runwayResponse = await fetch('https://api.runwayml.com/v1/generate', {
@@ -570,7 +570,7 @@ router.post('/generate-video', async (req, res) => {
       throw new Error('Failed to generate video');
     }
 
-    // ✅ Save video to database
+    // ??? Save video to database
     const userId = getUserId(req);
     const fileId = crypto.randomBytes(16).toString('hex');
     const filename = `generated_video_${Date.now()}.mp4`;
@@ -655,6 +655,8 @@ router.post('/generate-file', async (req, res) => {
 });
 
 export default router;
+
+
 
 
 

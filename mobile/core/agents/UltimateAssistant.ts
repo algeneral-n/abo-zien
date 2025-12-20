@@ -1,8 +1,8 @@
 /**
  * RARE 4N - Ultimate Assistant (Supreme Access)
- * المساعد الأعلى - صلاحيات عليا
- * ✅ يتابع الاشتراكات، الحماية، منع Multi-Tenant
- * ✅ Bypass جميع القيود
+ * ?????????????? ???????????? - ?????????????? ????????
+ * ??? ?????????? ?????????????????????? ???????????????? ?????? Multi-Tenant
+ * ??? Bypass ???????? ????????????
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -53,7 +53,7 @@ export class UltimateAssistant extends BaseAgent {
     super({
       id: 'ultimate-assistant',
       name: 'Ultimate Assistant',
-      description: 'المساعد الأعلى - Supreme Access',
+      description: '?????????????? ???????????? - Supreme Access',
       capabilities: [
         'supreme_access',
         'subscription_monitoring',
@@ -66,7 +66,7 @@ export class UltimateAssistant extends BaseAgent {
   }
 
   protected async onInit(): Promise<void> {
-    console.log('[UltimateAssistant] Initialized ✅');
+    console.log('[UltimateAssistant] Initialized ???');
     
     // Check for Supreme Access credentials
     await this.checkSupremeAccess();
@@ -81,7 +81,7 @@ export class UltimateAssistant extends BaseAgent {
    * Check Supreme Access credentials
    */
   private async checkSupremeAccess(): Promise<void> {
-    // Supreme Access password: "رير من عائلتي" + special key
+    // Supreme Access password: "?????? ???? ????????????" + special key
     const supremeKey = 'SUPREME_RARE_4N_2024';
     
     // In production, this should be checked from secure storage
@@ -291,7 +291,7 @@ export class UltimateAssistant extends BaseAgent {
     }
 
     // Log the cross-tenant access
-    console.log(`[UltimateAssistant] Cross-tenant access: ${sourceTenant} → ${targetTenant} (${action})`);
+    console.log(`[UltimateAssistant] Cross-tenant access: ${sourceTenant} ??? ${targetTenant} (${action})`);
 
     return true;
   }
@@ -301,7 +301,7 @@ export class UltimateAssistant extends BaseAgent {
    */
   protected async onStart(): Promise<void> {
     this.running = true;
-    console.log('[UltimateAssistant] Started ✅');
+    console.log('[UltimateAssistant] Started ???');
   }
 
   /**
@@ -309,7 +309,7 @@ export class UltimateAssistant extends BaseAgent {
    */
   protected async onStop(): Promise<void> {
     this.running = false;
-    console.log('[UltimateAssistant] Stopped ✅');
+    console.log('[UltimateAssistant] Stopped ???');
   }
 
   /**
@@ -333,4 +333,5 @@ export class UltimateAssistant extends BaseAgent {
     }
   }
 }
+
 

@@ -1,8 +1,8 @@
 /**
  * RARE 4N - Voice Agent (Conscious Agent)
- * 🎙️ Voice Agent - أكل العيش
+ * ??????? Voice Agent - ?????? ??????????
  * Context-aware, Emotion-aware, Hands-free
- * يشتغل فقط بأمر من Cognitive Loop
+ * ?????????? ?????? ???????? ???? Cognitive Loop
  */
 
 import { RAREEngine, EngineConfig } from '../core/RAREEngine';
@@ -22,7 +22,7 @@ export class VoiceAgent extends RAREEngine {
   protected initialized: boolean = false;
   protected running: boolean = false;
   private isListening: boolean = false;
-  private wakeWords: string[] = ['رير', 'نادر', 'rare', 'nader'];
+  private wakeWords: string[] = ['??????', '????????', 'rare', 'nader'];
   private currentEmotion: Emotion | null = null;
 
   constructor() {
@@ -137,7 +137,7 @@ export class VoiceAgent extends RAREEngine {
           // More enthusiastic tone
         } else if (effectiveEmotion.type === 'concerned') {
           // Calmer, supportive tone
-          adaptedText = 'أفهم. ' + adaptedText;
+          adaptedText = '????????. ' + adaptedText;
         }
       }
 
@@ -204,3 +204,4 @@ export class VoiceAgent extends RAREEngine {
     };
   }
 }
+

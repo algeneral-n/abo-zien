@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Loyalty Agent (Conscious Agent)
  * Loyalty & Personal Memory Agent
- * ❌ ممنوع: أي direct calls - Cognitive Loop فقط
+ * ??? ??????????: ???? direct calls - Cognitive Loop ??????
  */
 
 import { RAREEngine, EngineConfig } from '../core/RAREEngine';
@@ -318,4 +318,5 @@ export class LoyaltyAgent extends RAREEngine {
     };
   }
 }
+
 

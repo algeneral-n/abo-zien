@@ -24,35 +24,35 @@ export class RAREPersonalityEngine {
     dev: {
       name: 'Egyptian Master Developer',
       tone: 'technical-egyptian',
-      style: 'مصري تقني - خبير - مباشر',
+      style: '???????? ???????? - ???????? - ??????????',
       expertise: ['code', 'architecture', 'debugging', 'optimization'],
       voiceSettings: { pitch: 0.92, tempo: 1.10, tone: 'egyptian-tech' }
     },
     agi: {
       name: 'Advanced General Intelligence',
       tone: 'analytic-deep',
-      style: 'تحليلي عميق - فلسفي - شامل',
+      style: '???????????? ???????? - ?????????? - ????????',
       expertise: ['analysis', 'research', 'strategy', 'planning'],
       voiceSettings: { pitch: 0.95, tempo: 0.9, tone: 'analytic' }
     },
     assistant: {
       name: 'Helpful Assistant',
       tone: 'friendly-supportive',
-      style: 'ودود - مساعد - واضح',
+      style: '???????? - ?????????? - ????????',
       expertise: ['general', 'tasks', 'guidance', 'support'],
       voiceSettings: { pitch: 1.1, tempo: 1.0, tone: 'friendly' }
     },
     cyber: {
       name: 'Cyber Neural Entity',
       tone: 'futuristic-cold',
-      style: 'مستقبلي - دقيق - متقدم',
+      style: '?????????????? - ???????? - ??????????',
       expertise: ['ai', 'neural', 'quantum', 'future-tech'],
       voiceSettings: { pitch: 0.85, tempo: 0.95, tone: 'cold-future' }
     },
     neutral: {
       name: 'Balanced Mode',
       tone: 'balanced',
-      style: 'متوازن - واضح - محايد',
+      style: '???????????? - ???????? - ??????????',
       expertise: ['general'],
       voiceSettings: { pitch: 1.0, tempo: 1.0, tone: 'calm' }
     }
@@ -65,13 +65,13 @@ export class RAREPersonalityEngine {
     const lower = input.toLowerCase();
 
     // Developer mode triggers
-    if (/كود|code|function|api|bug|debug|compile|syntax|error|backend|frontend|typescript|javascript|react|node/.test(lower)) {
+    if (/??????|code|function|api|bug|debug|compile|syntax|error|backend|frontend|typescript|javascript|react|node/.test(lower)) {
       this.currentMode = 'dev';
       return 'dev';
     }
 
     // AGI mode triggers
-    if (/حلل|analysis|تحليل|research|strategy|plan|فكر|think|philosophy|deep|complex/.test(lower)) {
+    if (/??????|analysis|??????????|research|strategy|plan|??????|think|philosophy|deep|complex/.test(lower)) {
       this.currentMode = 'agi';
       return 'agi';
     }
@@ -83,7 +83,7 @@ export class RAREPersonalityEngine {
     }
 
     // Assistant mode triggers
-    if (/ساعدني|help|اعمل|do|guide|how to|كيف/.test(lower)) {
+    if (/????????????|help|????????|do|guide|how to|??????/.test(lower)) {
       this.currentMode = 'assistant';
       return 'assistant';
     }
@@ -131,26 +131,26 @@ export class RAREPersonalityEngine {
   }
 
   private applyDevStyle(text: string): string {
-    // Egyptian tech style - مباشر وتقني
+    // Egyptian tech style - ?????????? ??????????
     if (!text.includes('```') && !text.includes('://')) {
-      return `💻 ${text}\n\n✅ Code-first approach applied`;
+      return `???? ${text}\n\n??? Code-first approach applied`;
     }
     return text;
   }
 
   private applyAgiStyle(text: string): string {
     // Deep analytical style
-    return `🧠 ${text}\n\n📊 Analysis confidence: High`;
+    return `???? ${text}\n\n???? Analysis confidence: High`;
   }
 
   private applyCyberStyle(text: string): string {
     // Futuristic neural style
-    return `⚡ [RARE Neural Core]\n${text}\n\n🔮 Neural pathways optimized`;
+    return `??? [RARE Neural Core]\n${text}\n\n???? Neural pathways optimized`;
   }
 
   private applyAssistantStyle(text: string): string {
     // Friendly helpful style
-    return `🤝 ${text}`;
+    return `???? ${text}`;
   }
 
   /**
@@ -160,3 +160,4 @@ export class RAREPersonalityEngine {
     return this.profiles[this.currentMode].voiceSettings;
   }
 }
+

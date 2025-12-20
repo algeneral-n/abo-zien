@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Login Screen
- * صفحة تسجيل الدخول - قائمة Google + تفعيل الصوت + رير + Names Tunnel
- * ✅ Cognitive Loop → Kernel → Auth Agent
+ * ???????? ?????????? ???????????? - ?????????? Google + ?????????? ?????????? + ?????? + Names Tunnel
+ * ??? Cognitive Loop ??? Kernel ??? Auth Agent
  */
 
 import { useEffect, useState, useRef } from 'react';
@@ -27,9 +27,9 @@ import { LoginTracker } from '../core/services/LoginTracker';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { TextInput } from 'react-native';
 
-// All requests go through Kernel → Cognitive Loop
+// All requests go through Kernel ??? Cognitive Loop
 
-const FAMILY_PASSWORD = 'رير من عائلتي';
+const FAMILY_PASSWORD = '?????? ???? ????????????';
 
 export default function Login() {
   const [showGoogleMenu, setShowGoogleMenu] = useState(false);
@@ -37,7 +37,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [chatMessage, setChatMessage] = useState('');
   const [chatMessages, setChatMessages] = useState<Array<{text: string; from: 'user' | 'rare'}>>([
-    { text: 'مرحباً! أنا رير. اكتب كلمة المرور أو استخدم Face ID للدخول.', from: 'rare' }
+    { text: '????????????! ?????? ??????. ???????? ???????? ???????????? ???? ???????????? Face ID ????????????.', from: 'rare' }
   ]);
   
   const { theme, colors } = useTheme();
@@ -49,10 +49,10 @@ export default function Login() {
     startAnimations();
     checkVoiceStatus();
     
-    // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
     const kernel = RAREKernel.getInstance();
     
-    // استمع لنتائج authentication
+    // ?????????? ???????????? authentication
     const unsubscribeAuth = kernel.on('agent:auth:response', (event) => {
       if (event.data.success && event.data.token) {
         AsyncStorage.setItem('authToken', event.data.token).then(() => {
@@ -99,7 +99,7 @@ export default function Login() {
       
       const kernel = RAREKernel.getInstance();
 
-      // Send to Kernel → Cognitive Loop processes automatically
+      // Send to Kernel ??? Cognitive Loop processes automatically
       kernel.emit({
         type: 'user:input',
         data: {
@@ -108,8 +108,8 @@ export default function Login() {
         },
       });
 
-      // ✅ Cognitive Loop سيعالج ويقرر
-      // لا fetch مباشر - كل شيء عبر Kernel → CognitiveLoop
+      // ??? Cognitive Loop ???????????? ??????????
+      // ???? fetch ?????????? - ???? ?????? ?????? Kernel ??? CognitiveLoop
     } catch (error) {
       console.error('Google login error:', error);
     } finally {
@@ -126,7 +126,7 @@ export default function Login() {
 
       const kernel = RAREKernel.getInstance();
 
-      // Send to Kernel → Cognitive Loop processes automatically
+      // Send to Kernel ??? Cognitive Loop processes automatically
       kernel.emit({
         type: 'user:input',
         data: {
@@ -144,14 +144,14 @@ export default function Login() {
       setIsLoading(true);
       const loginTracker = LoginTracker.getInstance();
       const result = await LocalAuthentication.authenticateAsync({
-        promptMessage: 'المصادقة بالوجه',
-        fallbackLabel: 'استخدام كلمة المرور',
+        promptMessage: '???????????????? ????????????',
+        fallbackLabel: '?????????????? ???????? ????????????',
         disableDeviceFallback: false,
       });
 
       if (result.success) {
         // Track successful Face ID login
-        await loginTracker.trackLoginAttempt('faceid', true, 'user_1');
+        await loginTracker.trREMOVED('faceid', true, 'user_1');
         
         const kernel = RAREKernel.getInstance();
         kernel.emit({
@@ -164,15 +164,15 @@ export default function Login() {
           source: 'ui',
         });
         setChatMessages(prev => [...prev, 
-          { text: 'تم التحقق بنجاح!', from: 'rare' }
+          { text: '???? ???????????? ??????????!', from: 'rare' }
         ]);
       } else {
         // Track failed Face ID login
-        await loginTracker.trackLoginAttempt('faceid', false, undefined, 'Face ID authentication failed');
+        await loginTracker.trREMOVED('faceid', false, undefined, 'Face ID authentication failed');
       }
     } catch (error) {
       const loginTracker = LoginTracker.getInstance();
-      await loginTracker.trackLoginAttempt('faceid', false, undefined, error?.toString() || 'Unknown error');
+      await loginTracker.trREMOVED('faceid', false, undefined, error?.toString() || 'Unknown error');
       console.error('Face auth error:', error);
     } finally {
       setIsLoading(false);
@@ -192,7 +192,7 @@ export default function Login() {
       const loginTracker = LoginTracker.getInstance();
       
       // Track successful login
-      await loginTracker.trackLoginAttempt('password', true, 'user_1');
+      await loginTracker.trREMOVED('password', true, 'user_1');
       
       kernel.emit({
         type: 'user:input',
@@ -205,23 +205,23 @@ export default function Login() {
         source: 'ui',
       });
       setChatMessages(prev => [...prev, 
-        { text: 'تم التحقق بنجاح! جاري تسجيل الدخول...', from: 'rare' }
+        { text: '???? ???????????? ??????????! ???????? ?????????? ????????????...', from: 'rare' }
       ]);
     } else {
       const loginTracker = LoginTracker.getInstance();
       
       // Track failed login
-      await loginTracker.trackLoginAttempt('password', false, undefined, 'Invalid password');
+      await loginTracker.trREMOVED('password', false, undefined, 'Invalid password');
       
       setChatMessages(prev => [...prev, 
-        { text: 'كلمة المرور غير صحيحة. حاول مرة أخرى أو استخدم Face ID.', from: 'rare' }
+        { text: '???????? ???????????? ?????? ??????????. ???????? ?????? ???????? ???? ???????????? Face ID.', from: 'rare' }
       ]);
     }
   };
 
   const googleProviders = [
-    { id: 'google', name: 'Google', nameAr: 'جوجل' },
-    { id: 'apple', name: 'Apple', nameAr: 'أبل' },
+    { id: 'google', name: 'Google', nameAr: '????????' },
+    { id: 'apple', name: 'Apple', nameAr: '??????' },
   ];
 
   return (
@@ -249,12 +249,12 @@ export default function Login() {
                 },
               ]}
             >
-              <View style={styles.characterContainer}>
+              <View style={styles.charREMOVED}>
                 <RARECharacter size={200} animation="idle" />
               </View>
 
               {/* Chat Container */}
-              <View style={[styles.chatContainer, { borderColor: colors.primary, backgroundColor: `${colors.primary}05` }]}>
+              <View style={[styles.chatContainer, { borderColor: colors.primary, bREMOVED: `${colors.primary}05` }]}>
                 <ScrollView 
                   style={styles.chatMessages}
                   contentContainerStyle={styles.chatMessagesContent}
@@ -279,15 +279,15 @@ export default function Login() {
                       styles.chatInput,
                       { borderColor: colors.primary, color: colors.text },
                     ]}
-                    placeholder="اكتب كلمة المرور أو استخدم Face ID..."
-                    placeholderTextColor={colors.primary + '50'}
+                    placeholder="???????? ???????? ???????????? ???? ???????????? Face ID..."
+                    plREMOVED={colors.primary + '50'}
                     value={chatMessage}
                     onChangeText={setChatMessage}
                     onSubmitEditing={handleSendMessage}
-                    secureTextEntry={chatMessage === FAMILY_PASSWORD || chatMessage.includes('رير')}
+                    secureTextEntry={chatMessage === FAMILY_PASSWORD || chatMessage.includes('??????')}
                   />
                   <TouchableOpacity
-                    style={[styles.chatSendButton, { backgroundColor: colors.primary }]}
+                    style={[styles.chatSendButton, { bREMOVED: colors.primary }]}
                     onPress={handleSendMessage}
                   >
                     <Icon name="send" size={18} color="#000" />
@@ -306,18 +306,18 @@ export default function Login() {
                 <TouchableOpacity
                   style={[
                     styles.googleButton,
-                    { borderColor: colors.primary, backgroundColor: `${colors.primary}10` },
+                    { borderColor: colors.primary, bREMOVED: `${colors.primary}10` },
                   ]}
                   onPress={() => setShowGoogleMenu(!showGoogleMenu)}
                 >
                   <Icon name="apps" size={20} color={colors.primary} />
                   <Text style={[styles.googleButtonText, { color: colors.primary }]}>
-                    تسجيل الدخول
+                    ?????????? ????????????
                   </Text>
                 </TouchableOpacity>
 
                 {showGoogleMenu && (
-                  <View style={[styles.googleMenu, { borderColor: colors.primary, backgroundColor: `${colors.primary}05` }]}>
+                  <View style={[styles.googleMenu, { borderColor: colors.primary, bREMOVED: `${colors.primary}05` }]}>
                     {googleProviders.map((provider) => (
                       <TouchableOpacity
                         key={provider.id}
@@ -341,7 +341,7 @@ export default function Login() {
                     styles.voiceButton,
                     { 
                       borderColor: colors.primary, 
-                      backgroundColor: voiceEnabled ? colors.primary : `${colors.primary}10`,
+                      bREMOVED: voiceEnabled ? colors.primary : `${colors.primary}10`,
                     },
                   ]}
                   onPress={handleToggleVoice}
@@ -355,7 +355,7 @@ export default function Login() {
                     styles.voiceButtonText, 
                     { color: voiceEnabled ? '#000' : colors.primary }
                   ]}>
-                    {voiceEnabled ? 'إيقاف الصوت' : 'تفعيل الصوت'}
+                    {voiceEnabled ? '?????????? ??????????' : '?????????? ??????????'}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
   mainContent: {
     alignItems: 'center',
   },
-  characterContainer: {
+  charREMOVED: {
     marginBottom: 40,
   },
   buttonsContainer: {
@@ -418,7 +418,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     marginBottom: 8,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   googleMenuItemText: {
     fontSize: 14,
@@ -461,11 +461,11 @@ const styles = StyleSheet.create({
   },
   chatMessageUser: {
     alignSelf: 'flex-end',
-    backgroundColor: 'rgba(0, 234, 255, 0.2)',
+    bREMOVED: 'rgba(0, 234, 255, 0.2)',
   },
   chatMessageRare: {
     alignSelf: 'flex-start',
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    bREMOVED: 'rgba(255, 255, 255, 0.05)',
   },
   chatMessageText: {
     fontSize: 14,
@@ -503,5 +503,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
 
 

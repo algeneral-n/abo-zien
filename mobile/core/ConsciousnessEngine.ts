@@ -1,7 +1,7 @@
 /**
- * RARE 4N - Consciousness Engine (الكونشس)
- * محرك الوعي - Self-awareness, Meta-cognition, Decision Reflection
- * ✅ Cognitive Loop → Kernel → Consciousness Engine
+ * RARE 4N - Consciousness Engine (??????????????)
+ * ???????? ?????????? - Self-awareness, Meta-cognition, Decision Reflection
+ * ??? Cognitive Loop ??? Kernel ??? Consciousness Engine
  */
 
 import { RAREKernel } from './RAREKernel';
@@ -50,7 +50,7 @@ export class ConsciousnessEngine {
       });
     }
 
-    // ✅ إرسال إلى Kernel
+    // ??? ?????????? ?????? Kernel
     this.kernel.emit({
       type: 'consciousness:initialized',
       data: {},
@@ -77,7 +77,7 @@ export class ConsciousnessEngine {
         this.reflectionHistory.shift();
       }
 
-      // ✅ إرسال إلى Kernel
+      // ??? ?????????? ?????? Kernel
       if (this.kernel) {
         this.kernel.emit({
           type: 'consciousness:reflection',
@@ -141,7 +141,7 @@ export class ConsciousnessEngine {
       const responseQuality = this.evaluateResponseQuality(event.data);
 
       if (responseQuality === 'poor') {
-        // ✅ إرسال تحسين إلى Kernel
+        // ??? ?????????? ?????????? ?????? Kernel
         if (this.kernel) {
           this.kernel.emit({
             type: 'consciousness:improvement_suggestion',
@@ -197,6 +197,7 @@ export class ConsciousnessEngine {
     };
   }
 }
+
 
 
 

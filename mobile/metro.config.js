@@ -1,4 +1,4 @@
-// Learn more https://docs.expo.dev/guides/customizing-metro
+﻿// Learn more https://docs.expo.dev/guides/customizing-metro
 const { getDefaultConfig } = require('expo/metro-config');
 
 /** @type {import('expo/metro-config').MetroConfig} */
@@ -18,6 +18,7 @@ config.server = {
   },
 };
 
-module.exports = config;
+module.expo_KEY=REPLACE_ME
+
 
 

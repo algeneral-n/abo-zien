@@ -1,8 +1,8 @@
-/**
+﻿/**
  * ABO ZIEN - Maps Engine
  * Navigation and Location Services
  * Supports Apple Maps (primary) and Google Maps (fallback)
- * ✅ Enhanced with full implementation
+ * ??? Enhanced with full implementation
  */
 
 import { RAREEngine, EngineConfig } from '../core/RAREEngine';
@@ -21,7 +21,7 @@ export interface RouteInfo {
   waypoints?: Array<{ latitude: number; longitude: number }>;
 }
 
-export interface PlaceSearchResult {
+export interface PlREMOVED {
   name: string;
   address: string;
   location: {
@@ -77,7 +77,7 @@ export class MapsEngine extends RAREEngine {
     // Get API keys from config or environment
     const apiKeys = loadAPIKeys();
     this.apiBase = config.apiBase || process.env.LOCAL_API_URL || 'http://localhost:5000/api';
-    this.appleMapsToken = config.appleMapsToken || apiKeys.appleMapKit || process.env.APPLE_MAPKIT_TOKEN;
+    this.apple_KEY=REPLACE_ME
     this.googleMapsKey = config.googleMapsKey || apiKeys.googleMaps || process.env.GOOGLE_MAPS_API_KEY;
     this.defaultProvider = config.defaultProvider || (this.appleMapsToken ? 'apple' : 'google');
 
@@ -109,7 +109,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Handle command from Cognitive Loop
-   * ✅ Enhanced with new actions
+   * ??? Enhanced with new actions
    */
   private async handleCognitiveCommand(command: any): Promise<void> {
     try {
@@ -162,7 +162,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Get route between two locations
-   * ✅ Enhanced with better error handling and validation
+   * ??? Enhanced with better error handling and validation
    */
   private async getRoute(parameters: any): Promise<void> {
     try {
@@ -219,7 +219,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Search places
-   * ✅ Enhanced with better error handling
+   * ??? Enhanced with better error handling
    */
   private async searchPlaces(parameters: any): Promise<void> {
     try {
@@ -297,7 +297,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Reverse geocode coordinates to address
-   * ✅ Enhanced with better error handling
+   * ??? Enhanced with better error handling
    */
   private async reverseGeocode(parameters: any): Promise<void> {
     try {
@@ -351,7 +351,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Get nearby places
-   * ✅ Enhanced with better error handling
+   * ??? Enhanced with better error handling
    */
   private async getNearby(parameters: any): Promise<void> {
     try {
@@ -399,7 +399,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Start navigation
-   * ✅ New method
+   * ??? New method
    */
   private async startNavigation(parameters: any): Promise<void> {
     try {
@@ -446,7 +446,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Stop navigation
-   * ✅ New method
+   * ??? New method
    */
   private async stopNavigation(): Promise<void> {
     try {
@@ -471,7 +471,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Get current location
-   * ✅ New method
+   * ??? New method
    */
   private async getCurrentLocation(): Promise<void> {
     try {
@@ -509,7 +509,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Get traffic information
-   * ✅ New method
+   * ??? New method
    */
   private async getTrafficInfo(parameters: any): Promise<void> {
     try {
@@ -553,7 +553,7 @@ export class MapsEngine extends RAREEngine {
 
   /**
    * Calculate ETA
-   * ✅ New method
+   * ??? New method
    */
   private async calculateETA(parameters: any): Promise<void> {
     try {
@@ -604,4 +604,6 @@ export class MapsEngine extends RAREEngine {
     return { ...this.navigationState };
   }
 }
+
+
 

@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Client Portal Routes
- * بوابة العميل - Widget + Form + Notifications
+ * ?????????? ???????????? - Widget + Form + Notifications
  */
 
 import express from 'express';
@@ -34,7 +34,7 @@ export function initializeClientPortal(io) {
   const clientNamespace = io.of('/client-portal');
 
   clientNamespace.on('connection', (socket) => {
-    console.log('✅ Client Portal client connected:', socket.id);
+    console.log('??? Client Portal client connected:', socket.id);
 
     // Client registration
     socket.on('client:register', async (data) => {
@@ -54,7 +54,7 @@ export function initializeClientPortal(io) {
       const conversation = new WidgetConversation(clientId, clientName, phone, email);
       widgetConversations.set(clientId, conversation);
 
-      // ✅ Update ElevenLabs Agent System Prompt with client context
+      // ??? Update ElevenLabs Agent System Prompt with client context
       try {
         const { getWidgetSystemPromptWithContext } = await import('../services/elevenlabsWidgetPrompt.js');
         const { updateAgentSystemPrompt } = await import('../services/elevenlabsService.js');
@@ -79,7 +79,7 @@ export function initializeClientPortal(io) {
       socket.emit('client:registered', {
         success: true,
         clientId,
-        message: 'تم التسجيل بنجاح',
+        message: '???? ?????????????? ??????????',
       });
 
       // Notify Auto Builder about new client connection
@@ -133,18 +133,18 @@ export function initializeClientPortal(io) {
       socket.emit('client:request:received', {
         success: true,
         requestId: request.id,
-        message: 'تم استلام طلبك',
+        message: '???? ???????????? ????????',
       });
 
-      // ✅ Send WhatsApp notification if appointment requested
-      if (data.type === 'appointment' || data.content?.includes('موعد') || data.content?.includes('معاينة')) {
+      // ??? Send WhatsApp notification if appointment requested
+      if (data.type === 'appointment' || data.content?.includes('????????') || data.content?.includes('????????????')) {
         try {
           const { sendAppointmentConfirmed } = await import('../services/twilioTemplatesService.js');
           // Extract appointment details from content (if available)
-          const appointmentDate = data.appointmentDate || 'قريباً';
-          const appointmentTime = data.appointmentTime || 'سيتم الاتصال بك';
+          const appointmentDate = data.appointmentDate || '????????????';
+          const appointmentTime = data.appointmentTime || '???????? ?????????????? ????';
           await sendAppointmentConfirmed(session.phone, session.clientName, appointmentDate, appointmentTime);
-          console.log('✅ Appointment confirmation sent to:', session.phone);
+          console.log('??? Appointment confirmation sent to:', session.phone);
         } catch (error) {
           console.error('Failed to send appointment confirmation:', error);
           // Don't block the request if WhatsApp fails
@@ -152,7 +152,7 @@ export function initializeClientPortal(io) {
       }
     });
 
-    // ✅ Widget Conversation - Automatic flow
+    // ??? Widget Conversation - Automatic flow
     socket.on('widget:conversation', async (data) => {
       try {
         const session = clientSessions.get(socket.id);
@@ -237,7 +237,7 @@ export function initializeClientPortal(io) {
       }
     });
 
-    // ✅ Widget File Upload
+    // ??? Widget File Upload
     socket.on('widget:file_upload', async (data) => {
       try {
         const session = clientSessions.get(socket.id);
@@ -265,7 +265,7 @@ export function initializeClientPortal(io) {
           socket.emit('widget:file_uploaded', {
             success: true,
             fileType,
-            message: 'تم رفع الملف بنجاح',
+            message: '???? ?????? ?????????? ??????????',
           });
         }
       } catch (error) {
@@ -274,7 +274,7 @@ export function initializeClientPortal(io) {
       }
     });
 
-    // ✅ Preview Revision Request
+    // ??? Preview Revision Request
     socket.on('preview:revision', async (data) => {
       try {
         const session = clientSessions.get(socket.id);
@@ -315,7 +315,7 @@ export function initializeClientPortal(io) {
         socket.emit('preview:revision_submitted', {
           success: true,
           revisionId,
-          message: 'تم إرسال طلب التعديل. سيتم مراجعته قريباً.',
+          message: '???? ?????????? ?????? ??????????????. ???????? ?????????????? ????????????.',
         });
       } catch (error) {
         console.error('Preview revision error:', error);
@@ -323,7 +323,7 @@ export function initializeClientPortal(io) {
       }
     });
 
-    // ✅ Voice-to-Voice interaction with clients
+    // ??? Voice-to-Voice interaction with clients
     socket.on('client:voice-request', async (data) => {
       try {
         const session = clientSessions.get(socket.id);
@@ -416,16 +416,16 @@ export function initializeClientPortal(io) {
       }
     });
 
-    // ✅ Contact Information
+    // ??? Contact Information
     socket.on('client:contact-info', () => {
       socket.emit('client:contact-info', {
         phone: '+971529211077',
         email: 'GM@ZIEN-AI.APP',
-        message: '📞 للتواصل المباشر:\n\n📱 الهاتف: +971529211077\n📧 البريد: GM@ZIEN-AI.APP\n\nيمكنك التواصل معنا في أي وقت!',
+        message: '???? ?????????????? ??????????????:\n\n???? ????????????: +971529211077\n???? ????????????: GM@ZIEN-AI.APP\n\n?????????? ?????????????? ???????? ???? ???? ??????!',
       });
     });
 
-    // ✅ Preview request (Templates, Systems, Themes)
+    // ??? Preview request (Templates, Systems, Themes)
     socket.on('client:preview-libraries', async (data) => {
       try {
         const session = clientSessions.get(socket.id);
@@ -473,7 +473,7 @@ export function initializeClientPortal(io) {
     });
 
     socket.on('disconnect', () => {
-      console.log('❌ Client Portal client disconnected:', socket.id);
+      console.log('??? Client Portal client disconnected:', socket.id);
     });
   });
 }
@@ -540,7 +540,7 @@ router.post('/form-submit', (req, res) => {
   res.json({
     success: true,
     requestId: request.id,
-    message: 'تم استلام طلبك بنجاح',
+    message: '???? ???????????? ???????? ??????????',
   });
 });
 
@@ -580,7 +580,7 @@ router.post('/update-request', async (req, res) => {
         request.amount = amount;
         request.paymentStatus = 'pending';
 
-        // ✅ Send WhatsApp notification - Payment Required
+        // ??? Send WhatsApp notification - Payment Required
         try {
           const { sendPaymentReminder } = await import('../services/twilioTemplatesService.js');
           const dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString('ar-SA', {
@@ -595,7 +595,7 @@ router.post('/update-request', async (req, res) => {
             `${amount} ${request.currency || 'SAR'}`,
             dueDate
           );
-          console.log('✅ Payment reminder sent to:', request.phone);
+          console.log('??? Payment reminder sent to:', request.phone);
         } catch (error) {
           console.error('Failed to send payment reminder:', error);
         }
@@ -616,7 +616,7 @@ router.post('/update-request', async (req, res) => {
 
       return res.json({
         success: true,
-        message: 'تم تحديث حالة الطلب',
+        message: '???? ?????????? ???????? ??????????',
         invoiceId: request.invoiceId,
         amount: request.amount,
         paymentRequired: status === 'agreed' && amount,
@@ -628,3 +628,4 @@ router.post('/update-request', async (req, res) => {
 });
 
 export { router, initializeClientPortal };
+

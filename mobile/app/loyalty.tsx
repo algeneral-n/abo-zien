@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Loyalty Screen
- * شاشة نظام الولاء - النقاط، المستوى، المكافآت
- * ✅ Cognitive Loop → Kernel → Loyalty Agent
+ * ???????? ???????? ???????????? - ?????????????? ???????????????? ????????????????
+ * ??? Cognitive Loop ??? Kernel ??? Loyalty Agent
  */
 
 import { useState, useEffect } from 'react';
@@ -12,7 +12,7 @@ import {
   ScrollView,
   Pressable,
   Alert,
-  ActivityIndicator,
+  REMOVED,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
@@ -74,9 +74,9 @@ export default function Loyalty() {
         if (__DEV__) {
           fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/app/loyalty.tsx:useEffect',message:'LoyaltyAgent error received',data:{error:event.data.error},timestamp:Date.now(),sessionId:'loyalty-ui-session',runId:'run1',hypothesisId:'LOYALTY_UI_ERROR'})}).catch(()=>{});
         }
-        setError(event.data.error || 'حدث خطأ');
+        setError(event.data.error || '?????? ??????');
         setLoading(false);
-        Alert.alert('خطأ', event.data.error || 'حدث خطأ');
+        Alert.alert('??????', event.data.error || '?????? ??????');
       });
 
       const unsubscribePointsAdded = kernel.on('loyalty:points_added', (event) => {
@@ -91,7 +91,7 @@ export default function Loyalty() {
         if (__DEV__) {
           fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/app/loyalty.tsx:useEffect',message:'Loyalty level up',data:{level:event.data.level},timestamp:Date.now(),sessionId:'loyalty-ui-session',runId:'run1',hypothesisId:'LOYALTY_LEVEL_UP'})}).catch(()=>{});
         }
-        Alert.alert('تهانينا! 🎉', `لقد وصلت إلى المستوى ${event.data.level}!`);
+        Alert.alert('??????????????! ????', `?????? ???????? ?????? ?????????????? ${event.data.level}!`);
         loadLoyaltyStatus();
       });
 
@@ -108,7 +108,7 @@ export default function Loyalty() {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/app/loyalty.tsx:useEffect',message:'Loyalty useEffect error',data:{error:error.message},timestamp:Date.now(),sessionId:'loyalty-ui-session',runId:'run1',hypothesisId:'LOYALTY_UI_EFFECT_ERROR'})}).catch(()=>{});
       }
       console.error('Loyalty useEffect error:', error);
-      setError(error.message || 'حدث خطأ');
+      setError(error.message || '?????? ??????');
       setLoading(false);
     }
   }, []);
@@ -129,7 +129,7 @@ export default function Loyalty() {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/app/loyalty.tsx:loadLoyaltyStatus',message:'Load loyalty status error',data:{error:error.message},timestamp:Date.now(),sessionId:'loyalty-ui-session',runId:'run1',hypothesisId:'LOYALTY_LOAD_ERROR'})}).catch(()=>{});
       }
       console.error('Load loyalty status error:', error);
-      setError(error.message || 'فشل تحميل حالة الولاء');
+      setError(error.message || '?????? ?????????? ???????? ????????????');
       setLoading(false);
     }
   };
@@ -140,20 +140,20 @@ export default function Loyalty() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>نظام الولاء</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>???????? ????????????</Text>
         <View style={{ width: 40 }} />
       </View>
       {loading ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={colors.primary} />
-          <Text style={[styles.loadingText, { color: colors.text }]}>جاري التحميل...</Text>
+          <REMOVED size="large" color={colors.primary} />
+          <Text style={[styles.loadingText, { color: colors.text }]}>???????? ??????????????...</Text>
         </View>
       ) : error ? (
         <View style={styles.errorContainer}>
           <Icon name="error" size={48} color="#ff4444" />
           <Text style={[styles.errorText, { color: colors.text }]}>{error}</Text>
-          <Pressable style={[styles.retryButton, { backgroundColor: colors.primary }]} onPress={loadLoyaltyStatus}>
-            <Text style={styles.retryButtonText}>إعادة المحاولة</Text>
+          <Pressable style={[styles.retryButton, { bREMOVED: colors.primary }]} onPress={loadLoyaltyStatus}>
+            <Text style={styles.retryButtonText}>?????????? ????????????????</Text>
           </Pressable>
         </View>
       ) : (
@@ -163,23 +163,23 @@ export default function Loyalty() {
               <Icon name="star" size={32} color={colors.primary} />
               <View style={styles.pointsInfo}>
                 <Text style={[styles.pointsTotal, { color: colors.primary }]}>{points.total.toLocaleString()}</Text>
-                <Text style={[styles.pointsLabel, { color: colors.textSecondary }]}>نقطة</Text>
+                <Text style={[styles.pointsLabel, { color: colors.textSecondary }]}>????????</Text>
               </View>
             </View>
             <View style={styles.levelInfo}>
-              <Text style={[styles.levelText, { color: colors.text }]}>المستوى {points.level}</Text>
-              <Text style={[styles.nextLevelText, { color: colors.textSecondary }]}>المستوى التالي: {points.nextLevel} نقطة</Text>
+              <Text style={[styles.levelText, { color: colors.text }]}>?????????????? {points.level}</Text>
+              <Text style={[styles.nextLevelText, { color: colors.textSecondary }]}>?????????????? ????????????: {points.nextLevel} ????????</Text>
             </View>
-            <View style={[styles.progressBar, { backgroundColor: `${colors.primary}20` }]}>
-              <View style={[styles.progressFill, { width: `${points.progress * 100}%`, backgroundColor: colors.primary }]} />
+            <View style={[styles.progressBar, { bREMOVED: `${colors.primary}20` }]}>
+              <View style={[styles.progressFill, { width: `${points.progress * 100}%`, bREMOVED: colors.primary }]} />
             </View>
           </View>
           <View style={styles.section}>
-            <Text style={[styles.sectionTitle, { color: colors.primary }]}>المكافآت الأخيرة</Text>
+            <Text style={[styles.sectionTitle, { color: colors.primary }]}>???????????????? ??????????????</Text>
             {rewards.length === 0 ? (
               <View style={[styles.emptyCard, { borderColor: colors.primary }]}>
                 <Icon name="gift" size={32} color={colors.textSecondary} />
-                <Text style={[styles.emptyText, { color: colors.textSecondary }]}>لا توجد مكافآت بعد</Text>
+                <Text style={[styles.emptyText, { color: colors.textSecondary }]}>???? ???????? ???????????? ??????</Text>
               </View>
             ) : (
               rewards.slice(0, 10).map((reward) => (
@@ -195,9 +195,9 @@ export default function Loyalty() {
             )}
           </View>
           <View style={styles.actions}>
-            <Pressable style={[styles.actionButton, { backgroundColor: colors.primary }]} onPress={loadLoyaltyStatus}>
+            <Pressable style={[styles.REMOVED, { bREMOVED: colors.primary }]} onPress={loadLoyaltyStatus}>
               <Icon name="refresh" size={20} color="#000" />
-              <Text style={styles.actionButtonText}>تحديث</Text>
+              <Text style={styles.REMOVED}>??????????</Text>
             </Pressable>
           </View>
         </ScrollView>
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   retryButton: { paddingVertical: 12, paddingHorizontal: 24, borderRadius: 8 },
   retryButtonText: { color: '#000', fontSize: 16, fontWeight: '600' },
   scrollContent: { padding: 20 },
-  pointsCard: { padding: 20, borderRadius: 16, borderWidth: 2, marginBottom: 20, backgroundColor: 'rgba(255,255,255,0.03)' },
+  pointsCard: { padding: 20, borderRadius: 16, borderWidth: 2, marginBottom: 20, bREMOVED: 'rgba(255,255,255,0.03)' },
   pointsHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 20, gap: 15 },
   pointsInfo: { flex: 1 },
   pointsTotal: { fontSize: 36, fontWeight: 'bold' },
@@ -232,12 +232,13 @@ const styles = StyleSheet.create({
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 15 },
   emptyCard: { padding: 40, borderRadius: 12, borderWidth: 2, alignItems: 'center', justifyContent: 'center', gap: 10 },
   emptyText: { fontSize: 14 },
-  rewardCard: { padding: 15, borderRadius: 12, borderWidth: 2, marginBottom: 10, backgroundColor: 'rgba(255,255,255,0.03)' },
+  rewardCard: { padding: 15, borderRadius: 12, borderWidth: 2, marginBottom: 10, bREMOVED: 'rgba(255,255,255,0.03)' },
   rewardHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 10 },
   rewardPoints: { fontSize: 16, fontWeight: '600' },
   rewardDescription: { fontSize: 14, marginBottom: 5 },
   rewardDate: { fontSize: 12 },
   actions: { flexDirection: 'row', gap: 10, marginTop: 20 },
-  actionButton: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 12, paddingHorizontal: 16, borderRadius: 10, gap: 8 },
-  actionButtonText: { color: '#000', fontSize: 14, fontWeight: '600' },
+  REMOVED: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 12, paddingHorizontal: 16, borderRadius: 10, gap: 8 },
+  REMOVED: { color: '#000', fontSize: 14, fontWeight: '600' },
 });
+

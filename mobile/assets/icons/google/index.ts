@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Google Material Symbols Icons Index
- * أيقونات Google Material Symbols
+ * ?????????????? Google Material Symbols
  *
  * 60 Premium SVG Icons for RARE 4N App
  */
@@ -94,7 +94,7 @@ export const GOOGLE_ICONS = {
 
   // Settings
   settings: 'settings_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg',
-  settingsAccessibility: 'settings_accessibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg',
+  settingsREMOVED: 'settings_REMOVED_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg',
   settingsApplications: 'settings_applications_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg',
 
   // Share & Social
@@ -111,7 +111,7 @@ export const ICON_CATEGORIES = {
   chat: ['chat', 'chatAddOn', 'chatAppsScript', 'videoChat', 'hangoutVideo'],
   media: ['album', 'podcasts', 'screenRecord', 'videoCameraFront', 'switchVideo'],
   files: ['folderOpen', 'fileExport', 'archive', 'arrowUpload'],
-  settings: ['settings', 'settingsAccessibility', 'settingsApplications'],
+  settings: ['settings', 'settingsREMOVED', 'settingsApplications'],
   navigation: ['home', 'homeAppLogo', 'dashboard', 'apps', 'menu'],
   communication: ['callLog', 'permPhoneMsg', 'phonePaused', 'phoneBluetoothSpeaker'],
   audio: ['headsetMic', 'speakerPhone', 'mobileSpeaker'],
@@ -131,3 +131,4 @@ export const ALL_ICON_NAMES = Object.keys(GOOGLE_ICONS) as (keyof typeof GOOGLE_
 export const TOTAL_ICONS = ALL_ICON_NAMES.length;
 
 export default GOOGLE_ICONS;
+

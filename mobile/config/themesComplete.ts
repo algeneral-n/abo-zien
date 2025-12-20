@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Complete Themes System (50+ Themes)
- * نظام الثيمات الكامل - 50+ ثيم
+ * ???????? ?????????????? ???????????? - 50+ ??????
  */
 
 import { Theme } from './themes';
@@ -11,7 +11,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'cyber-neon',
     name: 'Cyber Neon',
-    nameAr: 'سايبر نيون',
+    nameAr: '?????????? ????????',
     primary: '#00eaff',
     secondary: '#ff00ff',
     accent: '#00d4e6',
@@ -32,7 +32,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'neon-purple',
     name: 'Neon Purple',
-    nameAr: 'نيون بنفسجي',
+    nameAr: '???????? ????????????',
     primary: '#a855f7',
     secondary: '#ec4899',
     accent: '#9333ea',
@@ -53,7 +53,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'neon-green',
     name: 'Neon Green',
-    nameAr: 'نيون أخضر',
+    nameAr: '???????? ????????',
     primary: '#00ff88',
     secondary: '#00d4ff',
     accent: '#00cc6a',
@@ -74,7 +74,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'neon-blue',
     name: 'Neon Blue',
-    nameAr: 'نيون أزرق',
+    nameAr: '???????? ????????',
     primary: '#00d4ff',
     secondary: '#0099ff',
     accent: '#00b8e6',
@@ -95,7 +95,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'neon-red',
     name: 'Neon Red',
-    nameAr: 'نيون أحمر',
+    nameAr: '???????? ????????',
     primary: '#ff0040',
     secondary: '#ff6b00',
     accent: '#cc0033',
@@ -118,7 +118,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'glass-morphism',
     name: 'Glass Morphism',
-    nameAr: 'زجاجي فاخر',
+    nameAr: '?????????? ????????',
     primary: '#ffffff',
     secondary: '#a855f7',
     accent: '#e0e0e0',
@@ -139,7 +139,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'frosted-glass',
     name: 'Frosted Glass',
-    nameAr: 'زجاج صقيعي',
+    nameAr: '???????? ??????????',
     primary: '#ffffff',
     secondary: '#cbd5e1',
     accent: '#e2e8f0',
@@ -160,7 +160,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'modern-minimal',
     name: 'Modern Minimal',
-    nameAr: 'حديث بسيط',
+    nameAr: '???????? ????????',
     primary: '#000000',
     secondary: '#666666',
     accent: '#333333',
@@ -181,7 +181,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'dark-modern',
     name: 'Dark Modern',
-    nameAr: 'داكن حديث',
+    nameAr: '???????? ????????',
     primary: '#ffffff',
     secondary: '#a0a0a0',
     accent: '#cccccc',
@@ -204,7 +204,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'midnight-gold',
     name: 'Midnight Gold',
-    nameAr: 'ذهب منتصف الليل',
+    nameAr: '?????? ?????????? ??????????',
     primary: '#ffd700',
     secondary: '#b8860b',
     accent: '#e6c200',
@@ -225,7 +225,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'royal-gold',
     name: 'Royal Gold',
-    nameAr: 'ذهب ملكي',
+    nameAr: '?????? ????????',
     primary: '#d4af37',
     secondary: '#c9a961',
     accent: '#b8860b',
@@ -246,7 +246,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'luxury-black',
     name: 'Luxury Black',
-    nameAr: 'أسود فاخر',
+    nameAr: '???????? ????????',
     primary: '#d4af37',
     secondary: '#c9a961',
     accent: '#b8860b',
@@ -269,7 +269,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'forest-green',
     name: 'Forest Green',
-    nameAr: 'أخضر الغابة',
+    nameAr: '???????? ????????????',
     primary: '#22c55e',
     secondary: '#16a34a',
     accent: '#15803d',
@@ -290,7 +290,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'ocean-blue',
     name: 'Ocean Blue',
-    nameAr: 'أزرق المحيط',
+    nameAr: '???????? ????????????',
     primary: '#3b82f6',
     secondary: '#2563eb',
     accent: '#1d4ed8',
@@ -311,7 +311,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'sunset-orange',
     name: 'Sunset Orange',
-    nameAr: 'برتقالي الغروب',
+    nameAr: '?????????????? ????????????',
     primary: '#f97316',
     secondary: '#ea580c',
     accent: '#c2410c',
@@ -332,7 +332,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'lavender-purple',
     name: 'Lavender Purple',
-    nameAr: 'بنفسجي اللافندر',
+    nameAr: '???????????? ????????????????',
     primary: '#a78bfa',
     secondary: '#8b5cf6',
     accent: '#7c3aed',
@@ -353,7 +353,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'rose-pink',
     name: 'Rose Pink',
-    nameAr: 'وردي الورد',
+    nameAr: '???????? ??????????',
     primary: '#f43f5e',
     secondary: '#e11d48',
     accent: '#be123c',
@@ -376,7 +376,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'corporate-blue',
     name: 'Corporate Blue',
-    nameAr: 'أزرق الشركات',
+    nameAr: '???????? ??????????????',
     primary: '#2563eb',
     secondary: '#1d4ed8',
     accent: '#1e40af',
@@ -397,7 +397,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'business-gray',
     name: 'Business Gray',
-    nameAr: 'رمادي الأعمال',
+    nameAr: '?????????? ??????????????',
     primary: '#475569',
     secondary: '#334155',
     accent: '#1e293b',
@@ -418,7 +418,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'professional-dark',
     name: 'Professional Dark',
-    nameAr: 'داكن احترافي',
+    nameAr: '???????? ??????????????',
     primary: '#64748b',
     secondary: '#475569',
     accent: '#334155',
@@ -441,7 +441,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'vibrant-cyan',
     name: 'Vibrant Cyan',
-    nameAr: 'سماوي نابض',
+    nameAr: '?????????? ????????',
     primary: '#06b6d4',
     secondary: '#0891b2',
     accent: '#0e7490',
@@ -462,7 +462,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'vibrant-magenta',
     name: 'Vibrant Magenta',
-    nameAr: 'أرجواني نابض',
+    nameAr: '?????????????? ????????',
     primary: '#d946ef',
     secondary: '#c026d3',
     accent: '#a21caf',
@@ -483,7 +483,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'vibrant-yellow',
     name: 'Vibrant Yellow',
-    nameAr: 'أصفر نابض',
+    nameAr: '???????? ????????',
     primary: '#eab308',
     secondary: '#ca8a04',
     accent: '#a16207',
@@ -506,7 +506,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'pure-white',
     name: 'Pure White',
-    nameAr: 'أبيض نقي',
+    nameAr: '???????? ??????',
     primary: '#000000',
     secondary: '#333333',
     accent: '#666666',
@@ -527,7 +527,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'pure-black',
     name: 'Pure Black',
-    nameAr: 'أسود نقي',
+    nameAr: '???????? ??????',
     primary: '#ffffff',
     secondary: '#cccccc',
     accent: '#999999',
@@ -548,7 +548,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'grayscale',
     name: 'Grayscale',
-    nameAr: 'رمادي متدرج',
+    nameAr: '?????????? ??????????',
     primary: '#6b7280',
     secondary: '#4b5563',
     accent: '#374151',
@@ -571,7 +571,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'gradient-purple',
     name: 'Gradient Purple',
-    nameAr: 'تدرج بنفسجي',
+    nameAr: '???????? ????????????',
     primary: '#8b5cf6',
     secondary: '#ec4899',
     accent: '#7c3aed',
@@ -592,7 +592,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'gradient-blue',
     name: 'Gradient Blue',
-    nameAr: 'تدرج أزرق',
+    nameAr: '???????? ????????',
     primary: '#3b82f6',
     secondary: '#06b6d4',
     accent: '#2563eb',
@@ -613,7 +613,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'gradient-orange',
     name: 'Gradient Orange',
-    nameAr: 'تدرج برتقالي',
+    nameAr: '???????? ??????????????',
     primary: '#f97316',
     secondary: '#eab308',
     accent: '#ea580c',
@@ -634,7 +634,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'gradient-green',
     name: 'Gradient Green',
-    nameAr: 'تدرج أخضر',
+    nameAr: '???????? ????????',
     primary: '#22c55e',
     secondary: '#06b6d4',
     accent: '#16a34a',
@@ -657,7 +657,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'retro-80s',
     name: 'Retro 80s',
-    nameAr: 'ريترو الثمانينات',
+    nameAr: '?????????? ????????????????????',
     primary: '#ff0080',
     secondary: '#00ffff',
     accent: '#cc0066',
@@ -678,7 +678,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'retro-90s',
     name: 'Retro 90s',
-    nameAr: 'ريترو التسعينات',
+    nameAr: '?????????? ??????????????????',
     primary: '#ff6b00',
     secondary: '#00ff00',
     accent: '#cc5500',
@@ -699,7 +699,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'vintage-brown',
     name: 'Vintage Brown',
-    nameAr: 'بني عتيق',
+    nameAr: '?????? ????????',
     primary: '#8b4513',
     secondary: '#a0522d',
     accent: '#654321',
@@ -722,7 +722,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'high-contrast',
     name: 'High Contrast',
-    nameAr: 'تباين عالي',
+    nameAr: '?????????? ????????',
     primary: '#ffffff',
     secondary: '#000000',
     accent: '#333333',
@@ -743,7 +743,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'inverted',
     name: 'Inverted',
-    nameAr: 'معكوس',
+    nameAr: '??????????',
     primary: '#000000',
     secondary: '#ffffff',
     accent: '#cccccc',
@@ -766,7 +766,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'space-dark',
     name: 'Space Dark',
-    nameAr: 'داكن الفضاء',
+    nameAr: '???????? ????????????',
     primary: '#6366f1',
     secondary: '#8b5cf6',
     accent: '#4f46e5',
@@ -787,7 +787,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'matrix-green',
     name: 'Matrix Green',
-    nameAr: 'أخضر المصفوفة',
+    nameAr: '???????? ????????????????',
     primary: '#00ff41',
     secondary: '#00cc33',
     accent: '#00aa2a',
@@ -808,7 +808,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'fire-red',
     name: 'Fire Red',
-    nameAr: 'أحمر النار',
+    nameAr: '???????? ??????????',
     primary: '#ff3333',
     secondary: '#ff6666',
     accent: '#cc0000',
@@ -829,7 +829,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'ice-blue',
     name: 'Ice Blue',
-    nameAr: 'أزرق الجليد',
+    nameAr: '???????? ????????????',
     primary: '#00ccff',
     secondary: '#0099cc',
     accent: '#007799',
@@ -850,7 +850,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'sunshine-yellow',
     name: 'Sunshine Yellow',
-    nameAr: 'أصفر الشمس',
+    nameAr: '???????? ??????????',
     primary: '#ffcc00',
     secondary: '#ff9900',
     accent: '#cc9900',
@@ -871,7 +871,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'mint-fresh',
     name: 'Mint Fresh',
-    nameAr: 'منعش النعناع',
+    nameAr: '???????? ??????????????',
     primary: '#00ffaa',
     secondary: '#00cc88',
     accent: '#00aa66',
@@ -892,7 +892,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'coral-reef',
     name: 'Coral Reef',
-    nameAr: 'شعاب مرجانية',
+    nameAr: '???????? ??????????????',
     primary: '#ff6b6b',
     secondary: '#ff8e8e',
     accent: '#cc5555',
@@ -913,7 +913,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'sapphire-blue',
     name: 'Sapphire Blue',
-    nameAr: 'أزرق الياقوت',
+    nameAr: '???????? ??????????????',
     primary: '#0066ff',
     secondary: '#0052cc',
     accent: '#003d99',
@@ -934,7 +934,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'emerald-green',
     name: 'Emerald Green',
-    nameAr: 'أخضر الزمرد',
+    nameAr: '???????? ????????????',
     primary: '#00cc66',
     secondary: '#009944',
     accent: '#007733',
@@ -955,7 +955,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'ruby-red',
     name: 'Ruby Red',
-    nameAr: 'أحمر الياقوت',
+    nameAr: '???????? ??????????????',
     primary: '#ff0033',
     secondary: '#cc0022',
     accent: '#990011',
@@ -976,7 +976,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'amethyst-purple',
     name: 'Amethyst Purple',
-    nameAr: 'بنفسجي الجمشت',
+    nameAr: '???????????? ????????????',
     primary: '#9966ff',
     secondary: '#7733cc',
     accent: '#552299',
@@ -997,7 +997,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'amber-gold',
     name: 'Amber Gold',
-    nameAr: 'ذهبي الكهرمان',
+    nameAr: '???????? ????????????????',
     primary: '#ffaa00',
     secondary: '#cc8800',
     accent: '#996600',
@@ -1018,7 +1018,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'pearl-white',
     name: 'Pearl White',
-    nameAr: 'أبيض اللؤلؤ',
+    nameAr: '???????? ????????????',
     primary: '#333333',
     secondary: '#666666',
     accent: '#999999',
@@ -1039,7 +1039,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'obsidian-black',
     name: 'Obsidian Black',
-    nameAr: 'أسود السبج',
+    nameAr: '???????? ??????????',
     primary: '#cccccc',
     secondary: '#999999',
     accent: '#666666',
@@ -1060,7 +1060,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'platinum-silver',
     name: 'Platinum Silver',
-    nameAr: 'فضي البلاتين',
+    nameAr: '?????? ????????????????',
     primary: '#888888',
     secondary: '#aaaaaa',
     accent: '#cccccc',
@@ -1083,7 +1083,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'neumorphic',
     name: 'Neumorphic',
-    nameAr: 'نيومورفيك',
+    nameAr: '??????????????????',
     primary: '#6C7CE7',
     secondary: '#FF8A65',
     accent: '#81C784',
@@ -1104,7 +1104,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'glassmorphism',
     name: 'Glassmorphism',
-    nameAr: 'جلاس مورفيزم',
+    nameAr: '???????? ??????????????',
     primary: '#4A90E2',
     secondary: '#E94B8B',
     accent: '#FFD700',
@@ -1125,7 +1125,7 @@ export const ALL_THEMES: Theme[] = [
   {
     id: 'dark-finance',
     name: 'Dark Finance',
-    nameAr: 'داكن مالي',
+    nameAr: '???????? ????????',
     primary: '#FF6B35',
     secondary: '#4ECDC4',
     accent: '#95E1D3',
@@ -1147,4 +1147,5 @@ export const ALL_THEMES: Theme[] = [
 
 // Export default theme
 export const DEFAULT_THEME = ALL_THEMES[0];
+
 

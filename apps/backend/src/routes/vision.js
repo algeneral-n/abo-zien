@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Vision Routes
- * مسارات Google Vision API
+ * ???????????? Google Vision API
  */
 
 import express from 'express';
@@ -128,5 +128,6 @@ router.post('/safe-search', upload.single('image'), async (req, res) => {
 });
 
 export default router;
+
 
 

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<!-- Background Modes -->
-	<key>UIBackgroundModes</key>
+	<key>UIBREMOVED</key>
 	<array>
 		<string>audio</string>
 		<string>location</string>
@@ -38,7 +38,7 @@
 	</dict>
 
 	<!-- CarPlay -->
-	<key>UISupportedExternalAccessoryProtocols</key>
+	<key>UISupportedExternalREMOVED</key>
 	<array>
 		<string>com.apple.carplay</string>
 	</array>
@@ -46,7 +46,7 @@
 	<!-- Siri -->
 	<key>NSSupportsLiveActivities</key>
 	<true/>
-	<key>NSSupportsLiveActivitiesFrequentUpdates</key>
+	<key>NSSupportsLiveREMOVED</key>
 	<true/>
 
 	<!-- WeatherKit -->
@@ -58,5 +58,6 @@
 	<string>production</string>
 </dict>
 </plist>
+
 
 

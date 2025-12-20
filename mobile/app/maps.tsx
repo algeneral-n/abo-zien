@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Maps Screen
- * شاشة الخرائط والملاحة
- * ✅ Cognitive Loop → Kernel → Maps Engine
+ * ???????? ?????????????? ????????????????
+ * ??? Cognitive Loop ??? Kernel ??? Maps Engine
  */
 
 import React, { useState, useEffect } from 'react';
@@ -12,7 +12,7 @@ import {
   ScrollView,
   Pressable,
   TextInput,
-  ActivityIndicator,
+  REMOVED,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
@@ -32,7 +32,7 @@ export default function Maps() {
   const kernel = RAREKernel.getInstance();
 
   useEffect(() => {
-    // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
     const unsubscribeRoute = kernel.on('agent:maps:response', (event) => {
       if (event.data.route) {
         setRoute(event.data.route);
@@ -41,7 +41,7 @@ export default function Maps() {
     });
     
     const unsubscribeError = kernel.on('agent:maps:error', (event) => {
-      setError(event.data.error || 'فشل الحصول على المسار');
+      setError(event.data.error || '?????? ???????????? ?????? ????????????');
       setIsLoading(false);
     });
     
@@ -53,7 +53,7 @@ export default function Maps() {
 
   const handleGetRoute = async () => {
     if (!from || !to) {
-      setError('يرجى إدخال نقطة البداية والنهاية');
+      setError('???????? ?????????? ???????? ?????????????? ????????????????');
       return;
     }
 
@@ -61,7 +61,7 @@ export default function Maps() {
       setIsLoading(true);
       setError('');
 
-      // ✅ إرسال إلى Kernel → CognitiveLoop → Maps Agent
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? Maps Agent
       kernel.emit({
         type: 'user:input',
         data: {
@@ -78,7 +78,7 @@ export default function Maps() {
         source: 'ui',
       });
     } catch (error: any) {
-      setError('حدث خطأ في الاتصال');
+      setError('?????? ?????? ???? ??????????????');
       console.error('Route error:', error);
       setIsLoading(false);
     }
@@ -93,7 +93,7 @@ export default function Maps() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>الخرائط والملاحة</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>?????????????? ????????????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
@@ -101,27 +101,27 @@ export default function Maps() {
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input, { borderColor: colors.primary, color: colors.text }]}
-            placeholder="من"
-            placeholderTextColor={colors.primary + '50'}
+            placeholder="????"
+            plREMOVED={colors.primary + '50'}
             value={from}
             onChangeText={setFrom}
           />
           <TextInput
             style={[styles.input, { borderColor: colors.primary, color: colors.text }]}
-            placeholder="إلى"
-            placeholderTextColor={colors.primary + '50'}
+            placeholder="??????"
+            plREMOVED={colors.primary + '50'}
             value={to}
             onChangeText={setTo}
           />
           <Pressable
-            style={[styles.searchButton, { backgroundColor: colors.primary }]}
+            style={[styles.searchButton, { bREMOVED: colors.primary }]}
             onPress={handleGetRoute}
             disabled={isLoading}
           >
             {isLoading ? (
-              <ActivityIndicator color="#000" />
+              <REMOVED color="#000" />
             ) : (
-              <Text style={styles.searchButtonText}>بحث</Text>
+              <Text style={styles.searchButtonText}>??????</Text>
             )}
           </Pressable>
         </View>
@@ -134,24 +134,24 @@ export default function Maps() {
 
         {route && (
           <View style={[styles.routeContainer, { borderColor: colors.primary }]}>
-            <Text style={[styles.routeTitle, { color: colors.primary }]}>المسار</Text>
+            <Text style={[styles.routeTitle, { color: colors.primary }]}>????????????</Text>
             <Text style={[styles.routeText, { color: colors.text }]}>
-              {route.summary || 'مسار متاح'}
+              {route.summary || '???????? ????????'}
             </Text>
             {route.distance && (
               <Text style={[styles.routeText, { color: colors.textSecondary }]}>
-                المسافة: {route.distance}
+                ??????????????: {route.distance}
               </Text>
             )}
             {route.duration && (
               <Text style={[styles.routeText, { color: colors.textSecondary }]}>
-                المدة: {route.duration}
+                ??????????: {route.duration}
               </Text>
             )}
             {route.weather && (
               <View style={styles.weatherInfo}>
                 <Text style={[styles.weatherText, { color: colors.primary }]}>
-                  الطقس في الوجهة: {route.weather.temperature}°C
+                  ?????????? ???? ????????????: {route.weather.temperature}??C
                 </Text>
               </View>
             )}
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 12,
     borderWidth: 2,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   routeTitle: {
     fontSize: 18,
@@ -244,5 +244,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
 
 

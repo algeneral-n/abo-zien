@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Portal Agent (Conscious Agent)
  * Client Portal Agent - Web-only, Link-based
- * ❌ ممنوع: أي direct calls - Cognitive Loop فقط
+ * ??? ??????????: ???? direct calls - Cognitive Loop ??????
  */
 
 import { RAREEngine, EngineConfig } from '../core/RAREEngine';
@@ -128,7 +128,7 @@ export class PortalAgent extends RAREEngine {
         paymentCurrency = 'usd',
       } = parameters;
 
-      // ✅ Call Backend API to create portal
+      // ??? Call Backend API to create portal
       const result = await PortalAPI.create({
         clientName: clientName || 'Client',
         clientNameAr: clientNameAr || clientName,
@@ -175,7 +175,7 @@ export class PortalAgent extends RAREEngine {
    */
   private async getLinks(): Promise<void> {
     try {
-      // ✅ Call Backend API to get all portals
+      // ??? Call Backend API to get all portals
       const result = await PortalAPI.list();
 
       if (result.success && result.portals) {
@@ -242,4 +242,5 @@ export class PortalAgent extends RAREEngine {
     };
   }
 }
+
 

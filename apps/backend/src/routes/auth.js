@@ -10,7 +10,7 @@ import crypto from 'crypto';
 import { getDatabase, DB } from '../database/localDB.js';
 
 const router = express.Router();
-// ✅ Fallback to RARE_JWT_SECRET if JWT_SECRET not found
+// ??? Fallback to RARE_JWT_SECRET if JWT_SECRET not found
 const JWT_SECRET = process.env.JWT_SECRET || process.env.RARE_JWT_SECRET || crypto.randomBytes(32).toString('hex');
 
 /**
@@ -64,14 +64,14 @@ router.post('/register', async (req, res) => {
 /**
  * Login with Face ID or Password
  * POST /api/auth/login
- * ✅ Cognitive Loop → Kernel → Auth Agent
+ * ??? Cognitive Loop ??? Kernel ??? Auth Agent
  */
 router.post('/login', async (req, res) => {
   try {
     const { method, password, faceIdData } = req.body;
 
     // Family password authentication
-    const FAMILY_PASSWORD = 'رير من عائلتي';
+    const FAMILY_PASSWORD = '?????? ???? ????????????';
 
     if (method === 'password') {
       if (!password || password.trim() !== FAMILY_PASSWORD) {
@@ -308,7 +308,7 @@ router.post('/change-password', async (req, res) => {
       }
 
       // Verify old password (for family password, check against FAMILY_PASSWORD)
-      const FAMILY_PASSWORD = 'رير من عائلتي';
+      const FAMILY_PASSWORD = '?????? ???? ????????????';
       if (targetUserId === 'family_user' && oldPassword !== FAMILY_PASSWORD) {
         // #region agent log
         if (process.env.NODE_ENV === 'development') {
@@ -369,4 +369,5 @@ router.post('/change-password', async (req, res) => {
 });
 
 export default router;
+
 

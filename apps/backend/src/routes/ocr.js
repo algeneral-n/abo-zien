@@ -1,6 +1,6 @@
 /**
  * RARE 4N - OCR Routes
- * مسارات OCR للمسح الضوئي وتحويل الصور إلى نص
+ * ???????????? OCR ?????????? ???????????? ???????????? ?????????? ?????? ????
  */
 
 import express from 'express';
@@ -8,7 +8,7 @@ import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
-import { extractTextFromImage, scanDocument } from '../services/ocrService.js';
+import { extrREMOVED, scanDocument } from '../services/ocrService.js';
 import { getDatabase, DB } from '../database/localDB.js';
 
 const router = express.Router();
@@ -59,7 +59,7 @@ router.post('/', upload.single('image'), async (req, res) => {
     const documentType = req.body.documentType || 'general';
 
     // Extract text
-    const extractedText = await extractTextFromImage(imagePath, language);
+    const extractedText = await extrREMOVED(imagePath, language);
 
     // If document type specified, scan as structured document
     let structuredData = null;
@@ -127,3 +127,4 @@ router.post('/scan-document', upload.single('image'), async (req, res) => {
 });
 
 export default router;
+

@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Themed Button Component
- * زر مخصص حسب الثيم
+ * ???? ???????? ?????? ??????????
  */
 
 import React from 'react';
@@ -36,7 +36,7 @@ export default function ThemedButton({
         style={[
           styles.neumorphicButton,
           {
-            backgroundColor: variant === 'primary' ? colors.primary : colors.surface,
+            bREMOVED: variant === 'primary' ? colors.primary : colors.surface,
             shadowColor: '#000',
             shadowOffset: { width: 3, height: 3 },
             shadowOpacity: 0.2,
@@ -71,7 +71,7 @@ export default function ThemedButton({
         style={[
           styles.glassButton,
           {
-            backgroundColor: variant === 'primary' ? colors.primary + '40' : 'transparent',
+            bREMOVED: variant === 'primary' ? colors.primary + '40' : 'transparent',
             borderColor: colors.border,
             borderWidth: variant === 'outline' ? 1 : 0,
           },
@@ -145,7 +145,7 @@ export default function ThemedButton({
       style={[
         styles.flatButton,
         {
-          backgroundColor: variant === 'primary' ? colors.primary : 'transparent',
+          bREMOVED: variant === 'primary' ? colors.primary : 'transparent',
           borderColor: colors.border,
           borderWidth: variant === 'outline' ? 1 : 0,
         },
@@ -209,5 +209,6 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
 });
+
 
 

@@ -1,6 +1,6 @@
 /**
- * MapsAgent - وكيل الخرائط
- * يدير Maps، Navigation، Routes
+ * MapsAgent - ???????? ??????????????
+ * ???????? Maps?? Navigation?? Routes
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -63,8 +63,8 @@ export class MapsAgent extends BaseAgent {
       this.emit('agent:maps:response', { route: json.route });
       return json;
     } else {
-      this.emit('agent:maps:error', { error: json.error || 'فشل الحصول على المسار' });
-      throw new Error(json.error || 'فشل الحصول على المسار');
+      this.emit('agent:maps:error', { error: json.error || '?????? ???????????? ?????? ????????????' });
+      throw new Error(json.error || '?????? ???????????? ?????? ????????????');
     }
   }
 
@@ -88,8 +88,8 @@ export class MapsAgent extends BaseAgent {
       this.emit('agent:maps:search:response', { results: json.results });
       return json;
     } else {
-      this.emit('agent:maps:error', { error: json.error || 'فشل البحث' });
-      throw new Error(json.error || 'فشل البحث');
+      this.emit('agent:maps:error', { error: json.error || '?????? ??????????' });
+      throw new Error(json.error || '?????? ??????????');
     }
   }
 
@@ -98,14 +98,14 @@ export class MapsAgent extends BaseAgent {
    */
   private async startNavigation(parameters: any): Promise<any> {
     try {
-      // ✅ Validate inputs
+      // ??? Validate inputs
       if (!parameters || (!parameters.route && (!parameters.from || !parameters.to))) {
         throw new Error('Route or from/to coordinates are required');
       }
 
       let route = parameters.route;
       
-      // ✅ If route not provided, get it from API
+      // ??? If route not provided, get it from API
       if (!route && parameters.from && parameters.to) {
         const routeResponse = await fetch(`${API_URL}/api/maps/route`, {
           method: 'POST',
@@ -128,7 +128,7 @@ export class MapsAgent extends BaseAgent {
         throw new Error('Route is required for navigation');
       }
 
-      // ✅ Emit navigation started event with real route data
+      // ??? Emit navigation started event with real route data
       this.emit('agent:maps:navigation:started', {
         route,
         distance: route.distance,
@@ -168,10 +168,11 @@ export class MapsAgent extends BaseAgent {
     if (json.success) {
       return json;
     } else {
-      this.emit('agent:maps:error', { error: json.error || 'فشل Geocode' });
-      throw new Error(json.error || 'فشل Geocode');
+      this.emit('agent:maps:error', { error: json.error || '?????? Geocode' });
+      throw new Error(json.error || '?????? Geocode');
     }
   }
 }
+
 
 

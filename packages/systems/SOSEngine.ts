@@ -27,7 +27,7 @@ export interface SOSAlert {
     latitude: number;
     longitude: number;
   };
-  contactsNotified: string[];
+  contREMOVED: string[];
 }
 
 export class SOSEngine extends RAREEngine {
@@ -111,7 +111,7 @@ export class SOSEngine extends RAREEngine {
 
       this.emit('sos:activated', {
         alert: data.alert,
-        deactivationCode: data.deactivationCode,
+        deREMOVED: data.deREMOVED,
       });
     } catch (error: any) {
       this.emit('sos:error', { error: error.message, action: 'activate' });
@@ -123,12 +123,12 @@ export class SOSEngine extends RAREEngine {
    */
   private async deactivateSOS(parameters: any): Promise<void> {
     try {
-      const { alertId, deactivationCode } = parameters;
+      const { alertId, deREMOVED } = parameters;
 
       const response = await fetch(`${this.apiBase}/sos/deactivate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ alertId, deactivationCode }),
+        body: JSON.stringify({ alertId, deREMOVED }),
       });
 
       const data = await response.json();
@@ -231,4 +231,5 @@ export class SOSEngine extends RAREEngine {
     }
   }
 }
+
 

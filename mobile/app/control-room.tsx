@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Control Room
- * صفحة التخصيص الكامل للتطبيق
+ * ???????? ?????????????? ???????????? ??????????????
  */
 
 import React, { useState, useEffect } from 'react';
@@ -14,7 +14,7 @@ import {
   Alert,
   Image,
   TextInput,
-  ActivityIndicator,
+  REMOVED,
 } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useRouter } from 'expo-router';
@@ -61,18 +61,18 @@ export default function ControlRoom() {
     lastCheck: 0,
   });
 
-  // ✅ 50+ Themes from themesComplete
+  // ??? 50+ Themes from themesComplete
   const themes = ALL_THEMES;
 
   // App Icons
   const appIcons = [
-    { id: 'default', name: 'افتراضي', preview: require('../assets/icon.png') },
+    { id: 'default', name: '??????????????', preview: require('../assets/icon.png') },
   ];
 
   // Fonts
   const fonts = ['System', 'SF Pro', 'Helvetica', 'Arial'];
 
-  // ✅ 6,900+ Icons from Google Material Symbols
+  // ??? 6,900+ Icons from Google Material Symbols
   const availableIcons = Object.keys(GOOGLE_ICONS);
 
   // Check Service Status
@@ -184,7 +184,7 @@ export default function ControlRoom() {
       }
       // #endregion
 
-      // ✅ إرسال إلى Kernel → CognitiveLoop → Service Agent
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? Service Agent
       kernel.emit({
         type: 'user:input',
         data: {
@@ -210,7 +210,7 @@ export default function ControlRoom() {
         checkServiceStatus(service);
       }, 2000);
 
-      Alert.alert('نجاح', `تم ${action === 'start' ? 'تشغيل' : action === 'stop' ? 'إيقاف' : 'إعادة تشغيل'} ${service}`);
+      Alert.alert('????????', `???? ${action === 'start' ? '??????????' : action === 'stop' ? '??????????' : '?????????? ??????????'} ${service}`);
     } catch (error: any) {
       // #region agent log
       if (__DEV__) {
@@ -218,7 +218,7 @@ export default function ControlRoom() {
       }
       // #endregion
       console.error(`Control ${service} error:`, error);
-      Alert.alert('خطأ', `فشل ${action === 'start' ? 'تشغيل' : action === 'stop' ? 'إيقاف' : 'إعادة تشغيل'} ${service}`);
+      Alert.alert('??????', `?????? ${action === 'start' ? '??????????' : action === 'stop' ? '??????????' : '?????????? ??????????'} ${service}`);
     }
   };
 
@@ -278,10 +278,10 @@ export default function ControlRoom() {
         data: { theme: themeToApply },
       });
       
-      Alert.alert('نجح', 'تم تغيير الثيم بنجاح');
+      Alert.alert('??????', '???? ?????????? ?????????? ??????????');
     } catch (error) {
       console.error('Theme change error:', error);
-      Alert.alert('خطأ', 'فشل تغيير الثيم');
+      Alert.alert('??????', '?????? ?????????? ??????????');
     }
   };
 
@@ -295,7 +295,7 @@ export default function ControlRoom() {
         data: { icon: iconName },
       });
       
-      Alert.alert('نجح', 'تم تغيير الأيقونة بنجاح');
+      Alert.alert('??????', '???? ?????????? ???????????????? ??????????');
     } catch (error) {
       console.error('Icon change error:', error);
     }
@@ -317,16 +317,16 @@ export default function ControlRoom() {
 
   const handleAppIconChange = async (iconId: string) => {
     Alert.alert(
-      'ملاحظة',
-      'تغيير أيقونة التطبيق يحتاج إعادة بناء التطبيق. سيتم حفظ الاختيار.',
+      '????????????',
+      '?????????? ???????????? ?????????????? ?????????? ?????????? ???????? ??????????????. ???????? ?????? ????????????????.',
       [
-        { text: 'إلغاء', style: 'cancel' },
+        { text: '??????????', style: 'cancel' },
         {
-          text: 'حفظ',
+          text: '??????',
           onPress: async () => {
             try {
               await AsyncStorage.setItem('appIconId', iconId);
-              Alert.alert('نجح', 'تم حفظ الاختيار. سيتم تطبيقه في البناء القادم.');
+              Alert.alert('??????', '???? ?????? ????????????????. ???????? ???????????? ???? ???????????? ????????????.');
             } catch (error) {
               console.error('App icon save error:', error);
             }
@@ -337,7 +337,7 @@ export default function ControlRoom() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <View style={[styles.container, { bREMOVED: colors.background }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={24} color={colors.primary} />
@@ -349,56 +349,56 @@ export default function ControlRoom() {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Services Status Section */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>حالة الخدمات</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>???????? ??????????????</Text>
           
           {/* Backend Status */}
           <View style={[styles.serviceCard, { borderColor: colors.primary }]}>
             <View style={styles.serviceHeader}>
               <Icon name="server" size={24} color={colors.primary} />
               <Text style={[styles.serviceName, { color: colors.text }]}>Backend Server</Text>
-              <View style={[styles.statusBadge, { backgroundColor: backendState.status === 'running' ? '#00ff00' : backendState.status === 'error' ? '#ff0000' : '#ffaa00' }]}>
+              <View style={[styles.statusBadge, { bREMOVED: backendState.status === 'running' ? '#00ff00' : backendState.status === 'error' ? '#ff0000' : '#ffaa00' }]}>
                 <Text style={styles.statusText}>
-                  {backendState.status === 'running' ? '●' : backendState.status === 'error' ? '●' : '○'}
+                  {backendState.status === 'running' ? '???' : backendState.status === 'error' ? '???' : '???'}
                 </Text>
               </View>
             </View>
             <Text style={[styles.serviceStatus, { color: colors.textSecondary }]}>
-              {backendState.status === 'running' ? 'يعمل' : backendState.status === 'stopped' ? 'متوقف' : backendState.status === 'starting' ? 'جاري التشغيل...' : backendState.status === 'stopping' ? 'جاري الإيقاف...' : backendState.status === 'error' ? `خطأ: ${backendState.error}` : 'غير معروف'}
+              {backendState.status === 'running' ? '????????' : backendState.status === 'stopped' ? '??????????' : backendState.status === 'starting' ? '???????? ??????????????...' : backendState.status === 'stopping' ? '???????? ??????????????...' : backendState.status === 'error' ? `??????: ${backendState.error}` : '?????? ??????????'}
             </Text>
             {backendState.url && (
               <Text style={[styles.serviceUrl, { color: colors.textSecondary }]}>{backendState.url}</Text>
             )}
             <View style={styles.serviceActions}>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: colors.primary }]}
+                style={[styles.serviceButton, { bREMOVED: colors.primary }]}
                 onPress={() => controlService('backend', 'start')}
                 disabled={backendState.status === 'running' || backendState.status === 'starting'}
               >
                 <Icon name="play-arrow" size={16} color="#000" />
-                <Text style={styles.serviceButtonText}>تشغيل</Text>
+                <Text style={styles.serviceButtonText}>??????????</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: '#ff4444' }]}
+                style={[styles.serviceButton, { bREMOVED: '#ff4444' }]}
                 onPress={() => controlService('backend', 'stop')}
                 disabled={backendState.status === 'stopped' || backendState.status === 'stopping'}
               >
                 <Icon name="stop" size={16} color="#fff" />
-                <Text style={[styles.serviceButtonText, { color: '#fff' }]}>إيقاف</Text>
+                <Text style={[styles.serviceButtonText, { color: '#fff' }]}>??????????</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: colors.primary }]}
+                style={[styles.serviceButton, { bREMOVED: colors.primary }]}
                 onPress={() => controlService('backend', 'restart')}
                 disabled={backendState.status === 'starting' || backendState.status === 'stopping'}
               >
                 <Icon name="refresh" size={16} color="#000" />
-                <Text style={styles.serviceButtonText}>إعادة تشغيل</Text>
+                <Text style={styles.serviceButtonText}>?????????? ??????????</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: colors.primary }]}
+                style={[styles.serviceButton, { bREMOVED: colors.primary }]}
                 onPress={() => checkServiceStatus('backend')}
               >
                 <Icon name="refresh" size={16} color="#000" />
-                <Text style={styles.serviceButtonText}>فحص</Text>
+                <Text style={styles.serviceButtonText}>??????</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -408,49 +408,49 @@ export default function ControlRoom() {
             <View style={styles.serviceHeader}>
               <Icon name="cloud" size={24} color={colors.primary} />
               <Text style={[styles.serviceName, { color: colors.text }]}>Cloudflare Tunnel</Text>
-              <View style={[styles.statusBadge, { backgroundColor: cloudflareState.status === 'running' ? '#00ff00' : cloudflareState.status === 'error' ? '#ff0000' : '#ffaa00' }]}>
+              <View style={[styles.statusBadge, { bREMOVED: cloudflareState.status === 'running' ? '#00ff00' : cloudflareState.status === 'error' ? '#ff0000' : '#ffaa00' }]}>
                 <Text style={styles.statusText}>
-                  {cloudflareState.status === 'running' ? '●' : cloudflareState.status === 'error' ? '●' : '○'}
+                  {cloudflareState.status === 'running' ? '???' : cloudflareState.status === 'error' ? '???' : '???'}
                 </Text>
               </View>
             </View>
             <Text style={[styles.serviceStatus, { color: colors.textSecondary }]}>
-              {cloudflareState.status === 'running' ? 'يعمل' : cloudflareState.status === 'stopped' ? 'متوقف' : cloudflareState.status === 'starting' ? 'جاري التشغيل...' : cloudflareState.status === 'stopping' ? 'جاري الإيقاف...' : cloudflareState.status === 'error' ? `خطأ: ${cloudflareState.error}` : 'غير معروف'}
+              {cloudflareState.status === 'running' ? '????????' : cloudflareState.status === 'stopped' ? '??????????' : cloudflareState.status === 'starting' ? '???????? ??????????????...' : cloudflareState.status === 'stopping' ? '???????? ??????????????...' : cloudflareState.status === 'error' ? `??????: ${cloudflareState.error}` : '?????? ??????????'}
             </Text>
             {cloudflareState.url && (
               <Text style={[styles.serviceUrl, { color: colors.textSecondary }]}>{cloudflareState.url}</Text>
             )}
             <View style={styles.serviceActions}>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: colors.primary }]}
+                style={[styles.serviceButton, { bREMOVED: colors.primary }]}
                 onPress={() => controlService('cloudflare', 'start')}
                 disabled={cloudflareState.status === 'running' || cloudflareState.status === 'starting'}
               >
                 <Icon name="play-arrow" size={16} color="#000" />
-                <Text style={styles.serviceButtonText}>تشغيل</Text>
+                <Text style={styles.serviceButtonText}>??????????</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: '#ff4444' }]}
+                style={[styles.serviceButton, { bREMOVED: '#ff4444' }]}
                 onPress={() => controlService('cloudflare', 'stop')}
                 disabled={cloudflareState.status === 'stopped' || cloudflareState.status === 'stopping'}
               >
                 <Icon name="stop" size={16} color="#fff" />
-                <Text style={[styles.serviceButtonText, { color: '#fff' }]}>إيقاف</Text>
+                <Text style={[styles.serviceButtonText, { color: '#fff' }]}>??????????</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: colors.primary }]}
+                style={[styles.serviceButton, { bREMOVED: colors.primary }]}
                 onPress={() => controlService('cloudflare', 'restart')}
                 disabled={cloudflareState.status === 'starting' || cloudflareState.status === 'stopping'}
               >
                 <Icon name="refresh" size={16} color="#000" />
-                <Text style={styles.serviceButtonText}>إعادة تشغيل</Text>
+                <Text style={styles.serviceButtonText}>?????????? ??????????</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: colors.primary }]}
+                style={[styles.serviceButton, { bREMOVED: colors.primary }]}
                 onPress={() => checkServiceStatus('cloudflare')}
               >
                 <Icon name="refresh" size={16} color="#000" />
-                <Text style={styles.serviceButtonText}>فحص</Text>
+                <Text style={styles.serviceButtonText}>??????</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -460,46 +460,46 @@ export default function ControlRoom() {
             <View style={styles.serviceHeader}>
               <Icon name="widgets" size={24} color={colors.primary} />
               <Text style={[styles.serviceName, { color: colors.text }]}>Client Portal Widget</Text>
-              <View style={[styles.statusBadge, { backgroundColor: widgetState.status === 'running' ? '#00ff00' : widgetState.status === 'error' ? '#ff0000' : '#ffaa00' }]}>
+              <View style={[styles.statusBadge, { bREMOVED: widgetState.status === 'running' ? '#00ff00' : widgetState.status === 'error' ? '#ff0000' : '#ffaa00' }]}>
                 <Text style={styles.statusText}>
-                  {widgetState.status === 'running' ? '●' : widgetState.status === 'error' ? '●' : '○'}
+                  {widgetState.status === 'running' ? '???' : widgetState.status === 'error' ? '???' : '???'}
                 </Text>
               </View>
             </View>
             <Text style={[styles.serviceStatus, { color: colors.textSecondary }]}>
-              {widgetState.status === 'running' ? 'يعمل' : widgetState.status === 'stopped' ? 'متوقف' : widgetState.status === 'starting' ? 'جاري التشغيل...' : widgetState.status === 'stopping' ? 'جاري الإيقاف...' : widgetState.status === 'error' ? `خطأ: ${widgetState.error}` : 'غير معروف'}
+              {widgetState.status === 'running' ? '????????' : widgetState.status === 'stopped' ? '??????????' : widgetState.status === 'starting' ? '???????? ??????????????...' : widgetState.status === 'stopping' ? '???????? ??????????????...' : widgetState.status === 'error' ? `??????: ${widgetState.error}` : '?????? ??????????'}
             </Text>
             <View style={styles.serviceActions}>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: colors.primary }]}
+                style={[styles.serviceButton, { bREMOVED: colors.primary }]}
                 onPress={() => controlService('widget', 'start')}
                 disabled={widgetState.status === 'running' || widgetState.status === 'starting'}
               >
                 <Icon name="play-arrow" size={16} color="#000" />
-                <Text style={styles.serviceButtonText}>تشغيل</Text>
+                <Text style={styles.serviceButtonText}>??????????</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: '#ff4444' }]}
+                style={[styles.serviceButton, { bREMOVED: '#ff4444' }]}
                 onPress={() => controlService('widget', 'stop')}
                 disabled={widgetState.status === 'stopped' || widgetState.status === 'stopping'}
               >
                 <Icon name="stop" size={16} color="#fff" />
-                <Text style={[styles.serviceButtonText, { color: '#fff' }]}>إيقاف</Text>
+                <Text style={[styles.serviceButtonText, { color: '#fff' }]}>??????????</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: colors.primary }]}
+                style={[styles.serviceButton, { bREMOVED: colors.primary }]}
                 onPress={() => controlService('widget', 'restart')}
                 disabled={widgetState.status === 'starting' || widgetState.status === 'stopping'}
               >
                 <Icon name="refresh" size={16} color="#000" />
-                <Text style={styles.serviceButtonText}>إعادة تشغيل</Text>
+                <Text style={styles.serviceButtonText}>?????????? ??????????</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.serviceButton, { backgroundColor: colors.primary }]}
+                style={[styles.serviceButton, { bREMOVED: colors.primary }]}
                 onPress={() => checkServiceStatus('widget')}
               >
                 <Icon name="refresh" size={16} color="#000" />
-                <Text style={styles.serviceButtonText}>فحص</Text>
+                <Text style={styles.serviceButtonText}>??????</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -507,7 +507,7 @@ export default function ControlRoom() {
 
         {/* Theme Section */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>الثيمات</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>??????????????</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
             {themes.map((t) => (
               <TouchableOpacity
@@ -518,7 +518,7 @@ export default function ControlRoom() {
                 ]}
                 onPress={() => handleThemeChange(t)}
               >
-                <View style={[styles.themePreview, { backgroundColor: t.primary }]} />
+                <View style={[styles.themePreview, { bREMOVED: t.primary }]} />
                 <Text style={[styles.themeName, { color: colors.text }]}>{t.name}</Text>
               </TouchableOpacity>
             ))}
@@ -527,7 +527,7 @@ export default function ControlRoom() {
 
         {/* Icon Section */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>الأيقونات</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>??????????????????</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
             {availableIcons.slice(0, 20).map((icon) => (
               <TouchableOpacity
@@ -549,14 +549,14 @@ export default function ControlRoom() {
 
         {/* Font Section */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>الخطوط</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>????????????</Text>
           <View style={styles.fontContainer}>
             {fonts.map((font) => (
               <TouchableOpacity
                 key={font}
                 style={[
                   styles.fontOption,
-                  fontFamily === font && { backgroundColor: colors.primary },
+                  fontFamily === font && { bREMOVED: colors.primary },
                 ]}
                 onPress={() => handleFontChange(font)}
               >
@@ -577,7 +577,7 @@ export default function ControlRoom() {
 
         {/* App Icon Section */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>أيقونة التطبيق</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>???????????? ??????????????</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
             {appIcons.map((icon) => (
               <TouchableOpacity
@@ -643,7 +643,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     borderRadius: 12,
-    backgroundColor: '#1a1a1a',
+    bREMOVED: '#1a1a1a',
   },
   themePreview: {
     width: 80,
@@ -661,7 +661,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     borderRadius: 12,
-    backgroundColor: '#1a1a1a',
+    bREMOVED: '#1a1a1a',
   },
   iconName: {
     fontSize: 10,
@@ -677,7 +677,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 8,
-    backgroundColor: '#1a1a1a',
+    bREMOVED: '#1a1a1a',
     marginRight: 10,
     marginBottom: 10,
   },
@@ -801,7 +801,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 15,
-    backgroundColor: '#1a1a1a',
+    bREMOVED: '#1a1a1a',
   },
   serviceHeader: {
     flexDirection: 'row',
@@ -855,4 +855,5 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+
 

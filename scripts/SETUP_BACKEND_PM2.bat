@@ -1,7 +1,7 @@
 @echo off
 echo ========================================
 echo   RARE 4N - Setup Backend with PM2
-echo   إعداد Backend باستخدام PM2
+echo   ?????????? Backend ???????????????? PM2
 echo ========================================
 echo.
 
@@ -18,7 +18,7 @@ if errorlevel 1 (
         exit /b 1
     )
 )
-echo ✅ PM2 installed
+echo ??? PM2 installed
 
 echo.
 echo [2/3] Installing Backend dependencies...
@@ -38,7 +38,7 @@ pm2 startup
 cd ..
 
 echo.
-echo ✅ Backend is now running with PM2!
+echo ??? Backend is now running with PM2!
 echo.
 echo PM2 Commands:
 echo   pm2 list          - Show all processes
@@ -48,6 +48,7 @@ echo   pm2 stop all      - Stop all
 echo   pm2 delete all    - Delete all
 echo.
 pause
+
 
 
 

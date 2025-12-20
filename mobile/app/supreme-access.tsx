@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Supreme Access Screen
- * شاشة الوصول الأعلى - Ultimate Assistant
- * ✅ متابعة الاشتراكات، الحماية، منع Multi-Tenant
+ * ???????? ???????????? ???????????? - Ultimate Assistant
+ * ??? ???????????? ?????????????????????? ???????????????? ?????? Multi-Tenant
  */
 
 import { useState, useEffect } from 'react';
@@ -112,7 +112,7 @@ export default function SupremeAccess() {
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.characterContainer}>
+        <View style={styles.charREMOVED}>
           <RARECharacter size={150} animation="idle" />
           <Text style={[styles.characterTitle, { color: colors.primary }]}>
             Ultimate Assistant
@@ -128,19 +128,19 @@ export default function SupremeAccess() {
             <View style={styles.statusRow}>
               <Text style={[styles.statusLabel, { color: colors.text }]}>Enabled:</Text>
               <Text style={[styles.statusValue, { color: supremeAccess.enabled ? '#00ff00' : '#ff0000' }]}>
-                {supremeAccess.enabled ? '✅ Yes' : '❌ No'}
+                {supremeAccess.enabled ? '??? Yes' : '??? No'}
               </Text>
             </View>
             <View style={styles.statusRow}>
               <Text style={[styles.statusLabel, { color: colors.text }]}>Bypass Subscription:</Text>
               <Text style={[styles.statusValue, { color: supremeAccess.bypassSubscription ? '#00ff00' : '#ff0000' }]}>
-                {supremeAccess.bypassSubscription ? '✅' : '❌'}
+                {supremeAccess.bypassSubscription ? '???' : '???'}
               </Text>
             </View>
             <View style={styles.statusRow}>
               <Text style={[styles.statusLabel, { color: colors.text }]}>Cross-Tenant Access:</Text>
               <Text style={[styles.statusValue, { color: supremeAccess.crossTenantAccess ? '#00ff00' : '#ff0000' }]}>
-                {supremeAccess.crossTenantAccess ? '✅' : '❌'}
+                {supremeAccess.crossTenantAccess ? '???' : '???'}
               </Text>
             </View>
           </View>
@@ -222,7 +222,7 @@ export default function SupremeAccess() {
                     styles.attemptStatus,
                     { color: attempt.success ? '#00ff00' : '#ff0000' }
                   ]}>
-                    {attempt.success ? '✅ Success' : '❌ Failed'}
+                    {attempt.success ? '??? Success' : '??? Failed'}
                   </Text>
                 </View>
                 <Text style={[styles.attemptTime, { color: colors.textSecondary }]}>
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: 20,
   },
-  characterContainer: {
+  charREMOVED: {
     alignItems: 'center',
     marginBottom: 30,
   },
@@ -311,14 +311,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 20,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   card: {
     padding: 20,
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 20,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   cardTitle: {
     fontSize: 18,
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     marginBottom: 10,
-    backgroundColor: 'rgba(255,255,255,0.02)',
+    bREMOVED: 'rgba(255,255,255,0.02)',
   },
   subscriptionTier: {
     fontSize: 16,
@@ -362,7 +362,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     marginBottom: 10,
-    backgroundColor: 'rgba(255,255,255,0.02)',
+    bREMOVED: 'rgba(255,255,255,0.02)',
   },
   alertHeader: {
     flexDirection: 'row',
@@ -427,7 +427,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     marginBottom: 10,
-    backgroundColor: 'rgba(255,255,255,0.02)',
+    bREMOVED: 'rgba(255,255,255,0.02)',
   },
   attemptHeader: {
     flexDirection: 'row',
@@ -451,4 +451,5 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
+
 

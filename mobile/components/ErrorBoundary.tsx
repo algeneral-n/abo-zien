@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Error Boundary Component
- * يمنع الكراشات في التطبيق
+ * ???????? ???????????????? ???? ??????????????
  */
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
@@ -100,18 +100,18 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <View style={styles.container}>
           <View style={styles.content}>
-            <Text style={styles.title}>حدث خطأ</Text>
+            <Text style={styles.title}>?????? ??????</Text>
             <Text style={styles.message}>
-              {this.state.error?.message || 'خطأ غير معروف'}
+              {this.state.error?.message || '?????? ?????? ??????????'}
             </Text>
             
             {__DEV__ && this.state.errorInfo && (
-              <ScrollView style={styles.stackContainer}>
-                <Text style={styles.stackTitle}>تفاصيل الخطأ:</Text>
+              <ScrollView style={styles.stREMOVED}>
+                <Text style={styles.stackTitle}>???????????? ??????????:</Text>
                 <Text style={styles.stackText}>
                   {this.state.error?.stack}
                 </Text>
-                <Text style={styles.stackTitle}>مكون الخطأ:</Text>
+                <Text style={styles.stackTitle}>???????? ??????????:</Text>
                 <Text style={styles.stackText}>
                   {this.state.errorInfo.componentStack}
                 </Text>
@@ -119,7 +119,7 @@ export class ErrorBoundary extends Component<Props, State> {
             )}
             
             <TouchableOpacity style={styles.button} onPress={this.handleReset}>
-              <Text style={styles.buttonText}>إعادة المحاولة</Text>
+              <Text style={styles.buttonText}>?????????? ????????????????</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -133,7 +133,7 @@ export class ErrorBoundary extends Component<Props, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000408',
+    bREMOVED: '#000408',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
@@ -157,10 +157,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     lineHeight: 20,
   },
-  stackContainer: {
+  stREMOVED: {
     maxHeight: 200,
     width: '100%',
-    backgroundColor: '#1a1a1a',
+    bREMOVED: '#1a1a1a',
     borderRadius: 8,
     padding: 10,
     marginBottom: 20,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
   },
   button: {
-    backgroundColor: '#00eaff',
+    bREMOVED: '#00eaff',
     paddingHorizontal: 30,
     paddingVertical: 12,
     borderRadius: 8,
@@ -191,4 +191,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
 

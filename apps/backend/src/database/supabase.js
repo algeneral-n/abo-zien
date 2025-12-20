@@ -1,14 +1,14 @@
-/**
+﻿/**
  * RARE 4N - Supabase Connection
- * اتصال Supabase
+ * ?????????? Supabase
  */
 
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://fgvrilruqzajstprioqj.supabase.co';
-const SUPABASE_KEY = process.env.REACT_APP_SUPABASE_PUBLISHABLE_DEFAULT_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY || process.env.EXPO_PUBLIC_SUPABASE_KEY || 'REDACTED';
+const SUPABASE_KEY=REPLACE_ME
+const SUPABASE_KEY=REPLACE_ME
 
-let supabase = null;
+let supabase_KEY=REPLACE_ME
 
 /**
  * Initialize Supabase client
@@ -19,7 +19,7 @@ export function initSupabase() {
       return supabase;
     }
 
-    supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+    supabase_KEY=REPLACE_ME
       auth: {
         autoRefreshToken: true,
         persistSession: true,
@@ -27,10 +27,10 @@ export function initSupabase() {
       },
     });
 
-    console.log('✅ Supabase connected successfully');
+    console.log('??? Supabase connected successfully');
     return supabase;
   } catch (error) {
-    console.error('❌ Supabase connection error:', error);
+    console.error('??? Supabase connection error:', error);
     throw error;
   }
 }
@@ -52,7 +52,7 @@ export function getSupabase() {
 export class HybridDatabase {
   constructor() {
     this.mongodb = null;
-    this.supabase = null;
+    this.supabase_KEY=REPLACE_ME
   }
 
   async init() {
@@ -62,7 +62,7 @@ export class HybridDatabase {
       this.mongodb = await initMongoDB();
 
       // Initialize Supabase
-      this.supabase = initSupabase();
+      this.supabase_KEY=REPLACE_ME
 
       return {
         mongodb: this.mongodb,
@@ -120,6 +120,8 @@ export class HybridDatabase {
 }
 
 export default HybridDatabase;
+
+
 
 
 

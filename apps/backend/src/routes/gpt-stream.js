@@ -1,6 +1,6 @@
-/**
+﻿/**
  * RARE 4N - GPT Realtime Streaming Routes
- * WebSocket endpoint للـ GPT Realtime Streaming
+ * WebSocket endpoint ?????? GPT Realtime Streaming
  */
 
 import axios from 'axios';
@@ -14,7 +14,7 @@ export function initializeGPTStreaming(io) {
   const gptNamespace = io.of('/gpt/stream');
 
   gptNamespace.on('connection', (socket) => {
-    console.log('✅ GPT Stream client connected:', socket.id);
+    console.log('??? GPT Stream client connected:', socket.id);
 
     socket.on('message', async (data) => {
       try {
@@ -98,8 +98,10 @@ export function initializeGPTStreaming(io) {
     });
 
     socket.on('disconnect', () => {
-      console.log('❌ GPT Stream client disconnected:', socket.id);
+      console.log('??? GPT Stream client disconnected:', socket.id);
     });
   });
 }
+
+
 

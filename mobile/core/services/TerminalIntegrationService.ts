@@ -1,6 +1,6 @@
 /**
  * Terminal Integration Service
- * ربط Terminal مع جميع الخدمات: Widget, Client Portal, Twilio, Email, Phone, Auto Filing, Images, Videos
+ * ?????? Terminal ???? ???????? ??????????????: Widget, Client Portal, Twilio, Email, Phone, Auto Filing, Images, Videos
  */
 
 import { RAREKernel } from '../RAREKernel';
@@ -15,7 +15,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * إرسال إشعار للعميل عبر Widget
+   * ?????????? ?????????? ???????????? ?????? Widget
    */
   async notifyClientViaWidget(clientId: string, message: string, data?: any): Promise<void> {
     try {
@@ -23,7 +23,7 @@ export class TerminalIntegrationService {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/services/TerminalIntegrationService.ts:notifyClientViaWidget',message:'Notifying client via Widget',data:{clientId,hasMessage:!!message},timestamp:Date.now(),sessionId:'terminal-integration-session',runId:'run1',hypothesisId:'WIDGET_NOTIFY_START'})}).catch(()=>{});
       }
 
-      // إرسال إلى Kernel → PortalAgent
+      // ?????????? ?????? Kernel ??? PortalAgent
       this.kernel.emit({
         type: 'agent:portal:execute',
         data: {
@@ -49,7 +49,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * إرسال رسالة WhatsApp عبر Twilio
+   * ?????????? ?????????? WhatsApp ?????? Twilio
    */
   async sendWhatsApp(phone: string, message: string, template?: string): Promise<void> {
     try {
@@ -57,7 +57,7 @@ export class TerminalIntegrationService {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/services/TerminalIntegrationService.ts:sendWhatsApp',message:'Sending WhatsApp',data:{phone,hasTemplate:!!template},timestamp:Date.now(),sessionId:'terminal-integration-session',runId:'run1',hypothesisId:'WHATSAPP_SEND_START'})}).catch(()=>{});
       }
 
-      // إرسال إلى Kernel → CommunicationAgent
+      // ?????????? ?????? Kernel ??? CommunicationAgent
       this.kernel.emit({
         type: 'agent:communication:execute',
         data: {
@@ -83,7 +83,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * إرسال Email
+   * ?????????? Email
    */
   async sendEmail(to: string, subject: string, body: string, attachments?: any[]): Promise<void> {
     try {
@@ -91,7 +91,7 @@ export class TerminalIntegrationService {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/services/TerminalIntegrationService.ts:sendEmail',message:'Sending email',data:{to,subject,hasAttachments:!!attachments},timestamp:Date.now(),sessionId:'terminal-integration-session',runId:'run1',hypothesisId:'EMAIL_SEND_START'})}).catch(()=>{});
       }
 
-      // إرسال إلى Kernel → CommunicationAgent
+      // ?????????? ?????? Kernel ??? CommunicationAgent
       this.kernel.emit({
         type: 'agent:communication:execute',
         data: {
@@ -118,7 +118,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * إرسال SMS عبر Twilio
+   * ?????????? SMS ?????? Twilio
    */
   async sendSMS(phone: string, message: string): Promise<void> {
     try {
@@ -126,7 +126,7 @@ export class TerminalIntegrationService {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/services/TerminalIntegrationService.ts:sendSMS',message:'Sending SMS',data:{phone},timestamp:Date.now(),sessionId:'terminal-integration-session',runId:'run1',hypothesisId:'SMS_SEND_START'})}).catch(()=>{});
       }
 
-      // إرسال إلى Kernel → CommunicationAgent
+      // ?????????? ?????? Kernel ??? CommunicationAgent
       this.kernel.emit({
         type: 'agent:communication:execute',
         data: {
@@ -151,7 +151,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * إجراء مكالمة هاتفية
+   * ?????????? ???????????? ????????????
    */
   async makePhoneCall(phone: string): Promise<void> {
     try {
@@ -159,7 +159,7 @@ export class TerminalIntegrationService {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/services/TerminalIntegrationService.ts:makePhoneCall',message:'Making phone call',data:{phone},timestamp:Date.now(),sessionId:'terminal-integration-session',runId:'run1',hypothesisId:'PHONE_CALL_START'})}).catch(()=>{});
       }
 
-      // إرسال إلى Kernel → CommunicationAgent
+      // ?????????? ?????? Kernel ??? CommunicationAgent
       this.kernel.emit({
         type: 'agent:communication:execute',
         data: {
@@ -183,7 +183,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * إنشاء رابط Client Portal
+   * ?????????? ???????? Client Portal
    */
   async generateClientPortalLink(clientId: string, requestId?: string): Promise<string> {
     try {
@@ -191,7 +191,7 @@ export class TerminalIntegrationService {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/services/TerminalIntegrationService.ts:generateClientPortalLink',message:'Generating portal link',data:{clientId,requestId},timestamp:Date.now(),sessionId:'terminal-integration-session',runId:'run1',hypothesisId:'PORTAL_LINK_START'})}).catch(()=>{});
       }
 
-      // إرسال إلى Kernel → PortalAgent
+      // ?????????? ?????? Kernel ??? PortalAgent
       const response = await fetch(`${API_URL}/api/client-portal/generate-link`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -215,7 +215,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * توليد صورة
+   * ?????????? ????????
    */
   async generateImage(prompt: string, style?: string): Promise<string> {
     try {
@@ -223,7 +223,7 @@ export class TerminalIntegrationService {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/services/TerminalIntegrationService.ts:generateImage',message:'Generating image',data:{prompt,style},timestamp:Date.now(),sessionId:'terminal-integration-session',runId:'run1',hypothesisId:'IMAGE_GENERATE_START'})}).catch(()=>{});
       }
 
-      // إرسال إلى Kernel → FilingAgent
+      // ?????????? ?????? Kernel ??? FilingAgent
       this.kernel.emit({
         type: 'agent:filing:execute',
         data: {
@@ -250,7 +250,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * توليد فيديو
+   * ?????????? ??????????
    */
   async generateVideo(prompt: string, duration?: number): Promise<string> {
     try {
@@ -258,7 +258,7 @@ export class TerminalIntegrationService {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/services/TerminalIntegrationService.ts:generateVideo',message:'Generating video',data:{prompt,duration},timestamp:Date.now(),sessionId:'terminal-integration-session',runId:'run1',hypothesisId:'VIDEO_GENERATE_START'})}).catch(()=>{});
       }
 
-      // إرسال إلى Kernel → FilingAgent
+      // ?????????? ?????? Kernel ??? FilingAgent
       this.kernel.emit({
         type: 'agent:filing:execute',
         data: {
@@ -285,7 +285,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * توليد ملف تلقائياً
+   * ?????????? ?????? ????????????????
    */
   async generateFile(type: string, content: string, filename?: string): Promise<string> {
     try {
@@ -293,7 +293,7 @@ export class TerminalIntegrationService {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/services/TerminalIntegrationService.ts:generateFile',message:'Generating file',data:{type,filename},timestamp:Date.now(),sessionId:'terminal-integration-session',runId:'run1',hypothesisId:'FILE_GENERATE_START'})}).catch(()=>{});
       }
 
-      // إرسال إلى Kernel → FilingAgent
+      // ?????????? ?????? Kernel ??? FilingAgent
       this.kernel.emit({
         type: 'agent:filing:execute',
         data: {
@@ -321,7 +321,7 @@ export class TerminalIntegrationService {
   }
 
   /**
-   * إرسال إشعار شامل للعميل (Widget + WhatsApp + Email)
+   * ?????????? ?????????? ???????? ???????????? (Widget + WhatsApp + Email)
    */
   async notifyClientComprehensive(clientId: string, clientPhone: string, clientEmail: string, message: string, buildLink?: string): Promise<void> {
     try {
@@ -341,8 +341,8 @@ export class TerminalIntegrationService {
       if (clientEmail) {
         await this.sendEmail(
           clientEmail,
-          'تم إكمال بناء التطبيق',
-          `${message}\n\n${buildLink ? `رابط التحميل: ${buildLink}` : ''}`,
+          '???? ?????????? ???????? ??????????????',
+          `${message}\n\n${buildLink ? `???????? ??????????????: ${buildLink}` : ''}`,
         );
       }
 
@@ -358,5 +358,6 @@ export class TerminalIntegrationService {
     }
   }
 }
+
 
 

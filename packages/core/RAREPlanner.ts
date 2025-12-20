@@ -64,7 +64,7 @@ export class RAREPlanner {
       steps.push({
         engine: 'NavigationEngine',
         action: 'navigate',
-        payload: { query, destination: this.extractDestination(lower) },
+        payload: { query, destination: this.extrREMOVED(lower) },
         priority: 1
       });
     }
@@ -133,43 +133,43 @@ export class RAREPlanner {
 
   // Detection methods
   private isCodeRequest(text: string): boolean {
-    return /كود|code|function|class|api|component|write.*code|create.*function|build.*api/.test(text);
+    return /??????|code|function|class|api|component|write.*code|create.*function|build.*api/.test(text);
   }
 
   private isAnalysisRequest(text: string): boolean {
-    return /حلل|analysis|analyze|تحليل|data|statistics|insights|examine/.test(text);
+    return /??????|analysis|analyze|??????????|data|statistics|insights|examine/.test(text);
   }
 
   private isTranslationRequest(text: string): boolean {
-    return /ترجم|translate|translation|ترجمة/.test(text);
+    return /????????|translate|translation|??????????/.test(text);
   }
 
   private isNavigationRequest(text: string): boolean {
-    return /اذهب|navigate|route|طريق|مسار|وجهة|destination/.test(text);
+    return /????????|navigate|route|????????|????????|????????|destination/.test(text);
   }
 
   private isFileRequest(text: string): boolean {
-    return /ملف|file|رفع|upload|download|تحميل|save|حفظ/.test(text);
+    return /??????|file|??????|upload|download|??????????|save|??????/.test(text);
   }
 
   private isOCRRequest(text: string): boolean {
-    return /ocr|استخراج النص|extract text|scan|مسح/.test(text);
+    return /ocr|?????????????? ????????|extract text|scan|??????/.test(text);
   }
 
   private isAppBuildRequest(text: string): boolean {
-    return /build.*app|create.*app|انشئ تطبيق|اعمل app|generate.*app/.test(text);
+    return /build.*app|create.*app|???????? ??????????|???????? app|generate.*app/.test(text);
   }
 
   private isCarPlayRequest(text: string): boolean {
-    return /carplay|car|navigation|سيارة|ملاحة/.test(text);
+    return /carplay|car|navigation|??????????|??????????/.test(text);
   }
 
   private needsConversation(text: string): boolean {
-    return /شرح|explain|ايه|what|ازاي|how|ليه|why|tell me/.test(text);
+    return /??????|explain|??????|what|????????|how|??????|why|tell me/.test(text);
   }
 
   private requiresDeepThinking(text: string): boolean {
-    return /complex|معقد|deep|عميق|strategy|استراتيجية|philosophy/.test(text);
+    return /complex|????????|deep|????????|strategy|????????????????????|philosophy/.test(text);
   }
 
   // Extraction methods
@@ -183,16 +183,16 @@ export class RAREPlanner {
   }
 
   private detectAnalysisType(text: string): string {
-    if (/image|صورة/.test(text)) return 'image';
-    if (/data|بيانات/.test(text)) return 'data';
-    if (/code|كود/.test(text)) return 'code';
+    if (/image|????????/.test(text)) return 'image';
+    if (/data|????????????/.test(text)) return 'data';
+    if (/code|??????/.test(text)) return 'code';
     return 'general';
   }
 
   private detectTargetLanguage(text: string): string {
-    if (/to english|للإنجليزية/.test(text)) return 'en';
-    if (/to arabic|للعربية/.test(text)) return 'ar';
-    if (/to french|للفرنسية/.test(text)) return 'fr';
+    if (/to english|????????????????????/.test(text)) return 'en';
+    if (/to arabic|??????????????/.test(text)) return 'ar';
+    if (/to french|????????????????/.test(text)) return 'fr';
     return 'auto';
   }
 
@@ -200,15 +200,15 @@ export class RAREPlanner {
     return /[\u0600-\u06FF]/.test(text) ? 'ar' : 'en';
   }
 
-  private extractDestination(text: string): string {
-    const match = text.match(/(?:إلى|to)\s+([^،,]+)/i);
+  private extrREMOVED(text: string): string {
+    const match = text.match(/(?:??????|to)\s+([^??,]+)/i);
     return match ? match[1].trim() : 'unknown';
   }
 
   private detectFileAction(text: string): string {
-    if (/رفع|upload/.test(text)) return 'upload';
-    if (/تحميل|download/.test(text)) return 'download';
-    if (/حذف|delete/.test(text)) return 'delete';
+    if (/??????|upload/.test(text)) return 'upload';
+    if (/??????????|download/.test(text)) return 'download';
+    if (/??????|delete/.test(text)) return 'delete';
     return 'list';
   }
 
@@ -227,9 +227,10 @@ export class RAREPlanner {
   }
 
   private detectCarPlayType(text: string): string {
-    if (/navigate|اذهب/.test(text)) return 'navigation';
-    if (/call|اتصل/.test(text)) return 'call';
-    if (/play|شغل/.test(text)) return 'media';
+    if (/navigate|????????/.test(text)) return 'navigation';
+    if (/call|????????/.test(text)) return 'call';
+    if (/play|??????/.test(text)) return 'media';
     return 'assistant';
   }
 }
+

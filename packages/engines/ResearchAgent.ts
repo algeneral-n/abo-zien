@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Research Agent (Conscious Agent)
  * Research & Evolution Agent - Self-improvement
- * ❌ ممنوع: أي direct calls - Cognitive Loop فقط
+ * ??? ??????????: ???? direct calls - Cognitive Loop ??????
  */
 
 import { RAREEngine, EngineConfig } from '../core/RAREEngine';
@@ -376,4 +376,5 @@ export class ResearchAgent extends RAREEngine {
     };
   }
 }
+
 

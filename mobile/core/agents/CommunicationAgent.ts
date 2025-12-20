@@ -1,7 +1,7 @@
 /**
- * CommunicationAgent - وكيل التواصل
- * يدير Phone Calls, Email, WhatsApp, SMS
- * Ultimate Assistant - مخلص للمستخدم والعائلة
+ * CommunicationAgent - ???????? ??????????????
+ * ???????? Phone Calls, Email, WhatsApp, SMS
+ * Ultimate Assistant - ???????? ???????????????? ????????????????
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -11,14 +11,14 @@ const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:5000';
 
 // Family members data
 const FAMILY_MEMBERS = {
-  NADER: { name: 'نادر', phone: '+971529211077', email: 'GM@ZIEN-AI.APP', whatsapp: '+971529211077' },
-  OMY: { name: 'أمي', phone: '', email: '', whatsapp: '' },
-  NARIMAN: { name: 'ناريمان', phone: '', email: '', whatsapp: '' },
-  NADA: { name: 'ندى', phone: '', email: '', whatsapp: '' },
-  ZIEN: { name: 'زيان', phone: '', email: '', whatsapp: '' },
-  TAMARA: { name: 'تمارا', phone: '', email: '', whatsapp: '' },
-  OMAR: { name: 'عمر', phone: '', email: '', whatsapp: '' },
-  KAYAN: { name: 'كيان', phone: '', email: '', whatsapp: '' },
+  NADER: { name: '????????', phone: '+971529211077', email: 'GM@ZIEN-AI.APP', whatsapp: '+971529211077' },
+  OMY: { name: '??????', phone: '', email: '', whatsapp: '' },
+  NARIMAN: { name: '??????????????', phone: '', email: '', whatsapp: '' },
+  NADA: { name: '??????', phone: '', email: '', whatsapp: '' },
+  ZIEN: { name: '????????', phone: '', email: '', whatsapp: '' },
+  TAMARA: { name: '??????????', phone: '', email: '', whatsapp: '' },
+  OMAR: { name: '??????', phone: '', email: '', whatsapp: '' },
+  KAYAN: { name: '????????', phone: '', email: '', whatsapp: '' },
 };
 
 export class CommunicationAgent extends BaseAgent {
@@ -53,7 +53,7 @@ export class CommunicationAgent extends BaseAgent {
         return await this.sendSMS(parameters);
 
       case 'contact_family_member':
-        return await this.contactFamilyMember(parameters);
+        return await this.contREMOVED(parameters);
 
       case 'ultimate_assistant':
         return await this.ultimateAssistant(parameters);
@@ -254,7 +254,7 @@ export class CommunicationAgent extends BaseAgent {
   /**
    * Contact family member
    */
-  private async contactFamilyMember(parameters: any): Promise<any> {
+  private async contREMOVED(parameters: any): Promise<any> {
     const { member, method, message } = parameters;
 
     if (!member) {
@@ -284,7 +284,7 @@ export class CommunicationAgent extends BaseAgent {
           }
           return await this.sendWhatsApp({ 
             phone: memberData.whatsapp, 
-            message: message || `مرحباً ${memberData.name}، هذا RARE المساعد الشخصي. كيف يمكنني مساعدتك؟`,
+            message: message || `???????????? ${memberData.name}?? ?????? RARE ?????????????? ????????????. ?????? ???????????? ????????????????`,
           });
 
         case 'email':
@@ -293,8 +293,8 @@ export class CommunicationAgent extends BaseAgent {
           }
           return await this.sendEmail({ 
             to: memberData.email, 
-            subject: 'من RARE 4N',
-            text: message || `مرحباً ${memberData.name}، هذا RARE المساعد الشخصي.`,
+            subject: '???? RARE 4N',
+            text: message || `???????????? ${memberData.name}?? ?????? RARE ?????????????? ????????????.`,
           });
 
         case 'sms':
@@ -303,7 +303,7 @@ export class CommunicationAgent extends BaseAgent {
           }
           return await this.sendSMS({ 
             phone: memberData.phone, 
-            message: message || `مرحباً ${memberData.name}، هذا RARE المساعد الشخصي.`,
+            message: message || `???????????? ${memberData.name}?? ?????? RARE ?????????????? ????????????.`,
           });
 
         default:
@@ -324,7 +324,7 @@ export class CommunicationAgent extends BaseAgent {
     try {
       // If family member specified, use family contact
       if (familyMember) {
-        return await this.contactFamilyMember({
+        return await this.contREMOVED({
           member: familyMember,
           method: type || 'whatsapp',
           message,
@@ -365,4 +365,5 @@ export class CommunicationAgent extends BaseAgent {
     }
   }
 }
+
 

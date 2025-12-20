@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Login Tracker
- * تتبع تسجيلات الدخول
- * ✅ يتابع جميع محاولات الدخول، النجاح، الفشل، الأوقات
+ * ???????? ?????????????? ????????????
+ * ??? ?????????? ???????? ?????????????? ?????????????? ?????????????? ???????????? ??????????????
  */
 
 export interface LoginAttempt {
@@ -37,7 +37,7 @@ export interface LoginSession {
 export class LoginTracker {
   private static instance: LoginTracker;
   private loginAttempts: LoginAttempt[] = [];
-  private activeSessions: Map<string, LoginSession> = new Map();
+  private REMOVED: Map<string, LoginSession> = new Map();
   private maxAttemptsHistory = 1000;
 
   private constructor() {
@@ -55,7 +55,7 @@ export class LoginTracker {
   /**
    * Track login attempt
    */
-  async trackLoginAttempt(
+  async trREMOVED(
     method: LoginAttempt['method'],
     success: boolean,
     userId?: string,
@@ -108,7 +108,7 @@ export class LoginTracker {
       location,
     };
 
-    this.activeSessions.set(session.id, session);
+    this.REMOVED.set(session.id, session);
     await this.saveSessions();
   }
 
@@ -116,11 +116,11 @@ export class LoginTracker {
    * End login session
    */
   async endSession(sessionId: string): Promise<void> {
-    const session = this.activeSessions.get(sessionId);
+    const session = this.REMOVED.get(sessionId);
     if (session) {
       session.endTime = Date.now();
       session.duration = session.endTime - session.startTime;
-      this.activeSessions.delete(sessionId);
+      this.REMOVED.delete(sessionId);
       await this.saveSessions();
     }
   }
@@ -187,8 +187,8 @@ export class LoginTracker {
   /**
    * Get active sessions
    */
-  getActiveSessions(): LoginSession[] {
-    return Array.from(this.activeSessions.values());
+  getREMOVED(): LoginSession[] {
+    return Array.from(this.REMOVED.values());
   }
 
   /**
@@ -215,8 +215,9 @@ export class LoginTracker {
    */
   private async saveSessions(): Promise<void> {
     // In React Native, use AsyncStorage
-    // await AsyncStorage.setItem('activeSessions', JSON.stringify(Array.from(this.activeSessions.values())));
+    // await AsyncStorage.setItem('REMOVED', JSON.stringify(Array.from(this.REMOVED.values())));
   }
 }
+
 
 

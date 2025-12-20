@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Voice Realtime Screen
- * شاشة الصوت الريل تايم - Full-duplex Voice-to-Voice
- * ✅ Cognitive Loop → Kernel → Voice Agent
+ * ???????? ?????????? ?????????? ???????? - Full-duplex Voice-to-Voice
+ * ??? Cognitive Loop ??? Kernel ??? Voice Agent
  */
 
 import { useState, useEffect, useRef } from 'react';
@@ -11,7 +11,7 @@ import {
   Text,
   ScrollView,
   Pressable,
-  ActivityIndicator,
+  REMOVED,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
@@ -39,7 +39,7 @@ export default function VoiceRealtime() {
   const kernel = RAREKernel.getInstance();
 
   useEffect(() => {
-    // ✅ الاستماع لأحداث Kernel فقط - لا اتصال تلقائي
+    // ??? ???????????????? ???????????? Kernel ?????? - ???? ?????????? ????????????
     const unsubscribeVoice = kernel.on('voice:enabled', (event) => {
       if (event.data.enabled && !socket) {
         // Connect to WebSocket only when voice is enabled via Kernel
@@ -53,7 +53,7 @@ export default function VoiceRealtime() {
 
         newSocket.on('transcription', (data: { text: string }) => {
           setTranscription(data.text);
-          // ✅ إرسال النص إلى Kernel → CognitiveLoop
+          // ??? ?????????? ???????? ?????? Kernel ??? CognitiveLoop
           kernel.emit({
             type: 'user:input',
             data: {
@@ -92,7 +92,7 @@ export default function VoiceRealtime() {
       }
     });
 
-    // ✅ الاستماع لأوامر CognitiveLoop → Voice Agent
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Voice Agent
     const unsubscribeVoiceCommand = kernel.on('agent:voice:execute', (event) => {
       if (event.data.action === 'start-recording' && socket) {
         startRecording();
@@ -118,12 +118,12 @@ export default function VoiceRealtime() {
 
   const startRecording = async () => {
     try {
-      // ✅ لا نطلب الأذونات تلقائياً - نطلبها فقط عند الحاجة
+      // ??? ???? ???????? ???????????????? ???????????????? - ???????????? ?????? ?????? ????????????
       // Check permission first
       const { status } = await Audio.getPermissionsAsync();
       
       if (status !== 'granted') {
-        // ✅ إرسال إلى Kernel → Cognitive Loop ليقرر طلب الإذن
+        // ??? ?????????? ?????? Kernel ??? Cognitive Loop ?????????? ?????? ??????????
         const kernel = RAREKernel.getInstance();
         kernel.emit({
           type: 'user:input',
@@ -135,7 +135,7 @@ export default function VoiceRealtime() {
           source: 'voice-realtime',
         });
         
-        // ✅ الاستماع لنتيجة طلب الإذن
+        // ??? ???????????????? ???????????? ?????? ??????????
         const unsubscribe = kernel.on('permission:result', (event) => {
           if (event.data.permission === 'audio' && event.data.granted) {
             // Retry recording after permission granted
@@ -159,7 +159,7 @@ export default function VoiceRealtime() {
       setIsRecording(true);
       setIsListening(true);
 
-      // لا إرسال أثناء التسجيل حالياً، سنرسل الملف بعد الإيقاف
+      // ???? ?????????? ?????????? ?????????????? ?????????????? ?????????? ?????????? ?????? ??????????????
     } catch (error) {
       console.error('Recording error:', error);
     }
@@ -173,7 +173,7 @@ export default function VoiceRealtime() {
         setIsRecording(false);
         setIsListening(false);
 
-        // إرسال الملف المسجّل بعد الإيقاف
+        // ?????????? ?????????? ?????????????? ?????? ??????????????
         if (uri && socket) {
           try {
             const base64 = await FileSystem.readAsStringAsync(uri, { encoding: FileSystem.EncodingType.Base64 });
@@ -192,7 +192,7 @@ export default function VoiceRealtime() {
   };
 
   const handleToggleVoice = () => {
-    // ✅ إرسال إلى Kernel → CognitiveLoop (لا تنفيذ مباشر)
+    // ??? ?????????? ?????? Kernel ??? CognitiveLoop (???? ?????????? ??????????)
     kernel.emit({
       type: 'user:input',
       data: {
@@ -212,15 +212,15 @@ export default function VoiceRealtime() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>الصوت الريل تايم</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>?????????? ?????????? ????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
       <View style={styles.content}>
         <View style={[styles.statusCard, { borderColor: colors.primary }]}>
-          <Text style={[styles.statusTitle, { color: colors.primary }]}>الحالة</Text>
+          <Text style={[styles.statusTitle, { color: colors.primary }]}>????????????</Text>
           <Text style={[styles.statusText, { color: colors.text }]}>
-            {isRecording ? 'جاري التسجيل...' : isListening ? 'جاري الاستماع...' : socket ? 'جاهز' : 'غير متصل'}
+            {isRecording ? '???????? ??????????????...' : isListening ? '???????? ????????????????...' : socket ? '????????' : '?????? ????????'}
           </Text>
         </View>
 
@@ -228,7 +228,7 @@ export default function VoiceRealtime() {
           style={[
             styles.voiceButton,
             {
-              backgroundColor: isRecording ? '#ff0000' : socket ? colors.primary : '#666',
+              bREMOVED: isRecording ? '#ff0000' : socket ? colors.primary : '#666',
               borderColor: colors.primary,
             },
           ]}
@@ -236,7 +236,7 @@ export default function VoiceRealtime() {
           disabled={!socket}
         >
           {isRecording ? (
-            <ActivityIndicator color="#fff" />
+            <REMOVED color="#fff" />
           ) : (
             <Icon name="mic" size={48} color="#fff" />
           )}
@@ -244,7 +244,7 @@ export default function VoiceRealtime() {
 
         {transcription && (
           <View style={[styles.transcriptionCard, { borderColor: colors.primary }]}>
-            <Text style={[styles.cardTitle, { color: colors.primary }]}>النص</Text>
+            <Text style={[styles.cardTitle, { color: colors.primary }]}>????????</Text>
             <Text style={[styles.transcriptionText, { color: colors.text }]}>
               {transcription}
             </Text>
@@ -253,12 +253,12 @@ export default function VoiceRealtime() {
 
         {assistantResponse && (
           <View style={[styles.responseCard, { borderColor: colors.primary }]}>
-            <Text style={[styles.cardTitle, { color: colors.primary }]}>الرد</Text>
+            <Text style={[styles.cardTitle, { color: colors.primary }]}>????????</Text>
             <Text style={[styles.responseText, { color: colors.text }]}>
               {assistantResponse}
             </Text>
             {isPlaying && (
-              <ActivityIndicator size="small" color={colors.primary} style={styles.playingIndicator} />
+              <REMOVED size="small" color={colors.primary} style={styles.playingIndicator} />
             )}
           </View>
         )}
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 30,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
     minWidth: '80%',
   },
   statusTitle: {
@@ -325,14 +325,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 20,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
     minWidth: '90%',
   },
   responseCard: {
     padding: 20,
     borderRadius: 12,
     borderWidth: 2,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
     minWidth: '90%',
   },
   cardTitle: {
@@ -355,4 +355,5 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
 });
+
 

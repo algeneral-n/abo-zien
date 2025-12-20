@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Event Bus
- * نظام الأحداث - Pub/Sub
+ * ???????? ?????????????? - Pub/Sub
  */
 
 import { KernelEvent } from './RAREKernel';
@@ -121,4 +121,5 @@ export class EventBus {
     this.eventHistory = [];
   }
 }
+
 

@@ -1,9 +1,9 @@
 /**
  * RARE 4N - AI Engine (Agent)
- * AI Agent - يشتغل فقط بأمر من Cognitive Loop
+ * AI Agent - ?????????? ?????? ???????? ???? Cognitive Loop
  * 
- * ⚠️ مهم: Cognitive Loop بالفعل عمل Understanding + Reasoning + Decision
- * AIEngine فقط: Generate Response
+ * ?????? ??????: Cognitive Loop ???????????? ?????? Understanding + Reasoning + Decision
+ * AIEngine ??????: Generate Response
  */
 
 import { RAREEngine, EngineConfig, EngineStatus } from '../core/RAREEngine';
@@ -61,20 +61,20 @@ export class AIEngine extends RAREEngine {
 
   /**
    * Handle command from Cognitive Loop
-   * Cognitive Loop بالفعل عمل: Understanding, Reasoning, Decision
-   * AIEngine فقط: Generate Response
-   * ✅ Enhanced with comprehensive error handling
+   * Cognitive Loop ???????????? ??????: Understanding, Reasoning, Decision
+   * AIEngine ??????: Generate Response
+   * ??? Enhanced with comprehensive error handling
    */
   private async handleCognitiveCommand(command: any): Promise<void> {
     try {
-      // ✅ Safety check: Validate command
+      // ??? Safety check: Validate command
       if (!command || !command.action) {
         console.warn('AIEngine: Invalid command received');
         this.emitError('Invalid command structure');
         return;
       }
 
-      // ✅ Safety check: Ensure engine is running
+      // ??? Safety check: Ensure engine is running
       if (!this.running) {
         console.warn('AIEngine: Engine not running, starting...');
         await this.start().catch(err => {
@@ -121,7 +121,7 @@ export class AIEngine extends RAREEngine {
    */
   private emitFallbackResponse(parameters: any): void {
     const fallbackResponse: AIResponse = {
-      text: 'عذراً، حدث خطأ في معالجة طلبك. جرب مرة أخرى.',
+      text: '???????????? ?????? ?????? ???? ???????????? ????????. ?????? ?????? ????????.',
       emotion: { type: 'neutral', intensity: 0.5, confidence: 0.5 },
       intent: { type: 'chat', confidence: 0.3 },
       confidence: 0.3,
@@ -137,17 +137,17 @@ export class AIEngine extends RAREEngine {
 
   /**
    * Generate response (Cognitive Loop already analyzed everything)
-   * ✅ Enhanced with comprehensive error handling and safety checks
+   * ??? Enhanced with comprehensive error handling and safety checks
    */
   private async generateResponse(parameters: any): Promise<AIResponse> {
     try {
-      // ✅ Safety check: Ensure engine is running
+      // ??? Safety check: Ensure engine is running
       if (!this.running) {
         console.warn('AIEngine: Engine not running, attempting to start...');
         await this.start();
       }
 
-      // ✅ Safety check: Validate parameters
+      // ??? Safety check: Validate parameters
       if (!parameters) {
         parameters = {};
       }
@@ -157,11 +157,11 @@ export class AIEngine extends RAREEngine {
       const emotion = parameters.emotion || { type: 'neutral', intensity: 0.5, confidence: 0.5 };
       const intent = parameters.intent || { type: 'chat', confidence: 0.5 };
 
-      // ✅ Safety check: Validate message
+      // ??? Safety check: Validate message
       if (!message || message.trim().length === 0) {
         console.warn('AIEngine: Empty message received');
         return {
-          text: 'أحتاج إلى رسالة لأتمكن من المساعدة.',
+          text: '?????????? ?????? ?????????? ???????????? ???? ????????????????.',
           emotion,
           intent,
           confidence: 0.3,
@@ -200,15 +200,15 @@ export class AIEngine extends RAREEngine {
         ]) as any;
       } catch (error: any) {
         console.error('AIEngine: API call failed:', error);
-        // ❌ NO FALLBACK - Emit error event
+        // ??? NO FALLBACK - Emit error event
         this.emit('agent:ai:error', {
-          error: error.message || 'فشل الاتصال بـ AI API',
+          error: error.message || '?????? ?????????????? ???? AI API',
           originalMessage: message,
         });
         throw error; // Re-throw to prevent fake responses
       }
 
-      // ✅ Safety check: Validate API response
+      // ??? Safety check: Validate API response
       if (!aiResponse || !aiResponse.reply) {
         console.error('AIEngine: Invalid API response structure');
         this.emit('agent:ai:error', {
@@ -245,7 +245,7 @@ export class AIEngine extends RAREEngine {
       return response;
     } catch (error) {
       console.error('AIEngine: Critical error in generateResponse:', error);
-      // ❌ NO FALLBACK - Emit error event
+      // ??? NO FALLBACK - Emit error event
       this.emit('agent:ai:error', {
         error: error instanceof Error ? error.message : 'Critical error in AI response generation',
       });
@@ -292,12 +292,12 @@ export class AIEngine extends RAREEngine {
     }
 
     if (emotion.type === 'concerned') {
-      text = 'أفهم قلقك. ' + text;
+      text = '???????? ????????. ' + text;
     }
 
     // Adapt based on intent
     if (intent.type === 'question') {
-      if (!text.includes('؟') && !text.includes('?')) {
+      if (!text.includes('??') && !text.includes('?')) {
         // Ensure question is answered
       }
     }
@@ -310,13 +310,13 @@ export class AIEngine extends RAREEngine {
    */
   private generateFallbackResponse(intent: Intent, emotion: Emotion): string {
     const fallbacks: Record<string, string> = {
-      chat: 'مرحباً نادر! كيف يمكنني مساعدتك؟',
-      question: 'دعني أفكر في ذلك...',
-      command: 'جاري التنفيذ...',
-      search: 'جاري البحث...',
+      chat: '???????????? ????????! ?????? ???????????? ????????????????',
+      question: '???????? ???????? ???? ??????...',
+      command: '???????? ??????????????...',
+      search: '???????? ??????????...',
     };
 
-    return fallbacks[intent.type] || 'أنا هنا للمساعدة، نادر.';
+    return fallbacks[intent.type] || '?????? ?????? ?????????????????? ????????.';
   }
 
   /**
@@ -348,3 +348,4 @@ export class AIEngine extends RAREEngine {
     };
   }
 }
+

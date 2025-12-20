@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Core Kernel
- * نواة النظام - يدير كل شيء
- * ✅ Integrated with PolicyEngine & MemoryEngine
+ * ???????? ???????????? - ???????? ???? ??????
+ * ??? Integrated with PolicyEngine & MemoryEngine
  */
 
 import { RAREEngine } from './RAREEngine';
@@ -63,7 +63,7 @@ export class RAREKernel {
   private memoryEngine: MemoryEngine;
   private audioSessionActive: boolean = false;
   
-  // ✅ Health Monitor
+  // ??? Health Monitor
   private healthMonitor: HealthMonitor;
 
   // Agents
@@ -94,77 +94,77 @@ export class RAREKernel {
       this.policyEngine = PolicyEngine.getInstance();
       this.memoryEngine = MemoryEngine.getInstance();
       
-      // ✅ Initialize Health Monitor
+      // ??? Initialize Health Monitor
       this.healthMonitor = new HealthMonitor();
 
       // Initialize agents (with error handling for each)
       try {
         this.builderAgent = new BuilderAgent();
       } catch (error) {
-        console.error('❌ Failed to create BuilderAgent:', error);
+        console.error('??? Failed to create BuilderAgent:', error);
       }
       
       try {
         this.voiceAgent = new VoiceAgent();
       } catch (error) {
-        console.error('❌ Failed to create VoiceAgent:', error);
+        console.error('??? Failed to create VoiceAgent:', error);
       }
       
       try {
         this.filingAgent = new FilingAgent();
       } catch (error) {
-        console.error('❌ Failed to create FilingAgent:', error);
+        console.error('??? Failed to create FilingAgent:', error);
       }
       
       try {
         this.vaultAgent = new VaultAgent();
       } catch (error) {
-        console.error('❌ Failed to create VaultAgent:', error);
+        console.error('??? Failed to create VaultAgent:', error);
       }
       
       try {
         this.portalAgent = new PortalAgent();
       } catch (error) {
-        console.error('❌ Failed to create PortalAgent:', error);
+        console.error('??? Failed to create PortalAgent:', error);
       }
       
       try {
         this.loyaltyAgent = new LoyaltyAgent();
       } catch (error) {
-        console.error('❌ Failed to create LoyaltyAgent:', error);
+        console.error('??? Failed to create LoyaltyAgent:', error);
       }
       
       try {
         this.mapsAgent = new MapsAgent();
       } catch (error) {
-        console.error('❌ Failed to create MapsAgent:', error);
+        console.error('??? Failed to create MapsAgent:', error);
       }
       
       try {
         this.communicationAgent = new CommunicationAgent();
       } catch (error) {
-        console.error('❌ Failed to create CommunicationAgent:', error);
+        console.error('??? Failed to create CommunicationAgent:', error);
       }
       
       try {
         this.councilAgent = new CouncilAgent();
       } catch (error) {
-        console.error('❌ Failed to create CouncilAgent:', error);
+        console.error('??? Failed to create CouncilAgent:', error);
       }
       
       try {
         this.ultimateAssistant = new UltimateAssistant();
       } catch (error) {
-        console.error('❌ Failed to create UltimateAssistant:', error);
+        console.error('??? Failed to create UltimateAssistant:', error);
       }
       
       try {
         this.carPlayAgent = new CarPlayAgent();
       } catch (error) {
-        console.error('❌ Failed to create CarPlayAgent:', error);
+        console.error('??? Failed to create CarPlayAgent:', error);
       }
     } catch (error) {
-      console.error('❌ RAREKernel constructor error:', error);
+      console.error('??? RAREKernel constructor error:', error);
       // Continue with minimal state
       this.state = {
         initialized: false,
@@ -196,7 +196,7 @@ export class RAREKernel {
       try {
         await this.contextStore.init();
       } catch (error) {
-        console.error('❌ ContextStore init error:', error);
+        console.error('??? ContextStore init error:', error);
         // Continue anyway
       }
 
@@ -204,7 +204,7 @@ export class RAREKernel {
       try {
         this.eventBus.init();
       } catch (error) {
-        console.error('❌ EventBus init error:', error);
+        console.error('??? EventBus init error:', error);
         // Continue anyway
       }
 
@@ -212,7 +212,7 @@ export class RAREKernel {
       try {
         await this.policyEngine.init();
       } catch (error) {
-        console.error('❌ PolicyEngine init error:', error);
+        console.error('??? PolicyEngine init error:', error);
         // Continue anyway
       }
 
@@ -220,7 +220,7 @@ export class RAREKernel {
       try {
         await this.memoryEngine.init();
       } catch (error) {
-        console.error('❌ MemoryEngine init error:', error);
+        console.error('??? MemoryEngine init error:', error);
         // Continue anyway
       }
 
@@ -239,7 +239,7 @@ export class RAREKernel {
         this.registerEngine(this.ultimateAssistant);
         this.registerEngine(this.carPlayAgent);
       } catch (error) {
-        console.error('❌ Register engines error:', error);
+        console.error('??? Register engines error:', error);
         // Continue anyway
       }
 
@@ -263,7 +263,7 @@ export class RAREKernel {
         try {
           await agent.init();
         } catch (error) {
-          console.error(`❌ Agent ${agent.id} init error:`, error);
+          console.error(`??? Agent ${agent.id} init error:`, error);
           // Continue with other agents
         }
       }
@@ -272,14 +272,14 @@ export class RAREKernel {
       try {
         this.setupEventListeners();
       } catch (error) {
-        console.error('❌ Setup event listeners error:', error);
+        console.error('??? Setup event listeners error:', error);
         // Continue anyway
       }
 
       this.state.initialized = true;
       this.emit({ type: 'kernel:initialized', data: {} });
     } catch (error) {
-      console.error('❌ Critical Kernel init error:', error);
+      console.error('??? Critical Kernel init error:', error);
       // Mark as initialized anyway to prevent infinite loops
       this.state.initialized = true;
     }
@@ -308,7 +308,7 @@ export class RAREKernel {
 
     this.state.running = true;
     
-    // ✅ Start Health Monitoring
+    // ??? Start Health Monitoring
     this.healthMonitor.start(this.state.engines);
     
     // #region agent log
@@ -402,7 +402,7 @@ export class RAREKernel {
         lastActivity: Date.now(),
       });
       
-      // ✅ Register engine with Health Monitor
+      // ??? Register engine with Health Monitor
       this.healthMonitor.registerEngine(engine.id);
     
     // Initialize engine if kernel is already initialized
@@ -430,7 +430,7 @@ export class RAREKernel {
       engine.stop().catch(console.error);
       this.state.engines.delete(engineId);
       
-      // ✅ Unregister from Health Monitor
+      // ??? Unregister from Health Monitor
       this.healthMonitor.unregisterEngine(engineId);
       
       // #region agent log
@@ -452,7 +452,7 @@ export class RAREKernel {
 
   /**
    * Emit event
-   * ✅ Enhanced with error handling
+   * ??? Enhanced with error handling
    */
   emit(event: Omit<KernelEvent, 'timestamp'>): void {
     try {
@@ -462,7 +462,7 @@ export class RAREKernel {
       }
       // #endregion
       
-      // ✅ Safety check: Validate event
+      // ??? Safety check: Validate event
       if (!event || !event.type) {
         // #region agent log
         if (__DEV__) {
@@ -571,7 +571,7 @@ export class RAREKernel {
 
   /**
    * Agent Lifecycle Management
-   * ✅ نظام إداري مركزي - يدير متى يفتح/يغلق كل Agent
+   * ??? ???????? ?????????? ?????????? - ???????? ?????? ????????/???????? ???? Agent
    */
   
   /**
@@ -692,21 +692,21 @@ export class RAREKernel {
   }
 
   /**
-   * ✅ Get Health Monitor
+   * ??? Get Health Monitor
    */
   getHealthMonitor(): HealthMonitor {
     return this.healthMonitor;
   }
 
   /**
-   * ✅ Get agent health status
+   * ??? Get agent health status
    */
   getAgentHealth(engineId: string) {
     return this.healthMonitor.getHealth(engineId);
   }
 
   /**
-   * ✅ Get all agent health statuses
+   * ??? Get all agent health statuses
    */
   getAllAgentHealth() {
     return this.healthMonitor.getAllHealth();
@@ -714,7 +714,7 @@ export class RAREKernel {
 
   /**
    * Get agent by ID
-   * ✅ Optimized: Uses Map lookup instead of switch statement
+   * ??? Optimized: Uses Map lookup instead of switch statement
    */
   getAgent(agentId: string): any {
     // Use engine map for O(1) lookup
@@ -741,3 +741,4 @@ export class RAREKernel {
     return agentMap[agentId] || null;
   }
 }
+

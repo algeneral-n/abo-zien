@@ -1,7 +1,7 @@
 /**
  * RARE 4N - File Generator Screen
- * مولد الملفات - HTML, PowerPoint, Word, Excel, PDF
- * ✅ Cognitive Loop → Kernel → File Generator Agent
+ * ???????? ?????????????? - HTML, PowerPoint, Word, Excel, PDF
+ * ??? Cognitive Loop ??? Kernel ??? File Generator Agent
  */
 
 import { useState, useEffect } from 'react';
@@ -23,14 +23,14 @@ import { useTheme } from '../hooks/useTheme';
 import Icon from '../components/Icon';
 
 const FILE_TYPES = [
-  { id: 'html', name: 'HTML', icon: 'file', description: 'صفحة ويب' },
-  { id: 'pptx', name: 'PowerPoint', icon: 'file', description: 'عرض تقديمي' },
-  { id: 'docx', name: 'Word', icon: 'file', description: 'مستند نصي' },
-  { id: 'xlsx', name: 'Excel', icon: 'file', description: 'جدول بيانات' },
-  { id: 'pdf', name: 'PDF', icon: 'file', description: 'مستند PDF' },
-  { id: 'txt', name: 'Text', icon: 'file', description: 'ملف نصي' },
-  { id: 'csv', name: 'CSV', icon: 'file', description: 'بيانات منفصلة' },
-  { id: 'json', name: 'JSON', icon: 'file', description: 'بيانات JSON' },
+  { id: 'html', name: 'HTML', icon: 'file', description: '???????? ??????' },
+  { id: 'pptx', name: 'PowerPoint', icon: 'file', description: '?????? ????????????' },
+  { id: 'docx', name: 'Word', icon: 'file', description: '?????????? ??????' },
+  { id: 'xlsx', name: 'Excel', icon: 'file', description: '???????? ????????????' },
+  { id: 'pdf', name: 'PDF', icon: 'file', description: '?????????? PDF' },
+  { id: 'txt', name: 'Text', icon: 'file', description: '?????? ??????' },
+  { id: 'csv', name: 'CSV', icon: 'file', description: '???????????? ????????????' },
+  { id: 'json', name: 'JSON', icon: 'file', description: '???????????? JSON' },
 ];
 
 export default function FileGenerator() {
@@ -44,7 +44,7 @@ export default function FileGenerator() {
   const kernel = RAREKernel.getInstance();
 
   useEffect(() => {
-    // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
     const unsubscribeFile = kernel.on('agent:file:response', (event) => {
       if (event.data.fileUri) {
         setGeneratedFileUri(event.data.fileUri);
@@ -54,7 +54,7 @@ export default function FileGenerator() {
     });
     
     const unsubscribeError = kernel.on('agent:file:error', (event) => {
-      Alert.alert('خطأ', event.data.error || 'فشل توليد الملف');
+      Alert.alert('??????', event.data.error || '?????? ?????????? ??????????');
       setIsGenerating(false);
     });
     
@@ -66,13 +66,13 @@ export default function FileGenerator() {
 
   const handleGenerate = () => {
     if (!fileContent.trim()) {
-      Alert.alert('خطأ', 'يرجى إدخال محتوى الملف');
+      Alert.alert('??????', '???????? ?????????? ?????????? ??????????');
       return;
     }
 
     setIsGenerating(true);
 
-    // ✅ إرسال إلى Kernel → CognitiveLoop
+    // ??? ?????????? ?????? Kernel ??? CognitiveLoop
     kernel.emit({
       type: 'user:input',
       data: {
@@ -88,7 +88,7 @@ export default function FileGenerator() {
 
   const handleDownload = async () => {
     if (!generatedFileUri) {
-      Alert.alert('خطأ', 'لا يوجد ملف للتحميل');
+      Alert.alert('??????', '???? ???????? ?????? ??????????????');
       return;
     }
 
@@ -97,10 +97,10 @@ export default function FileGenerator() {
       if (canShare) {
         await Sharing.shareAsync(generatedFileUri);
       } else {
-        Alert.alert('نجح', 'تم حفظ الملف');
+        Alert.alert('??????', '???? ?????? ??????????');
       }
     } catch (error) {
-      Alert.alert('خطأ', 'فشل تحميل الملف');
+      Alert.alert('??????', '?????? ?????????? ??????????');
     }
   };
 
@@ -113,13 +113,13 @@ export default function FileGenerator() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>مولد الملفات</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>???????? ??????????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={[styles.section, { borderColor: colors.primary }]}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>نوع الملف</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????? ??????????</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.typesScroll}>
             {FILE_TYPES.map((type) => (
               <Pressable
@@ -127,7 +127,7 @@ export default function FileGenerator() {
                 style={[
                   styles.typeButton,
                   {
-                    backgroundColor: fileType === type.id ? colors.primary : `${colors.primary}20`,
+                    bREMOVED: fileType === type.id ? colors.primary : `${colors.primary}20`,
                     borderColor: colors.primary,
                   },
                 ]}
@@ -151,47 +151,47 @@ export default function FileGenerator() {
         </View>
 
         <View style={[styles.section, { borderColor: colors.primary }]}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>اسم الملف</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????? ??????????</Text>
           <TextInput
             style={[styles.input, { borderColor: colors.primary, color: colors.text }]}
-            placeholder="مثال: document"
-            placeholderTextColor={colors.primary + '50'}
+            placeholder="????????: document"
+            plREMOVED={colors.primary + '50'}
             value={fileName}
             onChangeText={setFileName}
           />
         </View>
 
         <View style={[styles.section, { borderColor: colors.primary }]}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>محتوى الملف</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????????? ??????????</Text>
           <TextInput
             style={[styles.textArea, { borderColor: colors.primary, color: colors.text }]}
-            placeholder="أدخل محتوى الملف..."
-            placeholderTextColor={colors.primary + '50'}
+            placeholder="???????? ?????????? ??????????..."
+            plREMOVED={colors.primary + '50'}
             value={fileContent}
             onChangeText={setFileContent}
             multiline
             numberOfLines={10}
           />
           <Pressable
-            style={[styles.generateButton, { backgroundColor: colors.primary }]}
+            style={[styles.generateButton, { bREMOVED: colors.primary }]}
             onPress={handleGenerate}
             disabled={isGenerating}
           >
             <Text style={styles.generateButtonText}>
-              {isGenerating ? 'جاري التوليد...' : 'توليد الملف'}
+              {isGenerating ? '???????? ??????????????...' : '?????????? ??????????'}
             </Text>
           </Pressable>
         </View>
 
         {generatedFileUri && (
           <View style={[styles.section, { borderColor: colors.primary }]}>
-            <Text style={[styles.sectionTitle, { color: colors.primary }]}>الملف المولد</Text>
+            <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????????? ????????????</Text>
             <Pressable
-              style={[styles.downloadButton, { backgroundColor: colors.primary }]}
+              style={[styles.downloadButton, { bREMOVED: colors.primary }]}
               onPress={handleDownload}
             >
               <Icon name="download" size={20} color="#000" />
-              <Text style={styles.downloadButtonText}>تحميل الملف</Text>
+              <Text style={styles.downloadButtonText}>?????????? ??????????</Text>
             </Pressable>
           </View>
         )}
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 20,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   sectionTitle: {
     fontSize: 16,
@@ -289,6 +289,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+
 
 
 

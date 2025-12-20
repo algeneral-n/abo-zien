@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Context Store
- * مخزن السياق - الذاكرة القصيرة والطويلة
+ * ???????? ???????????? - ?????????????? ?????????????? ????????????????
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -106,7 +106,7 @@ export class ContextStore {
       try {
         await this.loadContext();
       } catch (error) {
-        console.error('❌ Load context error:', error);
+        console.error('??? Load context error:', error);
         // Use default context
         this.context = this.createDefaultContext();
       }
@@ -119,11 +119,11 @@ export class ContextStore {
       try {
         this.updateAmbientAwareness();
       } catch (error) {
-        console.error('❌ Update ambient awareness error:', error);
+        console.error('??? Update ambient awareness error:', error);
         // Continue anyway
       }
     } catch (error) {
-      console.error('❌ ContextStore init error:', error);
+      console.error('??? ContextStore init error:', error);
       // Use default context
       this.context = this.createDefaultContext();
     }
@@ -342,4 +342,5 @@ export class ContextStore {
     }
   }
 }
+
 

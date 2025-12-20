@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Security Screen
- * شاشة الأمان - Security & SOS
- * ✅ Cognitive Loop → Kernel → Security Agent
+ * ???????? ???????????? - Security & SOS
+ * ??? Cognitive Loop ??? Kernel ??? Security Agent
  */
 
 import { useState, useEffect } from 'react';
@@ -27,7 +27,7 @@ export default function Secure() {
   const kernel = RAREKernel.getInstance();
 
   useEffect(() => {
-    // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
     const unsubscribeSecurity = kernel.on('agent:security:response', (event) => {
       if (event.data.status) {
         setSecurityStatus(event.data.status);
@@ -43,7 +43,7 @@ export default function Secure() {
   }, []);
 
   const handleScan = () => {
-    // ✅ إرسال إلى Kernel → CognitiveLoop
+    // ??? ?????????? ?????? Kernel ??? CognitiveLoop
     kernel.emit({
       type: 'user:input',
       data: {
@@ -55,12 +55,12 @@ export default function Secure() {
   };
 
   const handleLock = () => {
-    Alert.alert('قفل النظام', 'هل تريد قفل النظام؟', [
-      { text: 'إلغاء', style: 'cancel' },
+    Alert.alert('?????? ????????????', '???? ???????? ?????? ??????????????', [
+      { text: '??????????', style: 'cancel' },
       {
-        text: 'قفل',
+        text: '??????',
         onPress: () => {
-          // ✅ إرسال إلى Kernel → CognitiveLoop
+          // ??? ?????????? ?????? Kernel ??? CognitiveLoop
           kernel.emit({
             type: 'user:input',
             data: {
@@ -83,7 +83,7 @@ export default function Secure() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>الأمان</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>????????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
@@ -92,21 +92,21 @@ export default function Secure() {
           styles.statusCard,
           {
             borderColor: securityStatus === 'secure' ? '#00ff00' : securityStatus === 'warning' ? '#ffaa00' : '#ff0000',
-            backgroundColor: securityStatus === 'secure' ? 'rgba(0,255,0,0.1)' : securityStatus === 'warning' ? 'rgba(255,170,0,0.1)' : 'rgba(255,0,0,0.1)',
+            bREMOVED: securityStatus === 'secure' ? 'rgba(0,255,0,0.1)' : securityStatus === 'warning' ? 'rgba(255,170,0,0.1)' : 'rgba(255,0,0,0.1)',
           },
         ]}>
-          <Text style={[styles.statusTitle, { color: colors.primary }]}>حالة الأمان</Text>
+          <Text style={[styles.statusTitle, { color: colors.primary }]}>???????? ????????????</Text>
           <Text style={[styles.statusText, { color: colors.text }]}>
-            {securityStatus === 'secure' ? 'آمن' : securityStatus === 'warning' ? 'تحذير' : 'خطر'}
+            {securityStatus === 'secure' ? '??????' : securityStatus === 'warning' ? '??????????' : '??????'}
           </Text>
         </View>
 
         <Pressable
-          style={[styles.scanButton, { backgroundColor: colors.primary }]}
+          style={[styles.scanButton, { bREMOVED: colors.primary }]}
           onPress={handleScan}
         >
           <Icon name="scan" size={20} color="#000" />
-          <Text style={styles.scanButtonText}>فحص الأمان</Text>
+          <Text style={styles.scanButtonText}>?????? ????????????</Text>
         </Pressable>
 
         <Pressable
@@ -114,12 +114,12 @@ export default function Secure() {
           onPress={handleLock}
         >
           <Icon name="lock" size={20} color="#ff4444" />
-          <Text style={[styles.lockButtonText, { color: '#ff4444' }]}>قفل النظام</Text>
+          <Text style={[styles.lockButtonText, { color: '#ff4444' }]}>?????? ????????????</Text>
         </Pressable>
 
         {threats.length > 0 && (
           <View style={styles.threatsSection}>
-            <Text style={[styles.sectionTitle, { color: colors.primary }]}>التهديدات ({threats.length})</Text>
+            <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????????????????? ({threats.length})</Text>
             {threats.map((threat) => (
               <View
                 key={threat.id}
@@ -127,7 +127,7 @@ export default function Secure() {
               >
                 <Text style={[styles.threatType, { color: colors.text }]}>{threat.type}</Text>
                 <Text style={[styles.threatSeverity, { color: colors.textSecondary }]}>
-                  {threat.severity} • {threat.time}
+                  {threat.severity} ??? {threat.time}
                 </Text>
               </View>
             ))}
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     marginBottom: 12,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   threatType: {
     fontSize: 14,
@@ -232,6 +232,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
 
 
 

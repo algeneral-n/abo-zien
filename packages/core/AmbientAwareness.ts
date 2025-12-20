@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Ambient Awareness System
- * نظام الوعي البيئي - النظام يعرف المستخدم فين ومحتاج إيه
+ * ???????? ?????????? ???????????? - ???????????? ???????? ???????????????? ?????? ???????????? ??????
  */
 
 import { RAREKernel } from './RAREKernel';
@@ -21,7 +21,7 @@ export interface LocationContext {
   accuracy?: number;
 }
 
-export interface ActivityContext {
+export interface REMOVED {
   type: 'idle' | 'active' | 'focused' | 'moving';
   confidence: number;
 }
@@ -52,7 +52,7 @@ export class AmbientAwareness {
 
   /**
    * Initialize ambient awareness
-   * ⚠️ لا نطلب Location permission هنا - فقط عند الحاجة
+   * ?????? ???? ???????? Location permission ?????? - ?????? ?????? ????????????
    */
   async init(kernel: RAREKernel): Promise<void> {
     // #region agent log
@@ -61,13 +61,13 @@ export class AmbientAwareness {
 
     this.kernel = kernel;
 
-    // ❌ لا نطلب Location permission عند البدء - فقط عند الحاجة
+    // ??? ???? ???????? Location permission ?????? ?????????? - ?????? ?????? ????????????
     // await this.requestLocationPermission();
 
-    // Start continuous updates (بدون location)
+    // Start continuous updates (???????? location)
     this.startContinuousUpdates();
 
-    // Initial update (بدون location)
+    // Initial update (???????? location)
     await this.update();
 
     // #region agent log
@@ -119,20 +119,20 @@ export class AmbientAwareness {
       fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'AmbientAwareness.ts:116',message:'getLocationContext completed',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'G'})}).catch(()=>{});
       // #endregion
 
-      const activityContext = this.getActivityContext();
+      const REMOVED = this.getREMOVED();
       
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'AmbientAwareness.ts:122',message:'getActivityContext completed',data:{activityContext},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'G'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'AmbientAwareness.ts:122',message:'getREMOVED completed',data:{REMOVED},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'G'})}).catch(()=>{});
       // #endregion
 
-      const needs = this.anticipateNeeds(timeContext, locationContext, activityContext);
+      const needs = this.anticipateNeeds(timeContext, locationContext, REMOVED);
 
       // Update context store
       this.contextStore.updateContext({
         ambient: {
           time: timeContext,
           location: locationContext,
-          activity: activityContext.type,
+          activity: REMOVED.type,
           needs: needs.needs,
         },
       });
@@ -144,7 +144,7 @@ export class AmbientAwareness {
           data: {
             time: timeContext,
             location: locationContext,
-            activity: activityContext,
+            activity: REMOVED,
             needs,
           },
         });
@@ -214,9 +214,9 @@ export class AmbientAwareness {
   /**
    * Get activity context (simplified - can be enhanced with sensors)
    */
-  private getActivityContext(): ActivityContext {
+  private getREMOVED(): REMOVED {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'AmbientAwareness.ts:187',message:'getActivityContext started',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'AmbientAwareness.ts:187',message:'getREMOVED started',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'})}).catch(()=>{});
     // #endregion
 
     try {
@@ -227,7 +227,7 @@ export class AmbientAwareness {
       fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'AmbientAwareness.ts:195',message:'contextStore.getContext() completed',data:{hasSession:!!context.session,hasInteractions:!!context.session?.interactions},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'})}).catch(()=>{});
       // #endregion
 
-      // ⚠️ Safety check: ensure session and interactions exist
+      // ?????? Safety check: ensure session and interactions exist
       if (!context.session || !context.session.interactions) {
         // #region agent log
         fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'AmbientAwareness.ts:200',message:'context.session missing - returning idle',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'})}).catch(()=>{});
@@ -262,9 +262,9 @@ export class AmbientAwareness {
       return { type: 'idle', confidence: 0.6 };
     } catch (error) {
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'AmbientAwareness.ts:230',message:'getActivityContext ERROR',data:{error:String(error),stack:error instanceof Error?error.stack:undefined},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/cc257fab-64a0-4da7-8b40-e077c5789e2c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'AmbientAwareness.ts:230',message:'getREMOVED ERROR',data:{error:String(error),stack:error instanceof Error?error.stack:undefined},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'H'})}).catch(()=>{});
       // #endregion
-      console.error('getActivityContext() error:', error);
+      console.error('getREMOVED() error:', error);
       return { type: 'idle', confidence: 0.5 };
     }
   }
@@ -275,7 +275,7 @@ export class AmbientAwareness {
   private anticipateNeeds(
     time: TimeContext,
     location: LocationContext | undefined,
-    activity: ActivityContext
+    activity: REMOVED
   ): AnticipatedNeeds {
     const needs: string[] = [];
     let priority: AnticipatedNeeds['priority'] = 'low';
@@ -337,4 +337,5 @@ export class AmbientAwareness {
     }
   }
 }
+
 

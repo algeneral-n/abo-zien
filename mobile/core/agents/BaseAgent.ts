@@ -1,6 +1,6 @@
 /**
- * BaseAgent - قاعدة لجميع الـ Agents
- * كل Agent يرث من هذا الـ Base
+ * BaseAgent - ?????????? ?????????? ?????? Agents
+ * ???? Agent ?????? ???? ?????? ?????? Base
  */
 
 import { RAREEngine, EngineConfig } from '../RAREEngine';
@@ -52,10 +52,10 @@ export abstract class BaseAgent extends RAREEngine {
     try {
       await this.onInit();
       this.initialized = true;
-      console.log(`[${this.config.name}] Initialized ✅`);
+      console.log(`[${this.config.name}] Initialized ???`);
     } catch (error) {
       console.error(`[${this.config.name}] Init error:`, error);
-      // لا نرمي الخطأ - نستمر حتى لو فشل init
+      // ???? ???????? ?????????? - ?????????? ?????? ???? ?????? init
     }
   }
 
@@ -68,7 +68,7 @@ export abstract class BaseAgent extends RAREEngine {
     this.running = true;
     try {
       await this.onStart();
-      console.log(`[${this.config.name}] Started ✅`);
+      console.log(`[${this.config.name}] Started ???`);
     } catch (error) {
       this.running = false;
       console.error(`[${this.config.name}] Start error:`, error);
@@ -85,7 +85,7 @@ export abstract class BaseAgent extends RAREEngine {
     this.running = false;
     try {
       await this.onStop();
-      console.log(`[${this.config.name}] Stopped ✅`);
+      console.log(`[${this.config.name}] Stopped ???`);
     } catch (error) {
       console.error(`[${this.config.name}] Stop error:`, error);
       throw error;
@@ -158,4 +158,5 @@ export abstract class BaseAgent extends RAREEngine {
    */
   protected abstract onExecuteAction(action: string, parameters: any): Promise<any>;
 }
+
 

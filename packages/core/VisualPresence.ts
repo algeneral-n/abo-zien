@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Visual Presence System
- * نظام الحضور البصري - RARE Character دائم الحضور
+ * ???????? ???????????? ???????????? - RARE Character ???????? ????????????
  */
 
 import { RAREKernel } from './RAREKernel';
@@ -15,8 +15,8 @@ export interface SystemState {
 }
 
 export interface VisualState {
-  characterVisible: boolean;
-  characterAnimation: 'idle' | 'thinking' | 'speaking' | 'listening' | 'reacting';
+  charREMOVED: boolean;
+  charREMOVED: 'idle' | 'thinking' | 'speaking' | 'listening' | 'reacting';
   emotion: Emotion | null;
   glowIntensity: number;
   motion: {
@@ -61,7 +61,7 @@ export class VisualPresence {
 
     // Subscribe to kernel events
     kernel.on('kernel:started', () => {
-      this.updateState({ characterVisible: true, characterAnimation: 'idle' });
+      this.updateState({ charREMOVED: true, charREMOVED: 'idle' });
     });
 
     kernel.on('ai:response', (event) => {
@@ -77,7 +77,7 @@ export class VisualPresence {
     });
 
     kernel.on('voice:wake', () => {
-      this.updateState({ characterAnimation: 'listening' });
+      this.updateState({ charREMOVED: 'listening' });
     });
 
     kernel.on('context:updated', (event) => {
@@ -92,7 +92,7 @@ export class VisualPresence {
    * Show character with state
    */
   showCharacter(state: SystemState): void {
-    let animation: VisualState['characterAnimation'] = 'idle';
+    let animation: VisualState['charREMOVED'] = 'idle';
 
     switch (state.ai) {
       case 'thinking':
@@ -107,8 +107,8 @@ export class VisualPresence {
     }
 
     this.updateState({
-      characterVisible: true,
-      characterAnimation: animation,
+      charREMOVED: true,
+      charREMOVED: animation,
       emotion: state.emotion,
     });
   }
@@ -146,7 +146,7 @@ export class VisualPresence {
   reactToEvent(eventType: string, data: any): void {
     switch (eventType) {
       case 'ai:response':
-        this.updateState({ characterAnimation: 'speaking' });
+        this.updateState({ charREMOVED: 'speaking' });
         // Brief reaction animation
         Animated.sequence([
           Animated.timing(this.animationValues.pulse, {
@@ -164,12 +164,12 @@ export class VisualPresence {
 
       case 'intent:recognized':
         if (data.type === 'command') {
-          this.updateState({ characterAnimation: 'reacting' });
+          this.updateState({ charREMOVED: 'reacting' });
         }
         break;
 
       case 'voice:wake':
-        this.updateState({ characterAnimation: 'listening' });
+        this.updateState({ charREMOVED: 'listening' });
         // Listening animation
         Animated.loop(
           Animated.sequence([
@@ -201,7 +201,7 @@ export class VisualPresence {
     // Update based on situation
     const needs = context.ambient?.needs || [];
     if (needs.includes('quiet_mode')) {
-      this.updateState({ characterAnimation: 'idle' });
+      this.updateState({ charREMOVED: 'idle' });
       this.animationValues.glow.setValue(0.2);
     }
   }
@@ -269,8 +269,8 @@ export class VisualPresence {
    */
   private createDefaultState(): VisualState {
     return {
-      characterVisible: false,
-      characterAnimation: 'idle',
+      charREMOVED: false,
+      charREMOVED: 'idle',
       emotion: null,
       glowIntensity: 0.3,
       motion: {
@@ -280,4 +280,5 @@ export class VisualPresence {
     };
   }
 }
+
 

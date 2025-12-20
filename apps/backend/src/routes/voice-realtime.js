@@ -1,6 +1,6 @@
-/**
+﻿/**
  * RARE 4N - Voice Realtime Routes
- * WebSocket endpoint للصوت الريل تايم
+ * WebSocket endpoint ?????????? ?????????? ????????
  */
 
 import { transcribeWithWhisper } from '../services/whisperService.js';
@@ -13,7 +13,7 @@ export function initializeVoiceRealtime(io) {
   const voiceNamespace = io.of('/voice/realtime');
 
   voiceNamespace.on('connection', (socket) => {
-    console.log('✅ Voice Realtime client connected:', socket.id);
+    console.log('??? Voice Realtime client connected:', socket.id);
 
     socket.on('audio-input', async (data) => {
       try {
@@ -49,7 +49,7 @@ export function initializeVoiceRealtime(io) {
     });
 
     socket.on('disconnect', () => {
-      console.log('❌ Voice Realtime client disconnected:', socket.id);
+      console.log('??? Voice Realtime client disconnected:', socket.id);
     });
   });
 }
@@ -57,7 +57,7 @@ export function initializeVoiceRealtime(io) {
 
 /**
  * Generate response using AI (GPT-4/Claude)
- * ✅ Uses AI service for intelligent responses
+ * ??? Uses AI service for intelligent responses
  */
 async function generateResponse(text) {
   try {
@@ -130,7 +130,9 @@ async function generateResponse(text) {
   } catch (error) {
     console.error('Response generation error:', error);
     // Fallback response
-    return `تم استقبال: ${text}. كيف يمكنني مساعدتك؟`;
+    return `???? ??????????????: ${text}. ?????? ???????????? ????????????????`;
   }
 }
+
+
 

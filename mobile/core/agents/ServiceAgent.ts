@@ -1,6 +1,6 @@
 /**
- * ServiceAgent - وكيل التحكم في الخدمات
- * يدير Backend، Cloudflare، Widget
+ * ServiceAgent - ???????? ???????????? ???? ??????????????
+ * ???????? Backend?? Cloudflare?? Widget
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -128,7 +128,7 @@ export class ServiceAgent extends BaseAgent {
       if (__DEV__) {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/ServiceAgent.ts:controlBackend',message:'Backend control error',data:{command,error:error.message},timestamp:Date.now(),sessionId:'service-session',runId:'run1',hypothesisId:'SERVICE_BACKEND_ERROR'})}).catch(()=>{});
       }
-      this.emit('agent:service:error', { error: error.message || 'فشل التحكم في Backend' });
+      this.emit('agent:service:error', { error: error.message || '?????? ???????????? ???? Backend' });
       throw error;
     }
   }
@@ -160,7 +160,7 @@ export class ServiceAgent extends BaseAgent {
       if (__DEV__) {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/ServiceAgent.ts:controlCloudflare',message:'Cloudflare control error',data:{command,error:error.message},timestamp:Date.now(),sessionId:'service-session',runId:'run1',hypothesisId:'SERVICE_CLOUDFLARE_ERROR'})}).catch(()=>{});
       }
-      this.emit('agent:service:error', { error: error.message || 'فشل التحكم في Cloudflare' });
+      this.emit('agent:service:error', { error: error.message || '?????? ???????????? ???? Cloudflare' });
       throw error;
     }
   }
@@ -192,7 +192,7 @@ export class ServiceAgent extends BaseAgent {
       if (__DEV__) {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/ServiceAgent.ts:controlWidget',message:'Widget control error',data:{command,error:error.message},timestamp:Date.now(),sessionId:'service-session',runId:'run1',hypothesisId:'SERVICE_WIDGET_ERROR'})}).catch(()=>{});
       }
-      this.emit('agent:service:error', { error: error.message || 'فشل التحكم في Widget' });
+      this.emit('agent:service:error', { error: error.message || '?????? ???????????? ???? Widget' });
       throw error;
     }
   }
@@ -224,10 +224,11 @@ export class ServiceAgent extends BaseAgent {
       if (__DEV__) {
         fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/ServiceAgent.ts:checkServiceStatus',message:'Service status check error',data:{service,error:error.message},timestamp:Date.now(),sessionId:'service-session',runId:'run1',hypothesisId:'SERVICE_STATUS_ERROR'})}).catch(()=>{});
       }
-      this.emit('agent:service:error', { error: error.message || 'فشل فحص حالة الخدمة' });
+      this.emit('agent:service:error', { error: error.message || '?????? ?????? ???????? ????????????' });
       throw error;
     }
   }
 }
+
 
 

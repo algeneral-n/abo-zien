@@ -1,10 +1,10 @@
 /**
  * RARE 4N - Vault Routes
- * مسارات الخزنة والتشفير
- * ✅ Debug Logging شامل
- * ✅ Error Handling شامل
- * ✅ Input Validation شامل
- * ✅ الحماية من الكراشات
+ * ???????????? ???????????? ????????????????
+ * ??? Debug Logging ????????
+ * ??? Error Handling ????????
+ * ??? Input Validation ????????
+ * ??? ?????????????? ???? ????????????????
  */
 
 import express from 'express';
@@ -996,7 +996,7 @@ router.post('/:id/scan', async (req, res) => {
       const decryptedBuffer = Buffer.from(decryptedBase64, 'base64');
 
       // Import OCR service
-      const { extractTextFromImage } = await import('../services/ocrService.js');
+      const { extrREMOVED } = await import('../services/ocrService.js');
       
       // Scan based on file type
       let scanResult;
@@ -1005,7 +1005,7 @@ router.post('/:id/scan', async (req, res) => {
         const tempImagePath = path.join(TEMP_DIR, `scan_${id}_${Date.now()}.tmp`);
         try {
           fs.writeFileSync(tempImagePath, decryptedBuffer);
-          const ocrResult = await extractTextFromImage(tempImagePath, 'ar', true);
+          const ocrResult = await extrREMOVED(tempImagePath, 'ar', true);
           scanResult = {
             text: ocrResult.text || '',
             type: 'image',
@@ -1072,3 +1072,4 @@ router.post('/:id/scan', async (req, res) => {
 });
 
 export default router;
+

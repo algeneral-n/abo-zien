@@ -20,9 +20,9 @@ export interface ThemeConfig {
 export class RAREThemeEngine {
   private currentTheme: string = 'cyber-cyan';
   
-  // الثيمات الأساسية
+  // ?????????????? ????????????????
   private themes: Record<string, ThemeConfig> = {
-    // Main RARE theme (الثيم الأساسي)
+    // Main RARE theme (?????????? ??????????????)
     'cyber-cyan': {
       id: 'cyber-cyan',
       name: 'Cyber Cyan',
@@ -37,7 +37,7 @@ export class RAREThemeEngine {
       emotion: 'neutral'
     },
     
-    // Developer theme (للمبرمجين)
+    // Developer theme (??????????????????)
     'dev-matrix': {
       id: 'dev-matrix',
       name: 'Developer Matrix',
@@ -52,7 +52,7 @@ export class RAREThemeEngine {
       emotion: 'neutral'
     },
     
-    // AGI theme (للتحليل)
+    // AGI theme (??????????????)
     'agi-purple': {
       id: 'agi-purple',
       name: 'AGI Intelligence',
@@ -67,7 +67,7 @@ export class RAREThemeEngine {
       emotion: 'neutral'
     },
     
-    // Happy theme (مشاعر سعيدة)
+    // Happy theme (?????????? ??????????)
     'happy-gold': {
       id: 'happy-gold',
       name: 'Happy Gold',
@@ -81,7 +81,7 @@ export class RAREThemeEngine {
       emotion: 'happy'
     },
     
-    // Angry theme (غضب)
+    // Angry theme (??????)
     'angry-red': {
       id: 'angry-red',
       name: 'Angry Red',
@@ -95,7 +95,7 @@ export class RAREThemeEngine {
       emotion: 'angry'
     },
     
-    // Sad theme (حزن)
+    // Sad theme (??????)
     'sad-blue': {
       id: 'sad-blue',
       name: 'Sad Blue',
@@ -109,7 +109,7 @@ export class RAREThemeEngine {
       emotion: 'sad'
     },
     
-    // Excited theme (متحمس)
+    // Excited theme (??????????)
     'excited-orange': {
       id: 'excited-orange',
       name: 'Excited Orange',
@@ -123,7 +123,7 @@ export class RAREThemeEngine {
       emotion: 'excited'
     },
     
-    // Assistant theme (مساعد)
+    // Assistant theme (??????????)
     'assistant-green': {
       id: 'assistant-green',
       name: 'Assistant Green',
@@ -138,7 +138,7 @@ export class RAREThemeEngine {
       emotion: 'neutral'
     },
     
-    // Dark mode (وضع داكن)
+    // Dark mode (?????? ????????)
     'pure-dark': {
       id: 'pure-dark',
       name: 'Pure Dark',
@@ -151,7 +151,7 @@ export class RAREThemeEngine {
       }
     },
     
-    // Light mode (وضع فاتح)
+    // Light mode (?????? ????????)
     'pure-light': {
       id: 'pure-light',
       name: 'Pure Light',
@@ -279,3 +279,4 @@ export class RAREThemeEngine {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 }
+

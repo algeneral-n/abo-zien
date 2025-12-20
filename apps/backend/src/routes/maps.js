@@ -1,7 +1,7 @@
 /**
  * ABO ZIEN - Maps Routes
  * Local maps service (Apple Maps / Google Maps)
- * ✅ Enhanced with WeatherKit integration
+ * ??? Enhanced with WeatherKit integration
  */
 
 import express from 'express';
@@ -24,7 +24,7 @@ router.post('/route', async (req, res) => {
 
     const route = await Maps.getRoute(from, to, provider);
 
-    // ✅ Include weather along the route if requested
+    // ??? Include weather along the route if requested
     let weatherData = null;
     if (includeWeather && route) {
       try {
@@ -281,4 +281,5 @@ router.get('/current-location', async (req, res) => {
 });
 
 export default router;
+
 

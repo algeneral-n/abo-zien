@@ -1,7 +1,7 @@
 /**
  * RARE 4N - SOS Screen
- * شاشة الطوارئ - Emergency SOS
- * ✅ Cognitive Loop → Kernel → SOS Agent
+ * ???????? ?????????????? - Emergency SOS
+ * ??? Cognitive Loop ??? Kernel ??? SOS Agent
  */
 
 import { useState, useEffect } from 'react';
@@ -26,7 +26,7 @@ export default function SOS() {
   const kernel = RAREKernel.getInstance();
 
   useEffect(() => {
-    // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
     const unsubscribeSOS = kernel.on('agent:sos:response', (event) => {
       if (event.data.active !== undefined) {
         setIsActive(event.data.active);
@@ -42,13 +42,13 @@ export default function SOS() {
   }, []);
 
   const handleActivateSOS = () => {
-    Alert.alert('تفعيل الطوارئ', 'هل تريد تفعيل نظام الطوارئ؟', [
-      { text: 'إلغاء', style: 'cancel' },
+    Alert.alert('?????????? ??????????????', '???? ???????? ?????????? ???????? ????????????????', [
+      { text: '??????????', style: 'cancel' },
       {
-        text: 'تفعيل',
+        text: '??????????',
         style: 'destructive',
         onPress: () => {
-          // ✅ إرسال إلى Kernel → CognitiveLoop
+          // ??? ?????????? ?????? Kernel ??? CognitiveLoop
           kernel.emit({
             type: 'user:input',
             data: {
@@ -63,7 +63,7 @@ export default function SOS() {
   };
 
   const handleDeactivateSOS = () => {
-    // ✅ إرسال إلى Kernel → CognitiveLoop
+    // ??? ?????????? ?????? Kernel ??? CognitiveLoop
     kernel.emit({
       type: 'user:input',
       data: {
@@ -90,9 +90,9 @@ export default function SOS() {
           }} 
           style={styles.backButton}
         >
-          <Text style={[styles.backButtonText, { color: colors.primary }]}>←</Text>
+          <Text style={[styles.bREMOVED, { color: colors.primary }]}>???</Text>
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>الطوارئ</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>??????????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
@@ -100,30 +100,30 @@ export default function SOS() {
         <View style={[styles.sosButtonContainer, { borderColor: isActive ? '#ff0000' : colors.primary }]}>
           {!isActive ? (
             <Pressable
-              style={[styles.sosButton, { backgroundColor: '#ff0000' }]}
+              style={[styles.sosButton, { bREMOVED: '#ff0000' }]}
               onPress={handleActivateSOS}
             >
               <Icon name="emergency" size={48} color="#fff" />
-              <Text style={styles.sosButtonText}>تفعيل الطوارئ</Text>
+              <Text style={styles.sosButtonText}>?????????? ??????????????</Text>
             </Pressable>
           ) : (
-            <View style={styles.activeContainer}>
+            <View style={styles.REMOVED}>
               <Text style={[styles.countdownText, { color: '#ff0000' }]}>{countdown}</Text>
-              <Text style={[styles.activeText, { color: colors.text }]}>نظام الطوارئ مفعل</Text>
+              <Text style={[styles.activeText, { color: colors.text }]}>???????? ?????????????? ????????</Text>
               <Pressable
-                style={[styles.deactivateButton, { borderColor: '#ff0000' }]}
+                style={[styles.deREMOVED, { borderColor: '#ff0000' }]}
                 onPress={handleDeactivateSOS}
               >
-                <Text style={[styles.deactivateButtonText, { color: '#ff0000' }]}>إلغاء التفعيل</Text>
+                <Text style={[styles.deREMOVED, { color: '#ff0000' }]}>?????????? ??????????????</Text>
               </Pressable>
             </View>
           )}
         </View>
 
         <View style={[styles.infoCard, { borderColor: colors.primary }]}>
-          <Text style={[styles.infoTitle, { color: colors.primary }]}>معلومات الطوارئ</Text>
+          <Text style={[styles.infoTitle, { color: colors.primary }]}>?????????????? ??????????????</Text>
           <Text style={[styles.infoText, { color: colors.text }]}>
-            عند تفعيل نظام الطوارئ، سيتم إرسال إشارة للمساعدة مع موقعك الحالي.
+            ?????? ?????????? ???????? ???????????????? ???????? ?????????? ?????????? ???????????????? ???? ?????????? ????????????.
           </Text>
         </View>
       </View>
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  backButtonText: {
+  bREMOVED: {
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  activeContainer: {
+  REMOVED: {
     alignItems: 'center',
     gap: 12,
   },
@@ -198,13 +198,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  deactivateButton: {
+  deREMOVED: {
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
     borderWidth: 2,
   },
-  deactivateButtonText: {
+  deREMOVED: {
     fontSize: 14,
     fontWeight: '600',
   },
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 12,
     borderWidth: 2,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
     maxWidth: '90%',
   },
   infoTitle: {
@@ -227,5 +227,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
 
 

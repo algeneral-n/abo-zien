@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Settings Screen
- * شاشة الإعدادات - الثيم، اللغة، المزاج، الصوت، كلمة السر، تسجيل الخروج
- * ✅ Cognitive Loop → Kernel → Settings Agent
+ * ???????? ?????????????????? - ???????????? ???????????? ?????????????? ???????????? ???????? ?????????? ?????????? ????????????
+ * ??? Cognitive Loop ??? Kernel ??? Settings Agent
  */
 
 import { useState, useEffect } from 'react';
@@ -23,24 +23,24 @@ import Icon from '../components/Icon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LANGUAGES = [
-  { id: 'ar', name: 'العربية' },
+  { id: 'ar', name: '??????????????' },
   { id: 'en', name: 'English' },
-  { id: 'fr', name: 'Français' },
+  { id: 'fr', name: 'Fran??ais' },
   { id: 'de', name: 'Deutsch' },
-  { id: 'es', name: 'Español' },
+  { id: 'es', name: 'Espa??ol' },
   { id: 'it', name: 'Italiano' },
-  { id: 'pt', name: 'Português' },
-  { id: 'ru', name: 'Русский' },
-  { id: 'zh', name: '中文' },
-  { id: 'ja', name: '日本語' },
-  { id: 'ko', name: '한국어' },
-  { id: 'tr', name: 'Türkçe' },
+  { id: 'pt', name: 'Portugu??s' },
+  { id: 'ru', name: '??????????????' },
+  { id: 'zh', name: '??????' },
+  { id: 'ja', name: '?????????' },
+  { id: 'ko', name: '?????????' },
+  { id: 'tr', name: 'T??rk??e' },
 ];
 
 const MOODS = [
-  { id: 'helpful', name: 'مساعد' },
-  { id: 'professional', name: 'احترافي' },
-  { id: 'friendly', name: 'ودود' },
+  { id: 'helpful', name: '??????????' },
+  { id: 'professional', name: '??????????????' },
+  { id: 'friendly', name: '????????' },
 ];
 
 const VOICES = [
@@ -65,15 +65,15 @@ export default function Settings() {
   useEffect(() => {
     loadSettings();
     
-    // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
     const unsubscribePassword = kernel.on('agent:auth:response', (event) => {
       if (event.data.action === 'change-password') {
         if (event.data.success) {
-          Alert.alert('نجح', 'تم تغيير كلمة المرور بنجاح');
+          Alert.alert('??????', '???? ?????????? ???????? ???????????? ??????????');
           setNewPassword('');
           setConfirmPassword('');
         } else {
-          Alert.alert('خطأ', event.data.error || 'فشل تغيير كلمة المرور');
+          Alert.alert('??????', event.data.error || '?????? ?????????? ???????? ????????????');
         }
       }
     });
@@ -100,7 +100,7 @@ export default function Settings() {
   const handleThemeChange = async (newTheme: typeof THEMES[0]) => {
     await updateTheme(newTheme);
 
-    // Send to Kernel → Cognitive Loop processes automatically
+    // Send to Kernel ??? Cognitive Loop processes automatically
     kernel.emit({
       type: 'user:input',
       data: {
@@ -114,7 +114,7 @@ export default function Settings() {
     setSelectedLanguage(language);
     await AsyncStorage.setItem('language', language);
 
-    // ✅ إرسال إلى Kernel → CognitiveLoop (نظام الترجمات العصبي المتعلم)
+    // ??? ?????????? ?????? Kernel ??? CognitiveLoop (???????? ???????????????? ???????????? ??????????????)
     kernel.emit({
       type: 'user:input',
       data: {
@@ -131,7 +131,7 @@ export default function Settings() {
     setSelectedMood(mood);
     await AsyncStorage.setItem('mood', mood);
 
-    // Send to Kernel → Cognitive Loop processes automatically
+    // Send to Kernel ??? Cognitive Loop processes automatically
     kernel.emit({
       type: 'user:input',
       data: {
@@ -145,7 +145,7 @@ export default function Settings() {
     setSelectedVoice(voice);
     await AsyncStorage.setItem('voice', voice);
 
-    // Send to Kernel → Cognitive Loop processes automatically
+    // Send to Kernel ??? Cognitive Loop processes automatically
     kernel.emit({
       type: 'user:input',
       data: {
@@ -157,17 +157,17 @@ export default function Settings() {
 
   const handlePasswordChange = async () => {
     if (newPassword !== confirmPassword) {
-      Alert.alert('خطأ', 'كلمات المرور غير متطابقة');
+      Alert.alert('??????', '?????????? ???????????? ?????? ??????????????');
       return;
     }
 
     if (newPassword.length < 6) {
-      Alert.alert('خطأ', 'كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+      Alert.alert('??????', '???????? ???????????? ?????? ???? ???????? 6 ???????? ?????? ??????????');
       return;
     }
 
     try {
-      // ✅ إرسال إلى Kernel → CognitiveLoop (لا fetch مباشر)
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop (???? fetch ??????????)
       kernel.emit({
         type: 'user:input',
         data: {
@@ -178,14 +178,14 @@ export default function Settings() {
         source: 'ui',
       });
     } catch (error) {
-      Alert.alert('خطأ', 'حدث خطأ في الاتصال');
+      Alert.alert('??????', '?????? ?????? ???? ??????????????');
       console.error('Password change error:', error);
     }
   };
 
   const handleLogout = async () => {
     try {
-      // ✅ إرسال إلى Kernel → CognitiveLoop (لا fetch مباشر)
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop (???? fetch ??????????)
       kernel.emit({
         type: 'user:input',
         data: {
@@ -214,12 +214,12 @@ export default function Settings() {
           <Pressable onPress={() => router.back()} style={styles.backButton}>
             <Icon name="arrow-back" size={20} color={colors.primary} />
           </Pressable>
-          <Text style={[styles.headerTitle, { color: colors.primary }]}>الإعدادات</Text>
+          <Text style={[styles.headerTitle, { color: colors.primary }]}>??????????????????</Text>
           <View style={{ width: 40 }} />
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>الثيم</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>??????????</Text>
           <View style={styles.optionsGrid}>
             {THEMES.map((themeOption) => (
               <Pressable
@@ -228,12 +228,12 @@ export default function Settings() {
                   styles.optionCard,
                   {
                     borderColor: colors.primary,
-                    backgroundColor: theme.id === themeOption.id ? colors.primary : `${colors.primary}10`,
+                    bREMOVED: theme.id === themeOption.id ? colors.primary : `${colors.primary}10`,
                   },
                 ]}
                 onPress={() => handleThemeChange(themeOption)}
               >
-                <View style={[styles.colorPreview, { backgroundColor: themeOption.primary }]} />
+                <View style={[styles.colorPreview, { bREMOVED: themeOption.primary }]} />
                 <Text style={[
                   styles.optionText,
                   { color: theme.id === themeOption.id ? '#000' : colors.text }
@@ -246,7 +246,7 @@ export default function Settings() {
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>اللغة</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>??????????</Text>
           <View style={styles.optionsList}>
             {LANGUAGES.map((lang) => (
               <Pressable
@@ -255,7 +255,7 @@ export default function Settings() {
                   styles.optionItem,
                   {
                     borderColor: colors.primary,
-                    backgroundColor: selectedLanguage === lang.id ? colors.primary : `${colors.primary}10`,
+                    bREMOVED: selectedLanguage === lang.id ? colors.primary : `${colors.primary}10`,
                   },
                 ]}
                 onPress={() => handleLanguageChange(lang.id)}
@@ -272,7 +272,7 @@ export default function Settings() {
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>المزاج</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>????????????</Text>
           <View style={styles.optionsList}>
             {MOODS.map((mood) => (
               <Pressable
@@ -281,7 +281,7 @@ export default function Settings() {
                   styles.optionItem,
                   {
                     borderColor: colors.primary,
-                    backgroundColor: selectedMood === mood.id ? colors.primary : `${colors.primary}10`,
+                    bREMOVED: selectedMood === mood.id ? colors.primary : `${colors.primary}10`,
                   },
                 ]}
                 onPress={() => handleMoodChange(mood.id)}
@@ -298,7 +298,7 @@ export default function Settings() {
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>الصوت</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>??????????</Text>
           <View style={styles.optionsList}>
             {VOICES.map((voice) => (
               <Pressable
@@ -307,7 +307,7 @@ export default function Settings() {
                   styles.optionItem,
                   {
                     borderColor: colors.primary,
-                    backgroundColor: selectedVoice === voice.id ? colors.primary : `${colors.primary}10`,
+                    bREMOVED: selectedVoice === voice.id ? colors.primary : `${colors.primary}10`,
                   },
                 ]}
                 onPress={() => handleVoiceChange(voice.id)}
@@ -324,28 +324,28 @@ export default function Settings() {
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.primary }]}>تغيير كلمة المرور</Text>
+          <Text style={[styles.sectionTitle, { color: colors.primary }]}>?????????? ???????? ????????????</Text>
           <TextInput
             style={[styles.passwordInput, { borderColor: colors.primary, color: colors.text }]}
-            placeholder="كلمة المرور الجديدة"
-            placeholderTextColor={colors.primary + '50'}
+            placeholder="???????? ???????????? ??????????????"
+            plREMOVED={colors.primary + '50'}
             value={newPassword}
             onChangeText={setNewPassword}
             secureTextEntry
           />
           <TextInput
             style={[styles.passwordInput, { borderColor: colors.primary, color: colors.text }]}
-            placeholder="تأكيد كلمة المرور"
-            placeholderTextColor={colors.primary + '50'}
+            placeholder="?????????? ???????? ????????????"
+            plREMOVED={colors.primary + '50'}
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             secureTextEntry
           />
           <Pressable
-            style={[styles.saveButton, { backgroundColor: colors.primary }]}
+            style={[styles.saveButton, { bREMOVED: colors.primary }]}
             onPress={handlePasswordChange}
           >
-            <Text style={styles.saveButtonText}>حفظ</Text>
+            <Text style={styles.saveButtonText}>??????</Text>
           </Pressable>
         </View>
 
@@ -354,7 +354,7 @@ export default function Settings() {
             style={[styles.logoutButton, { borderColor: '#ff4444' }]}
             onPress={handleLogout}
           >
-            <Text style={[styles.logoutButtonText, { color: '#ff4444' }]}>تسجيل الخروج</Text>
+            <Text style={[styles.logoutButtonText, { color: '#ff4444' }]}>?????????? ????????????</Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -454,5 +454,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+
 
 

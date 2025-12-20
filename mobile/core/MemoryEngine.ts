@@ -1,8 +1,8 @@
 /**
  * RARE 4N - Memory Engine
- * نظام الذاكرة الذكية
+ * ???????? ?????????????? ????????????
  * 
- * يدير: الذاكرة القصيرة، الطويلة، التعلم، السياق
+ * ????????: ?????????????? ???????????????? ???????????????? ?????????????? ????????????
  */
 
 export interface Memory {
@@ -55,7 +55,7 @@ export class MemoryEngine {
       try {
         // await this.loadLongTermMemory();
       } catch (error) {
-        console.error('❌ Load long-term memory error:', error);
+        console.error('??? Load long-term memory error:', error);
         // Continue anyway
       }
 
@@ -63,14 +63,14 @@ export class MemoryEngine {
       try {
         this.startCleanupIntervals();
       } catch (error) {
-        console.error('❌ Start cleanup intervals error:', error);
+        console.error('??? Start cleanup intervals error:', error);
         // Continue anyway
       }
 
       this.initialized = true;
-      console.log('✅ MemoryEngine initialized');
+      console.log('??? MemoryEngine initialized');
     } catch (error) {
-      console.error('❌ MemoryEngine init error:', error);
+      console.error('??? MemoryEngine init error:', error);
       // Mark as initialized anyway to prevent infinite loops
       this.initialized = true;
     }
@@ -407,3 +407,4 @@ export class MemoryEngine {
     };
   }
 }
+

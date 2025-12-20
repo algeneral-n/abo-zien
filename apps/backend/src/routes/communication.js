@@ -1,6 +1,6 @@
-/**
+﻿/**
  * RARE 4N - Communication Routes
- * مسارات التواصل - Ultimate Assistant
+ * ???????????? ?????????????? - Ultimate Assistant
  * Phone Calls, Email, WhatsApp, SMS
  */
 
@@ -42,13 +42,13 @@ router.post('/call', async (req, res) => {
 /**
  * POST /api/communication/whatsapp
  * Send WhatsApp message
- * ✅ Supports Content Templates (ContentSid + ContentVariables)
+ * ??? Supports Content Templates (ContentSid + ContentVariables)
  */
 router.post('/whatsapp', async (req, res) => {
   try {
     const { to, message, mediaUrl, contentSid, contentVariables } = req.body;
 
-    // ✅ Content Template (Business-Initiated) - doesn't need message
+    // ??? Content Template (Business-Initiated) - doesn't need message
     if (contentSid) {
       if (!to) {
         return res.status(400).json({ error: 'Phone number (to) and ContentSid are required' });
@@ -159,9 +159,9 @@ router.post('/ultimate', async (req, res) => {
 /**
  * POST /api/communication/twilio/webhook
  * Twilio WhatsApp Webhook - Receive incoming messages
- * ✅ Handles incoming WhatsApp messages from Twilio Sandbox
+ * ??? Handles incoming WhatsApp messages from Twilio Sandbox
  */
-router.post('/twilio/webhook', async (req, res) => {
+router.post('/TWILIO_KEY=REPLACE_ME
   try {
     // Twilio sends data as form-urlencoded
     const {
@@ -172,10 +172,10 @@ router.post('/twilio/webhook', async (req, res) => {
       Body,
       NumMedia,
       MediaUrl0,
-      MediaContentType0,
+      MediREMOVED,
     } = req.body;
 
-    console.log('📱 Twilio WhatsApp Webhook received:', {
+    console.log('???? Twilio WhatsApp Webhook received:', {
       MessageSid,
       From,
       To,
@@ -196,28 +196,28 @@ router.post('/twilio/webhook', async (req, res) => {
       body: Body,
       media: NumMedia > 0 ? {
         url: MediaUrl0,
-        contentType: MediaContentType0,
+        contentType: MediREMOVED,
       } : null,
       timestamp: new Date().toISOString(),
     };
 
-    // ✅ Emit to Socket.IO for real-time processing
+    // ??? Emit to Socket.IO for real-time processing
     const io = req.app.get('io');
     if (io) {
       io.emit('whatsapp:incoming', messageData);
-      console.log('✅ WhatsApp message emitted to Socket.IO');
+      console.log('??? WhatsApp message emitted to Socket.IO');
     }
 
-    // ✅ Process with Cognitive Loop (if available)
-    // In production, this would go through RAREKernel → CognitiveLoop → CommunicationAgent
+    // ??? Process with Cognitive Loop (if available)
+    // In production, this would go through RAREKernel ??? CognitiveLoop ??? CommunicationAgent
 
-    // ✅ Auto-reply (optional - can be disabled)
+    // ??? Auto-reply (optional - can be disabled)
     // You can add auto-reply logic here if needed
 
     // Twilio expects TwiML response or 200 OK
     res.status(200).send('<?xml version="1.0" encoding="UTF-8"?><Response></Response>');
   } catch (error) {
-    console.error('❌ Twilio webhook error:', error);
+    console.error('??? Twilio webhook error:', error);
     // Twilio expects a response, so return 200 even on error
     res.status(200).send('<?xml version="1.0" encoding="UTF-8"?><Response></Response>');
   }
@@ -227,7 +227,7 @@ router.post('/twilio/webhook', async (req, res) => {
  * POST /api/communication/twilio/status
  * Twilio Status Callback - Track message status
  */
-router.post('/twilio/status', async (req, res) => {
+router.post('/TWILIO_KEY=REPLACE_ME
   try {
     const {
       MessageSid,
@@ -236,14 +236,14 @@ router.post('/twilio/status', async (req, res) => {
       ErrorMessage,
     } = req.body;
 
-    console.log('📊 Twilio Status Callback:', {
+    console.log('???? Twilio Status Callback:', {
       MessageSid,
       MessageStatus,
       ErrorCode,
       ErrorMessage,
     });
 
-    // ✅ Emit status to Socket.IO
+    // ??? Emit status to Socket.IO
     const io = req.app.get('io');
     if (io) {
       io.emit('whatsapp:status', {
@@ -257,11 +257,13 @@ router.post('/twilio/status', async (req, res) => {
 
     res.status(200).send('OK');
   } catch (error) {
-    console.error('❌ Twilio status callback error:', error);
+    console.error('??? Twilio status callback error:', error);
     res.status(200).send('OK');
   }
 });
 
 export default router;
+
+
 
 

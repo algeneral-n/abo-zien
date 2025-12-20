@@ -1,8 +1,8 @@
 /**
  * RARE 4N - Boot Screen
- * صفحة البوت - Face ID + Password
- * ✅ Cognitive Loop → Kernel → Auth Agent
- * ❌ لا يتم تفعيل أنظمة متتالية في وقت واحد
+ * ???????? ?????????? - Face ID + Password
+ * ??? Cognitive Loop ??? Kernel ??? Auth Agent
+ * ??? ???? ?????? ?????????? ?????????? ?????????????? ???? ?????? ????????
  */
 
 import { useEffect, useState, useRef } from 'react';
@@ -26,8 +26,8 @@ import { LoginTracker } from '../core/services/LoginTracker';
 import RARECharacter from '../components/RARECharacter';
 import { debugLog } from '../utils/debugLog';
 
-const FAMILY_PASSWORD = 'رير من عائلتي';
-// All requests go through Kernel → Cognitive Loop
+const FAMILY_PASSWORD = '?????? ???? ????????????';
+// All requests go through Kernel ??? Cognitive Loop
 
 export default function Boot() {
   const [phase, setPhase] = useState<'checking' | 'auth' | 'ready'>('checking');
@@ -43,10 +43,10 @@ export default function Boot() {
   useEffect(() => {
     checkBootStatus();
     
-    // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
     const kernel = RAREKernel.getInstance();
     
-    // استمع لنتائج boot check
+    // ?????????? ???????????? boot check
     const unsubscribeBoot = kernel.on('agent:boot:response', (event) => {
       if (event.data.authenticated) {
         setPhase('ready');
@@ -55,7 +55,7 @@ export default function Boot() {
       }
     });
     
-    // استمع لنتائج authentication
+    // ?????????? ???????????? authentication
     const unsubscribeAuth = kernel.on('agent:auth:response', (event) => {
       if (event.data.success && event.data.token) {
         AsyncStorage.setItem('authToken', event.data.token).then(() => {
@@ -63,7 +63,7 @@ export default function Boot() {
           router.replace('/home');
         });
       } else {
-        setAuthError(event.data.error || 'فشل تسجيل الدخول');
+        setAuthError(event.data.error || '?????? ?????????? ????????????');
         setIsAuthenticating(false);
       }
     });
@@ -113,7 +113,7 @@ export default function Boot() {
         return;
       }
 
-      // ✅ إرسال إلى Kernel → CognitiveLoop (لا fetch مباشر)
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop (???? fetch ??????????)
       // #region agent log
       debugLog('boot.tsx:108', 'Emitting boot check event', { timestamp: Date.now() }, 'D');
       // #endregion
@@ -141,22 +141,22 @@ export default function Boot() {
 
       const loginTracker = LoginTracker.getInstance();
       const result = await LocalAuthentication.authenticateAsync({
-        promptMessage: 'المصادقة بالوجه',
-        fallbackLabel: 'استخدام كلمة المرور',
+        promptMessage: '???????????????? ????????????',
+        fallbackLabel: '?????????????? ???????? ????????????',
         disableDeviceFallback: false,
       });
 
       if (result.success) {
-        await loginTracker.trackLoginAttempt('faceid', true, 'user_1');
+        await loginTracker.trREMOVED('faceid', true, 'user_1');
         await authenticateWithBackend('faceid', null, { success: true });
       } else {
-        await loginTracker.trackLoginAttempt('faceid', false, undefined, 'Face ID authentication failed');
-        setAuthError('فشلت المصادقة');
+        await loginTracker.trREMOVED('faceid', false, undefined, 'Face ID authentication failed');
+        setAuthError('???????? ????????????????');
       }
     } catch (error: any) {
       const loginTracker = LoginTracker.getInstance();
-      await loginTracker.trackLoginAttempt('faceid', false, undefined, error?.toString() || 'Unknown error');
-      setAuthError('حدث خطأ في المصادقة');
+      await loginTracker.trREMOVED('faceid', false, undefined, error?.toString() || 'Unknown error');
+      setAuthError('?????? ?????? ???? ????????????????');
       console.error('Face auth error:', error);
     } finally {
       setIsAuthenticating(false);
@@ -167,12 +167,12 @@ export default function Boot() {
     const loginTracker = LoginTracker.getInstance();
     
     if (password.trim() !== FAMILY_PASSWORD) {
-      await loginTracker.trackLoginAttempt('password', false, undefined, 'Invalid password');
-      setAuthError('كلمة المرور غير صحيحة');
+      await loginTracker.trREMOVED('password', false, undefined, 'Invalid password');
+      setAuthError('???????? ???????????? ?????? ??????????');
       return;
     }
 
-    await loginTracker.trackLoginAttempt('password', true, 'user_1');
+    await loginTracker.trREMOVED('password', true, 'user_1');
     await authenticateWithBackend('password', password, null);
   };
 
@@ -189,7 +189,7 @@ export default function Boot() {
       debugLog('boot.tsx:169', 'Kernel obtained for auth', { kernelExists: !!kernel, state: kernel?.getState() }, 'E');
       // #endregion
 
-      // ✅ إرسال إلى Kernel → CognitiveLoop (لا fetch مباشر)
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop (???? fetch ??????????)
       // #region agent log
       debugLog('boot.tsx:172', 'Emitting auth event', { method }, 'D');
       // #endregion
@@ -208,7 +208,7 @@ export default function Boot() {
       // #region agent log
       debugLog('boot.tsx:186', 'Auth error', { error: error?.message || error?.toString() }, 'E');
       // #endregion
-      setAuthError('حدث خطأ في الاتصال');
+      setAuthError('?????? ?????? ???? ??????????????');
       console.error('Auth error:', error);
     } finally {
       setIsAuthenticating(false);
@@ -233,13 +233,13 @@ export default function Boot() {
             <RARECharacter size={200} animation="idle" />
             <Text style={[styles.logoText, { color: colors.primary }]}>RARE 4N</Text>
             <Text style={[styles.welcomeText, { color: colors.textSecondary }]}>
-              مرحباً بك في رير
+              ???????????? ???? ???? ??????
             </Text>
           </View>
 
           {phase === 'checking' && (
             <View style={styles.checkingContainer}>
-              <Text style={[styles.checkingText, { color: colors.text }]}>جاري التحقق...</Text>
+              <Text style={[styles.checkingText, { color: colors.text }]}>???????? ????????????...</Text>
             </View>
           )}
 
@@ -254,16 +254,16 @@ export default function Boot() {
               ]}
             >
               <Text style={[styles.authTitle, { color: colors.primary }]}>
-                مرحباً بك
+                ???????????? ????
               </Text>
               <Text style={[styles.authSubtitle, { color: colors.textSecondary }]}>
-                سجل دخولك للوصول إلى رير
+                ?????? ?????????? ???????????? ?????? ??????
               </Text>
 
               <TouchableOpacity
                 style={[
                   styles.authButton,
-                  { borderColor: colors.primary, backgroundColor: `${colors.primary}10` },
+                  { borderColor: colors.primary, bREMOVED: `${colors.primary}10` },
                   isAuthenticating && styles.authButtonDisabled,
                 ]}
                 onPress={handleFaceAuth}
@@ -275,9 +275,9 @@ export default function Boot() {
               </TouchableOpacity>
 
               <View style={styles.divider}>
-                <View style={[styles.dividerLine, { backgroundColor: colors.primary }]} />
-                <Text style={[styles.dividerText, { color: colors.textSecondary }]}>أو</Text>
-                <View style={[styles.dividerLine, { backgroundColor: colors.primary }]} />
+                <View style={[styles.dividerLine, { bREMOVED: colors.primary }]} />
+                <Text style={[styles.dividerText, { color: colors.textSecondary }]}>????</Text>
+                <View style={[styles.dividerLine, { bREMOVED: colors.primary }]} />
               </View>
 
               <View style={styles.passwordContainer}>
@@ -286,8 +286,8 @@ export default function Boot() {
                     styles.passwordInput,
                     { borderColor: colors.primary, color: colors.text },
                   ]}
-                  placeholder="كلمة المرور"
-                  placeholderTextColor={colors.primary + '50'}
+                  placeholder="???????? ????????????"
+                  plREMOVED={colors.primary + '50'}
                   value={password}
                   onChangeText={(text) => {
                     setPassword(text);
@@ -301,14 +301,14 @@ export default function Boot() {
               <TouchableOpacity
                 style={[
                   styles.authButton,
-                  { borderColor: colors.primary, backgroundColor: colors.primary },
+                  { borderColor: colors.primary, bREMOVED: colors.primary },
                   isAuthenticating && styles.authButtonDisabled,
                 ]}
                 onPress={handlePasswordAuth}
                 disabled={isAuthenticating}
               >
                 <Text style={[styles.authButtonText, { color: '#000' }]}>
-                  تسجيل الدخول
+                  ?????????? ????????????
                 </Text>
               </TouchableOpacity>
 
@@ -330,19 +330,19 @@ export default function Boot() {
               ]}
             >
               <Text style={[styles.readyText, { color: colors.primary }]}>
-                أهلاً وسهلاً
+                ?????????? ????????????
               </Text>
               <Text style={[styles.readySubtext, { color: colors.textSecondary }]}>
-                جاهز للبدء
+                ???????? ??????????
               </Text>
               <TouchableOpacity
                 style={[
                   styles.enterButton,
-                  { backgroundColor: colors.primary },
+                  { bREMOVED: colors.primary },
                 ]}
                 onPress={handleEnter}
               >
-                <Text style={styles.enterButtonText}>ابدأ</Text>
+                <Text style={styles.enterButtonText}>????????</Text>
               </TouchableOpacity>
             </Animated.View>
           )}
@@ -482,5 +482,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
 
 

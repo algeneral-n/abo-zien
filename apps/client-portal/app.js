@@ -1,4 +1,4 @@
-/**
+﻿/**
  * RARE 4N - Client Portal App
  * JavaScript for Client Portal
  */
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     recognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
-      updateWidgetStatus('خطأ في التعرف على الصوت');
+      updateWidgetStatus('?????? ???? ???????????? ?????? ??????????');
     };
 
     recognition.onend = () => {
@@ -51,7 +51,7 @@ function registerClient() {
   clientEmail = document.getElementById('clientEmail').value;
 
   if (!clientName || !clientPhone || !clientEmail) {
-    alert('يرجى ملء جميع الحقول');
+    alert('???????? ?????? ???????? ????????????');
     return;
   }
 
@@ -71,23 +71,23 @@ function registerClient() {
 
   socket.on('client:registered', (data) => {
     if (data.success) {
-      updateWidgetStatus('متصل');
+      updateWidgetStatus('????????');
       enableWidget();
       loadRequests();
     }
   });
 
   socket.on('client:request:received', (data) => {
-    addMessage('RARE', 'تم استلام طلبك بنجاح', 'assistant');
+    addMessage('RARE', '???? ???????????? ???????? ??????????', 'assistant');
     loadRequests();
   });
 
-  // ✅ Voice-to-Voice response from ElevenLabs Agent
+  // ??? Voice-to-Voice response from ElevenLabs Agent
   socket.on('client:voice-response', async (data) => {
     const { transcription, response, audio, dialect, language } = data;
     
     // Show transcription
-    addMessage('RARE', `[صوتي] ${transcription}`, 'assistant');
+    addMessage('RARE', `[????????] ${transcription}`, 'assistant');
     
     // Show text response
     addMessage('RARE', response, 'assistant');
@@ -100,12 +100,12 @@ function registerClient() {
     
     // Show dialect info
     if (dialect && dialect !== 'msa') {
-      addMessage('RARE', `[اللهجة: ${dialect}]`, 'system');
+      addMessage('RARE', `[????????????: ${dialect}]`, 'system');
     }
   });
 
   socket.on('client:request:updated', (data) => {
-    addMessage('RARE', `تم تحديث حالة طلبك: ${data.status}`, 'assistant');
+    addMessage('RARE', `???? ?????????? ???????? ????????: ${data.status}`, 'assistant');
     if (data.response) {
       addMessage('RARE', data.response, 'assistant');
     }
@@ -119,24 +119,24 @@ function registerClient() {
   });
 
   socket.on('client:payment:required', (data) => {
-    addMessage('RARE', `تم الاتفاق على طلبك! المبلغ: ${data.amount} ريال`, 'assistant');
+    addMessage('RARE', `???? ?????????????? ?????? ????????! ????????????: ${data.amount} ????????`, 'assistant');
     showPaymentButton(data.requestId, data.amount, data.invoiceId, data.paymentUrl);
     loadRequests();
   });
 
   socket.on('error', (error) => {
     console.error('Socket error:', error);
-    updateWidgetStatus('خطأ في الاتصال');
+    updateWidgetStatus('?????? ???? ??????????????');
   });
 
-  // ✅ Preview Libraries (Templates, Systems, Themes)
+  // ??? Preview Libraries (Templates, Systems, Themes)
   socket.on('client:preview:libraries', (data) => {
     const { templates, systems, themes } = data;
     
-    let previewMessage = '📚 **المكتبات المتاحة:**\n\n';
+    let previewMessage = '???? **???????????????? ??????????????:**\n\n';
     
     if (templates && templates.length > 0) {
-      previewMessage += '📱 **التطبيقات:**\n';
+      previewMessage += '???? **??????????????????:**\n';
       templates.slice(0, 5).forEach(template => {
         previewMessage += `- ${template.name}: ${template.description}\n`;
       });
@@ -144,7 +144,7 @@ function registerClient() {
     }
     
     if (systems && systems.length > 0) {
-      previewMessage += '⚙️ **الأنظمة:**\n';
+      previewMessage += '?????? **??????????????:**\n';
       systems.slice(0, 5).forEach(system => {
         previewMessage += `- ${system.name}: ${system.description}\n`;
       });
@@ -152,7 +152,7 @@ function registerClient() {
     }
     
     if (themes && themes.length > 0) {
-      previewMessage += '🎨 **الثيمات:**\n';
+      previewMessage += '???? **??????????????:**\n';
       themes.slice(0, 5).forEach(theme => {
         previewMessage += `- ${theme.name}: ${theme.description}\n`;
       });
@@ -161,9 +161,9 @@ function registerClient() {
     addMessage('RARE', previewMessage, 'assistant');
   });
 
-  // ✅ Contact Information
+  // ??? Contact Information
   socket.on('client:contact-info', () => {
-    addMessage('RARE', '📞 **معلومات التواصل:**\n\n📱 الهاتف: +971529211077\n📧 البريد: GM@ZIEN-AI.APP\n\nيمكنك التواصل معنا في أي وقت!', 'assistant');
+    addMessage('RARE', '???? **?????????????? ??????????????:**\n\n???? ????????????: +971529211077\n???? ????????????: GM@ZIEN-AI.APP\n\n?????????? ?????????????? ???????? ???? ???? ??????!', 'assistant');
   });
 }
 
@@ -178,7 +178,7 @@ function enableWidget() {
 // Send Message
 function sendMessage(text = null) {
   if (!socket || !socket.connected) {
-    alert('يرجى التسجيل أولاً');
+    alert('???????? ?????????????? ??????????');
     return;
   }
 
@@ -189,17 +189,17 @@ function sendMessage(text = null) {
   if (!message.trim()) return;
 
   // Add user message to UI
-  addMessage('أنت', message, 'user');
+  addMessage('??????', message, 'user');
 
   // Check if message is about libraries
   const lowerMessage = message.toLowerCase();
-  if (lowerMessage.includes('مكتبات') || lowerMessage.includes('تطبيقات') || lowerMessage.includes('أنظمة') || lowerMessage.includes('ثيمات') || 
+  if (lowerMessage.includes('????????????') || lowerMessage.includes('??????????????') || lowerMessage.includes('??????????') || lowerMessage.includes('??????????') || 
       lowerMessage.includes('libraries') || lowerMessage.includes('templates') || lowerMessage.includes('themes') || lowerMessage.includes('systems')) {
     // Request library preview
     socket.emit('client:preview-libraries', {
       type: 'all', // or 'templates', 'systems', 'themes'
     });
-    addMessage('RARE', 'جاري تحميل المكتبات...', 'assistant');
+    addMessage('RARE', '???????? ?????????? ????????????????...', 'assistant');
   } else {
     // Send to server
     socket.emit('client:request', {
@@ -221,7 +221,7 @@ function sendFloatingMessage() {
 // Toggle Voice (Voice-to-Voice with ElevenLabs Agent)
 function toggleVoice() {
   if (!socket || !socket.connected) {
-    alert('يرجى التسجيل أولاً');
+    alert('???????? ?????????????? ??????????');
     return;
   }
 
@@ -231,13 +231,13 @@ function toggleVoice() {
       recognition.stop();
     }
     isRecording = false;
-    updateWidgetStatus('متصل');
+    updateWidgetStatus('????????');
   } else {
     // Start recording
     if (recognition) {
       recognition.start();
       isRecording = true;
-      updateWidgetStatus('جاري الاستماع...');
+      updateWidgetStatus('???????? ????????????????...');
     } else {
       // Use MediaRecorder for audio capture
       startAudioRecording();
@@ -270,7 +270,7 @@ async function startAudioRecording() {
           language: 'ar', // Default Arabic, will be auto-detected
         });
         
-        updateWidgetStatus('جاري المعالجة...');
+        updateWidgetStatus('???????? ????????????????...');
       };
       
       reader.readAsDataURL(audioBlob);
@@ -278,7 +278,7 @@ async function startAudioRecording() {
 
     mediaRecorder.start();
     isRecording = true;
-    updateWidgetStatus('جاري التسجيل...');
+    updateWidgetStatus('???????? ??????????????...');
 
     // Stop after 5 seconds or when button clicked again
     setTimeout(() => {
@@ -286,7 +286,7 @@ async function startAudioRecording() {
         mediaRecorder.stop();
         stream.getTracks().forEach(track => track.stop());
         isRecording = false;
-        updateWidgetStatus('متصل');
+        updateWidgetStatus('????????');
       }
     }, 5000);
 
@@ -295,9 +295,9 @@ async function startAudioRecording() {
     window.currentAudioStream = stream;
   } catch (error) {
     console.error('Audio recording error:', error);
-    alert('حدث خطأ في التسجيل الصوتي');
+    alert('?????? ?????? ???? ?????????????? ????????????');
     isRecording = false;
-    updateWidgetStatus('متصل');
+    updateWidgetStatus('????????');
   }
 }
 
@@ -308,7 +308,7 @@ function toggleVoiceFloating() {
 function updateVoiceButton() {
   const btn = document.getElementById('voiceBtn');
   if (btn) {
-    btn.style.backgroundColor = isRecording ? '#ff4444' : '#00eaff';
+    btn.style.bREMOVED = isRecording ? '#ff4444' : '#00eaff';
   }
 }
 
@@ -353,8 +353,8 @@ function handleFileSelect(event) {
     const fileDiv = document.createElement('div');
     fileDiv.className = 'file-item';
     fileDiv.innerHTML = `
-      <span>📎 ${file.name} (${(file.size / 1024).toFixed(2)} KB)</span>
-      <button onclick="removeFile(${index})" class="btn-remove">×</button>
+      <span>???? ${file.name} (${(file.size / 1024).toFixed(2)} KB)</span>
+      <button onclick="removeFile(${index})" class="btn-remove">??</button>
     `;
     previewDiv.appendChild(fileDiv);
   });
@@ -374,7 +374,7 @@ async function submitForm(event) {
   event.preventDefault();
 
   if (!socket || !socket.connected) {
-    alert('يرجى التسجيل أولاً');
+    alert('???????? ?????????????? ??????????');
     return;
   }
 
@@ -426,7 +426,7 @@ async function submitForm(event) {
     .then(res => res.json())
     .then(data => {
       if (data.success) {
-        alert('تم إرسال طلبك بنجاح');
+        alert('???? ?????????? ???????? ??????????');
         document.getElementById('requestForm').reset();
         selectedFiles = [];
         document.getElementById('filePreview').innerHTML = '';
@@ -435,7 +435,7 @@ async function submitForm(event) {
     })
     .catch(error => {
       console.error('Form submit error:', error);
-      alert('حدث خطأ في إرسال الطلب');
+      alert('?????? ?????? ???? ?????????? ??????????');
     });
 }
 
@@ -461,7 +461,7 @@ function displayRequests(requests) {
   if (!listDiv) return;
 
   if (requests.length === 0) {
-    listDiv.innerHTML = '<p>لا توجد طلبات</p>';
+    listDiv.innerHTML = '<p>???? ???????? ??????????</p>';
     return;
   }
 
@@ -472,10 +472,10 @@ function displayRequests(requests) {
         <span class="request-status status-${request.status}">${request.status}</span>
       </div>
       <div class="request-content">
-        <p><strong>النوع:</strong> ${request.type}</p>
-        <p><strong>المحتوى:</strong> ${typeof request.content === 'string' ? request.content : JSON.stringify(request.content)}</p>
-        <p><strong>التاريخ:</strong> ${new Date(request.timestamp).toLocaleString('ar-SA')}</p>
-        ${request.response ? `<p><strong>الرد:</strong> ${request.response}</p>` : ''}
+        <p><strong>??????????:</strong> ${request.type}</p>
+        <p><strong>??????????????:</strong> ${typeof request.content === 'string' ? request.content : JSON.stringify(request.content)}</p>
+        <p><strong>??????????????:</strong> ${new Date(request.timestamp).toLocaleString('ar-SA')}</p>
+        ${request.response ? `<p><strong>????????:</strong> ${request.response}</p>` : ''}
       </div>
     </div>
   `).join('');
@@ -503,15 +503,15 @@ function showPaymentButton(requestId, amount, invoiceId, paymentUrl = null) {
   paymentDiv.className = 'message message-payment';
   paymentDiv.innerHTML = `
     <div class="payment-notification">
-      <strong>💳 دفع مطلوب</strong>
-      <p>المبلغ: ${amount} ريال</p>
+      <strong>???? ?????? ??????????</strong>
+      <p>????????????: ${amount} ????????</p>
       ${paymentUrl ? `
         <a href="${paymentUrl}" target="_blank" class="btn btn-payment">
-          ادفع الآن
+          ???????? ????????
         </a>
       ` : `
         <button class="btn btn-payment" onclick="initiatePayment('${requestId}', ${amount}, '${invoiceId}')">
-          ادفع الآن
+          ???????? ????????
         </button>
       `}
     </div>
@@ -526,8 +526,8 @@ function showPaymentButton(requestId, amount, invoiceId, paymentUrl = null) {
 }
 
 // Initiate Payment (Stripe + Apple Pay)
-let stripe = null;
-let stripeElements = null;
+let stripe_KEY=REPLACE_ME
+let stripe_KEY=REPLACE_ME
 let paymentElement = null;
 
 async function initiatePayment(requestId, amount, invoiceId) {
@@ -535,7 +535,7 @@ async function initiatePayment(requestId, amount, invoiceId) {
     // Initialize Stripe
     const STRIPE_KEY=REPLACE_ME
     if (!stripe) {
-      stripe = Stripe(STRIPE_KEY=REPLACE_ME
+      stripe_KEY=REPLACE_ME
     }
 
     // Create Payment Intent
@@ -615,12 +615,12 @@ async function initiatePayment(requestId, amount, invoiceId) {
       if (checkoutData.success && checkoutData.url) {
         window.location.href = checkoutData.url;
       } else {
-        alert('حدث خطأ في إنشاء رابط الدفع');
+        alert('?????? ?????? ???? ?????????? ???????? ??????????');
       }
     }
   } catch (error) {
     console.error('Payment initiation error:', error);
-    alert('حدث خطأ في بدء عملية الدفع');
+    alert('?????? ?????? ???? ?????? ?????????? ??????????');
   }
 }
 
@@ -636,7 +636,7 @@ async function confirmPayment(clientSecret, requestId) {
     });
 
     if (error) {
-      alert(`خطأ في الدفع: ${error.message}`);
+      alert(`?????? ???? ??????????: ${error.message}`);
     } else {
       // Payment succeeded - notify server
       await fetch('/api/financial/confirm-payment', {
@@ -651,7 +651,7 @@ async function confirmPayment(clientSecret, requestId) {
     }
   } catch (error) {
     console.error('Payment confirmation error:', error);
-    alert('حدث خطأ في تأكيد الدفع');
+    alert('?????? ?????? ???? ?????????? ??????????');
   }
 }
 
@@ -695,7 +695,7 @@ async function initiateApplePay() {
     }
   } catch (error) {
     console.error('Apple Pay initiation error:', error);
-    alert('حدث خطأ في بدء Apple Pay');
+    alert('?????? ?????? ???? ?????? Apple Pay');
   }
 }
 
@@ -712,20 +712,20 @@ function previewTheme(themeId) {
 // Request Libraries
 function requestLibraries() {
   if (!socket || !socket.connected) {
-    alert('يرجى التسجيل أولاً');
+    alert('???????? ?????????????? ??????????');
     return;
   }
   
   socket.emit('client:preview-libraries', {
     type: 'all',
   });
-  addMessage('RARE', 'جاري تحميل المكتبات...', 'assistant');
+  addMessage('RARE', '???????? ?????????? ????????????????...', 'assistant');
 }
 
 // Request Contact Information
 function requestContact() {
   if (!socket || !socket.connected) {
-    alert('يرجى التسجيل أولاً');
+    alert('???????? ?????????????? ??????????');
     return;
   }
   
@@ -734,9 +734,11 @@ function requestContact() {
 
 // Make functions global for onclick handlers
 window.initiatePayment = initiatePayment;
-window.initiateApplePay = initiateApplePay;
+window.initiateApple_KEY=REPLACE_ME
 window.requestLibraries = requestLibraries;
 window.requestContact = requestContact;
 window.handleFileSelect = handleFileSelect;
 window.removeFile = removeFile;
+
+
 

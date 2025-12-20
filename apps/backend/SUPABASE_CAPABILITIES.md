@@ -1,30 +1,30 @@
-# Supabase Integration - RARE 4N Backend
+﻿# Supabase Integration - RARE 4N Backend
 
-## ✅ ما تم ربطه (What's Connected)
+## ??? ???? ???? ???????? (What's Connected)
 
-تم ربط Supabase بنجاح مع Backend الخاص بـ RARE 4N. يمكنك الآن استخدام:
+???? ?????? Supabase ?????????? ???? Backend ?????????? ???? RARE 4N. ?????????? ???????? ??????????????:
 
 ### 1. **Real-time Database (PostgreSQL)**
-- ✅ اتصال Supabase جاهز
-- ✅ URL: `https://fgvrilruqzajstprioqj.supabase.co`
-- ✅ Key: `REDACTED`
+- ??? ?????????? Supabase ????????
+- ??? URL: `https://fgvrilruqzajstprioqj.supabase.co`
+- ??? Key: `REPLACE_ME`
 
 ### 2. **Real-time Subscriptions**
-- ✅ يمكن الاشتراك في التغييرات الفورية
-- ✅ دعم WebSocket للـ Real-time updates
-- ✅ Sync تلقائي بين الأجهزة
+- ??? ???????? ???????????????? ???? ?????????????????? ??????????????
+- ??? ?????? WebSocket ?????? Real-time updates
+- ??? Sync ???????????? ?????? ??????????????
 
 ### 3. **Authentication**
-- ✅ دعم Google OAuth
-- ✅ Session management
-- ✅ User profiles
+- ??? ?????? Google OAuth
+- ??? Session management
+- ??? User profiles
 
 ### 4. **Storage**
-- ✅ رفع الملفات (Images, Videos, Documents)
-- ✅ Download URLs
-- ✅ File management
+- ??? ?????? ?????????????? (Images, Videos, Documents)
+- ??? Download URLs
+- ??? File management
 
-## 🚀 ما يمكنك فعله الآن (What You Can Do)
+## ???? ???? ?????????? ???????? ???????? (What You Can Do)
 
 ### 1. **Real-time Chat**
 ```javascript
@@ -56,7 +56,7 @@ subscribeRealtime('user_settings', (payload) => {
 ```javascript
 import { getSupabase } from './database/supabase.js';
 
-const supabase = getSupabase();
+const supabase_KEY=REPLACE_ME
 
 // Upload file
 const { data, error } = await supabase.storage
@@ -74,28 +74,28 @@ const { data, error } = await supabase
   .single();
 ```
 
-## 📊 Hybrid Database Strategy
+## ???? Hybrid Database Strategy
 
 ### MongoDB (Main Storage)
-- ✅ Users data
-- ✅ Conversations
-- ✅ Files metadata
-- ✅ Builds history
-- ✅ Logs
+- ??? Users data
+- ??? Conversations
+- ??? Files metadata
+- ??? Builds history
+- ??? Logs
 
 ### Supabase (Real-time Features)
-- ✅ Live chat messages
-- ✅ Real-time notifications
-- ✅ User presence
-- ✅ Live collaboration
-- ✅ File storage
+- ??? Live chat messages
+- ??? Real-time notifications
+- ??? User presence
+- ??? Live collaboration
+- ??? File storage
 
 ### SQLite (Local Cache)
-- ✅ Offline data
-- ✅ Quick access
-- ✅ Local backup
+- ??? Offline data
+- ??? Quick access
+- ??? Local backup
 
-## 🔧 Integration Points
+## ???? Integration Points
 
 ### 1. **Cognitive Loop Events**
 ```javascript
@@ -123,32 +123,34 @@ await saveData('supabase', 'consciousness', {
 });
 ```
 
-## 🎯 Next Steps
+## ???? Next Steps
 
-1. ✅ Create Supabase tables
-2. ✅ Set up Row Level Security (RLS)
-3. ✅ Configure Storage buckets
-4. ✅ Enable Real-time for specific tables
-5. ✅ Test Real-time subscriptions
+1. ??? Create Supabase tables
+2. ??? Set up Row Level Security (RLS)
+3. ??? Configure Storage buckets
+4. ??? Enable Real-time for specific tables
+5. ??? Test Real-time subscriptions
 
-## 📝 Environment Variables
+## ???? Environment Variables
 
 ```env
-EXPO_PUBLIC_SUPABASE_URL=https://fgvrilruqzajstprioqj.supabase.co
-EXPO_PUBLIC_SUPABASE_KEY=REDACTED
+EXPO_KEY=REPLACE_ME
+EXPO_KEY=REPLACE_ME
 ```
 
-## 🔒 Security
+## ???? Security
 
-- ✅ Row Level Security (RLS) enabled
-- ✅ API keys secured
-- ✅ Authentication required for sensitive operations
-- ✅ CORS configured
+- ??? Row Level Security (RLS) enabled
+- ??? API keys secured
+- ??? Authentication required for sensitive operations
+- ??? CORS configured
 
 ---
 
-**Status**: ✅ Supabase Connected and Ready
+**Status**: ??? Supabase Connected and Ready
 **Last Updated**: 2024
+
+
 
 
 

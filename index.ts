@@ -1,6 +1,6 @@
 /**
  * ABO ZIEN - Unified RARE System
- * نقطة الدخول الرئيسية - تجميع كل الأنظمة
+ * ???????? ???????????? ???????????????? - ?????????? ???? ??????????????
  */
 
 // Core Systems (Mobile)
@@ -19,7 +19,7 @@ import { VisualPresence } from './core/VisualPresence';
 import { AmbientAwareness } from './core/AmbientAwareness';
 
 // Core Systems (Backend)
-export { RAREKernel as BackendRAREKernel } from './core/BackendRAREKernel';
+export { RAREKernel as BREMOVED } from './core/BREMOVED';
 export { RAREGateway } from './core/RAREGateway';
 export { RARECognition } from './core/RARECognition';
 export { RAREContextManager } from './core/RAREContextManager';
@@ -72,7 +72,7 @@ import { PaymentEngine } from './systems/PaymentEngine';
 
 /**
  * Initialize ABO ZIEN System
- * تهيئة النظام الكامل
+ * ?????????? ???????????? ????????????
  */
 export async function initializeAboZien() {
   // 1. Initialize Mobile Kernel
@@ -84,7 +84,7 @@ export async function initializeAboZien() {
   await cognitiveLoop.init(kernel);
 
   // 3. Initialize Backend Kernel (if needed)
-  // const backendKernel = BackendRAREKernel.instance;
+  // const bREMOVED = BREMOVED.instance;
 
   // 4. Register all Engines
   const engines = [
@@ -138,4 +138,5 @@ export async function initializeAboZien() {
     ambientAwareness,
   };
 }
+
 

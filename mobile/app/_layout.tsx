@@ -25,10 +25,10 @@ export default function RootLayout() {
   useEffect(() => {
     async function prepare() {
       try {
-        // ✅ Initialize step by step with error handling
-        console.log('🚀 Starting initialization...');
+        // ??? Initialize step by step with error handling
+        console.log('???? Starting initialization...');
         
-        // ✅ تأخير الـ initialization قليلاً لتجنب crash
+        // ??? ?????????? ?????? initialization ???????????? ?????????? crash
         await new Promise(resolve => setTimeout(resolve, 100));
         
         // Step 1: Initialize Kernel (with try-catch for each step)
@@ -37,10 +37,10 @@ export default function RootLayout() {
           kernel = RAREKernel.getInstance();
           if (kernel && !kernel.getState().initialized) {
             await kernel.init();
-            console.log('✅ RAREKernel initialized');
+            console.log('??? RAREKernel initialized');
           }
         } catch (error: any) {
-          console.error('❌ Kernel init error:', error?.message || error);
+          console.error('??? Kernel init error:', error?.message || error);
           // Continue anyway - app should still work
         }
 
@@ -50,10 +50,10 @@ export default function RootLayout() {
           cognitiveLoop = CognitiveLoop.getInstance();
           if (kernel && cognitiveLoop) {
             await cognitiveLoop.init(kernel);
-            console.log('✅ CognitiveLoop initialized');
+            console.log('??? CognitiveLoop initialized');
           }
         } catch (error: any) {
-          console.error('❌ CognitiveLoop init error:', error?.message || error);
+          console.error('??? CognitiveLoop init error:', error?.message || error);
           // Continue anyway
         }
 
@@ -61,10 +61,10 @@ export default function RootLayout() {
         try {
           if (kernel && kernel.getState().initialized && !kernel.getState().running) {
             await kernel.start();
-            console.log('✅ System started');
+            console.log('??? System started');
           }
         } catch (error: any) {
-          console.error('❌ Kernel start error:', error?.message || error);
+          console.error('??? Kernel start error:', error?.message || error);
           // Continue anyway
         }
 
@@ -73,10 +73,10 @@ export default function RootLayout() {
           if (kernel) {
             const awarenessSystem = AwarenessSystem.getInstance();
             await awarenessSystem.init(kernel);
-            console.log('✅ AwarenessSystem initialized');
+            console.log('??? AwarenessSystem initialized');
           }
         } catch (error: any) {
-          console.error('❌ AwarenessSystem init error:', error?.message || error);
+          console.error('??? AwarenessSystem init error:', error?.message || error);
           // Continue anyway
         }
 
@@ -85,14 +85,14 @@ export default function RootLayout() {
           if (kernel && cognitiveLoop) {
             const consciousnessEngine = ConsciousnessEngine.getInstance();
             await consciousnessEngine.init(kernel, cognitiveLoop);
-            console.log('✅ ConsciousnessEngine initialized');
+            console.log('??? ConsciousnessEngine initialized');
           }
         } catch (error: any) {
-          console.error('❌ ConsciousnessEngine init error:', error?.message || error);
+          console.error('??? ConsciousnessEngine init error:', error?.message || error);
           // Continue anyway
         }
 
-        // ✅ Always show splash animation even if initialization fails
+        // ??? Always show splash animation even if initialization fails
         // Animate 4N text appearing from nothing (1.5 seconds)
         Animated.parallel([
           Animated.timing(fadeAnim, {
@@ -118,8 +118,8 @@ export default function RootLayout() {
           setShowSplash(false);
         });
       } catch (error: any) {
-        console.error('❌ Critical initialization error:', error?.message || error);
-        // ✅ Always show app even if initialization fails
+        console.error('??? Critical initialization error:', error?.message || error);
+        // ??? Always show app even if initialization fails
         setAppIsReady(true);
         try {
           await SplashScreen.hideAsync();
@@ -130,7 +130,7 @@ export default function RootLayout() {
       }
     }
 
-    // ✅ تأخير قليل قبل البدء
+    // ??? ?????????? ???????? ?????? ??????????
     setTimeout(() => {
       prepare();
     }, 50);
@@ -160,7 +160,7 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   splashContainer: {
     flex: 1,
-    backgroundColor: '#000000', // Dark background
+    bREMOVED: '#000000', // Dark background
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -175,3 +175,4 @@ const styles = StyleSheet.create({
     letterSpacing: 8,
   },
 });
+

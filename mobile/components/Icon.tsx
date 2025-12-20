@@ -144,3 +144,4 @@ export default function Icon({ name, size = 24, color = '#00eaff', style }: Icon
 
 export const iconNames = Object.keys(icons);
 
+

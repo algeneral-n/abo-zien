@@ -1,4 +1,4 @@
-﻿import Constants from 'expo-constants';
+import Constants from 'expo-constants';
 export const RARE_CONFIG = {
     apiUrl: 'https://your-domain.com',
     geminiKey: Constants.expoConfig.extra.GEMINI_API_KEY,
@@ -8,3 +8,4 @@ export const RARE_CONFIG = {
     kernelMode: 'COGNITIVE_LOOP_ACTIVE'
 };
 export default RARE_CONFIG;
+

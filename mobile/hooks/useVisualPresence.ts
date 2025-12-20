@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Visual Presence Hook
- * يسمع emotion → يسمع intent → يحرك الشخصية فقط
+ * ???????? emotion ??? ???????? intent ??? ???????? ?????????????? ??????
  */
 
 import { useState, useEffect, useCallback } from 'react';
@@ -10,14 +10,14 @@ import { Emotion } from '../../core/ContextStore';
 
 export interface VisualPresenceState {
   emotion: Emotion | null;
-  characterAnimation: 'idle' | 'thinking' | 'speaking' | 'listening' | 'reacting';
+  charREMOVED: 'idle' | 'thinking' | 'speaking' | 'listening' | 'reacting';
   glowIntensity: number;
 }
 
 export function useVisualPresence() {
   const [state, setState] = useState<VisualPresenceState>({
     emotion: null,
-    characterAnimation: 'idle',
+    charREMOVED: 'idle',
     glowIntensity: 0.3,
   });
 
@@ -35,7 +35,7 @@ export function useVisualPresence() {
       setState(prev => ({
         ...prev,
         emotion,
-        characterAnimation: getAnimationFromEmotion(emotion),
+        charREMOVED: getAnimationFromEmotion(emotion),
         glowIntensity: emotion.intensity,
       }));
     });
@@ -46,13 +46,13 @@ export function useVisualPresence() {
       if (intent.type === 'voice_command') {
         setState(prev => ({
           ...prev,
-          characterAnimation: 'listening',
+          charREMOVED: 'listening',
           glowIntensity: 0.8,
         }));
       } else if (intent.type === 'build_app' || intent.type === 'research_query') {
         setState(prev => ({
           ...prev,
-          characterAnimation: 'thinking',
+          charREMOVED: 'thinking',
           glowIntensity: 0.6,
         }));
       }
@@ -62,7 +62,7 @@ export function useVisualPresence() {
     const unsubscribeAgentExecute = kernel.on('agent:*:execute', (event: KernelEvent) => {
       setState(prev => ({
         ...prev,
-        characterAnimation: 'reacting',
+        charREMOVED: 'reacting',
         glowIntensity: 0.7,
       }));
 
@@ -70,7 +70,7 @@ export function useVisualPresence() {
       setTimeout(() => {
         setState(prev => ({
           ...prev,
-          characterAnimation: 'idle',
+          charREMOVED: 'idle',
           glowIntensity: 0.3,
         }));
       }, 2000);
@@ -80,7 +80,7 @@ export function useVisualPresence() {
     const unsubscribeVoice = kernel.on('voice:listening', () => {
       setState(prev => ({
         ...prev,
-        characterAnimation: 'listening',
+        charREMOVED: 'listening',
         glowIntensity: 0.9,
       }));
     });
@@ -88,7 +88,7 @@ export function useVisualPresence() {
     const unsubscribeVoiceStop = kernel.on('voice:stopped_listening', () => {
       setState(prev => ({
         ...prev,
-        characterAnimation: 'idle',
+        charREMOVED: 'idle',
         glowIntensity: 0.3,
       }));
     });
@@ -123,5 +123,6 @@ export function useVisualPresence() {
 
   return state;
 }
+
 
 

@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "bREMOVED": "#000000"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -24,7 +24,7 @@
         "NSLocationWhenInUseUsageDescription": "RARE needs location for maps and navigation",
         "NSLocationAlwaysUsageDescription": "RARE needs location for CarPlay and navigation",
         "NSPhotoLibraryUsageDescription": "RARE needs photo library access for vault",
-        "NSFaceIDUsageDescription": "RARE uses Face ID for secure authentication",
+        "NSFREMOVED": "RARE uses Face ID for secure authentication",
         "ITSAppUsesNonExemptEncryption": false
       },
       "config": {
@@ -34,7 +34,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptiveicon.png",
-        "backgroundColor": "#000000"
+        "bREMOVED": "#000000"
       },
       "package": "com.zien.rare4nos",
       "versionCode": 7,

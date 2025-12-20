@@ -1,7 +1,7 @@
 @echo off
 echo ========================================
 echo   RARE 4N - Install Services
-echo   تثبيت Backend و Cloudflare كخدمات Windows
+echo   ?????????? Backend ?? Cloudflare ???????????? Windows
 echo ========================================
 echo.
 
@@ -15,7 +15,7 @@ if errorlevel 1 (
     pause
     exit /b 1
 )
-echo ✅ Cloudflare service installed
+echo ??? Cloudflare service installed
 
 echo.
 echo [2/3] Starting Cloudflare Service...
@@ -24,7 +24,7 @@ if errorlevel 1 (
     echo WARNING: Failed to start Cloudflare service
     echo You may need to run as Administrator
 ) else (
-    echo ✅ Cloudflare service started
+    echo ??? Cloudflare service started
 )
 
 echo.
@@ -50,6 +50,7 @@ echo To check Backend (if installed):
 echo   sc query RARE4N-Backend
 echo.
 pause
+
 
 
 

@@ -1,13 +1,13 @@
 /**
  * Retry Mechanism with Exponential Backoff
- * ✅ Automatically retries failed operations with increasing delays
+ * ??? Automatically retries failed operations with increasing delays
  */
 
 export interface RetryOptions {
   maxRetries: number;
   initialDelay: number; // Initial delay in ms
   maxDelay: number; // Maximum delay in ms
-  backoffMultiplier: number; // Multiplier for exponential backoff
+  bREMOVED: number; // Multiplier for exponential backoff
   retryableErrors?: string[]; // Error messages that should trigger retry
 }
 
@@ -19,7 +19,7 @@ export class RetryMechanism {
       maxRetries: options.maxRetries || 3,
       initialDelay: options.initialDelay || 1000, // 1 second
       maxDelay: options.maxDelay || 30000, // 30 seconds
-      backoffMultiplier: options.backoffMultiplier || 2,
+      bREMOVED: options.bREMOVED || 2,
       retryableErrors: options.retryableErrors || [
         'timeout',
         'network',
@@ -92,7 +92,7 @@ export class RetryMechanism {
   private calculateDelay(attempt: number): number {
     const delay =
       this.options.initialDelay! *
-      Math.pow(this.options.backoffMultiplier!, attempt);
+      Math.pow(this.options.bREMOVED!, attempt);
     return Math.min(delay, this.options.maxDelay!);
   }
 
@@ -103,5 +103,6 @@ export class RetryMechanism {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
+
 
 

@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Cognitive Loop Hook
- * UI يبعث input → UI يسمع events
- * UI لا ينفذ أي منطق
+ * UI ???????? input ??? UI ???????? events
+ * UI ???? ???????? ???? ????????
  */
 
 import { useState, useEffect, useCallback } from 'react';
@@ -87,7 +87,7 @@ export function useCognitiveLoop() {
 
   /**
    * Send input to Cognitive Loop
-   * UI يبعث فقط - لا ينفذ
+   * UI ???????? ?????? - ???? ????????
    */
   const sendInput = useCallback(async (input: { text?: string; audio?: string; type?: string }) => {
     if (!kernel || !cognitiveLoop) {
@@ -98,7 +98,7 @@ export function useCognitiveLoop() {
     setState(prev => ({ ...prev, isLoading: true, error: null }));
 
     try {
-      // Send to Kernel → Cognitive Loop
+      // Send to Kernel ??? Cognitive Loop
       kernel.emit({
         type: 'user:input',
         data: input,
@@ -129,5 +129,6 @@ export function useCognitiveLoop() {
     sendInput,
   };
 }
+
 
 

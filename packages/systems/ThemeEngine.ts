@@ -31,12 +31,12 @@ export class ThemeEngine extends RAREEngine {
   protected initialized: boolean = false;
   protected running: boolean = false;
 
-  private backendThemeEngine: RAREThemeEngine;
+  private bREMOVED: RAREThemeEngine;
   private apiBase: string;
 
   constructor() {
     super();
-    this.backendThemeEngine = new RAREThemeEngine();
+    this.bREMOVED = new RAREThemeEngine();
   }
 
   async initialize(config: EngineConfig): Promise<void> {
@@ -100,10 +100,10 @@ export class ThemeEngine extends RAREEngine {
       const { themeId } = parameters;
 
       // Use backend theme engine
-      const success = this.backendThemeEngine.setTheme(themeId);
+      const success = this.bREMOVED.setTheme(themeId);
 
       if (success) {
-        const theme = this.backendThemeEngine.getTheme();
+        const theme = this.bREMOVED.getTheme();
 
         this.emit('theme:changed', {
           theme,
@@ -122,7 +122,7 @@ export class ThemeEngine extends RAREEngine {
    */
   private async getTheme(parameters: any): Promise<void> {
     try {
-      const theme = this.backendThemeEngine.getTheme();
+      const theme = this.bREMOVED.getTheme();
 
       this.emit('theme:current', {
         theme,
@@ -137,7 +137,7 @@ export class ThemeEngine extends RAREEngine {
    */
   private async getAllThemes(): Promise<void> {
     try {
-      const themes = this.backendThemeEngine.getAllThemes();
+      const themes = this.bREMOVED.getAllThemes();
 
       this.emit('theme:all_themes', {
         themes,
@@ -155,7 +155,7 @@ export class ThemeEngine extends RAREEngine {
     try {
       const { personality, emotion } = parameters || {};
 
-      const theme = this.backendThemeEngine.autoSelectTheme(personality, emotion);
+      const theme = this.bREMOVED.autoSelectTheme(personality, emotion);
 
       this.emit('theme:auto_selected', {
         theme,
@@ -174,7 +174,7 @@ export class ThemeEngine extends RAREEngine {
     try {
       const { personality } = parameters;
 
-      const theme = this.backendThemeEngine.getThemeForPersonality(personality);
+      const theme = this.bREMOVED.getThemeForPersonality(personality);
 
       this.emit('theme:for_personality', {
         theme,
@@ -192,7 +192,7 @@ export class ThemeEngine extends RAREEngine {
     try {
       const { emotion } = parameters;
 
-      const theme = this.backendThemeEngine.getThemeForEmotion(emotion);
+      const theme = this.bREMOVED.getThemeForEmotion(emotion);
 
       this.emit('theme:for_emotion', {
         theme,
@@ -207,21 +207,22 @@ export class ThemeEngine extends RAREEngine {
    * Get CSS variables for current theme
    */
   getCSSVariables(): Record<string, string> {
-    return this.backendThemeEngine.getCSSVariables();
+    return this.bREMOVED.getCSSVariables();
   }
 
   /**
    * Get gradient for current theme
    */
   getGradient(direction: string = 'to bottom'): string {
-    return this.backendThemeEngine.getGradient(direction);
+    return this.bREMOVED.getGradient(direction);
   }
 
   /**
    * Get glow color for current theme
    */
   getGlowColor(intensity: number = 1.0): string {
-    return this.backendThemeEngine.getGlowColor(intensity);
+    return this.bREMOVED.getGlowColor(intensity);
   }
 }
+
 

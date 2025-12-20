@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ABO ZIEN - AI Routes
  * Local AI service with GPT, Gemini, Claude
  */
@@ -14,13 +14,13 @@ const router = express.Router();
  */
 router.post('/chat', async (req, res) => {
   try {
-    const { message, aiModel = 'gpt', openaiModel = null } = req.body;
+    const { message, aiModel = 'gpt', openai_KEY=REPLACE_ME
 
     if (!message) {
       return res.status(400).json({ error: 'Message is required' });
     }
 
-    // ✅ Use free daily usage models
+    // âœ… Use free daily usage models
     // openaiModel can be: 'gpt-4o-mini' (2.5M tokens/day free) or 'gpt-4o' (250K tokens/day free)
     const response = await AI.chat(message, aiModel, openaiModel);
 
@@ -40,6 +40,7 @@ router.post('/chat', async (req, res) => {
 });
 
 export default router;
+
 
 
 

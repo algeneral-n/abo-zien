@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Weather Screen
- * شاشة الطقس
- * ✅ Cognitive Loop → Kernel → Weather Engine
+ * ???????? ??????????
+ * ??? Cognitive Loop ??? Kernel ??? Weather Engine
  */
 
 import { useState, useEffect } from 'react';
@@ -12,7 +12,7 @@ import {
   ScrollView,
   Pressable,
   TextInput,
-  ActivityIndicator,
+  REMOVED,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
@@ -35,12 +35,12 @@ export default function Weather() {
   useEffect(() => {
     getCurrentLocation();
     
-    // ✅ الاستماع لنتائج CognitiveLoop → Agent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? Agent ??? Response
     const unsubscribeLocation = kernel.on('agent:maps:response', (event) => {
       if (event.data.success && event.data.location) {
         setLatitude(event.data.location.latitude);
         setLongitude(event.data.location.longitude);
-        setLocation(event.data.location.name || 'الموقع الحالي');
+        setLocation(event.data.location.name || '???????????? ????????????');
         loadWeather(event.data.location.latitude, event.data.location.longitude);
       }
     });
@@ -62,7 +62,7 @@ export default function Weather() {
         setLongitude(firstResult.location.longitude);
         loadWeather(firstResult.location.latitude, firstResult.location.longitude);
       } else {
-        setError('لم يتم العثور على الموقع');
+        setError('???? ?????? ???????????? ?????? ????????????');
         setIsLoading(false);
       }
     });
@@ -76,7 +76,7 @@ export default function Weather() {
 
   const getCurrentLocation = async () => {
     try {
-      // ✅ إرسال إلى Kernel → CognitiveLoop (لا fetch مباشر)
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop (???? fetch ??????????)
       kernel.emit({
         type: 'user:input',
         data: {
@@ -95,7 +95,7 @@ export default function Weather() {
       setIsLoading(true);
       setError('');
 
-      // ✅ إرسال إلى Kernel → CognitiveLoop (لا fetch مباشر)
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop (???? fetch ??????????)
       kernel.emit({
         type: 'user:input',
         data: {
@@ -107,7 +107,7 @@ export default function Weather() {
         source: 'ui',
       });
     } catch (error: any) {
-      setError('حدث خطأ في الاتصال');
+      setError('?????? ?????? ???? ??????????????');
       console.error('Weather error:', error);
     } finally {
       setIsLoading(false);
@@ -116,7 +116,7 @@ export default function Weather() {
 
   const handleSearch = async () => {
     if (!location.trim()) {
-      setError('يرجى إدخال الموقع');
+      setError('???????? ?????????? ????????????');
       return;
     }
 
@@ -124,7 +124,7 @@ export default function Weather() {
       setIsLoading(true);
       setError('');
 
-      // ✅ إرسال إلى Kernel → CognitiveLoop (لا fetch مباشر)
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop (???? fetch ??????????)
       kernel.emit({
         type: 'user:input',
         data: {
@@ -135,7 +135,7 @@ export default function Weather() {
         source: 'ui',
       });
     } catch (error: any) {
-      setError('حدث خطأ في الاتصال');
+      setError('?????? ?????? ???? ??????????????');
       console.error('Search error:', error);
     } finally {
       setIsLoading(false);
@@ -151,7 +151,7 @@ export default function Weather() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>الطقس</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>??????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
@@ -159,19 +159,19 @@ export default function Weather() {
         <View style={styles.searchContainer}>
           <TextInput
             style={[styles.searchInput, { borderColor: colors.primary, color: colors.text }]}
-            placeholder="ابحث عن موقع"
-            placeholderTextColor={colors.primary + '50'}
+            placeholder="???????? ???? ????????"
+            plREMOVED={colors.primary + '50'}
             value={location}
             onChangeText={setLocation}
             onSubmitEditing={handleSearch}
           />
           <Pressable
-            style={[styles.searchButton, { backgroundColor: colors.primary }]}
+            style={[styles.searchButton, { bREMOVED: colors.primary }]}
             onPress={handleSearch}
             disabled={isLoading}
           >
             {isLoading ? (
-              <ActivityIndicator color="#000" />
+              <REMOVED color="#000" />
             ) : (
               <Icon name="apps" size={20} color="#000" />
             )}
@@ -186,33 +186,33 @@ export default function Weather() {
 
         {currentWeather && (
           <View style={[styles.weatherContainer, { borderColor: colors.primary }]}>
-            <Text style={[styles.weatherTitle, { color: colors.primary }]}>الطقس الحالي</Text>
+            <Text style={[styles.weatherTitle, { color: colors.primary }]}>?????????? ????????????</Text>
             <View style={styles.weatherMain}>
               <Text style={[styles.temperature, { color: colors.text }]}>
-                {currentWeather.temperature}°C
+                {currentWeather.temperature}??C
               </Text>
               <Text style={[styles.condition, { color: colors.textSecondary }]}>
-                {currentWeather.condition || 'مشمس'}
+                {currentWeather.condition || '????????'}
               </Text>
             </View>
             <View style={styles.weatherDetails}>
               <View style={styles.detailItem}>
-                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>الرطوبة</Text>
+                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>??????????????</Text>
                 <Text style={[styles.detailValue, { color: colors.text }]}>
                   {currentWeather.humidity}%
                 </Text>
               </View>
               <View style={styles.detailItem}>
-                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>الرياح</Text>
+                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>????????????</Text>
                 <Text style={[styles.detailValue, { color: colors.text }]}>
                   {currentWeather.windSpeed} km/h
                 </Text>
               </View>
               {currentWeather.feelsLike && (
                 <View style={styles.detailItem}>
-                  <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>يبدو</Text>
+                  <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>????????</Text>
                   <Text style={[styles.detailValue, { color: colors.text }]}>
-                    {currentWeather.feelsLike}°C
+                    {currentWeather.feelsLike}??C
                   </Text>
                 </View>
               )}
@@ -222,7 +222,7 @@ export default function Weather() {
 
         {forecast && forecast.forecast && forecast.forecast.length > 0 && (
           <View style={[styles.forecastContainer, { borderColor: colors.primary }]}>
-            <Text style={[styles.forecastTitle, { color: colors.primary }]}>التنبؤ الأسبوعي</Text>
+            <Text style={[styles.forecastTitle, { color: colors.primary }]}>???????????? ????????????????</Text>
             {forecast.forecast.slice(0, 7).map((day: any, index: number) => (
               <View key={index} style={styles.forecastItem}>
                 <Text style={[styles.forecastDay, { color: colors.text }]}>
@@ -230,16 +230,16 @@ export default function Weather() {
                 </Text>
                 <View style={styles.forecastTemp}>
                   <Text style={[styles.forecastHigh, { color: colors.text }]}>
-                    {day.high || day.temperature}°C
+                    {day.high || day.temperature}??C
                   </Text>
                   {day.low && (
                     <Text style={[styles.forecastLow, { color: colors.textSecondary }]}>
-                      {day.low}°C
+                      {day.low}??C
                     </Text>
                   )}
                 </View>
                 <Text style={[styles.forecastCondition, { color: colors.textSecondary }]}>
-                  {day.condition || 'مشمس'}
+                  {day.condition || '????????'}
                 </Text>
               </View>
             ))}
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 12,
     borderWidth: 2,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
     marginBottom: 20,
   },
   weatherTitle: {
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 12,
     borderWidth: 2,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   forecastTitle: {
     fontSize: 18,
@@ -389,5 +389,6 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
 });
+
 
 

@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Context Manager
  * Unified context sharing across all systems
- * ربط موحد لكل الأنظمة (AI, Voice, Storage, Auth, Translation, etc)
+ * ?????? ???????? ?????? ?????????????? (AI, Voice, Storage, Auth, Translation, etc)
  */
 
 export interface UserContext {
@@ -233,7 +233,7 @@ export class RAREContextManager {
   /**
    * Get all active sessions
    */
-  getActiveSessions(): number {
+  getREMOVED(): number {
     return this.contexts.size;
   }
 
@@ -252,3 +252,4 @@ export class RAREContextManager {
     return this.contexts.delete(sessionId);
   }
 }
+

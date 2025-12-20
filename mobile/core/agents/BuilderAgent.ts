@@ -1,6 +1,6 @@
 /**
- * BuilderAgent - وكيل البناء التلقائي
- * يدير Auto Builder، Templates، Themes، Systems
+ * BuilderAgent - ???????? ???????????? ????????????????
+ * ???????? Auto Builder?? Templates?? Themes?? Systems
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -41,7 +41,7 @@ export class BuilderAgent extends BaseAgent {
     });
 
     this.socket.on('connect', () => {
-      console.log('[BuilderAgent] Connected to backend ✅');
+      console.log('[BuilderAgent] Connected to backend ???');
     });
 
     this.socket.on('terminal:output', (data: any) => {
@@ -77,7 +77,7 @@ export class BuilderAgent extends BaseAgent {
     // #endregion
     
     try {
-      // ✅ Safety check: Validate action
+      // ??? Safety check: Validate action
       if (!action || typeof action !== 'string') {
         // #region agent log
         if (__DEV__) {
@@ -91,7 +91,7 @@ export class BuilderAgent extends BaseAgent {
       
       switch (action) {
         case 'build_app':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.projectName) {
             throw new Error('projectName is required');
           }
@@ -111,7 +111,7 @@ export class BuilderAgent extends BaseAgent {
           break;
 
         case 'execute_command':
-          // ✅ Safety check: Validate command
+          // ??? Safety check: Validate command
           if (!parameters || !parameters.command || typeof parameters.command !== 'string') {
             throw new Error('command is required');
           }
@@ -119,7 +119,7 @@ export class BuilderAgent extends BaseAgent {
           break;
 
         case 'upload_files':
-          // ✅ Safety check: Validate files
+          // ??? Safety check: Validate files
           if (!parameters || !parameters.files || !Array.isArray(parameters.files)) {
             throw new Error('files array is required');
           }
@@ -131,7 +131,7 @@ export class BuilderAgent extends BaseAgent {
           break;
 
         case 'download_build':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.downloadUrl) {
             throw new Error('downloadUrl is required');
           }
@@ -139,7 +139,7 @@ export class BuilderAgent extends BaseAgent {
           break;
 
         case 'generate_code':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.prompt) {
             throw new Error('prompt is required');
           }
@@ -147,7 +147,7 @@ export class BuilderAgent extends BaseAgent {
           break;
 
         case 'generate_image':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.prompt) {
             throw new Error('prompt is required');
           }
@@ -155,7 +155,7 @@ export class BuilderAgent extends BaseAgent {
           break;
 
         case 'generate_video':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.prompt) {
             throw new Error('prompt is required');
           }
@@ -163,7 +163,7 @@ export class BuilderAgent extends BaseAgent {
           break;
 
         case 'generate_presentation':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.prompt) {
             throw new Error('prompt is required');
           }
@@ -171,7 +171,7 @@ export class BuilderAgent extends BaseAgent {
           break;
 
         case 'generate_html':
-          // ✅ Safety check: Validate parameters
+          // ??? Safety check: Validate parameters
           if (!parameters || !parameters.prompt) {
             throw new Error('prompt is required');
           }
@@ -258,18 +258,18 @@ export class BuilderAgent extends BaseAgent {
       const data = await response.json();
       
       if (data.success) {
-        // ✅ إرسال إشعار شامل للعميل بعد نجاح البناء
+        // ??? ?????????? ?????????? ???????? ???????????? ?????? ???????? ????????????
         if (data.clientId && data.clientEmail && data.clientPhone) {
           if (__DEV__) {
             fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/BuilderAgent.ts:buildApp',message:'Sending comprehensive notification to client',data:{clientId:data.clientId,projectName:data.projectName},timestamp:Date.now(),sessionId:'builder-session',runId:'run1',hypothesisId:'BUILD_NOTIFY_CLIENT'})}).catch(()=>{});
           }
           
-          // إرسال إلى TerminalIntegrationService
+          // ?????????? ?????? TerminalIntegrationService
           const { TerminalIntegrationService } = await import('../services/TerminalIntegrationService');
           const integrationService = new TerminalIntegrationService();
           
           const buildLink = data.downloadUrl || data.previewUrl || '';
-          const message = `تم إكمال بناء تطبيق ${data.projectName || 'التطبيق'} بنجاح!`;
+          const message = `???? ?????????? ???????? ?????????? ${data.projectName || '??????????????'} ??????????!`;
           
           integrationService.notifyClientComprehensive(
             data.clientId,
@@ -285,11 +285,11 @@ export class BuilderAgent extends BaseAgent {
         this.emit('agent:builder:response', { build: data });
         return data;
       } else {
-        this.emit('agent:builder:error', { error: data.error || 'فشل البناء' });
-        throw new Error(data.error || 'فشل البناء');
+        this.emit('agent:builder:error', { error: data.error || '?????? ????????????' });
+        throw new Error(data.error || '?????? ????????????');
       }
     } catch (error: any) {
-      this.emit('agent:builder:error', { error: error.message || 'فشل البناء' });
+      this.emit('agent:builder:error', { error: error.message || '?????? ????????????' });
       throw error;
     }
   }
@@ -359,7 +359,7 @@ export class BuilderAgent extends BaseAgent {
             if (data.error) {
               reject(new Error(data.error));
             } else {
-              // ✅ إضافة نقاط Loyalty عند نجاح الأمر
+              // ??? ?????????? ???????? Loyalty ?????? ???????? ??????????
               if (this.kernel) {
                 if (__DEV__) {
                   fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/agents/BuilderAgent.ts:executeCommand',message:'Adding loyalty points for successful command',data:{command},timestamp:Date.now(),sessionId:'builder-session',runId:'run1',hypothesisId:'LOYALTY_POINTS_ADD'})}).catch(()=>{});
@@ -440,11 +440,11 @@ export class BuilderAgent extends BaseAgent {
         this.emit('agent:builder:response', { builds: data.builds });
         return data;
       } else {
-        this.emit('agent:builder:error', { error: data.error || 'فشل تحميل البناءات' });
-        throw new Error(data.error || 'فشل تحميل البناءات');
+        this.emit('agent:builder:error', { error: data.error || '?????? ?????????? ????????????????' });
+        throw new Error(data.error || '?????? ?????????? ????????????????');
       }
     } catch (error: any) {
-      this.emit('agent:builder:error', { error: error.message || 'فشل تحميل البناءات' });
+      this.emit('agent:builder:error', { error: error.message || '?????? ?????????? ????????????????' });
       throw error;
     }
   }
@@ -458,7 +458,7 @@ export class BuilderAgent extends BaseAgent {
       const response = await fetch(fullUrl);
       
       if (!response.ok) {
-        throw new Error('فشل التحميل');
+        throw new Error('?????? ??????????????');
       }
 
       // In React Native, you'd use a library like expo-file-system
@@ -466,7 +466,7 @@ export class BuilderAgent extends BaseAgent {
       this.emit('agent:builder:response', { download: { success: true, filename: parameters.filename } });
       return { success: true, filename: parameters.filename };
     } catch (error: any) {
-      this.emit('agent:builder:error', { error: error.message || 'فشل التحميل' });
+      this.emit('agent:builder:error', { error: error.message || '?????? ??????????????' });
       throw error;
     }
   }
@@ -492,8 +492,8 @@ export class BuilderAgent extends BaseAgent {
       this.emit('agent:builder:response', { code: json.code });
       return json;
     } else {
-      this.emit('agent:builder:error', { error: json.error || 'فشل التوليد' });
-      throw new Error(json.error || 'فشل التوليد');
+      this.emit('agent:builder:error', { error: json.error || '?????? ??????????????' });
+      throw new Error(json.error || '?????? ??????????????');
     }
   }
 
@@ -517,8 +517,8 @@ export class BuilderAgent extends BaseAgent {
       this.emit('agent:builder:response', { images: json.images });
       return json;
     } else {
-      this.emit('agent:builder:error', { error: json.error || 'فشل توليد الصورة' });
-      throw new Error(json.error || 'فشل توليد الصورة');
+      this.emit('agent:builder:error', { error: json.error || '?????? ?????????? ????????????' });
+      throw new Error(json.error || '?????? ?????????? ????????????');
     }
   }
 
@@ -541,8 +541,8 @@ export class BuilderAgent extends BaseAgent {
       this.emit('agent:builder:response', { video: json });
       return json;
     } else {
-      this.emit('agent:builder:error', { error: json.error || 'فشل توليد الفيديو' });
-      throw new Error(json.error || 'فشل توليد الفيديو');
+      this.emit('agent:builder:error', { error: json.error || '?????? ?????????? ??????????????' });
+      throw new Error(json.error || '?????? ?????????? ??????????????');
     }
   }
 
@@ -566,8 +566,8 @@ export class BuilderAgent extends BaseAgent {
       this.emit('agent:builder:response', { presentation: json.presentation });
       return json;
     } else {
-      this.emit('agent:builder:error', { error: json.error || 'فشل توليد العرض' });
-      throw new Error(json.error || 'فشل توليد العرض');
+      this.emit('agent:builder:error', { error: json.error || '?????? ?????????? ??????????' });
+      throw new Error(json.error || '?????? ?????????? ??????????');
     }
   }
 
@@ -591,9 +591,10 @@ export class BuilderAgent extends BaseAgent {
       this.emit('agent:builder:response', { html: json.html });
       return json;
     } else {
-      this.emit('agent:builder:error', { error: json.error || 'فشل توليد HTML' });
-      throw new Error(json.error || 'فشل توليد HTML');
+      this.emit('agent:builder:error', { error: json.error || '?????? ?????????? HTML' });
+      throw new Error(json.error || '?????? ?????????? HTML');
     }
   }
 }
+
 

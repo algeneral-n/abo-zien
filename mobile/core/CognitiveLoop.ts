@@ -1,9 +1,9 @@
 /**
- * RARE 4N - Cognitive Loop (العقل)
+ * RARE 4N - Cognitive Loop (??????????)
  * Cognitive Continuum Kernel - The Brain
  * 
- * القاعدة الذهبية: مفيش Agent يشتغل بدون قرار من Cognitive Loop
- * ✅ Integrated with PolicyEngine & MemoryEngine
+ * ?????????????? ??????????????: ???????? Agent ?????????? ???????? ???????? ???? Cognitive Loop
+ * ??? Integrated with PolicyEngine & MemoryEngine
  */
 
 import { RAREKernel } from './RAREKernel';
@@ -46,10 +46,10 @@ export class CognitiveLoop {
   private decisionHistory: CognitiveDecision[] = [];
   private improvementPatterns: Map<string, number> = new Map();
 
-  // ✅ Circuit Breakers for each agent
+  // ??? Circuit Breakers for each agent
   private circuitBreakers: Map<string, CircuitBreaker> = new Map();
   
-  // ✅ Retry Mechanism
+  // ??? Retry Mechanism
   private retryMechanism: RetryMechanism;
 
   private constructor() {
@@ -60,15 +60,15 @@ export class CognitiveLoop {
       this.memoryEngine = MemoryEngine.getInstance();
       this.permissionManager = PermissionManager.getInstance();
       
-      // ✅ Initialize Retry Mechanism
+      // ??? Initialize Retry Mechanism
       this.retryMechanism = new RetryMechanism({
         maxRetries: 3,
         initialDelay: 1000,
         maxDelay: 30000,
-        backoffMultiplier: 2,
+        bREMOVED: 2,
       });
     } catch (error) {
-      console.error('❌ CognitiveLoop constructor error:', error);
+      console.error('??? CognitiveLoop constructor error:', error);
     }
   }
 
@@ -92,7 +92,7 @@ export class CognitiveLoop {
     this.kernel = kernel;
 
     // Subscribe to Kernel events (NOT EventBus directly)
-    // ✅ Wrap in try-catch to prevent stopping on errors
+    // ??? Wrap in try-catch to prevent stopping on errors
     kernel.on('user:input', (event) => {
       this.processInput(event.data).catch((error) => {
         console.error('CognitiveLoop: processInput error (non-blocking):', error);
@@ -113,7 +113,7 @@ export class CognitiveLoop {
 
   /**
    * Main processing function - The Brain
-   * ✅ Enhanced with comprehensive error handling and safety checks
+   * ??? Enhanced with comprehensive error handling and safety checks
    */
   async processInput(input: any): Promise<CognitiveDecision> {
     try {
@@ -123,7 +123,7 @@ export class CognitiveLoop {
       }
       // #endregion
       
-      // ✅ Safety check: Validate input
+      // ??? Safety check: Validate input
       if (!input || (!input.text && !input.audio)) {
         // #region agent log
         if (__DEV__) {
@@ -134,7 +134,7 @@ export class CognitiveLoop {
         return this.createFallbackDecision('Invalid input');
       }
 
-      // ✅ Safety check: Ensure kernel is available
+      // ??? Safety check: Ensure kernel is available
       if (!this.kernel) {
         // #region agent log
         if (__DEV__) {
@@ -203,7 +203,7 @@ export class CognitiveLoop {
           fetch('http://127.0.0.1:7243/ingest/3e7bba4a-de65-453d-8490-c9342404637d',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'mobile/core/CognitiveLoop.ts:182',message:'Understanding failed, using fallback',data:{error:error?.toString()},timestamp:Date.now(),sessionId:'cognitive-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
         }
         // #endregion
-        understanding = this.createFallbackUnderstanding(input);
+        understanding = this.createFallbREMOVED(input);
       }
 
       // Step 2: Reasoning (Emotion + Intent Analysis) - with Circuit Breaker & Retry
@@ -384,7 +384,7 @@ export class CognitiveLoop {
       action: 'ai_chat',
       agent: 'ai',
       parameters: { 
-        message: 'عذراً، حدث خطأ في معالجة طلبك. جرب مرة أخرى.',
+        message: '???????????? ?????? ?????? ???? ???????????? ????????. ?????? ?????? ????????.',
         fallback: true,
         reason,
       },
@@ -397,7 +397,7 @@ export class CognitiveLoop {
   /**
    * Create fallback understanding when analysis fails
    */
-  private createFallbackUnderstanding(input: any): Understanding {
+  private createFallbREMOVED(input: any): Understanding {
     return {
       context: this.contextStore.getContext(),
       emotion: { type: 'neutral', intensity: 0.5, confidence: 0.5 },
@@ -409,12 +409,12 @@ export class CognitiveLoop {
 
   /**
    * Step 1: Understanding (Context Awareness Engine)
-   * ✅ Enhanced with Memory Retrieval
+   * ??? Enhanced with Memory Retrieval
    */
   private async understand(input: any): Promise<Understanding> {
     const context = this.contextStore.getContext();
 
-    // ✅ Retrieve relevant memories
+    // ??? Retrieve relevant memories
     const relevantMemories = this.memoryEngine.getRelevantContext(
       input.text || input.audio || '',
       5
@@ -792,7 +792,7 @@ export class CognitiveLoop {
         break;
 
       case 'owner_command':
-        // ✅ نظام أوامر المستخدم للتحكم في الاجنتس
+        // ??? ???????? ?????????? ???????????????? ???????????? ???? ??????????????
         decision = {
           action: intent.parameters?.action || 'execute_command',
           agent: intent.parameters?.agent || 'ai',
@@ -879,25 +879,25 @@ export class CognitiveLoop {
 
   /**
    * Step 4: Execute (via Kernel to Agent)
-   * ✅ Enhanced with validation and error handling
-   * ✅ Enhanced with Agent Lifecycle Management
-   * ✅ Enhanced with Policy Evaluation
+   * ??? Enhanced with validation and error handling
+   * ??? Enhanced with Agent Lifecycle Management
+   * ??? Enhanced with Policy Evaluation
    */
   private async execute(decision: CognitiveDecision): Promise<void> {
     try {
-      // ✅ Safety check: Validate decision
+      // ??? Safety check: Validate decision
       if (!decision || !decision.agent || !decision.action) {
         console.error('CognitiveLoop: Invalid decision structure');
         return;
       }
 
-      // ✅ Safety check: Ensure kernel is available
+      // ??? Safety check: Ensure kernel is available
       if (!this.kernel) {
         console.error('CognitiveLoop: Kernel not available for execution');
         return;
       }
 
-      // ✅ POLICY EVALUATION - Validate decision against policies
+      // ??? POLICY EVALUATION - Validate decision against policies
       const context = this.contextStore.getContext();
       const policyDecision = this.policyEngine.evaluate(
         {
@@ -933,7 +933,7 @@ export class CognitiveLoop {
         return;
       }
 
-      // ✅ Safety check: Verify agent exists
+      // ??? Safety check: Verify agent exists
       const agent = this.kernel.getAgent(decision.agent);
       if (!agent) {
         console.warn(`CognitiveLoop: Agent ${decision.agent} not found`);
@@ -941,10 +941,10 @@ export class CognitiveLoop {
         return;
       }
 
-      // ✅ Agent Lifecycle Management - Decide when to start/stop/pause/resume
+      // ??? Agent Lifecycle Management - Decide when to start/stop/pause/resume
       await this.manageAgentLifecycle(decision);
 
-      // ✅ Notification Decision - Decide when agent needs notification
+      // ??? Notification Decision - Decide when agent needs notification
       await this.decideNotifications(decision);
 
       // Emit decision event
@@ -954,7 +954,7 @@ export class CognitiveLoop {
         console.error('CognitiveLoop: Failed to emit decision event:', error);
       }
 
-      // ✅ Get or create Circuit Breaker for this agent
+      // ??? Get or create Circuit Breaker for this agent
       if (!this.circuitBreakers.has(decision.agent)) {
         this.circuitBreakers.set(
           decision.agent,
@@ -967,7 +967,7 @@ export class CognitiveLoop {
       }
       const circuitBreaker = this.circuitBreakers.get(decision.agent)!;
 
-      // ✅ Execute action via agent with Circuit Breaker and Retry Mechanism
+      // ??? Execute action via agent with Circuit Breaker and Retry Mechanism
       try {
         if (__DEV__) {
           console.log(`[CognitiveLoop] Executing ${decision.action} via ${decision.agent}`);
@@ -1027,7 +1027,7 @@ export class CognitiveLoop {
 
   /**
    * Agent Lifecycle Management
-   * ✅ يقرر متى يفتح/يغلق/يوقف/يستأنف كل Agent
+   * ??? ???????? ?????? ????????/????????/????????/???????????? ???? Agent
    */
   private async manageAgentLifecycle(decision: CognitiveDecision): Promise<void> {
     if (!this.kernel) return;
@@ -1086,7 +1086,7 @@ export class CognitiveLoop {
 
   /**
    * Notification Decision System
-   * ✅ يقرر متى يحتاج Agent للإشعارات
+   * ??? ???????? ?????? ?????????? Agent ??????????????????
    */
   private async decideNotifications(decision: CognitiveDecision): Promise<void> {
     if (!this.kernel) return;
@@ -1138,15 +1138,15 @@ export class CognitiveLoop {
 
   /**
    * Step 5: Learn (Continuous Learning Layer)
-   * ✅ Enhanced with error handling
-   * ✅ Enhanced with Memory Storage
+   * ??? Enhanced with error handling
+   * ??? Enhanced with Memory Storage
    */
   private async learn(
     understanding: Understanding,
     decision: CognitiveDecision
   ): Promise<void> {
     try {
-      // ✅ Safety check: Validate inputs
+      // ??? Safety check: Validate inputs
       if (!decision || !decision.agent || !decision.action) {
         console.warn('CognitiveLoop: Invalid decision for learning');
         return;
@@ -1187,7 +1187,7 @@ export class CognitiveLoop {
 
         this.contextStore.addInteraction(interaction);
 
-        // ✅ STORE IN MEMORY ENGINE
+        // ??? STORE IN MEMORY ENGINE
         await this.memoryEngine.storeInteraction({
           id: interaction.id,
           type: decision.action,
@@ -1244,12 +1244,12 @@ export class CognitiveLoop {
     
     // Enhanced emotion detection
     const emotionKeywords: Record<string, string[]> = {
-      happy: ['سعيد', 'فرح', 'رائع', 'ممتاز', 'جميل', 'happy', 'great', 'awesome'],
-      excited: ['متحمس', 'مشوق', 'excited', 'thrilled'],
-      focused: ['ركز', 'انتبه', 'focus', 'concentrate'],
-      curious: ['كيف', 'لماذا', 'ماذا', 'how', 'why', 'what'],
-      concerned: ['مشكلة', 'خطأ', 'فشل', 'problem', 'error', 'failed'],
-      urgent: ['عاجل', 'سريع', 'urgent', 'quick', 'fast'],
+      happy: ['????????', '??????', '????????', '??????????', '????????', 'happy', 'great', 'awesome'],
+      excited: ['??????????', '????????', 'excited', 'thrilled'],
+      focused: ['??????', '??????????', 'focus', 'concentrate'],
+      curious: ['??????', '??????????', '????????', 'how', 'why', 'what'],
+      concerned: ['??????????', '??????', '??????', 'problem', 'error', 'failed'],
+      urgent: ['????????', '????????', 'urgent', 'quick', 'fast'],
       neutral: [],
     };
 
@@ -1289,60 +1289,60 @@ export class CognitiveLoop {
 
     // Enhanced intent patterns
     const intentPatterns: Record<string, RegExp[]> = {
-      // ✅ Owner commands (أوامر المستخدم)
+      // ??? Owner commands (?????????? ????????????????)
       owner_command: [
-        /^(أمر|command|order|أريد|أطلب|نادر|nader).*(الاجنت|agent|العميل|client|المجلس|council)/i,
-        /^(كيف|how).*(أرحب|greet|أتعامل|deal).*(عميل|client)/i,
-        /^(ماذا|what).*(أعمل|do|أفعل|should).*(عميل|client)/i,
+        /^(??????|command|order|????????|????????|????????|nader).*(????????????|agent|????????????|client|????????????|council)/i,
+        /^(??????|how).*(????????|greet|????????????|deal).*(????????|client)/i,
+        /^(????????|what).*(????????|do|????????|should).*(????????|client)/i,
       ],
       
-      // ✅ Council intents
+      // ??? Council intents
       council_debate: [
-        /^(مجلس| council|نصيحة|advice|رأي|opinion|توصية|recommendation)/i,
-        /^(ماذا|what).*(توصي|recommend|تنصح|advise)/i,
-        /^(أريد|want).*(رأي|opinion|نصيحة|advice)/i,
+        /^(????????| council|??????????|advice|??????|opinion|??????????|recommendation)/i,
+        /^(????????|what).*(????????|recommend|????????|advise)/i,
+        /^(????????|want).*(??????|opinion|??????????|advice)/i,
       ],
       
       get_advice: [
-        /^(نصيحة|advice|رأي|opinion|توصية|recommendation)/i,
-        /^(ماذا|what).*(توصي|recommend)/i,
+        /^(??????????|advice|??????|opinion|??????????|recommendation)/i,
+        /^(????????|what).*(????????|recommend)/i,
       ],
       
       get_recommendation: [
-        /^(توصية|recommendation|اقتراح|suggestion)/i,
-        /^(ماذا|what).*(توصي|recommend)/i,
+        /^(??????????|recommendation|????????????|suggestion)/i,
+        /^(????????|what).*(????????|recommend)/i,
       ],
       
-      // ✅ Client interaction intents
+      // ??? Client interaction intents
       client_greeting: [
-        /^(كيف|how).*(أرحب|greet|أستقبل|welcome).*(عميل|client)/i,
-        /^(طريقة|way).*(الترحيب|greeting)/i,
-        /^(greet|welcome).*(client|عميل)/i,
+        /^(??????|how).*(????????|greet|????????????|welcome).*(????????|client)/i,
+        /^(??????????|way).*(??????????????|greeting)/i,
+        /^(greet|welcome).*(client|????????)/i,
       ],
       
       client_action: [
-        /^(ماذا|what).*(أعمل|do|أفعل|should).*(عميل|client)/i,
-        /^(كيف|how).*(أتعامل|deal|handle).*(طلب|request).*(عميل|client)/i,
-        /^(action|action).*(client|عميل)/i,
+        /^(????????|what).*(????????|do|????????|should).*(????????|client)/i,
+        /^(??????|how).*(????????????|deal|handle).*(??????|request).*(????????|client)/i,
+        /^(action|action).*(client|????????)/i,
       ],
       
-      voice_command: [/^رير|^نادر|^rare|^nader/i, /^استمع|^listen/i],
-      enable_voice: [/^enable.*voice|^فعّل.*صوت|^تشغيل.*صوت|^start.*voice/i, /^تفعيل.*صوت/i],
-      disable_voice: [/^disable.*voice|^أوقف.*صوت|^إيقاف.*صوت|^stop.*voice/i, /^إيقاف.*صوت/i],
-      build_app: [/^بني|^build|^generate|^create.*app/i, /^app.*builder/i],
-      file_operation: [/^ملف|^file|^document|^scan|^ocr|^رفع|^تحميل/i],
-      vault_access: [/^خزنة|^vault|^secure|^مشفر|^black.*vault/i],
-      portal_request: [/^portal|^client|^preview|^بوابة|^لينك/i],
-      loyalty_check: [/^loyalty|^نقاط|^points|^مستوى|^ولاء|^مكافآت/i],
-      service_control: [/^service|^backend|^cloudflare|^widget|^خدمة|^باك اند|^كلاودفلير|^ويدجت|^تشغيل|^إيقاف|^إعادة.*تشغيل|^حالة.*خدمة/i, /^start|^stop|^restart|^status/i],
-      research_query: [/^research|^بحث|^تحليل|^تحسين|^تطوير/i],
-      phone_call: [/^اتصل|^اتصلي|^كلم|^كلمي|^call|^phone/i, /^مكالمة|^تليفون/i],
-      send_email: [/^ارسل.*ايميل|^send.*email|^بريد|^email/i],
-      send_whatsapp: [/^واتساب|^whatsapp|^wa|^ارسل.*واتس/i],
-      contact_family: [/^اتصل.*عائلة|^كلم.*عائلة|^contact.*family|^نادر|^أمي|^ناريمان|^ندى|^زيان|^تمارا|^عمر|^كيان|^nader|^omy|^nariman|^nada|^zien|^tamara|^omar|^kayan/i],
-      ultimate_assistant: [/^ultimate|^assistant|^مساعد|^رير.*اتصل|^رير.*كلم/i],
-      chat: [/^مرحبا|^hello|^hi|^أهلا/i],
-      question: [/^كيف|^لماذا|^ماذا|^what|^how|^why/i, /\?/],
+      voice_command: [/^??????|^????????|^rare|^nader/i, /^??????????|^listen/i],
+      enable_voice: [/^enable.*voice|^????????.*??????|^??????????.*??????|^start.*voice/i, /^??????????.*??????/i],
+      disable_voice: [/^disable.*voice|^????????.*??????|^??????????.*??????|^stop.*voice/i, /^??????????.*??????/i],
+      build_app: [/^??????|^build|^generate|^create.*app/i, /^app.*builder/i],
+      file_operation: [/^??????|^file|^document|^scan|^ocr|^??????|^??????????/i],
+      vault_access: [/^????????|^vault|^secure|^????????|^black.*vault/i],
+      portal_request: [/^portal|^client|^preview|^??????????|^????????/i],
+      loyalty_check: [/^loyalty|^????????|^points|^??????????|^????????|^????????????/i],
+      service_control: [/^service|^backend|^cloudflare|^widget|^????????|^?????? ??????|^??????????????????|^??????????|^??????????|^??????????|^??????????.*??????????|^????????.*????????/i, /^start|^stop|^restart|^status/i],
+      research_query: [/^research|^??????|^??????????|^??????????|^??????????/i],
+      phone_call: [/^????????|^??????????|^??????|^????????|^call|^phone/i, /^????????????|^????????????/i],
+      send_email: [/^????????.*??????????|^send.*email|^????????|^email/i],
+      send_whatsapp: [/^????????????|^whatsapp|^wa|^????????.*????????/i],
+      contact_family: [/^????????.*??????????|^??????.*??????????|^contact.*family|^????????|^??????|^??????????????|^??????|^????????|^??????????|^??????|^????????|^nader|^omy|^nariman|^nada|^zien|^tamara|^omar|^kayan/i],
+      ultimate_assistant: [/^ultimate|^assistant|^??????????|^??????.*????????|^??????.*??????/i],
+      chat: [/^??????????|^hello|^hi|^????????/i],
+      question: [/^??????|^??????????|^????????|^what|^how|^why/i, /\?/],
     };
 
     for (const [intentType, patterns] of Object.entries(intentPatterns)) {
@@ -1350,7 +1350,7 @@ export class CognitiveLoop {
         return {
           type: intentType,
           confidence: 0.9,
-          parameters: this.extractParameters(text, intentType),
+          parameters: this.extrREMOVED(text, intentType),
         };
       }
     }
@@ -1431,7 +1431,7 @@ export class CognitiveLoop {
   /**
    * Extract Parameters
    */
-  private extractParameters(text: string, intentType: string): Record<string, any> {
+  private extrREMOVED(text: string, intentType: string): Record<string, any> {
     const params: Record<string, any> = {};
 
     if (intentType === 'build_app') {
@@ -1474,11 +1474,11 @@ export class CognitiveLoop {
 
   /**
    * Emit event via Kernel
-   * ✅ Enhanced with error handling
+   * ??? Enhanced with error handling
    */
   private emit(type: string, data: any): void {
     try {
-      // ✅ Safety check: Validate inputs
+      // ??? Safety check: Validate inputs
       if (!type || typeof type !== 'string') {
         console.warn('CognitiveLoop: Invalid event type');
         return;
@@ -1543,3 +1543,4 @@ export class CognitiveLoop {
     return new Map(this.improvementPatterns);
   }
 }
+

@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Boot Routes
  * Boot sequence and initialization
- * ✅ Integrated with Cognitive Loop and Kernel
+ * ??? Integrated with Cognitive Loop and Kernel
  */
 
 import express from 'express';
@@ -12,7 +12,7 @@ const router = express.Router();
 /**
  * Boot check - Verify system readiness
  * POST /api/boot/check
- * ✅ Cognitive Loop → Kernel → System Check
+ * ??? Cognitive Loop ??? Kernel ??? System Check
  */
 router.post('/check', async (req, res) => {
   try {
@@ -68,7 +68,7 @@ router.post('/check', async (req, res) => {
 /**
  * Initialize system (on-demand, not at startup)
  * POST /api/boot/initialize
- * ✅ Cognitive Loop → Kernel → System Initialization
+ * ??? Cognitive Loop ??? Kernel ??? System Initialization
  */
 router.post('/initialize', async (req, res) => {
   try {
@@ -98,4 +98,5 @@ router.post('/initialize', async (req, res) => {
 });
 
 export default router;
+
 

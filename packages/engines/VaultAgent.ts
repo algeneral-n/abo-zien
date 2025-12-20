@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Vault Agent (Conscious Agent)
  * Security & Vault Agent - 3-layer security
- * ❌ ممنوع: أي direct calls - Cognitive Loop فقط
+ * ??? ??????????: ???? direct calls - Cognitive Loop ??????
  */
 
 import { RAREEngine, EngineConfig } from '../core/RAREEngine';
@@ -40,7 +40,7 @@ export class VaultAgent extends RAREEngine {
 
   // Security credentials
   private readonly PIN = '263688';
-  private readonly SECRET_PHRASE = 'رير من عائلتي';
+  private readonly SECRET_PHRASE = '?????? ???? ????????????';
 
   async initialize(config: EngineConfig): Promise<void> {
     this.kernel = config.kernel;
@@ -120,8 +120,8 @@ export class VaultAgent extends RAREEngine {
       // Layer 1: Face ID
       if (this.security.layer1 === 'face_id') {
         const faceAuth = await LocalAuthentication.authenticateAsync({
-          promptMessage: 'المصادقة بالوجه - الطبقة الأولى',
-          fallbackLabel: 'استخدم PIN',
+          promptMessage: '???????????????? ???????????? - ???????????? ????????????',
+          fallbackLabel: '???????????? PIN',
         });
 
         if (!faceAuth.success) {
@@ -343,4 +343,5 @@ export class VaultAgent extends RAREEngine {
     };
   }
 }
+
 

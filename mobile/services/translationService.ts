@@ -1,6 +1,6 @@
 /**
  * RARE 4N - Neural Translation Service
- * نظام الترجمات العصبي المتعلم المتطور باستمرار
+ * ???????? ???????????????? ???????????? ?????????????? ?????????????? ????????????????
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -48,7 +48,7 @@ class TranslationService {
       this.currentLanguage = language;
       await AsyncStorage.setItem('language', language);
       
-      // Notify Kernel → Cognitive Loop
+      // Notify Kernel ??? Cognitive Loop
       this.kernel.emit({
         type: 'user:input',
         data: {
@@ -110,13 +110,14 @@ class TranslationService {
    * Load translations from backend
    */
   async loadTranslations(): Promise<void> {
-    // This would be called by Kernel → Cognitive Loop → Translation Agent
+    // This would be called by Kernel ??? Cognitive Loop ??? Translation Agent
     // For now, we use default translations
   }
 }
 
 export const translationService = new TranslationService();
 export default translationService;
+
 
 
 

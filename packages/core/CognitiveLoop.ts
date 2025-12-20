@@ -1,8 +1,8 @@
 /**
- * RARE 4N - Cognitive Loop (العقل)
+ * RARE 4N - Cognitive Loop (??????????)
  * Cognitive Continuum Kernel - The Brain
  * 
- * القاعدة الذهبية: مفيش Agent يشتغل بدون قرار من Cognitive Loop
+ * ?????????????? ??????????????: ???????? Agent ?????????? ???????? ???????? ???? Cognitive Loop
  */
 
 import { RAREKernel } from './RAREKernel';
@@ -72,17 +72,17 @@ export class CognitiveLoop {
 
   /**
    * Main processing function - The Brain
-   * ✅ Enhanced with comprehensive error handling and safety checks
+   * ??? Enhanced with comprehensive error handling and safety checks
    */
   async processInput(input: any): Promise<CognitiveDecision> {
     try {
-      // ✅ Safety check: Validate input
+      // ??? Safety check: Validate input
       if (!input || (!input.text && !input.audio)) {
         console.warn('CognitiveLoop: Invalid input received');
         return this.createFallbackDecision('Invalid input');
       }
 
-      // ✅ Safety check: Ensure kernel is available
+      // ??? Safety check: Ensure kernel is available
       if (!this.kernel) {
         console.error('CognitiveLoop: Kernel not available');
         return this.createFallbackDecision('System not ready');
@@ -117,7 +117,7 @@ export class CognitiveLoop {
         understanding = await this.understand(input);
       } catch (error) {
         console.error('CognitiveLoop: Understanding failed:', error);
-        understanding = this.createFallbackUnderstanding(input);
+        understanding = this.createFallbREMOVED(input);
       }
 
       // Step 2: Reasoning (Emotion + Intent Analysis) - with error handling
@@ -175,7 +175,7 @@ export class CognitiveLoop {
       action: 'ai_chat',
       agent: 'ai',
       parameters: { 
-        message: 'عذراً، حدث خطأ في معالجة طلبك. جرب مرة أخرى.',
+        message: '???????????? ?????? ?????? ???? ???????????? ????????. ?????? ?????? ????????.',
         fallback: true,
         reason,
       },
@@ -188,7 +188,7 @@ export class CognitiveLoop {
   /**
    * Create fallback understanding when analysis fails
    */
-  private createFallbackUnderstanding(input: any): Understanding {
+  private createFallbREMOVED(input: any): Understanding {
     return {
       context: this.contextStore.getContext(),
       emotion: { type: 'neutral', intensity: 0.5, confidence: 0.5 },
@@ -489,24 +489,24 @@ export class CognitiveLoop {
 
   /**
    * Step 4: Execute (via Kernel to Agent)
-   * ✅ Enhanced with validation and error handling
-   * ✅ Enhanced with Agent Lifecycle Management
+   * ??? Enhanced with validation and error handling
+   * ??? Enhanced with Agent Lifecycle Management
    */
   private async execute(decision: CognitiveDecision): Promise<void> {
     try {
-      // ✅ Safety check: Validate decision
+      // ??? Safety check: Validate decision
       if (!decision || !decision.agent || !decision.action) {
         console.error('CognitiveLoop: Invalid decision structure');
         return;
       }
 
-      // ✅ Safety check: Ensure kernel is available
+      // ??? Safety check: Ensure kernel is available
       if (!this.kernel) {
         console.error('CognitiveLoop: Kernel not available for execution');
         return;
       }
 
-      // ✅ Safety check: Verify agent exists
+      // ??? Safety check: Verify agent exists
       const agent = this.kernel.getEngine(decision.agent);
       if (!agent) {
         console.warn(`CognitiveLoop: Agent ${decision.agent} not found, using fallback`);
@@ -515,10 +515,10 @@ export class CognitiveLoop {
         decision.action = 'ai_chat';
       }
 
-      // ✅ Agent Lifecycle Management - Decide when to start/stop/pause/resume
+      // ??? Agent Lifecycle Management - Decide when to start/stop/pause/resume
       await this.manageAgentLifecycle(decision);
 
-      // ✅ Notification Decision - Decide when agent needs notification
+      // ??? Notification Decision - Decide when agent needs notification
       await this.decideNotifications(decision);
 
       // Emit decision event
@@ -565,7 +565,7 @@ export class CognitiveLoop {
 
   /**
    * Agent Lifecycle Management
-   * ✅ يقرر متى يفتح/يغلق/يوقف/يستأنف كل Agent
+   * ??? ???????? ?????? ????????/????????/????????/???????????? ???? Agent
    */
   private async manageAgentLifecycle(decision: CognitiveDecision): Promise<void> {
     if (!this.kernel) return;
@@ -624,7 +624,7 @@ export class CognitiveLoop {
 
   /**
    * Notification Decision System
-   * ✅ يقرر متى يحتاج Agent للإشعارات
+   * ??? ???????? ?????? ?????????? Agent ??????????????????
    */
   private async decideNotifications(decision: CognitiveDecision): Promise<void> {
     if (!this.kernel) return;
@@ -676,14 +676,14 @@ export class CognitiveLoop {
 
   /**
    * Step 5: Learn (Continuous Learning Layer)
-   * ✅ Enhanced with error handling
+   * ??? Enhanced with error handling
    */
   private async learn(
     understanding: Understanding,
     decision: CognitiveDecision
   ): Promise<void> {
     try {
-      // ✅ Safety check: Validate inputs
+      // ??? Safety check: Validate inputs
       if (!decision || !decision.agent || !decision.action) {
         console.warn('CognitiveLoop: Invalid decision for learning');
         return;
@@ -742,12 +742,12 @@ export class CognitiveLoop {
     
     // Enhanced emotion detection
     const emotionKeywords: Record<string, string[]> = {
-      happy: ['سعيد', 'فرح', 'رائع', 'ممتاز', 'جميل', 'happy', 'great', 'awesome'],
-      excited: ['متحمس', 'مشوق', 'excited', 'thrilled'],
-      focused: ['ركز', 'انتبه', 'focus', 'concentrate'],
-      curious: ['كيف', 'لماذا', 'ماذا', 'how', 'why', 'what'],
-      concerned: ['مشكلة', 'خطأ', 'فشل', 'problem', 'error', 'failed'],
-      urgent: ['عاجل', 'سريع', 'urgent', 'quick', 'fast'],
+      happy: ['????????', '??????', '????????', '??????????', '????????', 'happy', 'great', 'awesome'],
+      excited: ['??????????', '????????', 'excited', 'thrilled'],
+      focused: ['??????', '??????????', 'focus', 'concentrate'],
+      curious: ['??????', '??????????', '????????', 'how', 'why', 'what'],
+      concerned: ['??????????', '??????', '??????', 'problem', 'error', 'failed'],
+      urgent: ['????????', '????????', 'urgent', 'quick', 'fast'],
       neutral: [],
     };
 
@@ -787,15 +787,15 @@ export class CognitiveLoop {
 
     // Enhanced intent patterns
     const intentPatterns: Record<string, RegExp[]> = {
-      voice_command: [/^رير|^نادر|^rare|^nader/i, /^استمع|^listen/i],
-      build_app: [/^بني|^build|^generate|^create.*app/i, /^app.*builder/i],
-      file_operation: [/^ملف|^file|^document|^scan|^ocr|^رفع|^تحميل/i],
-      vault_access: [/^خزنة|^vault|^secure|^مشفر|^black.*vault/i],
-      portal_request: [/^portal|^client|^preview|^بوابة|^لينك/i],
-      loyalty_check: [/^loyalty|^نقاط|^points|^مستوى|^ولاء|^مكافآت/i],
-      research_query: [/^research|^بحث|^تحليل|^تحسين|^تطوير/i],
-      chat: [/^مرحبا|^hello|^hi|^أهلا/i],
-      question: [/^كيف|^لماذا|^ماذا|^what|^how|^why/i, /\?/],
+      voice_command: [/^??????|^????????|^rare|^nader/i, /^??????????|^listen/i],
+      build_app: [/^??????|^build|^generate|^create.*app/i, /^app.*builder/i],
+      file_operation: [/^??????|^file|^document|^scan|^ocr|^??????|^??????????/i],
+      vault_access: [/^????????|^vault|^secure|^????????|^black.*vault/i],
+      portal_request: [/^portal|^client|^preview|^??????????|^????????/i],
+      loyalty_check: [/^loyalty|^????????|^points|^??????????|^????????|^????????????/i],
+      research_query: [/^research|^??????|^??????????|^??????????|^??????????/i],
+      chat: [/^??????????|^hello|^hi|^????????/i],
+      question: [/^??????|^??????????|^????????|^what|^how|^why/i, /\?/],
     };
 
     for (const [intentType, patterns] of Object.entries(intentPatterns)) {
@@ -803,7 +803,7 @@ export class CognitiveLoop {
         return {
           type: intentType,
           confidence: 0.9,
-          parameters: this.extractParameters(text, intentType),
+          parameters: this.extrREMOVED(text, intentType),
         };
       }
     }
@@ -884,7 +884,7 @@ export class CognitiveLoop {
   /**
    * Extract Parameters
    */
-  private extractParameters(text: string, intentType: string): Record<string, any> {
+  private extrREMOVED(text: string, intentType: string): Record<string, any> {
     const params: Record<string, any> = {};
 
     if (intentType === 'build_app') {
@@ -927,11 +927,11 @@ export class CognitiveLoop {
 
   /**
    * Emit event via Kernel
-   * ✅ Enhanced with error handling
+   * ??? Enhanced with error handling
    */
   private emit(type: string, data: any): void {
     try {
-      // ✅ Safety check: Validate inputs
+      // ??? Safety check: Validate inputs
       if (!type || typeof type !== 'string') {
         console.warn('CognitiveLoop: Invalid event type');
         return;
@@ -996,4 +996,5 @@ export class CognitiveLoop {
     return new Map(this.improvementPatterns);
   }
 }
+
 

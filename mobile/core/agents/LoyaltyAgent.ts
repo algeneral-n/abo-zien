@@ -1,6 +1,6 @@
 /**
- * LoyaltyAgent - وكيل الولاء
- * يدير Loyalty Program، Points، Rewards
+ * LoyaltyAgent - ???????? ????????????
+ * ???????? Loyalty Program?? Points?? Rewards
  */
 
 import { BaseAgent } from './BaseAgent';
@@ -95,5 +95,6 @@ export class LoyaltyAgent extends BaseAgent {
     return await response.json();
   }
 }
+
 
 

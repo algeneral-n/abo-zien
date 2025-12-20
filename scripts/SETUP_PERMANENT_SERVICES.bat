@@ -1,7 +1,7 @@
 @echo off
 REM ========================================
 REM   RARE 4N - Setup Permanent Services
-REM   إعداد Backend و Cloudflare للعمل الدائم
+REM   ?????????? Backend ?? Cloudflare ?????????? ????????????
 REM ========================================
 
 cd /d "%~dp0"
@@ -9,15 +9,15 @@ cd /d "%~dp0"
 echo.
 echo ========================================
 echo   Setting up Permanent Services
-echo   إعداد الخدمات الدائمة
+echo   ?????????? ?????????????? ??????????????
 echo ========================================
 echo.
 
 echo [1/4] Checking Cloudflare config...
 if exist "%USERPROFILE%\.cloudflared\config.yml" (
-    echo ✅ Cloudflare config found
+    echo ??? Cloudflare config found
 ) else (
-    echo ❌ Cloudflare config NOT found
+    echo ??? Cloudflare config NOT found
     echo    Please run: cloudflared tunnel login
     echo    Then: cloudflared tunnel create rare4n-backend
     echo    Then: cloudflared tunnel route dns rare4n-backend api.zien-ai.app
@@ -34,11 +34,11 @@ if errorlevel 1 (
     echo You may need to run as Administrator
     echo.
     echo Please run this script as Administrator:
-    echo   Right-click → Run as administrator
+    echo   Right-click ??? Run as administrator
     pause
     exit /b 1
 )
-echo ✅ Cloudflare service installed
+echo ??? Cloudflare service installed
 
 echo.
 echo [3/4] Starting Cloudflare Service...
@@ -47,7 +47,7 @@ if errorlevel 1 (
     echo WARNING: Failed to start Cloudflare service
     echo Service may already be running
 ) else (
-    echo ✅ Cloudflare service started
+    echo ??? Cloudflare service started
 )
 
 echo.
@@ -85,6 +85,7 @@ echo   net stop cloudflared
 echo   net stop RARE4N-Backend (if installed)
 echo.
 pause
+
 
 
 

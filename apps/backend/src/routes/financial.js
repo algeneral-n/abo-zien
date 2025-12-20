@@ -377,7 +377,7 @@ router.post('/confirm-payment', async (req, res) => {
         }
       }
 
-      // ✅ Notify Auto Builder that payment is completed and build can proceed
+      // ??? Notify Auto Builder that payment is completed and build can proceed
       if (result.success && requestId) {
         const io = req.app.get('io') || global.io;
         if (io) {
@@ -389,7 +389,7 @@ router.post('/confirm-payment', async (req, res) => {
             paymentIntentId,
             amount: result.amount,
             currency: result.currency,
-            message: 'تم الدفع بنجاح. يمكنك الآن البدء في البناء.',
+            message: '???? ?????????? ??????????. ?????????? ???????? ?????????? ???? ????????????.',
           });
 
           // Also notify client portal
@@ -398,10 +398,10 @@ router.post('/confirm-payment', async (req, res) => {
             invoiceId,
             amount: result.amount,
             currency: result.currency,
-            message: 'تم تأكيد الدفع بنجاح! سيتم إرسال ملفات البناء إلى بريدك الإلكتروني بعد اكتمال البناء.',
+            message: '???? ?????????? ?????????? ??????????! ???????? ?????????? ?????????? ???????????? ?????? ?????????? ???????????????????? ?????? ???????????? ????????????.',
           });
 
-          // ✅ Send WhatsApp notification - Payment Received
+          // ??? Send WhatsApp notification - Payment Received
           try {
             const { sendPaymentReceived } = await import('../services/twilioTemplatesService.js');
             // Get client phone from metadata or request
@@ -422,12 +422,12 @@ router.post('/confirm-payment', async (req, res) => {
               });
               await sendPaymentReceived(
                 clientRequest.phone,
-                clientName || clientRequest.clientName || 'عميلنا العزيز',
+                clientName || clientRequest.clientName || '???????????? ????????????',
                 `${result.amount} ${result.currency}`,
                 requestId || 'N/A',
                 paymentDate
               );
-              console.log('✅ Payment received notification sent to:', clientRequest.phone);
+              console.log('??? Payment received notification sent to:', clientRequest.phone);
             }
           } catch (error) {
             console.error('Failed to send payment received notification:', error);
@@ -584,5 +584,6 @@ router.get('/stripe-invoices', async (req, res) => {
 });
 
 export default router;
+
 
 

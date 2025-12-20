@@ -1,7 +1,7 @@
 /**
  * RARE 4N - Files Screen
- * شاشة الملفات - رفع، تحميل، معاينة، تحليل، توليد
- * ✅ Cognitive Loop → Kernel → Filing Agent
+ * ???????? ?????????????? - ???????? ???????????? ?????????????? ???????????? ??????????
+ * ??? Cognitive Loop ??? Kernel ??? Filing Agent
  */
 
 import { useState, useEffect } from 'react';
@@ -44,7 +44,7 @@ export default function Files() {
       loadFiles();
     });
 
-    // ✅ الاستماع لنتائج CognitiveLoop → FilingAgent → Response
+    // ??? ???????????????? ???????????? CognitiveLoop ??? FilingAgent ??? Response
     const unsubscribeResponse = listenForEvents('agent:filing:response', async (data) => {
       if (data.files) {
         // Save files to file manager (use Promise.all instead of forEach)
@@ -62,7 +62,7 @@ export default function Files() {
         await Promise.all(addFilePromises);
         loadFiles();
       } else if (data.file) {
-        // بعد رفع ملف، نحدث القائمة
+        // ?????? ?????? ???????? ???????? ??????????????
         const category = detectCategory(data.file.type || data.file.name);
         fileManager.addFile({
           name: data.file.name,
@@ -73,13 +73,13 @@ export default function Files() {
           tags: [],
         }).then(() => loadFiles());
       } else if (data.ocr) {
-        // نتيجة OCR
-        alert(data.ocr || 'تم التحليل');
+        // ?????????? OCR
+        alert(data.ocr || '???? ??????????????');
       }
     });
     
     const unsubscribeError = listenForEvents('agent:filing:error', (data) => {
-      alert(data.error || 'حدث خطأ');
+      alert(data.error || '?????? ??????');
     });
     
     fetchFiles();
@@ -126,7 +126,7 @@ export default function Files() {
 
   const fetchFiles = async () => {
     try {
-      // ✅ إرسال إلى Kernel → CognitiveLoop → FilingAgent
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? FilingAgent
       await executeAction('list_files', {});
     } catch (error) {
       console.error('List files error:', error);
@@ -137,7 +137,7 @@ export default function Files() {
     try {
       const result = await DocumentPicker.getDocumentAsync({
         type: '*/*',
-        copyToCacheDirectory: true,
+        copyToCREMOVED: true,
       });
 
       if (!result.canceled && result.assets && result.assets[0]) {
@@ -145,7 +145,7 @@ export default function Files() {
         
         // Validate file size (max 50MB)
         if (asset.size && asset.size > 50 * 1024 * 1024) {
-          alert('حجم الملف كبير جداً. الحد الأقصى 50 ميجابايت');
+          alert('?????? ?????????? ???????? ????????. ???????? ???????????? 50 ????????????????');
           return;
         }
 
@@ -153,7 +153,7 @@ export default function Files() {
           encoding: FileSystem.EncodingType.Base64 
         });
 
-        // ✅ إرسال إلى Kernel → CognitiveLoop → FilingAgent
+        // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? FilingAgent
         await executeAction('upload_file', {
           file: {
             name: asset.name || 'untitled',
@@ -163,28 +163,28 @@ export default function Files() {
           },
         });
 
-        // النتيجة ستأتي عبر listenForEvents وسيتم استدعاء fetchFiles تلقائياً
+        // ?????????????? ?????????? ?????? listenForEvents ?????????? ?????????????? fetchFiles ????????????????
       }
     } catch (error: any) {
       console.error('Upload error:', error);
-      alert(error?.message || 'فشل رفع الملف');
+      alert(error?.message || '?????? ?????? ??????????');
     }
   };
 
   const handleAnalyze = async (fileId: string) => {
     try {
-      // ✅ إرسال إلى Kernel → CognitiveLoop → FilingAgent
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? FilingAgent
       await executeAction('ocr_scan', { imageUri: fileId });
-      // النتيجة ستأتي عبر listenForEvents
+      // ?????????????? ?????????? ?????? listenForEvents
     } catch (error) {
       console.error('OCR error', error);
-      alert('فشل التحليل');
+      alert('?????? ??????????????');
     }
   };
 
   const handleGenerate = async (fileId: string) => {
     try {
-      // ✅ إرسال إلى Kernel → CognitiveLoop → BuilderAgent
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? BuilderAgent
       await executeBuilderAction('generate_code', {
         prompt: `Generate code based on file ${fileId}`,
         extension: 'ts',
@@ -192,18 +192,18 @@ export default function Files() {
       });
     } catch (error) {
       console.error('Generate error:', error);
-      alert('فشل التوليد');
+      alert('?????? ??????????????');
     }
   };
 
   const handleDownload = async (fileId: string) => {
     try {
-      // ✅ إرسال إلى Kernel → CognitiveLoop → FilingAgent
+      // ??? ?????????? ?????? Kernel ??? CognitiveLoop ??? FilingAgent
       await executeAction('download_file', { fileId });
-      alert('تم بدء التحميل');
+      alert('???? ?????? ??????????????');
     } catch (error) {
       console.error('Download error:', error);
-      alert('فشل التحميل');
+      alert('?????? ??????????????');
     }
   };
 
@@ -225,7 +225,7 @@ export default function Files() {
         <Pressable onPress={() => router.back()} style={styles.backButton}>
           <Icon name="arrow-back" size={20} color={colors.primary} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: colors.primary }]}>الملفات</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>??????????????</Text>
         <View style={{ width: 40 }} />
       </View>
 
@@ -235,8 +235,8 @@ export default function Files() {
           <Icon name="search" size={20} color={colors.primary} />
           <TextInput
             style={[styles.searchInput, { color: colors.text }]}
-            placeholder="ابحث عن ملف..."
-            placeholderTextColor={colors.textSecondary}
+            placeholder="???????? ???? ??????..."
+            plREMOVED={colors.textSecondary}
             value={searchQuery}
             onChangeText={(text) => {
               setSearchQuery(text);
@@ -255,12 +255,12 @@ export default function Files() {
           <Pressable
             style={[
               styles.categoryChip,
-              selectedCategory === 'all' && { backgroundColor: colors.primary },
+              selectedCategory === 'all' && { bREMOVED: colors.primary },
             ]}
             onPress={() => handleCategorySelect('all')}
           >
             <Text style={[styles.categoryText, selectedCategory === 'all' && { color: '#000' }]}>
-              جميع الملفات
+              ???????? ??????????????
             </Text>
           </Pressable>
           {FILE_CATEGORIES.filter(cat => cat.id !== 'all').map((category) => (
@@ -268,7 +268,7 @@ export default function Files() {
               key={category.id}
               style={[
                 styles.categoryChip,
-                selectedCategory === category.id && { backgroundColor: colors.primary },
+                selectedCategory === category.id && { bREMOVED: colors.primary },
               ]}
               onPress={() => handleCategorySelect(category.id)}
             >
@@ -280,7 +280,7 @@ export default function Files() {
           <Pressable
             style={[
               styles.categoryChip,
-              showHistory && { backgroundColor: colors.primary },
+              showHistory && { bREMOVED: colors.primary },
             ]}
             onPress={() => {
               setShowHistory(true);
@@ -288,17 +288,17 @@ export default function Files() {
             }}
           >
             <Text style={[styles.categoryText, showHistory && { color: '#000' }]}>
-              التاريخ
+              ??????????????
             </Text>
           </Pressable>
         </ScrollView>
 
         <Pressable
-          style={[styles.uploadButton, { backgroundColor: colors.primary }]}
+          style={[styles.uploadButton, { bREMOVED: colors.primary }]}
           onPress={handleUploadFile}
         >
           <Icon name="upload" size={20} color="#000" />
-          <Text style={styles.uploadButtonText}>رفع ملف</Text>
+          <Text style={styles.uploadButtonText}>?????? ??????</Text>
         </Pressable>
 
         <View style={styles.filesList}>
@@ -306,7 +306,7 @@ export default function Files() {
             <View style={styles.emptyState}>
               <Icon name="folder" size={48} color={colors.textSecondary} />
               <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
-                {searchQuery ? 'لا توجد نتائج' : 'لا توجد ملفات'}
+                {searchQuery ? '???? ???????? ??????????' : '???? ???????? ??????????'}
               </Text>
             </View>
           ) : (
@@ -320,31 +320,31 @@ export default function Files() {
                   <View style={styles.fileDetails}>
                     <Text style={[styles.fileName, { color: colors.text }]}>{file.name}</Text>
                     <Text style={[styles.fileMeta, { color: colors.textSecondary }]}>
-                      {file.type} • {(file.size / 1024).toFixed(2)} KB
+                      {file.type} ??? {(file.size / 1024).toFixed(2)} KB
                     </Text>
                   </View>
                 </View>
                 <View style={styles.fileActions}>
                   <Pressable
-                    style={[styles.actionButton, { borderColor: colors.primary }]}
+                    style={[styles.REMOVED, { borderColor: colors.primary }]}
                     onPress={() => handlePreview(file)}
                   >
                     <Icon name="eye" size={18} color={colors.primary} />
                   </Pressable>
                   <Pressable
-                    style={[styles.actionButton, { borderColor: colors.primary }]}
+                    style={[styles.REMOVED, { borderColor: colors.primary }]}
                     onPress={() => handleAnalyze(file.id)}
                   >
                     <Icon name="analytics" size={18} color={colors.primary} />
                   </Pressable>
                   <Pressable
-                    style={[styles.actionButton, { borderColor: colors.primary }]}
+                    style={[styles.REMOVED, { borderColor: colors.primary }]}
                     onPress={() => handleGenerate(file.id)}
                   >
                     <Icon name="create" size={18} color={colors.primary} />
                   </Pressable>
                   <Pressable
-                    style={[styles.actionButton, { borderColor: colors.primary }]}
+                    style={[styles.REMOVED, { borderColor: colors.primary }]}
                     onPress={() => handleDownload(file.id)}
                   >
                     <Icon name="download" size={18} color={colors.primary} />
@@ -367,7 +367,7 @@ export default function Files() {
           style={styles.modalOverlay}
           onPress={() => setPreviewFile(null)}
         >
-          <View style={[styles.modalContent, { backgroundColor: colors.background }]}>
+          <View style={[styles.modalContent, { bREMOVED: colors.background }]}>
             {previewFile && (
               <>
                 <View style={styles.modalHeader}>
@@ -386,17 +386,17 @@ export default function Files() {
                 {previewFile.type.startsWith('video/') && (
                   <View style={styles.previewVideo}>
                     <Text style={[styles.previewText, { color: colors.text }]}>
-                      فيديو: {previewFile.name}
+                      ??????????: {previewFile.name}
                     </Text>
                   </View>
                 )}
                 {!previewFile.type.startsWith('image/') && !previewFile.type.startsWith('video/') && (
                   <View style={styles.previewTextContainer}>
                     <Text style={[styles.previewText, { color: colors.text }]}>
-                      نوع الملف: {previewFile.type}
+                      ?????? ??????????: {previewFile.type}
                     </Text>
                     <Text style={[styles.previewText, { color: colors.text }]}>
-                      الحجم: {(previewFile.size / 1024).toFixed(2)} KB
+                      ??????????: {(previewFile.size / 1024).toFixed(2)} KB
                     </Text>
                   </View>
                 )}
@@ -452,7 +452,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 12,
     borderWidth: 1,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    bREMOVED: 'rgba(255,255,255,0.03)',
   },
   fileInfo: {
     flexDirection: 'row',
@@ -478,7 +478,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     gap: 8,
   },
-  actionButton: {
+  REMOVED: {
     width: 36,
     height: 36,
     borderRadius: 8,
@@ -509,7 +509,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 20,
     marginRight: 8,
-    backgroundColor: 'rgba(255,255,255,0.05)',
+    bREMOVED: 'rgba(255,255,255,0.05)',
   },
   categoryText: {
     fontSize: 14,
@@ -527,7 +527,7 @@ const styles = StyleSheet.create({
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.8)',
+    bREMOVED: 'rgba(0,0,0,0.8)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -557,7 +557,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 300,
     borderRadius: 12,
-    backgroundColor: 'rgba(255,255,255,0.05)',
+    bREMOVED: 'rgba(255,255,255,0.05)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -569,6 +569,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 });
+
 
 
 
