@@ -1,0 +1,47 @@
+# Fastfile for RARE 4N iOS Build
+# This file is optional - EAS Build handles builds automatically
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and submit to App Store"
+  lane :release do
+    # Increment build number
+    increment_build_number(
+      xcodeproj: "RARE4N.xcodeproj"
+    )
+    
+    # Build app
+    build_app(
+      scheme: "RARE4N",
+      export_method: "app-store",
+      export_options: {
+        method: "app-store",
+        provisioningProfiles: {
+          "com.rare4n.app" => "match AppStore com.rare4n.app"
+        }
+      }
+    )
+    
+    # Upload to App Store
+    upload_to_app_store(
+      skip_metadata: true,
+      skip_screenshots: true,
+      force: true
+    )
+  end
+
+  desc "Build for TestFlight"
+  lane :beta do
+    build_app(
+      scheme: "RARE4N",
+      export_method: "app-store"
+    )
+    
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true
+    )
+  end
+end
+
+

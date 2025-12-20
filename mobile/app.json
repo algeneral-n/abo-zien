@@ -1,0 +1,97 @@
+{
+  "expo": {
+    "name": "RARE 4N",
+    "slug": "rare-4n",
+    "version": "1.0.4",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rare4n.app",
+      "buildNumber": "8",
+      "infoPlist": {
+        "NSCameraUsageDescription": "RARE needs camera access for scanning and OCR",
+        "NSMicrophoneUsageDescription": "RARE needs microphone access for voice commands",
+        "NSLocationWhenInUseUsageDescription": "RARE needs location for maps and navigation",
+        "NSLocationAlwaysUsageDescription": "RARE needs location for CarPlay and navigation",
+        "NSPhotoLibraryUsageDescription": "RARE needs photo library access for vault",
+        "NSFaceIDUsageDescription": "RARE uses Face ID for secure authentication",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyD_972sZ4Vx0n0DQL_DUcZpu2QZKmTcLGA"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptiveicon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.zien.rare4nos",
+      "versionCode": 7,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "RARE needs location for maps and navigation"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "RARE needs photo library access for vault"
+        }
+      ],
+      [
+        "expo-document-picker",
+        {}
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "RARE needs camera access for scanning and OCR"
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "RARE needs microphone access for voice commands"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "9000e9f6-e076-4bc6-831e-8ef7519ebeeb"
+      }
+    }
+  }
+}

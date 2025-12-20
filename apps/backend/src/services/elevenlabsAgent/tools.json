@@ -1,0 +1,335 @@
+{
+  "agent_id": "agent_0701kc4axybpf6fvak70xwfzpyka",
+  "tools": [
+    {
+      "id": "show_libraries",
+      "name": "Show Libraries",
+      "description": "عرض مكتبات التطبيقات والأنظمة والثيمات",
+      "type": "function",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "library_type": {
+            "type": "string",
+            "enum": ["templates", "systems", "themes", "all"],
+            "description": "نوع المكتبة المراد عرضها"
+          },
+          "limit": {
+            "type": "number",
+            "default": 10,
+            "description": "عدد العناصر المراد عرضها"
+          }
+        }
+      },
+      "returns": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": "string",
+            "name": "string",
+            "description": "string",
+            "category": "string"
+          }
+        }
+      }
+    },
+    {
+      "id": "collect_customer_info",
+      "name": "Collect Customer Information",
+      "description": "جمع معلومات العميل (الاسم، البريد، الهاتف، اللون، اللوجو)",
+      "type": "function",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_name": {
+            "type": "string",
+            "description": "اسم التطبيق/النظام"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "البريد الإلكتروني"
+          },
+          "phone": {
+            "type": "string",
+            "description": "رقم الهاتف"
+          },
+          "color": {
+            "type": "string",
+            "description": "اللون المفضل"
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "description": "رابط اللوجو"
+          }
+        },
+        "required": ["app_name", "email", "phone"]
+      }
+    },
+    {
+      "id": "create_payment_session",
+      "name": "Create Payment Session",
+      "description": "إنشاء جلسة دفع (Stripe أو Apple Pay)",
+      "type": "function",
+      "endpoint": "https://api.zien-ai.app/api/payment/create-session",
+      "method": "POST",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "المبلغ بالريال السعودي (SAR)"
+          },
+          "currency": {
+            "type": "string",
+            "default": "SAR",
+            "description": "العملة (SAR, USD, etc.)"
+          },
+          "client_id": {
+            "type": "string",
+            "description": "معرف العميل (مطلوب)"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "بيانات إضافية (request_id, project_type, etc.)"
+          }
+        },
+        "required": ["amount", "client_id"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "نجح الطلب"
+          },
+          "session_id": {
+            "type": "string",
+            "description": "معرف جلسة الدفع"
+          },
+          "payment_url": {
+            "type": "string",
+            "description": "رابط صفحة الدفع (Stripe Checkout)"
+          },
+          "status": {
+            "type": "string",
+            "description": "حالة الجلسة (ready, pending, etc.)"
+          }
+        }
+      }
+    },
+    {
+      "id": "submit_build_request",
+      "name": "Submit Build Request",
+      "description": "إرسال طلب بناء إلى Auto Builder",
+      "type": "function",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "description": "معرف العميل"
+          },
+          "project_type": {
+            "type": "string",
+            "enum": ["template", "system", "theme"],
+            "description": "نوع المشروع"
+          },
+          "selected_item": {
+            "type": "object",
+            "description": "العنصر المختار من المكتبة"
+          },
+          "project_data": {
+            "type": "object",
+            "description": "بيانات المشروع"
+          }
+        },
+        "required": ["client_id", "project_type", "selected_item"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "build_id": "string",
+          "status": "string",
+          "message": "string"
+        }
+      }
+    },
+    {
+      "id": "get_build_status",
+      "name": "Get Build Status",
+      "description": "الحصول على حالة البناء",
+      "type": "function",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "build_id": {
+            "type": "string",
+            "description": "معرف البناء"
+          },
+          "client_id": {
+            "type": "string",
+            "description": "معرف العميل"
+          }
+        },
+        "required": ["build_id"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "status": "string",
+          "progress": "number",
+          "preview_link": "string",
+          "download_link": "string"
+        }
+      }
+    },
+    {
+      "id": "submit_revision",
+      "name": "Submit Revision",
+      "description": "إرسال طلب تعديل",
+      "type": "function",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "build_id": {
+            "type": "string",
+            "description": "معرف البناء"
+          },
+          "revision_notes": {
+            "type": "string",
+            "description": "ملاحظات التعديل"
+          },
+          "client_id": {
+            "type": "string",
+            "description": "معرف العميل"
+          }
+        },
+        "required": ["build_id", "revision_notes"]
+      }
+    },
+    {
+      "id": "send_notification",
+      "name": "Send Notification",
+      "description": "إرسال إشعار للعميل (WhatsApp أو Email)",
+      "type": "function",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "description": "معرف العميل"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["whatsapp", "email", "sms"],
+            "description": "نوع الإشعار"
+          },
+          "template": {
+            "type": "string",
+            "enum": ["appointment_confirmed", "payment_reminder", "payment_received", "build_complete", "delivery_confirmed"],
+            "description": "نوع القالب"
+          },
+          "data": {
+            "type": "object",
+            "description": "بيانات القالب"
+          }
+        },
+        "required": ["client_id", "type", "template"]
+      }
+    },
+    {
+      "id": "upload_file",
+      "name": "Upload File",
+      "description": "رفع ملف (لوجو أو صور)",
+      "type": "function",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "description": "الملف"
+          },
+          "file_type": {
+            "type": "string",
+            "enum": ["logo", "image", "document"],
+            "description": "نوع الملف"
+          },
+          "client_id": {
+            "type": "string",
+            "description": "معرف العميل"
+          }
+        },
+        "required": ["file", "file_type"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "file_url": "string",
+          "file_id": "string"
+        }
+      }
+    },
+    {
+      "id": "detect_dialect",
+      "name": "Detect Dialect",
+      "description": "اكتشاف اللهجة العربية",
+      "type": "function",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "النص المراد تحليله"
+          }
+        },
+        "required": ["text"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "dialect": "string",
+          "confidence": "number",
+          "language": "string"
+        }
+      }
+    },
+    {
+      "id": "translate_text",
+      "name": "Translate Text",
+      "description": "ترجمة النص",
+      "type": "function",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "النص المراد ترجمته"
+          },
+          "target_language": {
+            "type": "string",
+            "description": "اللغة الهدف"
+          },
+          "source_language": {
+            "type": "string",
+            "default": "auto",
+            "description": "اللغة المصدر"
+          }
+        },
+        "required": ["text", "target_language"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "translated_text": "string",
+          "source_language": "string",
+          "target_language": "string"
+        }
+      }
+    }
+  ]
+}
+

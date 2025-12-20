@@ -1,0 +1,19 @@
+# Backend - Local Only
+node_modules/
+.env
+.env.local
+data/
+*.db
+*.db-journal
+*.log
+dist/
+build/
+
+
+
+
+
+
+
+
+

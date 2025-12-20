@@ -1,0 +1,212 @@
+{
+  "agent_id": "agent_0701kc4axybpf6fvak70xwfzpyka",
+  "name": "RARE 4N Customer Service Agent",
+  "description": "Agent للتفاعل مع العملاء في Client Portal",
+  "workflows": [
+    {
+      "id": "welcome_flow",
+      "name": "Welcome Flow",
+      "description": "ترحيب بالعميل وعرض الخدمات",
+      "steps": [
+        {
+          "step": 1,
+          "action": "greet",
+          "message_ar": "مرحباً! 👋 أهلاً بك في RARE 4N. أنا مساعدك الذكي للتفاعل مع خدماتنا.",
+          "message_en": "Hello! 👋 Welcome to RARE 4N. I'm your smart assistant to interact with our services.",
+          "next_step": "show_services"
+        },
+        {
+          "step": 2,
+          "action": "show_services",
+          "message_ar": "يمكنني مساعدتك في:\n📱 بناء تطبيق\n🖥️ بناء نظام\n🎨 اختيار ثيم\n💳 معالجة الدفع\n📋 متابعة الطلبات",
+          "message_en": "I can help you with:\n📱 Building an app\n🖥️ Building a system\n🎨 Choosing a theme\n💳 Processing payment\n📋 Tracking orders",
+          "next_step": "wait_for_selection"
+        }
+      ]
+    },
+    {
+      "id": "library_review_flow",
+      "name": "Library Review Flow",
+      "description": "مراجعة مكتبات التطبيقات والأنظمة والثيمات",
+      "steps": [
+        {
+          "step": 1,
+          "action": "ask_type",
+          "message_ar": "ما نوع المشروع الذي تريده؟\n1️⃣ تطبيق (App)\n2️⃣ نظام (System)\n3️⃣ ثيم (Theme)",
+          "message_en": "What type of project do you want?\n1️⃣ App\n2️⃣ System\n3️⃣ Theme",
+          "next_step": "show_library"
+        },
+        {
+          "step": 2,
+          "action": "show_library",
+          "message_ar": "إليك قائمة بالخيارات المتاحة:",
+          "message_en": "Here are the available options:",
+          "data_source": "library",
+          "next_step": "wait_for_selection"
+        },
+        {
+          "step": 3,
+          "action": "confirm_selection",
+          "message_ar": "رائع! اخترت {item_name}. هل تريد المتابعة؟",
+          "message_en": "Great! You selected {item_name}. Do you want to continue?",
+          "next_step": "collect_info"
+        }
+      ]
+    },
+    {
+      "id": "info_collection_flow",
+      "name": "Information Collection Flow",
+      "description": "جمع معلومات المشروع من العميل",
+      "steps": [
+        {
+          "step": 1,
+          "action": "ask_logo",
+          "message_ar": "هل لديك لوجو للمشروع؟\n✅ نعم - يرجى رفعه\n❌ لا - سنستخدم لوجو افتراضي",
+          "message_en": "Do you have a logo for the project?\n✅ Yes - please upload it\n❌ No - we'll use a default logo",
+          "next_step": "collect_details"
+        },
+        {
+          "step": 2,
+          "action": "collect_details",
+          "questions": [
+            {
+              "field": "app_name",
+              "question_ar": "ما اسم التطبيق/النظام؟",
+              "question_en": "What is the app/system name?",
+              "required": true
+            },
+            {
+              "field": "color",
+              "question_ar": "ما هو اللون المفضل لديك؟",
+              "question_en": "What is your preferred color?",
+              "required": false
+            },
+            {
+              "field": "email",
+              "question_ar": "ما هو بريدك الإلكتروني؟",
+              "question_en": "What is your email?",
+              "required": true,
+              "validation": "email"
+            },
+            {
+              "field": "phone",
+              "question_ar": "ما هو رقم هاتفك؟",
+              "question_en": "What is your phone number?",
+              "required": true,
+              "validation": "phone"
+            }
+          ],
+          "next_step": "payment_question"
+        }
+      ]
+    },
+    {
+      "id": "payment_flow",
+      "name": "Payment Flow",
+      "description": "معالجة الدفع والدفع",
+      "steps": [
+        {
+          "step": 1,
+          "action": "ask_payment_timing",
+          "message_ar": "ممتاز! تم جمع جميع المعلومات.\n\nهل ترغب بالدفع الآن أم عند الزيارة الثانية للمعاينة؟\n💳 الآن - الدفع الفوري\n⏰ لاحقاً - الدفع عند المعاينة",
+          "message_en": "Excellent! All information collected.\n\nDo you want to pay now or at the second visit for preview?\n💳 Now - Immediate payment\n⏰ Later - Payment at preview",
+          "next_step": "process_payment"
+        },
+        {
+          "step": 2,
+          "action": "process_payment",
+          "payment_methods": ["stripe", "apple_pay"],
+          "message_ar": "سيتم فتح صفحة الدفع الآن.",
+          "message_en": "Payment page will open now.",
+          "next_step": "confirm_payment"
+        },
+        {
+          "step": 3,
+          "action": "confirm_payment",
+          "message_ar": "✅ تم تأكيد الدفع بنجاح! سيتم البدء بالبناء قريباً.",
+          "message_en": "✅ Payment confirmed successfully! Building will start soon.",
+          "next_step": "notify_builder"
+        }
+      ]
+    },
+    {
+      "id": "build_tracking_flow",
+      "name": "Build Tracking Flow",
+      "description": "متابعة حالة البناء",
+      "steps": [
+        {
+          "step": 1,
+          "action": "notify_building",
+          "message_ar": "🚀 تم بدء البناء! سيتم إشعارك عند الانتهاء.",
+          "message_en": "🚀 Building started! You'll be notified when complete.",
+          "next_step": "wait_for_completion"
+        },
+        {
+          "step": 2,
+          "action": "notify_preview_ready",
+          "message_ar": "✅ البناء مكتمل! رابط المعاينة: {preview_link}",
+          "message_en": "✅ Build complete! Preview link: {preview_link}",
+          "next_step": "wait_for_feedback"
+        },
+        {
+          "step": 3,
+          "action": "ask_revision",
+          "message_ar": "هل لديك أي طلبات تعديل؟\n✅ نعم - اذكر التعديلات\n❌ لا - المتابعة للدفع النهائي",
+          "message_en": "Do you have any revision requests?\n✅ Yes - mention revisions\n❌ No - proceed to final payment",
+          "next_step": "process_revision"
+        }
+      ]
+    },
+    {
+      "id": "revision_flow",
+      "name": "Revision Flow",
+      "description": "معالجة طلبات التعديل",
+      "steps": [
+        {
+          "step": 1,
+          "action": "collect_revision",
+          "message_ar": "يرجى ذكر التعديلات المطلوبة:",
+          "message_en": "Please mention the required revisions:",
+          "next_step": "confirm_revision"
+        },
+        {
+          "step": 2,
+          "action": "confirm_revision",
+          "message_ar": "تم تسجيل طلبات التعديل. سيتم تطبيقها وإرسال رابط معاينة جديد.",
+          "message_en": "Revision requests recorded. They will be applied and a new preview link will be sent.",
+          "next_step": "request_final_payment"
+        },
+        {
+          "step": 3,
+          "action": "request_final_payment",
+          "message_ar": "يرجى إكمال الدفع النهائي لاستلام الملف.",
+          "message_en": "Please complete final payment to receive the file.",
+          "next_step": "deliver_file"
+        }
+      ]
+    },
+    {
+      "id": "delivery_flow",
+      "name": "Delivery Flow",
+      "description": "تسليم الملف النهائي",
+      "steps": [
+        {
+          "step": 1,
+          "action": "notify_delivery_ready",
+          "message_ar": "✅ الملف جاهز للتحميل! رابط التحميل: {download_link}",
+          "message_en": "✅ File ready for download! Download link: {download_link}",
+          "next_step": "confirm_delivery"
+        },
+        {
+          "step": 2,
+          "action": "confirm_delivery",
+          "message_ar": "شكراً لاستخدام RARE 4N! 🎉",
+          "message_en": "Thank you for using RARE 4N! 🎉",
+          "next_step": "end"
+        }
+      ]
+    }
+  ]
+}
+
+

@@ -1,0 +1,182 @@
+========================================
+EAS ENVIRONMENT VARIABLES - COPY & PASTE
+جميع المتغيرات المطلوبة للإضافة في EAS
+(المتغيرات الموجودة في Screenshot + الناقصة)
+========================================
+
+--- ⚠️ المتغيرات الناقصة (يجب إضافتها) ---
+
+--- TWILIO (SMS/Phone/WhatsApp) ---
+TWILIO_KEY=REPLACE_ME
+TWILIO_KEY=REPLACE_ME
+TWILIO_KEY=REPLACE_ME
+TWILIO_KEY=REPLACE_ME
+
+--- TWILIO TEST (اختياري) ---
+TWILIO_KEY=REPLACE_ME
+TWILIO_KEY=REPLACE_ME
+
+--- CLOUDFLARE TUNNEL ---
+CLOUDFLARE_TUNNEL_ID=8280d872-79cc-4b82-9de8-a86ab4bf9540
+CLOUDFLARE_ACCOUNT_TAG=ccc1ed9ab170eaf1e72e9a10e46ef320
+
+--- SERVER CONFIGURATION (تأكد من القيم) ---
+API_DOMAIN=https://api.zien-ai.app
+CLIENT_PORTAL_URL=https://portal.zien-ai.app
+ALLOWED_ORIGINS=https://api.zien-ai.app,http://localhost:5000,exp://localhost:8081,http://localhost:19006
+
+--- MOBILE APP (EXPO_PUBLIC) ---
+EXPO_PUBLIC_API_URL=https://api.zien-ai.app
+
+========================================
+✅ المتغيرات الموجودة في Screenshot (تأكد منها):
+========================================
+
+--- AI Services (موجودة) ---
+OPENAI_KEY=REPLACE_ME
+ANTHROPIC_KEY=REPLACE_ME
+CLAUDE_API_KEY=REDACTED_I0b1avV7SxDUpQXJA8fNxGsxaLKTEXqzzd9c_qkz-8O-Dujgv2_7_yAa14LLpg-7pIVaQAA
+GEMINI_API_KEY=AIzaSyCDAVvQTbXwUDnmP2FBTaeei6Ru47xrILk
+
+--- Maps & Location (موجودة) ---
+GOOGLE_MAPS_API_KEY=AIzaSyD_972sZ4Vx0n0DQL_DUcZpu2QZKmTcLGA
+APPLE_MAPKIT_TOKEN=292BEE5A-A671-40C7-BDBE-5BE18DCCE23F
+
+--- Google Vision API (OCR + Image Analysis) (موجودة) ---
+GOOGLE_VISION_API_KEY=AIzaSyDOqNOXByvTkYPDItw8wbIF-exEdUkleAk
+
+--- Voice (ElevenLabs) (موجودة) ---
+ELEVENLABS_API_KEY=eeda5ba6afa0e502217e46b76ad3a1fe6388d63dc55a43f812ded9a15094af26
+ELEVENLABS_WEBHOOK_SECRET=wsec_de8cca726b180b1e176ad3054b8e0252dd9f72bf89047058c350afe811885bb0
+ELEVENLABS_CONVAI_AGENT_ID=agent_0701kc4axybpf6fvak70xwfzpyka
+ELEVENLABS_SYSTEM_AGENT_ID=9401kb2n0gf5e2wtp4sfs8chdmk1
+ELEVENLABS_VOICE_ID_1=9401kb2n0gf5e2wtp4sfs8chdmk1
+ELEVENLABS_VOICE_ID_2=6ZVgc4q9LWAloWbuwjuu
+ELEVENLABS_VOICE_ID_3=4wf10lgibMnboGJGCLrP
+ELEVENLABS_VOICE_ID_4=IES4nrmZdUBHByLBde0P
+ELEVENLABS_VOICE_ID_5=LjKPkQHpXCsWoy7Pjq4U
+ELEVENLABS_VOICE_ID_6=WkVhWA2EqSfUAWAZG7La
+VOICE_WAKE_WORD=RARE
+VOICE_PERSONA=NADER
+VOICE_LANGUAGE=ar
+VOICE_SENSITIVITY=0.75
+VOICE_TIMEOUT=4500
+VOICE_MODE=continuous
+ASR_ENGINE=whisper
+ASR_MODEL=medium
+ASR_LANGUAGE=ar
+ASR_MAX_LENGTH=20
+TTS_ENGINE=elevenlabs
+TTS_VOICE_MODEL=eleven_multilingual_v2
+TTS_SPEED=1.0
+TTS_PITCH=1.0
+
+--- Payments (Stripe) (موجودة) ---
+STRIPE_KEY=REPLACE_ME
+STRIPE_KEY=REPLACE_ME
+
+--- Google OAuth (موجودة) ---
+GOOGLE_CLIENT_ID=sh9q3pki39sh8blu13ga67e26kq6243d.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+
+--- Apple Services (موجودة) ---
+APPLE_TEAM_ID=BN4DXG557F
+APPLE_KEY_ID=28KH5AC9J5
+APPLE_PRIVATE_KEY_PATH=keys/AuthKey.p8
+APPLE_DEVELOPER_ID=d790aa1b-f46a-46dc-8187-b94b5e372c16
+AASC_API_KEY_ID=J9SSR3CD83
+ASC_API_KEY_ISSUER_ID=d790aa1b-f46a-46dc-8187-b94b5e372c16
+APPLE_PUSH_KEY_PATH=keys/AuthKey.p8
+APPLE_PUSH_NAME=RARE
+APPLE_PUSH_KEY_ID=L3KM677Z7Y
+
+--- Security (موجودة) ---
+RARE_JWT_SECRET=91d517e555899ffc9ffc11ad11ad70743
+RARE_MASTER_KEY=ea1f1612-11ad-4a05-a7a3-d96254db6df1
+RARE_ENCRYPTION_SALT=d96254db6df1a4f3e4c71066dbdf
+
+--- Cognitive Settings (موجودة) ---
+CONSCIOUS_AWARENESS_LEVEL=2.0.0
+CONSCIOUS_DECISION_MODE=adaptive
+CONSCIOUS_EMOTIONAL_ENGINE=balanced
+CONSCIOUS_FAMILY=true
+CONSCIOUS_PERSONA=MAKER
+CONSCIOUS_SELF_FEEDBACK=true
+
+--- KHMAL Settings (موجودة) ---
+KHMAL_CONTEXT_LENGTH=12000
+KHMAL_ENGINE=unde-fined
+KHMAL_LOGGING=true
+KHMAL_MEMORY_MODE=expanded
+KHMAL_STATEFUL=true
+KHMAL_VERSION=1.0.0
+
+--- Kernel Settings (موجودة) ---
+KERNEL_ENGINE=rare-kernel
+KERNEL_VERSION=1.0.0
+KERNEL_MEMORY_MODE=expanded
+KERNEL_CONTEXT_LENGTH=12000
+KERNEL_STATEFUL=true
+KERNEL_LOGGING=true
+
+--- Conscious Engine Settings (موجودة) ---
+CONSCIOUS_ENABLED=true
+CONSCIOUS_PERSONA=NADER
+CONSCIOUS_AWARENESS_LEVEL=0.85
+CONSCIOUS_EMOTIONAL_ENGINE=balanced
+CONSCIOUS_DECISION_MODE=adaptive
+CONSCIOUS_SELF_FEEDBACK=true
+
+--- Backend Configuration (موجودة) ---
+LOCAL_API_URL=http://localhost:5000/api
+USE_LOCAL_BACKEND=true
+OPENAI_KEY=REPLACE_ME
+
+--- Azure (موجودة) ---
+AZURE_API_KEY_ISSUER_ID=your_azure_issuer_id
+AZURE_ENGINE=adafge
+AZURE_LANGUAGE=en
+AZURE_MAX_LENGTH=22
+AZURE_MODEL=medium
+
+--- Server (موجودة) ---
+PORT=3000
+NODE_ENV=production
+NCDS_ENV=production
+
+--- Databases (MongoDB & Supabase) ---
+MONGODB_URI=mongodb+srv://algeneralns_db_user:XWeCOl0X8fd9IVjc@cluster0.u5c1uim.mongodb.net/?appName=Cluster0
+MONGODB_USERNAME=algeneralns_db_user
+MONGODB_PASSWORD=XWeCOl0X8fd9IVjc
+MONGODB_DB_NAME=rare4n
+REACT_APP_SUPABASE_URL=https://fgvrilruqzajstprioqj.supabase.co
+REACT_APP_SUPABASE_PUBLISHABLE_DEFAULT_KEY=REDACTED
+NEXT_PUBLIC_SUPABASE_URL=https://fgvrilruqzajstprioqj.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=REDACTED
+EXPO_PUBLIC_SUPABASE_URL=https://fgvrilruqzajstprioqj.supabase.co
+EXPO_PUBLIC_SUPABASE_KEY=REDACTED
+SUPABASE_DATABASE_URL=postgresql://postgres:[Agn@algeneralnrsafa263688]@db.fgvrilruqzajstprioqj.supabase.co:5432/postgres
+
+--- GitHub & Expo ---
+GITHUB_KEY=REPLACE_ME
+GITHUB_KEY=REPLACE_ME
+EXPO_PROJECT_ID=c2f7ad03-bef4-4e74-b426-4170a9d788b3
+EXPO_ACCESS_TOKEN=REPLACE_ME
+
+--- Auto Builder ---
+BUILDER_ENGINE_KEY=RARE4N-BUILDER-a4f3e4c7-58e5-4119-9e4d-e6cb11170743
+BUILDER_SIGNING_PASSWORD=System.generate-nader.1993
+
+--- Domain & Contact ---
+DOMAIN=zien-ai.app
+GOOGLE_WORKSPACE_EMAIL=gm@zien-ai.app
+PHONE_NUMBER=+971529211077
+
+========================================
+ملاحظات:
+- ✅ المتغيرات المميزة بـ (موجودة) موجودة في Screenshot - تأكد من القيم
+- ⚠️ المتغيرات المميزة بـ (يجب إضافتها) ناقصة ويجب إضافتها
+- المتغيرات التي تبدأ بـ EXPO_PUBLIC_ ستظهر في Mobile App
+- Twilio Templates تحتاج إنشائها في Twilio Dashboard أولاً
+========================================
+

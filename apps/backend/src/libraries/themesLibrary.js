@@ -1,0 +1,86 @@
+/**
+ * RARE 4N - Themes Library
+ * مكتبة الثيمات - 50+ ثيم
+ */
+
+export const THEMES_LIBRARY = [
+  // Cyber & Neon Themes
+  { id: 'cyber-neon', name: 'سايبر نيون', nameEn: 'Cyber Neon', primary: '#00eaff', secondary: '#ff00ff', background: ['#000408', '#001820', '#000408'] },
+  { id: 'neon-purple', name: 'نيون بنفسجي', nameEn: 'Neon Purple', primary: '#a855f7', secondary: '#ec4899', background: ['#0a0a0f', '#1a0a2e', '#0a0a0f'] },
+  { id: 'neon-green', name: 'نيون أخضر', nameEn: 'Neon Green', primary: '#00ff88', secondary: '#00d4ff', background: ['#000a0a', '#001a0a', '#000a0a'] },
+  { id: 'neon-blue', name: 'نيون أزرق', nameEn: 'Neon Blue', primary: '#00d4ff', secondary: '#0099ff', background: ['#000a14', '#001428', '#000a14'] },
+  { id: 'neon-red', name: 'نيون أحمر', nameEn: 'Neon Red', primary: '#ff0040', secondary: '#ff6b00', background: ['#0a0000', '#1a0000', '#0a0000'] },
+  
+  // Glass & Modern Themes
+  { id: 'glass-morphism', name: 'زجاجي فاخر', nameEn: 'Glass Morphism', primary: '#ffffff', secondary: '#a855f7', background: ['#f0f0f0', '#e0e0e0', '#f0f0f0'] },
+  { id: 'frosted-glass', name: 'زجاج صقيعي', nameEn: 'Frosted Glass', primary: '#ffffff', secondary: '#cbd5e1', background: ['#f8fafc', '#f1f5f9', '#f8fafc'] },
+  { id: 'modern-minimal', name: 'حديث بسيط', nameEn: 'Modern Minimal', primary: '#000000', secondary: '#666666', background: ['#ffffff', '#f5f5f5', '#ffffff'] },
+  { id: 'dark-modern', name: 'داكن حديث', nameEn: 'Dark Modern', primary: '#ffffff', secondary: '#a0a0a0', background: ['#1a1a1a', '#2a2a2a', '#1a1a1a'] },
+  
+  // Gold & Luxury Themes
+  { id: 'midnight-gold', name: 'ذهب منتصف الليل', nameEn: 'Midnight Gold', primary: '#ffd700', secondary: '#b8860b', background: ['#000408', '#1a1a0a', '#000408'] },
+  { id: 'royal-gold', name: 'ذهب ملكي', nameEn: 'Royal Gold', primary: '#ffb700', secondary: '#ff8c00', background: ['#1a1400', '#2a1f00', '#1a1400'] },
+  { id: 'luxury-black', name: 'أسود فاخر', nameEn: 'Luxury Black', primary: '#d4af37', secondary: '#c9a961', background: ['#000000', '#0a0a0a', '#000000'] },
+  
+  // Nature Themes
+  { id: 'forest-green', name: 'أخضر الغابة', nameEn: 'Forest Green', primary: '#22c55e', secondary: '#16a34a', background: ['#0a1a0a', '#1a2a1a', '#0a1a0a'] },
+  { id: 'ocean-blue', name: 'أزرق المحيط', nameEn: 'Ocean Blue', primary: '#3b82f6', secondary: '#2563eb', background: ['#0a141a', '#1a2832', '#0a141a'] },
+  { id: 'sunset-orange', name: 'برتقالي الغروب', nameEn: 'Sunset Orange', primary: '#f97316', secondary: '#ea580c', background: ['#1a0a00', '#2a1400', '#1a0a00'] },
+  { id: 'lavender-purple', name: 'بنفسجي اللافندر', nameEn: 'Lavender Purple', primary: '#a78bfa', secondary: '#8b5cf6', background: ['#1a0a1a', '#2a1a2a', '#1a0a1a'] },
+  { id: 'rose-pink', name: 'وردي الورد', nameEn: 'Rose Pink', primary: '#f43f5e', secondary: '#e11d48', background: ['#1a0a0a', '#2a1a1a', '#1a0a0a'] },
+  
+  // Professional Themes
+  { id: 'corporate-blue', name: 'أزرق الشركات', nameEn: 'Corporate Blue', primary: '#2563eb', secondary: '#1d4ed8', background: ['#f8fafc', '#f1f5f9', '#f8fafc'] },
+  { id: 'business-gray', name: 'رمادي الأعمال', nameEn: 'Business Gray', primary: '#475569', secondary: '#334155', background: ['#ffffff', '#f8fafc', '#ffffff'] },
+  { id: 'professional-dark', name: 'داكن احترافي', nameEn: 'Professional Dark', primary: '#64748b', secondary: '#475569', background: ['#1e293b', '#334155', '#1e293b'] },
+  
+  // Vibrant Themes
+  { id: 'vibrant-cyan', name: 'سماوي نابض', nameEn: 'Vibrant Cyan', primary: '#06b6d4', secondary: '#0891b2', background: ['#0a141a', '#1a2832', '#0a141a'] },
+  { id: 'vibrant-magenta', name: 'أرجواني نابض', nameEn: 'Vibrant Magenta', primary: '#d946ef', secondary: '#c026d3', background: ['#1a0a1a', '#2a1a2a', '#1a0a1a'] },
+  { id: 'vibrant-yellow', name: 'أصفر نابض', nameEn: 'Vibrant Yellow', primary: '#eab308', secondary: '#ca8a04', background: ['#1a1a0a', '#2a2a1a', '#1a1a0a'] },
+  
+  // Monochrome Themes
+  { id: 'pure-white', name: 'أبيض نقي', nameEn: 'Pure White', primary: '#000000', secondary: '#333333', background: ['#ffffff', '#f5f5f5', '#ffffff'] },
+  { id: 'pure-black', name: 'أسود نقي', nameEn: 'Pure Black', primary: '#ffffff', secondary: '#cccccc', background: ['#000000', '#0a0a0a', '#000000'] },
+  { id: 'grayscale', name: 'رمادي متدرج', nameEn: 'Grayscale', primary: '#6b7280', secondary: '#4b5563', background: ['#f9fafb', '#f3f4f6', '#f9fafb'] },
+  
+  // Gradient Themes
+  { id: 'gradient-purple', name: 'تدرج بنفسجي', nameEn: 'Gradient Purple', primary: '#8b5cf6', secondary: '#ec4899', background: ['#1a0a1a', '#2a1a2a', '#0a0a1a'] },
+  { id: 'gradient-blue', name: 'تدرج أزرق', nameEn: 'Gradient Blue', primary: '#3b82f6', secondary: '#06b6d4', background: ['#0a141a', '#1a2832', '#0a1a2a'] },
+  { id: 'gradient-orange', name: 'تدرج برتقالي', nameEn: 'Gradient Orange', primary: '#f97316', secondary: '#eab308', background: ['#1a0a00', '#2a1400', '#1a1a0a'] },
+  { id: 'gradient-green', name: 'تدرج أخضر', nameEn: 'Gradient Green', primary: '#22c55e', secondary: '#06b6d4', background: ['#0a1a0a', '#1a2a1a', '#0a1a2a'] },
+  
+  // Retro Themes
+  { id: 'retro-80s', name: 'ريترو الثمانينات', nameEn: 'Retro 80s', primary: '#ff0080', secondary: '#00ffff', background: ['#000000', '#1a0a1a', '#000000'] },
+  { id: 'retro-90s', name: 'ريترو التسعينات', nameEn: 'Retro 90s', primary: '#ff6b00', secondary: '#00ff00', background: ['#000000', '#1a1a00', '#000000'] },
+  { id: 'vintage-brown', name: 'بني عتيق', nameEn: 'Vintage Brown', primary: '#8b4513', secondary: '#a0522d', background: ['#2a1a0a', '#3a2a1a', '#2a1a0a'] },
+  
+  // High Contrast Themes
+  { id: 'high-contrast', name: 'تباين عالي', nameEn: 'High Contrast', primary: '#ffffff', secondary: '#000000', background: ['#000000', '#1a1a1a', '#000000'] },
+  { id: 'inverted', name: 'معكوس', nameEn: 'Inverted', primary: '#000000', secondary: '#ffffff', background: ['#ffffff', '#f5f5f5', '#ffffff'] },
+  
+  // Additional Themes (to reach 50+)
+  { id: 'space-dark', name: 'داكن الفضاء', nameEn: 'Space Dark', primary: '#6366f1', secondary: '#8b5cf6', background: ['#000000', '#0a0a1a', '#000000'] },
+  { id: 'matrix-green', name: 'أخضر المصفوفة', nameEn: 'Matrix Green', primary: '#00ff41', secondary: '#00cc33', background: ['#000000', '#001a00', '#000000'] },
+  { id: 'fire-red', name: 'أحمر النار', nameEn: 'Fire Red', primary: '#ff3333', secondary: '#ff6666', background: ['#1a0000', '#2a0000', '#1a0000'] },
+  { id: 'ice-blue', name: 'أزرق الجليد', nameEn: 'Ice Blue', primary: '#00ccff', secondary: '#0099cc', background: ['#000a14', '#001a28', '#000a14'] },
+  { id: 'sunshine-yellow', name: 'أصفر الشمس', nameEn: 'Sunshine Yellow', primary: '#ffcc00', secondary: '#ff9900', background: ['#1a1a00', '#2a2a00', '#1a1a00'] },
+  { id: 'mint-fresh', name: 'منعش النعناع', nameEn: 'Mint Fresh', primary: '#00ffaa', secondary: '#00cc88', background: ['#000a0a', '#001a1a', '#000a0a'] },
+  { id: 'coral-reef', name: 'شعاب مرجانية', nameEn: 'Coral Reef', primary: '#ff6b6b', secondary: '#ff8e8e', background: ['#1a0a0a', '#2a1a1a', '#1a0a0a'] },
+  { id: 'sapphire-blue', name: 'أزرق الياقوت', nameEn: 'Sapphire Blue', primary: '#0066ff', secondary: '#0052cc', background: ['#000a1a', '#001a2a', '#000a1a'] },
+  { id: 'emerald-green', name: 'أخضر الزمرد', nameEn: 'Emerald Green', primary: '#00cc66', secondary: '#009944', background: ['#000a0a', '#001a1a', '#000a0a'] },
+  { id: 'ruby-red', name: 'أحمر الياقوت', nameEn: 'Ruby Red', primary: '#ff0033', secondary: '#cc0022', background: ['#1a0000', '#2a0000', '#1a0000'] },
+  { id: 'amethyst-purple', name: 'بنفسجي الجمشت', nameEn: 'Amethyst Purple', primary: '#9966ff', secondary: '#7733cc', background: ['#1a0a1a', '#2a1a2a', '#1a0a1a'] },
+  { id: 'amber-gold', name: 'ذهبي الكهرمان', nameEn: 'Amber Gold', primary: '#ffaa00', secondary: '#cc8800', background: ['#1a1400', '#2a1f00', '#1a1400'] },
+  { id: 'pearl-white', name: 'أبيض اللؤلؤ', nameEn: 'Pearl White', primary: '#333333', secondary: '#666666', background: ['#ffffff', '#f5f5f5', '#ffffff'] },
+  { id: 'obsidian-black', name: 'أسود السبج', nameEn: 'Obsidian Black', primary: '#cccccc', secondary: '#999999', background: ['#000000', '#0a0a0a', '#000000'] },
+  { id: 'platinum-silver', name: 'فضي البلاتين', nameEn: 'Platinum Silver', primary: '#888888', secondary: '#aaaaaa', background: ['#1a1a1a', '#2a2a2a', '#1a1a1a'] },
+];
+
+
+
+
+
+
+
+

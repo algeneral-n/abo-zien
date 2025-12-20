@@ -1,0 +1,7 @@
+EXPO_PUBLIC_API_URL=https://api.zien-ai.app
+MONGO_URL="mongodb+srv://algeneralns_db_user:XWeCOl0X8fd9IVjc@cluster0.u5c1uim.mongodb.net/?appName=Cluster0";
+Username: algeneralns_db_user
+Password: XWeCOl0X8fd9IVjc
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseKey = process.env.REACT_APP_SUPABASE_PUBLISHABLE_DEFAULT
+

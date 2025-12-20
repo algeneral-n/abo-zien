@@ -1,0 +1,54 @@
+{
+  "agent_id": "agent_0701kc4axybpf6fvak70xwfzpyka",
+  "owner_settings": {
+    "owner_name": "نادر",
+    "owner_name_en": "Nader",
+    "voice_recognition": {
+      "enabled": true,
+      "voice_id": "owner_voice_nader",
+      "voice_sample_required": true,
+      "recognition_threshold": 0.85
+    },
+    "custom_instructions": {
+      "enabled": true,
+      "storage": "persistent",
+      "max_instructions": 100
+    },
+    "command_keywords": {
+      "ar": ["نادر", "أنا نادر", "من نادر", "تعليمات", "احفظ", "تذكر"],
+      "en": ["nader", "i'm nader", "from nader", "instructions", "save", "remember"]
+    }
+  },
+  "custom_instructions": [
+    {
+      "id": "example_1",
+      "trigger": "greet_customer",
+      "instruction_ar": "عندما يأتي عميل اسمه سلطان، رحّب به قائلاً: 'مرحباً سلطان! أهلاً وسهلاً بك في RARE 4N. كيف يمكنني مساعدتك اليوم؟'",
+      "instruction_en": "When a customer named Sultan arrives, greet them saying: 'Hello Sultan! Welcome to RARE 4N. How can I help you today?'",
+      "created_at": "2024-01-01T00:00:00Z",
+      "active": true
+    }
+  ],
+  "voice_commands": [
+    {
+      "command": "save_instruction",
+      "pattern_ar": "احفظ|تذكر|تعليمات",
+      "pattern_en": "save|remember|instruction",
+      "action": "store_custom_instruction"
+    },
+    {
+      "command": "update_greeting",
+      "pattern_ar": "غير الترحيب|عدل الترحيب",
+      "pattern_en": "change greeting|update greeting",
+      "action": "update_greeting_template"
+    },
+    {
+      "command": "add_customer_note",
+      "pattern_ar": "عميل|زبون|مذكرة",
+      "pattern_en": "customer|client|note",
+      "action": "add_customer_specific_note"
+    }
+  ]
+}
+
+

@@ -1,0 +1,23 @@
+{
+  "name": "abo-zien",
+  "version": "1.0.0",
+  "description": "Unified RARE System - تجميع كل الأنظمة والكور الفعالة",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rare",
+    "cognitive",
+    "ai",
+    "kernel",
+    "engines"
+  ],
+  "author": "NADER",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
+

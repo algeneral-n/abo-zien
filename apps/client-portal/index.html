@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RARE 4N - Client Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <h1 class="logo">RARE 4N</h1>
+        <p class="subtitle">بوابة العميل</p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Client Info -->
+        <section class="client-info">
+          <h2>معلومات العميل</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <label>الاسم:</label>
+              <input type="text" id="clientName" placeholder="اسم العميل">
+            </div>
+            <div class="info-item">
+              <label>رقم الهاتف:</label>
+              <input type="tel" id="clientPhone" placeholder="+966501234567">
+            </div>
+            <div class="info-item">
+              <label>البريد الإلكتروني:</label>
+              <input type="email" id="clientEmail" placeholder="client@example.com">
+            </div>
+            <button class="btn btn-primary" onclick="registerClient()">تسجيل</button>
+          </div>
+        </section>
+
+        <!-- RARE Widget -->
+        <section class="widget-section">
+          <h2>مساعد RARE</h2>
+          <!-- ElevenLabs Convai Widget -->
+          <elevenlabs-convai agent-id="agent_0701kc4axybpf6fvak70xwfzpyka"></elevenlabs-convai>
+          <script src="https://unpkg.com/@elevenlabs/convai-widget-embed@beta" async type="text/javascript"></script>
+          <div id="rareWidget" class="rare-widget">
+            <div class="widget-header">
+              <div class="rare-avatar">R</div>
+              <div class="widget-info">
+                <h3>RARE</h3>
+                <p class="widget-status" id="widgetStatus">غير متصل</p>
+              </div>
+            </div>
+            <div class="widget-content">
+              <div id="widgetMessages" class="widget-messages">
+                <div class="message message-assistant">
+                  <strong>RARE:</strong> مرحباً! أنا RARE، مساعدك الذكي. يمكنني:
+                  <br>• التحدث معك صوتياً (Voice-to-Voice) 🎤
+                  <br>• مساعدتك في اختيار التطبيقات والأنظمة والثيمات 📚
+                  <br>• تسجيل طلباتك وتتبعها 📝
+                  <br>• التواصل معك بالعربية والإنجليزية واللهجات المختلفة 🌍
+                  <br><br>📞 للتواصل المباشر: +971529211077 | GM@ZIEN-AI.APP
+                </div>
+              </div>
+              <div class="widget-input">
+                <input type="text" id="widgetInput" placeholder="اكتب رسالتك أو اضغط 🎤 للتحدث..." disabled>
+                <button id="voiceBtn" class="btn-voice" onclick="toggleVoice()" disabled title="Voice-to-Voice مع RARE">
+                  <span class="mic-icon">🎤</span>
+                </button>
+                <button class="btn-libraries" onclick="requestLibraries()" disabled title="عرض المكتبات">📚</button>
+                <button class="btn-contact" onclick="requestContact()" disabled title="معلومات التواصل">📞</button>
+                <button id="sendBtn" class="btn-send" onclick="sendMessage()" disabled>إرسال</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Request Form -->
+        <section class="form-section">
+          <h2>نموذج الطلبات</h2>
+          <form id="requestForm" class="request-form" onsubmit="submitForm(event)">
+            <div class="form-group">
+              <label>نوع الطلب:</label>
+              <select id="requestType" required>
+                <option value="">اختر نوع الطلب</option>
+                <option value="app">تطبيق جديد</option>
+                <option value="website">موقع ويب</option>
+                <option value="system">نظام إدارة</option>
+                <option value="theme">ثيم مخصص</option>
+                <option value="modification">تعديل على مشروع موجود</option>
+                <option value="other">أخرى</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>تفاصيل الطلب:</label>
+              <textarea id="requestDetails" rows="5" placeholder="اكتب تفاصيل طلبك هنا..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label>رفع ملفات/صور:</label>
+              <input type="file" id="requestFiles" multiple accept="image/*,.pdf,.doc,.docx,.zip,.rar" onchange="handleFileSelect(event)">
+              <div id="filePreview" class="file-preview"></div>
+            </div>
+            <div class="form-group">
+              <label>معاينة الثيم:</label>
+              <select id="themePreview">
+                <option value="">اختر ثيم للمعاينة</option>
+                <option value="cyber-neon">سايبر نيون</option>
+                <option value="glass-morphism">زجاجي فاخر</option>
+                <option value="midnight-gold">ذهب منتصف الليل</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">إرسال الطلب</button>
+          </form>
+        </section>
+
+        <!-- Requests History -->
+        <section class="requests-section">
+          <h2>سجل الطلبات</h2>
+          <div id="requestsList" class="requests-list"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Payment Section (Stripe + Apple Pay) -->
+    <section class="payment-section" id="paymentSection" style="display: none;">
+      <h2>الدفع</h2>
+      <div id="paymentContainer" class="payment-container">
+        <div id="stripePayment" class="stripe-payment"></div>
+        <button id="applePayBtn" class="btn btn-apple-pay" onclick="initiateApplePay()" style="display: none;">
+          <span class="apple-pay-icon">🍎</span> دفع عبر Apple Pay
+        </button>
+      </div>
+    </section>
+
+    <!-- RARE Widget (Floating) -->
+    <div id="floatingWidget" class="floating-widget" style="display: none;">
+      <div class="widget-toggle" onclick="toggleFloatingWidget()">
+        <div class="rare-avatar-small">R</div>
+      </div>
+      <div class="widget-content" id="floatingWidgetContent">
+        <div class="widget-header-small">
+          <h3>RARE</h3>
+          <button class="btn-close" onclick="toggleFloatingWidget()">×</button>
+        </div>
+        <div id="floatingMessages" class="widget-messages"></div>
+        <div class="widget-input">
+          <input type="text" id="floatingInput" placeholder="اكتب رسالتك...">
+          <button class="btn-voice" onclick="toggleVoiceFloating()">🎤</button>
+          <button class="btn-send" onclick="sendFloatingMessage()">إرسال</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

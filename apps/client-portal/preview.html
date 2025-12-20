@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معاينة مكتبات RARE - Preview Libraries</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #000408 0%, #001820 50%, #000408 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px 20px;
+      background: rgba(0, 234, 255, 0.1);
+      border: 2px solid #00eaff;
+      border-radius: 16px;
+    }
+
+    h1 {
+      color: #00eaff;
+      font-size: 32px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(0, 234, 255, 0.5);
+    }
+
+    .subtitle {
+      color: #aaa;
+      font-size: 16px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tab {
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid #00eaff;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .tab:hover {
+      background: rgba(0, 234, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .tab.active {
+      background: #00eaff;
+      color: #000;
+    }
+
+    .content {
+      display: none;
+    }
+
+    .content.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid #00eaff;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      background: rgba(0, 234, 255, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0, 234, 255, 0.3);
+    }
+
+    .card-title {
+      color: #00eaff;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-subtitle {
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card-description {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .theme-preview {
+      height: 60px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .category-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(0, 234, 255, 0.2);
+      border-radius: 20px;
+      font-size: 12px;
+      color: #00eaff;
+      margin-top: 8px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: #00eaff;
+      font-size: 20px;
+    }
+
+    .error {
+      text-align: center;
+      padding: 40px 20px;
+      color: #ff0040;
+      background: rgba(255, 0, 64, 0.1);
+      border: 2px solid #ff0040;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+
+    .stats {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid #00eaff;
+      border-radius: 10px;
+      padding: 15px 30px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: bold;
+      color: #00eaff;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎨 معاينة مكتبات RARE 4N</h1>
+      <p class="subtitle">اختر من 231 قالب تطبيق، نظام، وثيم</p>
+    </header>
+
+    <div class="stats" id="stats">
+      <div class="stat">
+        <div class="stat-number" id="templatesCount">--</div>
+        <div class="stat-label">قالب تطبيق</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" id="systemsCount">--</div>
+        <div class="stat-label">نظام عمل</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" id="themesCount">--</div>
+        <div class="stat-label">ثيم تصميم</div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('templates')">📱 قوالب التطبيقات</button>
+      <button class="tab" onclick="showTab('systems')">⚙️ أنظمة العمل</button>
+      <button class="tab" onclick="showTab('themes')">🎨 الثيمات</button>
+      <button class="tab" onclick="showTab('all')">🌟 عرض الكل</button>
+    </div>
+
+    <div class="loading" id="loading">جاري التحميل...</div>
+    <div class="error" id="error" style="display: none;"></div>
+
+    <div class="content active" id="templates"></div>
+    <div class="content" id="systems"></div>
+    <div class="content" id="themes"></div>
+    <div class="content" id="all"></div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <script>
+    const API_URL = 'http://localhost:5000'; // Change to production URL
+    const socket = io(`${API_URL}/client-portal`);
+
+    let librariesData = {
+      templates: [],
+      systems: [],
+      themes: []
+    };
+
+    // Connect to server
+    socket.on('connect', () => {
+      console.log('Connected to RARE server');
+      
+      // Register as client
+      socket.emit('client:register', {
+        clientId: 'preview_' + Date.now(),
+        clientName: 'Preview User',
+        phone: 'N/A',
+        email: 'preview@rare4n.app'
+      });
+
+      // Request all libraries
+      socket.emit('client:preview-libraries', {
+        type: 'all'
+      });
+    });
+
+    // Receive preview data
+    socket.on('client:preview-data', (data) => {
+      console.log('Received preview data:', data);
+      
+      if (data.success) {
+        librariesData = data.data;
+        
+        // Update stats
+        document.getElementById('templatesCount').textContent = librariesData.templates?.length || 0;
+        document.getElementById('systemsCount').textContent = librariesData.systems?.length || 0;
+        document.getElementById('themesCount').textContent = librariesData.themes?.length || 0;
+        
+        // Render libraries
+        renderTemplates();
+        renderSystems();
+        renderThemes();
+        renderAll();
+        
+        // Hide loading
+        document.getElementById('loading').style.display = 'none';
+      }
+    });
+
+    // Error handling
+    socket.on('error', (error) => {
+      console.error('Socket error:', error);
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').textContent = 'خطأ: ' + error.error;
+      document.getElementById('error').style.display = 'block';
+    });
+
+    // Render functions
+    function renderTemplates() {
+      const container = document.getElementById('templates');
+      container.innerHTML = '';
+      
+      librariesData.templates?.forEach(template => {
+        const card = createCard(
+          template.name,
+          template.nameEn,
+          template.description,
+          template.category
+        );
+        container.appendChild(card);
+      });
+    }
+
+    function renderSystems() {
+      const container = document.getElementById('systems');
+      container.innerHTML = '';
+      
+      librariesData.systems?.forEach(system => {
+        const card = createCard(
+          system.name,
+          system.nameEn,
+          system.description,
+          system.category
+        );
+        container.appendChild(card);
+      });
+    }
+
+    function renderThemes() {
+      const container = document.getElementById('themes');
+      container.innerHTML = '';
+      
+      librariesData.themes?.forEach(theme => {
+        const card = createThemeCard(theme);
+        container.appendChild(card);
+      });
+    }
+
+    function renderAll() {
+      const container = document.getElementById('all');
+      container.innerHTML = '';
+      
+      // Add all templates
+      librariesData.templates?.slice(0, 10).forEach(template => {
+        const card = createCard(
+          template.name,
+          template.nameEn,
+          template.description,
+          'قالب: ' + template.category
+        );
+        container.appendChild(card);
+      });
+      
+      // Add all systems
+      librariesData.systems?.slice(0, 10).forEach(system => {
+        const card = createCard(
+          system.name,
+          system.nameEn,
+          system.description,
+          'نظام: ' + system.category
+        );
+        container.appendChild(card);
+      });
+      
+      // Add all themes
+      librariesData.themes?.slice(0, 10).forEach(theme => {
+        const card = createThemeCard(theme);
+        container.appendChild(card);
+      });
+    }
+
+    function createCard(title, subtitle, description, category) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-title">${title}</div>
+        <div class="card-subtitle">${subtitle}</div>
+        <div class="card-description">${description}</div>
+        <div class="category-badge">${category}</div>
+      `;
+      return card;
+    }
+
+    function createThemeCard(theme) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      
+      const gradient = `linear-gradient(135deg, ${theme.background[0]}, ${theme.background[1]}, ${theme.background[2]})`;
+      
+      card.innerHTML = `
+        <div class="theme-preview" style="background: ${gradient}; color: ${theme.primary};">
+          ${theme.name}
+        </div>
+        <div class="card-title">${theme.name}</div>
+        <div class="card-subtitle">${theme.nameEn}</div>
+        <div class="card-description">
+          Primary: ${theme.primary}<br>
+          Secondary: ${theme.secondary}
+        </div>
+      `;
+      return card;
+    }
+
+    function showTab(tabName) {
+      // Update tabs
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Update content
+      document.querySelectorAll('.content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(tabName).classList.add('active');
+    }
+  </script>
+</body>
+</html>
+
+

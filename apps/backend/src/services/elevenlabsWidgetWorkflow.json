@@ -1,0 +1,731 @@
+{
+  "name": "RARE 4N Widget Workflow",
+  "version": "1.0.0",
+  "description": "وورك فلو محترم للويدجت في ElevenLabs - يتضمن التعرف على الصوت، تعدد اللهجات، الدفع، معاينة المكتبات",
+  "agent_id": "agent_0701kc4axybpf6fvak70xwfzpyka",
+  "system_agent_id": "9401kb2n0gf5e2wtp4sfs8chdmk1",
+  "workflow": {
+    "initial_state": "welcome",
+    "states": {
+      "welcome": {
+        "name": "الترحيب",
+        "description": "ترحيب بالعميل وتقديم RARE",
+        "actions": [
+          {
+            "type": "greet",
+            "message": "مرحباً! أنا RARE، مساعدك الذكي. يمكنني مساعدتك في بناء تطبيقك أو نظامك. كيف يمكنني مساعدتك اليوم؟"
+          },
+          {
+            "type": "show_capabilities",
+            "capabilities": [
+              "اختيار التطبيقات والأنظمة والثيمات",
+              "شرح المكتبات والمعاينات",
+              "إدارة عملية الدفع",
+              "التواصل بالعربية والإنجليزية واللهجات المختلفة",
+              "التعرف على صوتك وتفهمه"
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "user_asks_about_apps",
+            "next_state": "show_apps"
+          },
+          {
+            "condition": "user_asks_about_systems",
+            "next_state": "show_systems"
+          },
+          {
+            "condition": "user_asks_about_themes",
+            "next_state": "show_themes"
+          },
+          {
+            "condition": "user_asks_about_payment",
+            "next_state": "explain_payment"
+          },
+          {
+            "condition": "user_has_request",
+            "next_state": "understand_request"
+          }
+        ]
+      },
+      "understand_request": {
+        "name": "فهم الطلب",
+        "description": "فهم طلب العميل وتحديد النوع المطلوب",
+        "actions": [
+          {
+            "type": "listen",
+            "voice_recognition": true,
+            "dialect_detection": true,
+            "language_detection": true
+          },
+          {
+            "type": "ask_clarifying_questions",
+            "questions": [
+              "ما نوع التطبيق/النظام الذي تريده؟",
+              "هل لديك متطلبات محددة؟",
+              "ما هو الهدف من التطبيق/النظام؟"
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "request_type_app",
+            "next_state": "show_apps"
+          },
+          {
+            "condition": "request_type_system",
+            "next_state": "show_systems"
+          },
+          {
+            "condition": "request_type_theme",
+            "next_state": "show_themes"
+          },
+          {
+            "condition": "request_unclear",
+            "next_state": "understand_request",
+            "action": "ask_for_clarification"
+          }
+        ]
+      },
+      "show_apps": {
+        "name": "عرض التطبيقات",
+        "description": "عرض قوالب التطبيقات المتاحة",
+        "actions": [
+          {
+            "type": "show_library",
+            "library_type": "templates",
+            "categories": [
+              "Social Media",
+              "E-commerce",
+              "Productivity",
+              "Communication",
+              "Entertainment",
+              "Health & Fitness",
+              "Education",
+              "Finance",
+              "Travel",
+              "Food & Restaurant"
+            ]
+          },
+          {
+            "type": "explain_features",
+            "features": [
+              "المميزات",
+              "الوظائف",
+              "الشاشات",
+              "الاستخدامات"
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "user_selects_app",
+            "next_state": "preview_selected"
+          },
+          {
+            "condition": "user_asks_questions",
+            "next_state": "answer_questions"
+          },
+          {
+            "condition": "user_wants_different_category",
+            "next_state": "show_apps"
+          }
+        ]
+      },
+      "show_systems": {
+        "name": "عرض الأنظمة",
+        "description": "عرض الأنظمة المتاحة",
+        "actions": [
+          {
+            "type": "show_library",
+            "library_type": "systems",
+            "categories": [
+              "Business Systems",
+              "Social Media Systems",
+              "Communication Systems",
+              "Productivity Systems",
+              "Storage Systems",
+              "Security Systems",
+              "Payment Systems",
+              "Analytics Systems"
+            ]
+          },
+          {
+            "type": "explain_features",
+            "features": [
+              "الوظائف",
+              "التقارير",
+              "الإحصائيات",
+              "الاستخدامات"
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "user_selects_system",
+            "next_state": "preview_selected"
+          },
+          {
+            "condition": "user_asks_questions",
+            "next_state": "answer_questions"
+          },
+          {
+            "condition": "user_wants_different_category",
+            "next_state": "show_systems"
+          }
+        ]
+      },
+      "show_themes": {
+        "name": "عرض الثيمات",
+        "description": "عرض الثيمات المتاحة",
+        "actions": [
+          {
+            "type": "show_library",
+            "library_type": "themes",
+            "categories": [
+              "Cyber & Neon",
+              "Glass & Modern",
+              "Gold & Luxury",
+              "Nature",
+              "Professional",
+              "Vibrant",
+              "Monochrome",
+              "Gradient"
+            ]
+          },
+          {
+            "type": "explain_design",
+            "design_elements": [
+              "الألوان الأساسية",
+              "الألوان الثانوية",
+              "خلفية التطبيق",
+              "التصميم العام"
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "user_selects_theme",
+            "next_state": "preview_selected"
+          },
+          {
+            "condition": "user_asks_questions",
+            "next_state": "answer_questions"
+          },
+          {
+            "condition": "user_wants_different_category",
+            "next_state": "show_themes"
+          }
+        ]
+      },
+      "preview_selected": {
+        "name": "معاينة المختار",
+        "description": "عرض تفاصيل العنصر المختار",
+        "actions": [
+          {
+            "type": "show_preview",
+            "preview_type": "detailed",
+            "includes": [
+              "الاسم",
+              "الوصف",
+              "المميزات",
+              "الوظائف",
+              "الألوان (للثيمات)",
+              "الشاشات (للتطبيقات)",
+              "التقارير (للأنظمة)"
+            ]
+          },
+          {
+            "type": "ask_for_modifications",
+            "question": "هل تريد أي تعديلات أو تحسينات؟"
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "user_approves",
+            "next_state": "collect_info"
+          },
+          {
+            "condition": "user_wants_modifications",
+            "next_state": "handle_modifications"
+          },
+          {
+            "condition": "user_wants_different_item",
+            "next_state": "understand_request"
+          }
+        ]
+      },
+      "collect_info": {
+        "name": "جمع المعلومات",
+        "description": "جمع المعلومات المطلوبة للبناء",
+        "actions": [
+          {
+            "type": "collect",
+            "fields": [
+              {
+                "name": "app_name",
+                "label": "اسم التطبيق/النظام",
+                "required": true,
+                "validation": "non_empty"
+              },
+              {
+                "name": "email",
+                "label": "البريد الإلكتروني",
+                "required": true,
+                "validation": "email"
+              },
+              {
+                "name": "phone",
+                "label": "رقم الهاتف",
+                "required": true,
+                "validation": "phone"
+              },
+              {
+                "name": "color",
+                "label": "اللون المفضل",
+                "required": false,
+                "validation": "color"
+              },
+              {
+                "name": "logo",
+                "label": "اللوجو",
+                "required": false,
+                "validation": "file",
+                "file_types": ["image/png", "image/jpeg", "image/svg+xml"]
+              }
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "all_info_collected",
+            "next_state": "payment_question"
+          },
+          {
+            "condition": "info_missing",
+            "next_state": "collect_info",
+            "action": "ask_for_missing_info"
+          }
+        ]
+      },
+      "payment_question": {
+        "name": "سؤال الدفع",
+        "description": "سؤال العميل عن طريقة الدفع",
+        "actions": [
+          {
+            "type": "ask_payment_method",
+            "options": [
+              {
+                "value": "now",
+                "label": "الدفع الآن",
+                "description": "نبدأ البناء فوراً بعد الدفع"
+              },
+              {
+                "value": "later",
+                "label": "الدفع لاحقاً",
+                "description": "الدفع عند المعاينة (الزيارة الثانية)"
+              }
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "user_chooses_pay_now",
+            "next_state": "create_payment_session"
+          },
+          {
+            "condition": "user_chooses_pay_later",
+            "next_state": "submit_request"
+          },
+          {
+            "condition": "user_asks_about_payment",
+            "next_state": "explain_payment"
+          }
+        ]
+      },
+      "explain_payment": {
+        "name": "شرح الدفع",
+        "description": "شرح نظام الدفع المتاح",
+        "actions": [
+          {
+            "type": "explain",
+            "topics": [
+              "طرق الدفع المتاحة (Stripe, Apple Pay, Google Pay)",
+              "الأمان والخصوصية",
+              "الاسترداد",
+              "التكلفة"
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "user_understands",
+            "next_state": "payment_question"
+          },
+          {
+            "condition": "user_has_more_questions",
+            "next_state": "explain_payment"
+          }
+        ]
+      },
+      "create_payment_session": {
+        "name": "إنشاء جلسة الدفع",
+        "description": "إنشاء جلسة Stripe Checkout",
+        "actions": [
+          {
+            "type": "call_tool",
+            "tool_name": "create_checkout_session",
+            "parameters": {
+              "amount": "calculated",
+              "currency": "SAR",
+              "metadata": {
+                "client_id": "from_context",
+                "request_id": "from_context",
+                "item_type": "from_context",
+                "item_id": "from_context"
+              }
+            }
+          },
+          {
+            "type": "redirect",
+            "url": "payment_session_url"
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "payment_successful",
+            "next_state": "start_building"
+          },
+          {
+            "condition": "payment_failed",
+            "next_state": "payment_error"
+          },
+          {
+            "condition": "payment_cancelled",
+            "next_state": "payment_question"
+          }
+        ]
+      },
+      "submit_request": {
+        "name": "إرسال الطلب",
+        "description": "إرسال الطلب للمراجعة",
+        "actions": [
+          {
+            "type": "call_tool",
+            "tool_name": "submit_request",
+            "parameters": {
+              "client_id": "from_context",
+              "request_data": "from_context"
+            }
+          },
+          {
+            "type": "notify",
+            "message": "تم إرسال طلبك بنجاح. سيتم مراجعته والبدء بالبناء قريباً."
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "request_submitted",
+            "next_state": "waiting_approval"
+          },
+          {
+            "condition": "request_failed",
+            "next_state": "error_handling"
+          }
+        ]
+      },
+      "start_building": {
+        "name": "بدء البناء",
+        "description": "بدء بناء التطبيق/النظام",
+        "actions": [
+          {
+            "type": "call_tool",
+            "tool_name": "start_build",
+            "parameters": {
+              "request_id": "from_context",
+              "platforms": ["ios", "android", "web", "hybrid"]
+            }
+          },
+          {
+            "type": "notify",
+            "message": "تم بدء بناء تطبيقك/نظامك. سيتم إرسال التحديثات دورياً."
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "build_started",
+            "next_state": "building_in_progress"
+          },
+          {
+            "condition": "build_failed",
+            "next_state": "error_handling"
+          }
+        ]
+      },
+      "building_in_progress": {
+        "name": "البناء قيد التنفيذ",
+        "description": "متابعة عملية البناء",
+        "actions": [
+          {
+            "type": "update_status",
+            "status_updates": [
+              "جاري البناء...",
+              "جاري تجميع الملفات...",
+              "جاري التوقيع...",
+              "جاري الرفع..."
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "build_completed",
+            "next_state": "delivery"
+          },
+          {
+            "condition": "build_failed",
+            "next_state": "error_handling"
+          }
+        ]
+      },
+      "delivery": {
+        "name": "التسليم",
+        "description": "تسليم التطبيق/النظام للعميل",
+        "actions": [
+          {
+            "type": "call_tool",
+            "tool_name": "send_build_files",
+            "parameters": {
+              "client_email": "from_context",
+              "build_files": "from_build",
+              "download_link": "from_build"
+            }
+          },
+          {
+            "type": "notify",
+            "message": "تم الانتهاء من بناء تطبيقك/نظامك! تم إرسال الملفات إلى بريدك الإلكتروني."
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "delivery_completed",
+            "next_state": "completed"
+          },
+          {
+            "condition": "delivery_failed",
+            "next_state": "error_handling"
+          }
+        ]
+      },
+      "answer_questions": {
+        "name": "الإجابة على الأسئلة",
+        "description": "الإجابة على أسئلة العميل",
+        "actions": [
+          {
+            "type": "answer",
+            "sources": [
+              "library_info",
+              "system_prompt",
+              "conversation_history"
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "question_answered",
+            "next_state": "previous_state"
+          },
+          {
+            "condition": "user_has_more_questions",
+            "next_state": "answer_questions"
+          }
+        ]
+      },
+      "handle_modifications": {
+        "name": "معالجة التعديلات",
+        "description": "معالجة طلبات التعديل من العميل",
+        "actions": [
+          {
+            "type": "collect_modifications",
+            "modification_types": [
+              "تغيير الألوان",
+              "تعديل الوظائف",
+              "إضافة ميزات",
+              "تعديل التصميم"
+            ]
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "modifications_collected",
+            "next_state": "preview_selected"
+          },
+          {
+            "condition": "user_cancels",
+            "next_state": "preview_selected"
+          }
+        ]
+      },
+      "waiting_approval": {
+        "name": "انتظار الموافقة",
+        "description": "انتظار موافقة على الطلب",
+        "actions": [
+          {
+            "type": "notify",
+            "message": "طلبك قيد المراجعة. سيتم إشعارك عند الموافقة."
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "approved",
+            "next_state": "start_building"
+          },
+          {
+            "condition": "rejected",
+            "next_state": "request_rejected"
+          }
+        ]
+      },
+      "error_handling": {
+        "name": "معالجة الأخطاء",
+        "description": "معالجة الأخطاء والاستثناءات",
+        "actions": [
+          {
+            "type": "handle_error",
+            "error_types": [
+              "payment_error",
+              "build_error",
+              "delivery_error",
+              "network_error"
+            ]
+          },
+          {
+            "type": "notify",
+            "message": "حدث خطأ. يرجى المحاولة مرة أخرى أو التواصل معنا."
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "error_resolved",
+            "next_state": "previous_state"
+          },
+          {
+            "condition": "error_critical",
+            "next_state": "contact_support"
+          }
+        ]
+      },
+      "contact_support": {
+        "name": "التواصل مع الدعم",
+        "description": "التواصل مع فريق الدعم",
+        "actions": [
+          {
+            "type": "provide_contact",
+            "contact_info": {
+              "email": "GM@ZIEN-AI.APP",
+              "phone": "+971529211077",
+              "website": "https://zien-ai.app"
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "user_understands",
+            "next_state": "welcome"
+          }
+        ]
+      },
+      "completed": {
+        "name": "مكتمل",
+        "description": "اكتمال العملية بنجاح",
+        "actions": [
+          {
+            "type": "thank",
+            "message": "شكراً لاستخدام RARE 4N! نتمنى أن يكون تطبيقك/نظامك مفيداً لك."
+          },
+          {
+            "type": "offer_help",
+            "message": "إذا احتجت أي مساعدة إضافية، أنا هنا دائماً!"
+          }
+        ],
+        "transitions": [
+          {
+            "condition": "user_has_new_request",
+            "next_state": "welcome"
+          }
+        ]
+      }
+    }
+  },
+  "voice_settings": {
+    "recognition": {
+      "enabled": true,
+      "language": "auto",
+      "dialect_detection": true,
+      "confidence_threshold": 0.7
+    },
+    "synthesis": {
+      "enabled": true,
+      "voice_id": "9401kb2n0gf5e2wtp4sfs8chdmk1",
+      "model": "eleven_multilingual_v2",
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0.0,
+      "use_speaker_boost": true
+    }
+  },
+  "dialect_support": {
+    "arabic": [
+      "msa",
+      "egyptian",
+      "gulf",
+      "levantine",
+      "maghrebi",
+      "sudanese",
+      "yemeni",
+      "iraqi"
+    ],
+    "english": [
+      "british",
+      "american",
+      "australian"
+    ]
+  },
+  "tools": [
+    {
+      "name": "create_checkout_session",
+      "description": "إنشاء جلسة Stripe Checkout للدفع",
+      "parameters": {
+        "amount": "number",
+        "currency": "string",
+        "metadata": "object"
+      }
+    },
+    {
+      "name": "submit_request",
+      "description": "إرسال طلب العميل للمراجعة",
+      "parameters": {
+        "client_id": "string",
+        "request_data": "object"
+      }
+    },
+    {
+      "name": "start_build",
+      "description": "بدء بناء التطبيق/النظام",
+      "parameters": {
+        "request_id": "string",
+        "platforms": "array"
+      }
+    },
+    {
+      "name": "send_build_files",
+      "description": "إرسال ملفات البناء للعميل",
+      "parameters": {
+        "client_email": "string",
+        "build_files": "array",
+        "download_link": "string"
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,10 @@
+﻿{
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": { "bundleIdentifier": "com.rare.abo-zien" }
+    },
+    "production": { "ios": { "bundleIdentifier": "com.rare.abo-zien" } }
+  }
+}
