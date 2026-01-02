@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>RARE 4N — Client Portal</title>
+
+  <!-- NOTE: Permissions-Policy must be set as an HTTP HEADER from backend for mic/cam. -->
+  <meta http-equiv="Permissions-Policy" content="microphone=(self), camera=(self)"/>
+
+  <link rel="stylesheet" href="/client-portal/styles.css?v=6"/>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" crossorigin="anonymous"></script>
+
+  <!-- ElevenLabs Conversational AI Widget (global) -->
+  <elevenlabs-convai agent-id="agent_0701kc4axybpf6fvak70xwfzpyka"></elevenlabs-convai>
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed@beta" async type="text/javascript"></script>
+</head>
+
+<body>
+  <!-- Matrix Background Canvas -->
+  <canvas id="matrixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
+  <canvas id="touchCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></canvas>
+
+  <div id="mainContainer" class="app-shell" data-theme="rare">
+    <aside class="sidebar" aria-label="Navigation">
+      <div class="sidebar-brand">
+        <div class="brand-title">RARE 4N</div>
+        <div class="brand-subtitle">Client Portal</div>
+      </div>
+
+      <a class="nav-link active" href="#" data-page="home"><span class="ms">space_dashboard</span><span data-i18n="dashboard">Dashboard</span></a>
+      <a class="nav-link" href="#" data-page="libraries"><span class="ms">view_module</span><span data-i18n="libraries">Libraries</span></a>
+      <a class="nav-link" href="#" data-page="preview"><span class="ms">smartphone</span><span data-i18n="preview">Preview Studio</span></a>
+      <a class="nav-link" href="#" data-page="payments"><span class="ms">payments</span><span data-i18n="payments">Payments</span></a>
+      <a class="nav-link" href="#" data-page="projects"><span class="ms">folder</span><span data-i18n="projects">Projects</span></a>
+      <a class="nav-link" href="#" data-page="settings"><span class="ms">settings</span><span data-i18n="settings">Settings</span></a>
+
+      <div class="sidebar-footer">
+        <button id="toggleAgentBtn" class="btn btn-ghost" type="button">
+          <span class="ms">support_agent</span>
+          <span data-i18n="agent">Agent</span>
+        </button>
+      </div>
+    </aside>
+
+    <section class="app-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="topbar-logo">
+            <span class="ms">stars</span>
+            <span class="topbar-title">RARE 4N</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-control">
+            <label class="sr-only" for="languageSelect">Language</label>
+            <select id="languageSelect">
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+
+          <div class="topbar-control">
+            <label class="sr-only" for="themeSelect">Theme</label>
+            <select id="themeSelect">
+              <option value="rare">RARE</option>
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+              <option value="neon">Neon</option>
+              <option value="cyber">Cyber</option>
+            </select>
+          </div>
+
+          <div class="profile">
+            <div class="profile-initial" id="profileInitial">R</div>
+            <div class="profile-meta">
+              <div class="profile-name" id="profileName">Client</div>
+              <div class="profile-email" id="profileEmail">—</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-content" id="mainContent">
+        <section id="page-home" class="page active"></section>
+        <section id="page-libraries" class="page"><div id="librariesContent"></div></section>
+        <section id="page-preview" class="page"><div id="previewContent"></div></section>
+        <section id="page-payments" class="page"><div id="paymentsContent"></div></section>
+        <section id="page-projects" class="page"><div id="projectsContent"></div></section>
+        <section id="page-settings" class="page">
+          <div class="settings-container glass">
+            <h2 data-i18n="settings">الإعدادات</h2>
+
+            <label for="settingsLanguageSelect" data-i18n="language">اللغة</label>
+            <select id="settingsLanguageSelect">
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+            </select>
+
+            <label for="settingsThemeSelect" data-i18n="theme">الثيم</label>
+            <select id="settingsThemeSelect">
+              <option value="rare">RARE</option>
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+              <option value="neon">Neon</option>
+              <option value="cyber">Cyber</option>
+            </select>
+
+            <label class="checkbox-row">
+              <input type="checkbox" id="voiceAutoStart"/>
+              <span data-i18n="voice_auto">تشغيل الصوت تلقائياً</span>
+            </label>
+
+            <button id="resetSettingsBtn" class="btn btn-primary" type="button" data-i18n="reset_settings">إعادة تعيين الإعدادات</button>
+          </div>
+        </section>
+
+        <div id="voiceWidgetError" class="toast" style="display:none"><p></p></div>
+      </main>
+    </section>
+  </div>
+
+  <script type="module" src="/client-portal/app-new.js?v=6"></script>
+</body>
+</html>
